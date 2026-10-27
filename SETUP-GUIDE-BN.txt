@@ -1,0 +1,49 @@
+নতুন বাংলা পার্সোনাল ড্যাশবোর্ড — সেটআপ নির্দেশিকা
+=================================================
+
+এই প্যাকেজে আগের ডিজাইন ও logo.jpg রাখা হয়েছে। নতুন Firebase প্রজেক্টের তথ্য বসানোর আগে সাইটটি লাইভে সম্পূর্ণ কাজ করবে না।
+
+ধাপ ১ — নতুন GitHub repository
+1. https://github.com/new খুলুন।
+2. Repository name নিজের পছন্দমতো দিন (উদাহরণ: bangla-services-dashboard)।
+3. Public নির্বাচন করে Create repository করুন।
+4. এই ZIP-এর সব ফাইল ও logo.jpg repository-র মূল (root) ফোল্ডারে আপলোড করুন।
+5. Commit changes করুন।
+
+ধাপ ২ — নতুন Firebase প্রজেক্ট
+1. https://console.firebase.google.com/ খুলে Add project করুন।
+2. নতুন Project ID নির্বাচন করুন। এটি পরে বদলানো যায় না; সাবধানে বাছুন।
+3. Project তৈরি হলে Build > Authentication > Get started > Sign-in method-এ Email/Password চালু করুন।
+4. Authentication > Users থেকে নিজের অ্যাডমিন ইমেইল ও শক্তিশালী পাসওয়ার্ড দিয়ে একটিমাত্র অ্যাকাউন্ট তৈরি করুন।
+5. Project settings > General > Your apps > Web app (</>) যোগ করুন।
+6. Firebase যে config দেখাবে, index.html এবং admin.html—দুটির firebaseConfig-এ একই নতুন মান বসাতে হবে।
+   YOUR_FIREBASE_API_KEY, YOUR_PROJECT_ID, YOUR_MESSAGING_SENDER_ID, YOUR_FIREBASE_APP_ID ইত্যাদি placeholder-গুলো বদলান।
+   config পাসওয়ার্ড নয়; তবু চ্যাটে বা পাবলিক পোস্টে শেয়ার করবেন না। Google Cloud-এ API restrictions সেট করুন।
+
+ধাপ ৩ — Firestore ও নিরাপত্তা
+1. Firebase Console > Build > Firestore Database > Create database।
+2. Firestore > Rules খুলুন। এই প্যাকেজের firestore.rules-এর সম্পূর্ণ নিয়ম কপি করুন।
+3. REPLACE_WITH_YOUR_ADMIN_UID-এর জায়গায় Authentication > Users-এ আপনার অ্যাকাউন্টের UID বসান। উদ্ধৃতি চিহ্ন রাখবেন।
+4. Publish চাপুন। UID কাউকে পাঠাবেন না। এই নিয়মে siteContent ডকুমেন্টগুলো public read এবং শুধু নির্দিষ্ট UID-কে write দেওয়া হয়। অন্য সব ডকুমেন্ট deny করা হয়।
+
+ধাপ ৪ — GitHub Pages
+1. GitHub repository > Settings > Pages খুলুন।
+2. Build and deployment-এ Deploy from a branch নির্বাচন করুন।
+3. Branch: main এবং folder: /(root) নির্বাচন করে Save করুন।
+4. কিছুক্ষণ পরে Pages-এর দেওয়া URL খুলুন। প্রথমবার প্রকাশ হতে কয়েক মিনিট লাগতে পারে।
+5. admin.html URL-এ /admin.html যোগ করে অ্যাডমিন প্যানেল খুলুন।
+
+ধাপ ৫ — প্রথম ব্যবহার
+1. admin.html-এ আপনার Firebase Authentication ইমেইল/পাসওয়ার্ড দিয়ে লগইন করুন।
+2. প্রথমবার Firestore-এ cardLayout/customLinks/siteSettings না থাকলে অ্যাডমিন প্যানেল ডিফল্ট কার্ড দেখাতে পারে; ডেটা সংরক্ষণ করলে ডকুমেন্ট তৈরি হবে।
+3. কার্ড, কাস্টম লিংক ও সাইট সেটিংস পরিবর্তন করে হোমপেজে পরীক্ষা করুন।
+4. আগে ছোট পরিবর্তন পরীক্ষা করুন এবং নিয়মিত ব্যাকআপ ডাউনলোড করুন।
+
+গুরুত্বপূর্ণ সীমাবদ্ধতা
+---------------------
+- এই সংস্করণটি GitHub Pages-এ বিনামূল্যে প্রকাশের জন্য। নিজস্ব ডোমেইন চাইলে পরে GitHub Pages-এ custom domain যোগ করতে পারবেন; ডোমেইন সাধারণত কিনতে হয়।
+- Firestore Rules নিরাপত্তার জন্য অপরিহার্য। শুধু admin.html লুকিয়ে রাখলে সাইট নিরাপদ হয় না।
+- Public read হওয়ায় siteContent-এর এই তিন ডকুমেন্টে থাকা তথ্য যে কেউ পড়তে পারবে; সেখানে গোপন তথ্য রাখবেন না।
+- admin.html-এ নতুন কনটেন্ট/কার্ড পরিচালনার ফর্ম আছে, তবে সব ধরনের ফাইল আপলোড বা সম্পূর্ণ সাইটের প্রতিটি ডিজাইন-উপাদান বদলানোর জন্য আলাদা feature লাগতে পারে।
+- Firebase Web config-এর placeholder বদলানো ও Rules-এ নিজের UID বসানো ছাড়া সেটআপ সম্পূর্ণ হবে না।
+- পুরোনো Firebase API key আর ব্যবহার করবেন না; নতুন Firebase project-এর config ব্যবহার করুন।

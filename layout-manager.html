@@ -1,0 +1,471 @@
+
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard Studio | বাংলা পার্সোনাল ড্যাশবোর্ড</title>
+<style>
+:root{--bg:#f5f7fc;--ink:#18233a;--muted:#77839a;--line:#e4e9f2;--primary:#4f46e5;--shadow:0 12px 32px #26345b0b}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top left,#eef1ff,transparent 38%),var(--bg);font:14px/1.6 system-ui,'Noto Sans Bengali','Hind Siliguri',sans-serif;color:var(--ink)}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer;border:0;border-radius:11px;padding:10px 14px;background:var(--primary);color:white;font-weight:700}
+button:disabled{opacity:.55;cursor:wait}
+.wrap{max-width:1120px;margin:auto;padding:22px}
+.header{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:20px;flex-wrap:wrap}
+.header h1{margin:0;font-size:25px}
+a{color:var(--primary);font-weight:700;text-decoration:none}
+.muted{color:var(--muted);font-size:13px}
+.box{background:white;border:1px solid var(--line);border-radius:20px;padding:20px;margin:14px 0;box-shadow:var(--shadow)}
+input,textarea,select{width:100%;border:1px solid var(--line);border-radius:11px;padding:11px 12px;background:white;color:var(--ink);margin:5px 0 10px}
+label{font-weight:700;font-size:12px}
+.hidden{display:none!important}
+.status{white-space:pre-wrap;background:#f0fdf8;color:#17624c;padding:12px;border-radius:12px;margin:14px 0}
+.status.error{background:#fff0ef;color:#b42318}
+.toolbar,.row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+.row>*{flex:1}
+.secondary{background:#eef2ff;color:#4338ca}
+.danger{background:#fff0ef;color:#b42318}
+.sections{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.section{border:1px solid var(--line);border-radius:16px;padding:14px;background:#fbfcff;min-width:0}
+.item{display:flex;align-items:center;gap:8px;padding:10px;border:1px solid var(--line);background:white;border-radius:12px;margin:8px 0}
+.item span{flex:1;min-width:0;overflow-wrap:anywhere}
+.item small{display:block;color:var(--muted);font-size:11px}
+.item button{padding:6px 9px;font-size:12px}
+.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.wide{grid-column:1/-1}
+.hint{padding:12px;border-radius:12px;background:#f2f4ff;color:#4b5682;font-size:13px}
+@media(max-width:760px){.wrap{padding:12px}.sections,.formgrid{grid-template-columns:1fr}.box{padding:14px}.header h1{font-size:21px}.wide{grid-column:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="header">
+  <div>
+    <h1>✦ Dashboard Studio</h1>
+    <div class="muted">আপনার ড্যাশবোর্ড নিরাপদে কাস্টোমাইজ করুন</div>
+  </div>
+  <nav class="toolbar">
+    <a href="index.html">ওয়েবসাইট দেখুন ↗</a>
+    <a href="admin.html">Admin Panel ↗</a>
+  </nav>
+</header>
+
+<section class="box" id="loginPanel">
+  <h2>Admin Login</h2>
+  <p class="muted">শুধু অনুমোদিত অ্যাডমিন লগইন করতে পারবেন।</p>
+  <form id="loginForm">
+    <label for="adminEmail">Admin Email</label>
+    <input id="adminEmail" name="adminEmail" type="email" autocomplete="username" required>
+    <label for="adminPassword">Password</label>
+    <input id="adminPassword" name="adminPassword" type="password" autocomplete="current-password" required>
+    <button id="loginBtn" type="submit">login</button>
+  </form>
+  <p id="loginStatus" class="status" role="status">Firebase সংযোগের অপেক্ষায়…</p>
+</section>
+
+<section id="studio" class="hidden">
+  <div class="box">
+    <div class="row">
+      <div><h2>ওয়েবসাইট কাস্টোমাইজ করুন</h2><p class="muted">কার্ডের ক্রম ও বিবরণ বদলাতে পারবেন।</p></div>
+      <button id="logoutBtn" class="secondary" type="button">লগআউট</button>
+    </div>
+    <div class="hint">Save করার আগে JSON Backup ডাউনলোড করুন। Reset করলে Firestore-এ সঙ্গে সঙ্গে পরিবর্তন হবে না; Save চাপলে তবেই লেখা হবে।</div>
+  </div>
+
+  <div class="box">
+    <h2>ওয়েবসাইটের শিরোনাম</h2>
+    <div class="formgrid">
+      <div><label for="siteTitle">ওয়েবসাইটের নাম</label><input id="siteTitle"></div>
+      <div><label for="siteSubtitle">নামের নিচের লেখা</label><input id="siteSubtitle"></div>
+      <div><label for="heroTitle">বড় শিরোনাম</label><input id="heroTitle"></div>
+      <div><label for="heroText">শিরোনামের নিচের লেখা</label><input id="heroText"></div>
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="row">
+      <div><h2>সব কার্ড</h2><p class="muted">কার্ড যোগ, এডিট, সরানো ও ক্রম পরিবর্তন করুন।</p></div>
+      <button id="addCardBtn" type="button">＋ নতুন কার্ড</button>
+    </div>
+    <div id="groups" class="sections"></div>
+    <div class="toolbar">
+      <button id="saveBtn" type="button">সব পরিবর্তন সেভ</button>
+      <button id="backupBtn" type="button" class="secondary">JSON Backup ডাউনলোড</button>
+      <button id="resetBtn" type="button" class="secondary">ডিফল্ট কার্ড ফিরিয়ে আনুন</button>
+    </div>
+    <p id="mainStatus" class="status" role="status">লোড হচ্ছে…</p>
+  </div>
+
+  <div class="box">
+    <h2 id="editorHeading">কার্ড যোগ / এডিট</h2>
+    <form id="cardForm">
+      <input id="cardId" type="hidden">
+      <label for="cardTitle">কার্ডের নাম *</label><input id="cardTitle" required maxlength="100">
+      <label for="cardDescription">বিবরণ</label><textarea id="cardDescription" rows="2" maxlength="250"></textarea>
+      <label for="cardUrl">ওয়েবসাইট URL</label><input id="cardUrl" type="url" placeholder="https://example.com">
+      <label for="cardIcon">আইকন / Emoji</label><input id="cardIcon" maxlength="8" value="🔗">
+      <label for="cardTag">ক্যাটাগরি</label><input id="cardTag" maxlength="50">
+      <label for="cardKeywords">সার্চ কীওয়ার্ড</label><input id="cardKeywords">
+      <div class="toolbar">
+        <button type="submit">কার্ড তালিকায় রাখুন</button>
+        <button id="cancelEditBtn" class="secondary" type="button">ফর্ম খালি করুন</button>
+      </div>
+    </form>
+  </div>
+</section>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+import {
+  getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+import {
+  getFirestore, doc, getDoc, setDoc, serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+/*
+  নিচে Firebase Console > Project settings > Your apps থেকে
+  আপনার আসল Web App config বসান।
+  API key বা config অনুমান করে বসাবেন না।
+*/
+const firebaseConfig = {
+  apiKey: "YOUR_FIREBASE_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_FIREBASE_APP_ID"
+};
+
+const $ = id => document.getElementById(id);
+const loginPanel = $("loginPanel");
+const studio = $("studio");
+const loginStatus = $("loginStatus");
+const mainStatus = $("mainStatus");
+
+function message(el, text, error=false) {
+  el.textContent = text;
+  el.classList.toggle("error", error);
+}
+
+function validUrl(value) {
+  if (!value) return true;
+  try {
+    const u = new URL(value);
+    return u.protocol === "https:" || u.protocol === "http:";
+  } catch {
+    return false;
+  }
+}
+
+let auth, db;
+let cards = [];
+let originalCards = [];
+let customLinks = null;
+let cardLayout = null;
+let siteSettings = null;
+let signedIn = false;
+let dirty = false;
+
+const defaults = [
+  {id:"ration-card",title:"রেশন কার্ড",description:"রেশন কার্ড সংক্রান্ত পরিষেবা",url:"",icon:"🪪",tag:"সরকারি পরিষেবা",keywords:"ration রেশন",section:"documents"},
+  {id:"pan-card",title:"PAN Card",description:"PAN কার্ড সংক্রান্ত পরিষেবা",url:"",icon:"💳",tag:"ডকুমেন্ট",keywords:"pan প্যান",section:"documents"},
+  {id:"voter-card",title:"ভোটার কার্ড",description:"ভোটার পরিষেবা",url:"",icon:"🗳️",tag:"সরকারি পরিষেবা",keywords:"voter ভোটার",section:"documents"},
+  {id:"aadhaar-card",title:"আধার কার্ড",description:"Aadhaar পরিষেবা",url:"",icon:"🆔",tag:"ডকুমেন্ট",keywords:"aadhaar আধার",section:"documents"}
+];
+
+function setDirty() { dirty = true; }
+function normalizeCard(c) {
+  if (!c || typeof c !== "object" || !c.id || !c.title) return null;
+  return {
+    id:String(c.id), title:String(c.title), description:String(c.description || ""),
+    url:String(c.url || ""), icon:String(c.icon || "🔗"), tag:String(c.tag || ""),
+    keywords:String(c.keywords || ""), section:String(c.section || "documents")
+  };
+}
+
+function render() {
+  const host = $("groups");
+  host.replaceChildren();
+  const sectionIds = [...new Set(cards.map(c => c.section || "documents"))];
+
+  sectionIds.forEach(sectionId => {
+    const box = document.createElement("div");
+    box.className = "section";
+    const heading = document.createElement("h3");
+    heading.textContent = sectionId;
+    box.append(heading);
+
+    cards.filter(c => c.section === sectionId).forEach(card => {
+      const row = document.createElement("div");
+      row.className = "item";
+      const label = document.createElement("span");
+      label.textContent = `${card.icon} ${card.title}`;
+      const desc = document.createElement("small");
+      desc.textContent = card.description || card.url || "বিবরণ নেই";
+      label.append(desc);
+
+      const edit = document.createElement("button");
+      edit.type = "button";
+      edit.className = "secondary";
+      edit.textContent = "এডিট";
+      edit.onclick = () => editCard(card.id);
+
+      const up = document.createElement("button");
+      up.type = "button"; up.className = "secondary"; up.textContent = "↑";
+      up.onclick = () => moveCard(card.id, -1);
+
+      const down = document.createElement("button");
+      down.type = "button"; down.className = "secondary"; down.textContent = "↓";
+      down.onclick = () => moveCard(card.id, 1);
+
+      const remove = document.createElement("button");
+      remove.type = "button"; remove.className = "danger"; remove.textContent = "×";
+      remove.title = "তালিকা থেকে সরান";
+      remove.onclick = () => {
+        if (confirm("এই কার্ডটি তালিকা থেকে সরাবেন? Save না করা পর্যন্ত Firestore বদলাবে না।")) {
+          cards = cards.filter(c => c.id !== card.id);
+          setDirty(); render();
+        }
+      };
+
+      row.append(label, edit, up, down, remove);
+      box.append(row);
+    });
+    host.append(box);
+  });
+}
+
+function moveCard(id, direction) {
+  const index = cards.findIndex(c => c.id === id);
+  const next = index + direction;
+  if (index < 0 || next < 0 || next >= cards.length) return;
+  [cards[index], cards[next]] = [cards[next], cards[index]];
+  setDirty(); render();
+}
+
+function resetEditor() {
+  $("cardForm").reset();
+  $("cardId").value = "";
+  $("cardIcon").value = "🔗";
+  $("editorHeading").textContent = "কার্ড যোগ / এডিট";
+}
+
+function editCard(id) {
+  const card = cards.find(c => c.id === id);
+  if (!card) return;
+  $("cardId").value = card.id;
+  $("cardTitle").value = card.title;
+  $("cardDescription").value = card.description;
+  $("cardUrl").value = card.url;
+  $("cardIcon").value = card.icon;
+  $("cardTag").value = card.tag;
+  $("cardKeywords").value = card.keywords;
+  $("editorHeading").textContent = "কার্ড এডিট করুন";
+  $("cardForm").scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function loadSettingsForm() {
+  $("siteTitle").value = siteSettings?.siteTitle || "আমার ড্যাশবোর্ড";
+  $("siteSubtitle").value = siteSettings?.siteSubtitle || "আপনার প্রয়োজনীয় পরিষেবা, এক জায়গায়";
+  $("heroTitle").value = siteSettings?.heroTitle || "সব জরুরি কাজ, এখন আরও সহজ ✨";
+  $("heroText").value = siteSettings?.heroText || "সরকারি পরিষেবা, দরকারি ডকুমেন্ট ও ইউটিলিটি টুলস দ্রুত খুঁজে নিন।";
+}
+
+async function loadFirestoreData() {
+  message(mainStatus, "Firestore ডেটা লোড হচ্ছে…");
+  const [layoutSnap, linksSnap, settingsSnap] = await Promise.all([
+    getDoc(doc(db, "siteContent", "cardLayout")),
+    getDoc(doc(db, "siteContent", "customLinks")),
+    getDoc(doc(db, "siteContent", "siteSettings"))
+  ]);
+
+  cardLayout = layoutSnap.exists() ? layoutSnap.data() : null;
+  customLinks = linksSnap.exists() ? linksSnap.data() : null;
+  siteSettings = settingsSnap.exists() ? settingsSnap.data() : null;
+
+  const savedCards = Array.isArray(cardLayout?.cards)
+    ? cardLayout.cards.map(normalizeCard).filter(Boolean) : [];
+  const custom = Array.isArray(customLinks?.items)
+    ? customLinks.items.map(normalizeCard).filter(Boolean) : [];
+
+  if (savedCards.length) {
+    const seen = new Set(savedCards.map(c => c.id));
+    cards = [...savedCards, ...custom.filter(c => !seen.has(c.id))];
+  } else {
+    const seen = new Set(custom.map(c => c.id));
+    cards = [...custom, ...defaults.filter(c => !seen.has(c.id))];
+  }
+
+  originalCards = cards.map(c => ({...c}));
+  loadSettingsForm();
+  render();
+  dirty = false;
+  message(mainStatus, "Firebase সংযোগ সফল। বর্তমান ডেটা লোড হয়েছে।");
+}
+
+$("loginForm").addEventListener("submit", async event => {
+  event.preventDefault();
+  if (!auth) {
+    message(loginStatus, "Firebase চালু হয়নি। Firebase config যাচাই করুন।", true);
+    return;
+  }
+  const button = $("loginBtn");
+  button.disabled = true;
+  message(loginStatus, "লগইন হচ্ছে…");
+  try {
+    await signInWithEmailAndPassword(auth, $("adminEmail").value.trim(), $("adminPassword").value);
+    message(loginStatus, "লগইন সফল।");
+  } catch (error) {
+    message(loginStatus, `লগইন ব্যর্থ: ${error.code || ""} ${error.message || ""}`, true);
+  } finally {
+    button.disabled = false;
+  }
+});
+
+$("logoutBtn").onclick = async () => {
+  if (dirty && !confirm("সেভ না করা পরিবর্তন আছে। লগআউট করবেন?")) return;
+  await signOut(auth);
+};
+
+$("cardForm").addEventListener("submit", event => {
+  event.preventDefault();
+  const url = $("cardUrl").value.trim();
+  if (!validUrl(url)) {
+    alert("সঠিক http:// অথবা https:// URL দিন।");
+    return;
+  }
+  const id = $("cardId").value || "custom-" + crypto.randomUUID();
+  const card = {
+    id, title:$("cardTitle").value.trim(),
+    description:$("cardDescription").value.trim(), url,
+    icon:$("cardIcon").value.trim() || "🔗",
+    tag:$("cardTag").value.trim(), keywords:$("cardKeywords").value.trim(),
+    section:"documents"
+  };
+  const index = cards.findIndex(c => c.id === id);
+  if (index >= 0) cards[index] = card;
+  else cards.push(card);
+  setDirty(); render(); resetEditor();
+  message(mainStatus, "কার্ড তালিকায় রাখা হয়েছে। স্থায়ী করতে Save চাপুন।");
+});
+
+$("cancelEditBtn").onclick = resetEditor;
+$("addCardBtn").onclick = () => {
+  resetEditor();
+  $("cardForm").scrollIntoView({behavior:"smooth", block:"start"});
+};
+
+$("backupBtn").onclick = async () => {
+  if (!signedIn) {
+    message(mainStatus, "আগে Admin লগইন করুন।", true);
+    return;
+  }
+  if (!confirm("Firestore থেকে বর্তমান তিনটি ডকুমেন্ট পড়া হবে। JSON ব্যাকআপ ডাউনলোড করবেন?")) return;
+  try {
+    const names = ["customLinks", "cardLayout", "siteSettings"];
+    const documents = {};
+    for (const name of names) {
+      const snap = await getDoc(doc(db, "siteContent", name));
+      documents[name] = snap.exists() ? snap.data() : null;
+    }
+    const payload = {
+      backupType:"selected-siteContent-documents",
+      createdAt:new Date().toISOString(),
+      documents
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "dashboard-studio-backup-" + new Date().toISOString().slice(0,10) + ".json";
+    a.click();
+    URL.revokeObjectURL(url);
+    message(mainStatus, "JSON ব্যাকআপ ডাউনলোড শুরু হয়েছে।");
+  } catch (error) {
+    message(mainStatus, "ব্যাকআপ ব্যর্থ: " + error.message, true);
+  }
+};
+
+$("saveBtn").onclick = async () => {
+  if (!signedIn || !auth.currentUser) {
+    message(mainStatus, "আগে Admin লগইন করুন।", true);
+    return;
+  }
+  if (!confirm("সতর্কতা: cardLayout এবং siteSettings Firestore-এ লেখা হবে। আগে JSON Backup নিয়েছেন কি?")) return;
+  if (!confirm("আপনি নিশ্চিত? বর্তমান ডকুমেন্টের এই পেজে সম্পাদিত ফিল্ডগুলো আপডেট হবে।")) return;
+
+  const button = $("saveBtn");
+  button.disabled = true;
+  try {
+    const updatedLayout = {
+      ...(cardLayout || {}),
+      cards:cards.map(c => ({...c})),
+      updatedAt:serverTimestamp(),
+      updatedBy:auth.currentUser.uid
+    };
+    const updatedSettings = {
+      ...(siteSettings || {}),
+      siteTitle:$("siteTitle").value.trim(),
+      siteSubtitle:$("siteSubtitle").value.trim(),
+      heroTitle:$("heroTitle").value.trim(),
+      heroText:$("heroText").value.trim(),
+      updatedAt:serverTimestamp(),
+      updatedBy:auth.currentUser.uid
+    };
+
+    await setDoc(doc(db, "siteContent", "cardLayout"), updatedLayout);
+    await setDoc(doc(db, "siteContent", "siteSettings"), updatedSettings);
+    cardLayout = updatedLayout;
+    siteSettings = updatedSettings;
+    originalCards = cards.map(c => ({...c}));
+    dirty = false;
+    message(mainStatus, "সেভ হয়েছে। ওয়েবসাইট রিফ্রেশ করে যাচাই করুন।");
+  } catch (error) {
+    message(mainStatus, "সেভ ব্যর্থ: " + error.message, true);
+  } finally {
+    button.disabled = false;
+  }
+};
+
+$("resetBtn").onclick = () => {
+  if (!confirm("এতে শুধু এই পেজের অস্থায়ী কার্ড তালিকা ডিফল্ট হবে। Firestore এখনই বদলাবে না। এগোবেন?")) return;
+  cards = defaults.map(c => ({...c}));
+  setDirty();
+  render();
+  message(mainStatus, "ডিফল্ট তালিকা প্রস্তুত। Firestore-এ লিখতে আলাদাভাবে Save করতে হবে।");
+};
+
+try {
+  if (firebaseConfig.apiKey.startsWith("PASTE_") || firebaseConfig.appId.startsWith("PASTE_")) {
+    throw new Error("Firebase config পূরণ করা হয়নি। Firebase Console থেকে apiKey এবং appId বসান।");
+  }
+  const app = initializeApp(firebaseConfig);
+  auth = getAuth(app);
+  db = getFirestore(app);
+
+  onAuthStateChanged(auth, async user => {
+    signedIn = !!user;
+    if (!user) {
+      loginPanel.classList.remove("hidden");
+      studio.classList.add("hidden");
+      message(loginStatus, "Admin হিসেবে লগইন করুন।");
+      return;
+    }
+    loginPanel.classList.add("hidden");
+    studio.classList.remove("hidden");
+    try {
+      await loadFirestoreData();
+    } catch (error) {
+      message(mainStatus, "Firestore লোড ব্যর্থ: " + error.message, true);
+    }
+  });
+} catch (error) {
+  message(loginStatus, "Firebase শুরু করা যায়নি: " + error.message, true);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+বাংলা পার্সোনাল ড্যাশবোর্ড — সংশোধিত ফাইলের নোট
+
+এই ZIP-এ .git ইতিহাস বাদ দেওয়া হয়েছে। এটি আপনার পুরোনো working folder-এর উপর সরাসরি extract করবেন না; আগে backup নিন।
+
+এই সংস্করণে:
+1. index.html-এর Firebase API key validation ঠিক করা হয়েছে।
+2. admin.html-এর login-এর আগে থাকা ভুল API key comparison ঠিক করা হয়েছে।
+3. index.html এখন siteSettings-এর title/subtitle এবং siteTitle/siteSubtitle—দুই ধরনের field পড়তে পারে।
+4. heroSubtitle এবং heroText—দুই ধরনের field পড়তে পারে।
+5. .gitignore-এ .env, .env.* ও env উপেক্ষিত থাকে।
+
+যা এই ZIP থেকে যাচাই করা যায়নি:
+- Firebase Console-এর Firestore Security Rules
+- Admin account ও Authentication provider-এর অবস্থা
+- GitHub Actions-এর live deployment status
+- লাইভ Firestore data-র আসল schema/permissions
+
+ব্যবহার:
+1. বর্তমান project folder-এর একটি backup রাখুন।
+2. ZIP extract করে ফাইলগুলো আপনার project folder-এ কপি করুন; .git folder মুছবেন/প্রতিস্থাপন করবেন না।
+3. index.html, admin.html, layout-manager.html-এ Firebase config project ID/app ID একই আছে কি না যাচাই করুন।
+4. PowerShell-এ git diff এবং git status পরীক্ষা করুন।
+5. ঠিক মনে হলে git add index.html admin.html layout-manager.html .gitignore
+   git commit -m "Fix Firebase validation and settings compatibility"
+   git push origin main
+6. GitHub Actions সফল হলে সাইটে Ctrl+Shift+R দিয়ে পরীক্ষা করুন।
+
+নিরাপত্তা:
+- ZIP-এ .git ইতিহাস নেই এবং .env/env ফাইল নেই।
+- Firebase Web API key সাধারণত client config-এর অংশ, কিন্তু সেটির API restrictions ঠিক থাকা জরুরি।
+- Firestore নিরাপত্তা API key দিয়ে নয়, Firestore Security Rules ও Firebase Authentication দিয়ে নিশ্চিত করতে হবে।
+- Firestore Rules পরীক্ষা না করে public write permission দেবেন না।
