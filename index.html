@@ -3,32 +3,30 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#0b0d1a">
+  <meta name="theme-color" content="#0f172a">
   <title>Daily Use Products Official</title>
   <style>
     :root {
-      --bg: #0b0d1a;
-      --bg-2: #12172a;
-      --bg-3: #171d33;
-      --panel: rgba(19, 22, 37, 0.88);
-      --panel-alt: rgba(25, 21, 40, 0.94);
-      --panel-soft: rgba(255,255,255,0.025);
-      --line: rgba(222, 191, 125, 0.16);
-      --line-strong: rgba(188, 165, 255, 0.22);
-      --text: #f5f1ff;
-      --muted: #d2cce7;
-      --muted-2: #a7a0c2;
-      --blue: #9dbdff;
-      --blue-2: #dfeaff;
-      --royal: #8a6dff;
-      --royal-2: #bda8ff;
-      --violet: #e5dbff;
+      --bg: #f3f6fb;
+      --bg-2: #edf4ff;
+      --panel: rgba(255,255,255,0.9);
+      --panel-strong: #ffffff;
+      --panel-alt: #f8faff;
+      --line: #e5ebf5;
+      --line-strong: #d6e3f8;
+      --text: #142033;
+      --muted: #58657d;
+      --muted-2: #7a8aa5;
+      --blue: #1766d1;
+      --blue-2: #eaf3ff;
+      --indigo: #243b6d;
+      --indigo-2: #c9d8ff;
       --gold: #d8b86a;
-      --gold-2: #f4de9c;
-      --green: #8ee7b4;
-      --shadow: 0 32px 70px rgba(5, 7, 16, 0.56);
-      --card-shadow: 0 24px 52px rgba(7, 10, 22, 0.42);
-      --radius: 24px;
+      --gold-2: #b98b2d;
+      --green: #1fab7f;
+      --shadow: 0 18px 40px rgba(17, 36, 61, 0.08);
+      --card-shadow: 0 14px 30px rgba(19, 40, 64, 0.07);
+      --radius: 22px;
     }
 
     * { box-sizing: border-box; }
@@ -36,10 +34,9 @@
     body {
       margin: 0;
       background:
-        radial-gradient(circle at 18% 12%, rgba(138,109,255,0.18), transparent 22%),
-        radial-gradient(circle at 80% 6%, rgba(216,184,106,0.12), transparent 18%),
-        radial-gradient(circle at 50% 50%, rgba(72,66,124,0.08), transparent 26%),
-        linear-gradient(180deg, #090c18 0%, #120f21 34%, #090d17 100%);
+        radial-gradient(circle at 15% 12%, rgba(23,102,209,0.08), transparent 25%),
+        radial-gradient(circle at 85% 8%, rgba(216,184,106,0.09), transparent 18%),
+        linear-gradient(180deg, #f7f9fc 0%, #edf3fa 100%);
       color: var(--text);
       font: 16px/1.7 system-ui, "Noto Sans Bengali", sans-serif;
       text-rendering: optimizeLegibility;
@@ -58,13 +55,13 @@
       position: sticky;
       top: 0;
       z-index: 80;
-      background: rgba(10, 12, 21, 0.72);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--line);
+      background: rgba(15, 23, 42, 0.82);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
     .nav {
-      min-height: 86px;
+      min-height: 84px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -86,7 +83,7 @@
       object-fit: cover;
       border-radius: 18px;
       border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: 0 18px 28px rgba(0,0,0,0.26);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.12);
     }
 
     .brand h1,
@@ -95,12 +92,12 @@
       line-height: 1.15;
       letter-spacing: -0.04em;
       font-size: clamp(17px, 2vw, 24px);
-      color: var(--text);
+      color: white;
     }
 
     .brand p {
       margin: 3px 0 0;
-      color: var(--muted);
+      color: #d8e5ff;
       font-size: 12px;
     }
 
@@ -132,16 +129,15 @@
     }
 
     .nav-cta {
-      color: var(--text);
-      background: linear-gradient(135deg, rgba(138,109,255,0.12), rgba(216,184,106,0.08));
-      border: 1px solid var(--line-strong);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+      color: white;
+      background: linear-gradient(135deg, rgba(97, 144, 255, 0.18), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.12);
     }
 
     .menubtn {
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.12);
-      color: var(--text);
+      color: white;
       border-radius: 12px;
       padding: 10px 16px;
       font-weight: 800;
@@ -155,8 +151,8 @@
       top: 76px;
       width: min(280px, calc(100vw - 28px));
       padding: 10px;
-      background: rgba(12, 14, 24, 0.97);
-      border: 1px solid var(--line);
+      background: rgba(12, 18, 30, 0.96);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 18px;
       box-shadow: var(--shadow);
     }
@@ -165,19 +161,17 @@
     .menu a {
       padding: 12px 14px;
       border-radius: 10px;
-      color: var(--text);
+      color: white;
       font-weight: 700;
     }
-    .menu a:hover { background: rgba(138,109,255,0.08); }
+    .menu a:hover { background: rgba(255,255,255,0.04); }
 
     .hero {
       position: relative;
       margin-top: 28px;
       background:
-        linear-gradient(135deg, rgba(11,12,22,0.96) 0%, rgba(20,19,36,0.97) 42%, rgba(15,15,26,0.96) 100%),
-        radial-gradient(circle at 20% 20%, rgba(138,109,255,0.18), transparent 24%),
-        radial-gradient(circle at 84% 10%, rgba(216,184,106,0.12), transparent 18%);
-      border: 1px solid rgba(255,255,255,0.08);
+        linear-gradient(135deg, #fdfefe 0%, #f3f8ff 28%, #eef4fe 100%);
+      border: 1px solid var(--line);
       border-radius: 30px;
       padding: clamp(24px, 4vw, 48px);
       overflow: hidden;
@@ -188,7 +182,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.04) 48%, transparent 100%);
+      background: linear-gradient(120deg, transparent 0%, rgba(23,102,209,0.04) 50%, transparent 100%);
       transform: translateX(-120%);
       animation: gleam 10s linear infinite;
     }
@@ -202,8 +196,8 @@
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: 1.35fr 0.8fr;
-      gap: 22px;
+      grid-template-columns: 1.4fr 0.7fr;
+      gap: 26px;
       align-items: center;
     }
 
@@ -213,9 +207,9 @@
       gap: 8px;
       padding: 8px 12px;
       border-radius: 999px;
-      border: 1px solid rgba(216,184,106,0.2);
-      background: rgba(216,184,106,0.08);
-      color: var(--gold-2);
+      border: 1px solid #dfeaff;
+      background: #f4f9ff;
+      color: var(--blue);
       font-size: 11px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -225,24 +219,25 @@
     .hero h2 {
       margin: 18px 0 14px;
       max-width: 760px;
-      font-size: clamp(28px, 4.1vw, 52px);
+      font-size: clamp(29px, 4.2vw, 52px);
       line-height: 1.04;
       letter-spacing: -0.06em;
       font-weight: 900;
+      color: var(--indigo);
     }
 
     .hero h2 .accent {
       display: inline-block;
-      background: linear-gradient(135deg, #fbeaae 0%, #fffaf2 32%, #dfe8ff 100%);
+      color: var(--blue);
+      background: linear-gradient(135deg, #1149a2 0%, #3e7def 42%, #8db5ff 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      text-shadow: 0 18px 28px rgba(255,255,255,0.08);
     }
 
     .hero p {
       margin: 0;
-      max-width: 650px;
+      max-width: 640px;
       color: var(--muted);
       font-size: clamp(16px, 2vw, 20px);
     }
@@ -255,15 +250,16 @@
     }
 
     .primary-btn {
-      color: #140d23;
-      background: linear-gradient(135deg, #f4e7be 0%, #d7c1ff 24%, #b7d5ff 100%);
-      box-shadow: 0 18px 36px rgba(138,109,255,0.24);
+      color: white;
+      background: linear-gradient(135deg, #184ec7 0%, #2c6af3 50%, #4a86ff 100%);
+      box-shadow: 0 16px 24px rgba(27, 89, 211, 0.2);
     }
 
     .secondary-btn {
       color: var(--text);
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: white;
+      border: 1px solid var(--line);
+      box-shadow: var(--card-shadow);
     }
 
     .search {
@@ -271,17 +267,17 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.09);
+      background: white;
+      border: 1px solid var(--line);
       border-radius: 16px;
       padding: 8px 10px 8px 14px;
       margin-top: 24px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+      box-shadow: var(--card-shadow);
     }
 
     .search span {
       font-size: 22px;
-      color: var(--gold-2);
+      color: var(--blue);
       display: grid;
       place-items: center;
       width: 34px;
@@ -297,46 +293,47 @@
       font-size: clamp(16px, 2vw, 20px);
       padding: 10px 8px;
     }
-    .search input::placeholder { color: #9ca9c7; }
+    .search input::placeholder { color: #7b8aa7; }
 
     .search small {
       padding: 8px 12px;
       white-space: nowrap;
-      color: var(--gold-2);
-      border-left: 1px solid rgba(255,255,255,0.1);
+      color: var(--indigo);
+      border-left: 1px solid var(--line);
       font-weight: 800;
     }
 
     .hero-panel {
       position: relative;
       z-index: 1;
-      background: linear-gradient(180deg, rgba(22,18,35,0.9), rgba(13,16,27,0.94));
+      background: linear-gradient(180deg, rgba(17, 30, 51, 0.96), rgba(14, 20, 31, 0.98));
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 22px;
       padding: 18px;
-      box-shadow: var(--card-shadow);
+      box-shadow: 0 20px 36px rgba(17, 30, 51, 0.18);
       overflow: hidden;
     }
 
     .hero-panel::before {
       content: "";
       position: absolute;
-      inset: auto -30% -40% auto;
+      inset: auto -20% -28% auto;
       width: 220px;
       height: 220px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(138,109,255,0.18), transparent 62%);
+      background: radial-gradient(circle, rgba(138,154,255,0.18), transparent 62%);
       pointer-events: none;
     }
 
     .mini-card {
       position: relative;
       z-index: 1;
-      background: rgba(255,255,255,0.02);
+      background: rgba(255,255,255,0.03);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 16px;
       padding: 14px 16px;
       margin-bottom: 12px;
+      color: white;
     }
 
     .mini-head {
@@ -344,7 +341,7 @@
       justify-content: space-between;
       align-items: center;
       gap: 10px;
-      color: var(--muted);
+      color: #d7def4;
       font-size: 12px;
       margin-bottom: 8px;
     }
@@ -358,7 +355,7 @@
       font-size: clamp(28px, 4vw, 42px);
       font-weight: 900;
       letter-spacing: -0.06em;
-      color: var(--text);
+      color: white;
     }
 
     .mini-list {
@@ -374,7 +371,7 @@
       justify-content: space-between;
       align-items: center;
       gap: 16px;
-      color: var(--muted);
+      color: #d7def4;
       background: rgba(255,255,255,0.02);
       border: 1px solid rgba(255,255,255,0.04);
       border-radius: 10px;
@@ -383,7 +380,7 @@
     }
 
     .mini-list strong {
-      color: var(--text);
+      color: white;
       font-weight: 800;
     }
 
@@ -400,11 +397,12 @@
       gap: 8px;
       padding: 8px 12px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: white;
+      border: 1px solid var(--line);
       color: var(--muted);
       font-size: 12px;
       font-weight: 700;
+      box-shadow: var(--card-shadow);
     }
 
     .section { margin: 42px 0; }
@@ -419,9 +417,9 @@
       gap: 8px;
       padding: 8px 12px;
       border-radius: 999px;
-      border: 1px solid rgba(216,184,106,0.2);
-      background: rgba(216,184,106,0.08);
-      color: var(--gold-2);
+      border: 1px solid #dde8fd;
+      background: #f4f9ff;
+      color: var(--blue);
       font-size: 11px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -433,6 +431,7 @@
       font-size: clamp(26px, 3vw, 36px);
       line-height: 1.1;
       letter-spacing: -0.05em;
+      color: var(--indigo);
     }
 
     .head p {
@@ -447,7 +446,7 @@
       gap: 14px;
       padding: 16px 18px;
       border-radius: 18px;
-      background: rgba(18, 20, 34, 0.82);
+      background: rgba(255,255,255,0.8);
       border: 1px solid var(--line);
       box-shadow: var(--card-shadow);
       margin-bottom: 18px;
@@ -466,7 +465,7 @@
       min-width: 220px;
       border: 1px solid var(--line);
       border-radius: 12px;
-      background: rgba(255,255,255,0.03);
+      background: #f8fbff;
       color: var(--text);
       padding: 12px 14px;
       outline: none;
@@ -480,21 +479,21 @@
 
     .category-chip {
       border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
+      background: white;
       color: var(--text);
       border-radius: 999px;
       padding: 10px 16px;
       font-weight: 800;
       cursor: pointer;
       transition: all 0.2s ease;
+      box-shadow: var(--card-shadow);
     }
 
     .category-chip:hover,
     .category-chip.active {
-      background: linear-gradient(135deg, rgba(138,109,255,0.12), rgba(216,184,106,0.08));
-      border-color: rgba(216,184,106,0.2);
-      color: #eff8ff;
-      box-shadow: 0 12px 22px rgba(138,109,255,0.10);
+      background: linear-gradient(135deg, #edf5ff, #f6f9ff);
+      border-color: #cfe0ff;
+      color: var(--blue);
     }
 
     .grid {
@@ -508,7 +507,7 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      background: linear-gradient(180deg, rgba(18,20,33,0.9), rgba(10,12,21,0.9));
+      background: rgba(255,255,255,0.9);
       border: 1px solid var(--line);
       border-radius: 20px;
       padding: 18px;
@@ -524,13 +523,13 @@
       inset: 0 auto auto 0;
       width: 100%;
       height: 1px;
-      background: linear-gradient(90deg, rgba(216,184,106,0.5), transparent, rgba(138,109,255,0.28));
+      background: linear-gradient(90deg, rgba(36,104,220,0.35), transparent, rgba(216,184,106,0.2));
     }
 
     .card:hover {
       transform: translateY(-4px);
-      border-color: rgba(216,184,106,0.22);
-      box-shadow: 0 20px 42px rgba(0,0,0,0.34);
+      border-color: #cfe0ff;
+      box-shadow: 0 18px 36px rgba(19, 40, 64, 0.1);
     }
 
     .top {
@@ -544,18 +543,18 @@
       width: 48px;
       height: 48px;
       border-radius: 14px;
-      background: linear-gradient(135deg, rgba(138,109,255,0.18), rgba(216,184,106,0.08));
-      border: 1px solid rgba(138,109,255,0.14);
+      background: linear-gradient(135deg, #edf5ff, #f7fbff);
+      border: 1px solid #dfeeff;
       display: grid;
       place-items: center;
       font-size: 24px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
     }
 
     .chip {
-      background: rgba(216,184,106,0.08);
-      border: 1px solid rgba(216,184,106,0.18);
-      color: var(--gold-2);
+      background: #f2f8ff;
+      border: 1px solid #deebff;
+      color: var(--blue);
       border-radius: 999px;
       padding: 6px 9px;
       font-size: 10px;
@@ -568,6 +567,7 @@
       margin: 0;
       font-size: 17px;
       letter-spacing: -0.03em;
+      color: var(--indigo);
     }
 
     .card p {
@@ -581,7 +581,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: var(--blue-2);
+      color: var(--blue);
       font-weight: 800;
       font-size: 13px;
       margin-top: 4px;
@@ -609,6 +609,7 @@
     .tool .text h3 {
       margin: 0;
       font-size: 16px;
+      color: var(--indigo);
     }
 
     .tool .text p {
@@ -624,10 +625,11 @@
       min-width: 0;
       padding: 14px 16px;
       border-radius: 14px;
-      background: linear-gradient(180deg, rgba(18,20,33,0.9), rgba(10,12,21,0.9));
+      background: rgba(255,255,255,0.8);
       border: 1px solid var(--line);
       box-shadow: var(--card-shadow);
       font-weight: 800;
+      color: var(--indigo);
     }
 
     .link i {
@@ -642,25 +644,26 @@
 
     .link b {
       margin-left: auto;
-      color: var(--blue-2);
+      color: var(--blue);
       font-size: 18px;
     }
 
     .notice {
       margin-top: 18px;
       padding: 14px 16px;
-      border: 1px dashed rgba(138,109,255,0.18);
-      background: rgba(255,255,255,0.02);
+      border: 1px dashed #dfeaff;
+      background: rgba(255,255,255,0.7);
       border-radius: 14px;
       color: var(--muted);
       font-size: 13px;
+      box-shadow: var(--card-shadow);
     }
 
     footer {
       margin-top: 48px;
       padding: 34px 0 24px;
-      background: linear-gradient(180deg, #0a0d18 0%, #11182a 100%);
-      border-top: 1px solid var(--line);
+      background: linear-gradient(180deg, #0f172a 0%, #111d2f 100%);
+      border-top: 1px solid rgba(255,255,255,0.06);
       color: white;
     }
 
@@ -679,7 +682,7 @@
 
     .footbrand p {
       margin: 4px 0 0;
-      color: var(--muted);
+      color: #cfe1ff;
       font-size: 12px;
     }
 
@@ -691,7 +694,7 @@
     }
 
     .social strong {
-      color: var(--text);
+      color: white;
       font-size: 15px;
     }
 
@@ -707,14 +710,14 @@
       display: grid;
       place-items: center;
       border-radius: 12px;
-      background: rgba(255,255,255,0.03);
+      background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.12);
-      color: var(--text);
+      color: white;
       font-weight: 900;
     }
 
     .social small {
-      color: var(--muted);
+      color: #d7def4;
       font-size: 12px;
     }
 
@@ -762,7 +765,7 @@
         <a href="#categories">ক্যাটাগরি</a>
         <a href="#important">গুরুত্বপূর্ণ পরিষেবা</a>
         <a href="#tools">দ্রুত টুলস</a>
-        <a href="#links">দরকারি লিঙ্ক</a>
+        <a href="#links">দরকারি লিংক</a>
         <a href="#social">সোশ্যাল মিডিয়া</a>
       </nav>
     </div>
@@ -772,9 +775,9 @@
     <section class="hero">
       <div class="hero-grid">
         <div>
-          <div class="eyebrow">Royal Dashboard</div>
-          <h2>সব প্রয়োজনীয় সেবা, <span class="accent">একটি রাজকীয় ড্যাশবোর্ডে</span></h2>
-          <p>সরকারি, পরিচয়পত্র, স্বাস্থ্য, ব্যাংকিং, ভ্রমণ ও দৈনন্দিন প্রয়োজনীয় সেবা এক জায়গায়—দ্রুত, নিরাপদ ও স্মার্টভাবে।</p>
+          <div class="eyebrow">Executive Service Suite</div>
+          <h2>সব প্রয়োজনীয় সেবা, <span class="accent">একটি স্মার্ট এক্সিকিউটিভ ড্যাশবোর্ডে</span></h2>
+          <p>সরকারি, পরিচয়পত্র, স্বাস্থ্য, ব্যাংকিং, ভ্রমণ ও দৈনন্দিন প্রয়োজনীয় সেবা এক জায়গায়—দ্রুত, নির্ভুল ও প্রফেশনালভাবে।</p>
 
           <div class="hero-cta">
             <a class="primary-btn" href="#important">সার্ভিস ব্রাউজ করুন</a>
@@ -788,7 +791,7 @@
           </label>
 
           <div class="trust-row" aria-label="Trust indicators">
-            <span class="trust-pill">✓ Royal access</span>
+            <span class="trust-pill">✓ Executive access</span>
             <span class="trust-pill">✓ Verified shortcuts</span>
             <span class="trust-pill">✓ Premium search</span>
           </div>
@@ -1030,7 +1033,7 @@
 
     const categoryOptions = {
       all: "সব",
-      government: "সরকা��ি পরিষেবা",
+      government: "সরকারি পরিষেবা",
       identity: "পরিচয়পত্র",
       documents: "ডকুমেন্ট ও সার্টিফিকেট",
       health: "স্বাস্থ্য",
@@ -1158,10 +1161,6 @@
       } catch {
         return "";
       }
-    }
-
-    function normalize(value) {
-      return String(value || "").trim().toLowerCase().replace(/\s+/g, " ");
     }
 
     function getCategoryValue(item) {
