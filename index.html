@@ -32,6 +32,8 @@
       --gradient-soft: linear-gradient(135deg, rgba(29,99,221,0.12), rgba(127,183,255,0.08));
       --glass: rgba(255,255,255,0.58);
       --dark-panel: linear-gradient(160deg, rgba(13,23,41,0.96), rgba(18,35,63,0.96));
+      --hover-shadow: 0 24px 44px rgba(20, 43, 82, 0.14);
+      --hover-glow: 0 18px 30px rgba(29, 99, 221, 0.18);
     }
 
     * { box-sizing: border-box; }
@@ -126,9 +128,10 @@
       font-weight: 800;
       text-decoration: none;
       cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, filter 0.22s ease;
       position: relative;
       overflow: hidden;
+      will-change: transform;
     }
 
     .nav-cta:hover,
@@ -137,7 +140,7 @@
     .category-chip:hover,
     .link:hover,
     .card:hover {
-      transform: translateY(-2px);
+      transform: translateY(-4px) scale(1.01);
     }
 
     .nav-cta {
@@ -145,6 +148,13 @@
       background: rgba(146, 180, 255, 0.08);
       border: 1px solid rgba(255,255,255,0.14);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .nav-cta:hover,
+    .primary-btn:hover,
+    .secondary-btn:hover {
+      box-shadow: 0 18px 28px rgba(20, 41, 74, 0.16);
+      filter: saturate(1.08);
     }
 
     .menubtn {
@@ -155,6 +165,13 @@
       padding: 10px 16px;
       font-weight: 800;
       cursor: pointer;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+    }
+
+    .menubtn:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.08);
+      box-shadow: 0 12px 20px rgba(12, 18, 30, 0.18);
     }
 
     .menu {
@@ -176,8 +193,12 @@
       border-radius: 10px;
       color: white;
       font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease;
     }
-    .menu a:hover { background: rgba(255,255,255,0.04); }
+    .menu a:hover {
+      background: rgba(255,255,255,0.04);
+      transform: translateX(2px);
+    }
 
     .hero {
       position: relative;
@@ -287,6 +308,12 @@
       padding: 10px 12px 10px 16px;
       margin-top: 26px;
       box-shadow: 0 18px 28px rgba(32, 53, 89, 0.07);
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .search:hover {
+      box-shadow: 0 18px 30px rgba(32, 53, 89, 0.1);
+      transform: translateY(-1px);
     }
 
     .search span {
@@ -338,6 +365,12 @@
       font-size: 12px;
       font-weight: 700;
       box-shadow: 0 12px 18px rgba(32,53,89,0.04);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .trust-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 22px rgba(32,53,89,0.08);
     }
 
     .hero-panel {
@@ -372,6 +405,12 @@
       margin-bottom: 12px;
       color: white;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .mini-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 24px rgba(5, 11, 20, 0.2);
     }
 
     .mini-head {
@@ -503,7 +542,7 @@
       padding: 11px 16px;
       font-weight: 800;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.22s ease;
       box-shadow: 0 8px 18px rgba(27, 45, 78, 0.04);
     }
 
@@ -513,6 +552,7 @@
       border-color: rgba(110,150,236,0.52);
       color: var(--blue);
       box-shadow: 0 12px 20px rgba(52, 100, 185, 0.08);
+      transform: translateY(-3px) scale(1.02);
     }
 
     .grid {
@@ -532,9 +572,10 @@
       padding: 18px;
       box-shadow: var(--card-shadow);
       min-width: 0;
-      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
       overflow: hidden;
       backdrop-filter: blur(10px);
+      will-change: transform;
     }
 
     .card::before {
@@ -546,9 +587,27 @@
       background: linear-gradient(90deg, rgba(29,99,221,0.28), rgba(127,183,255,0.14), rgba(215,177,96,0.22));
     }
 
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: auto -20% -40% auto;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(111, 156, 255, 0.16), transparent 65%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
     .card:hover {
       border-color: rgba(118, 160, 234, 0.45);
-      box-shadow: 0 18px 34px rgba(19, 40, 64, 0.12);
+      box-shadow: var(--hover-shadow), var(--hover-glow);
+      filter: saturate(1.05);
+    }
+
+    .card:hover::after {
+      opacity: 1;
     }
 
     .top {
@@ -568,6 +627,13 @@
       place-items: center;
       font-size: 25px;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover .ico,
+    .tool:hover .ico {
+      transform: rotate(-4deg) scale(1.06);
+      box-shadow: 0 12px 25px rgba(29,99,221,0.12);
     }
 
     .chip {
@@ -580,6 +646,11 @@
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover .chip {
+      transform: translateX(2px);
     }
 
     .card h3 {
@@ -604,6 +675,15 @@
       font-weight: 800;
       font-size: 13px;
       margin-top: 4px;
+    }
+
+    .go span {
+      transition: transform 0.22s ease;
+      display: inline-block;
+    }
+
+    .card:hover .go span {
+      transform: translate(4px, -2px);
     }
 
     .tools .grid,
@@ -649,7 +729,29 @@
       box-shadow: var(--card-shadow);
       font-weight: 800;
       color: var(--indigo);
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .link::after {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 -10%;
+      width: 24%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent);
+      transform: translateX(-120%) skewX(-18deg);
+      transition: transform 0.5s ease;
+    }
+
+    .link:hover {
+      border-color: rgba(118, 160, 234, 0.5);
+      box-shadow: var(--hover-shadow), var(--hover-glow);
+      filter: saturate(1.03);
+    }
+
+    .link:hover::after {
+      transform: translateX(500%) skewX(-18deg);
     }
 
     .link i {
@@ -658,6 +760,11 @@
       width: 26px;
       display: inline-block;
       text-align: center;
+      transition: transform 0.2s ease;
+    }
+
+    .link:hover i {
+      transform: scale(1.15);
     }
 
     .link span { display: block; min-width: 0; }
@@ -666,6 +773,11 @@
       margin-left: auto;
       color: var(--blue);
       font-size: 18px;
+      transition: transform 0.22s ease;
+    }
+
+    .link:hover b {
+      transform: translate(4px, -2px);
     }
 
     .notice {
@@ -734,6 +846,13 @@
       border: 1px solid rgba(255,255,255,0.12);
       color: white;
       font-weight: 900;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .socials a:hover {
+      transform: translateY(-3px) scale(1.04);
+      background: rgba(255,255,255,0.08);
+      box-shadow: 0 14px 24px rgba(0,0,0,0.18);
     }
 
     .social small {
@@ -880,11 +999,11 @@
       <div class="head">
         <small>Essential Services</small>
         <h2>গুরুত্বপূর্ণ পরিষেবা</h2>
-        <p>পরিচয়পত্র, স্বাস্থ্য, ভ্রমণ, ব্যাংকিং ও সরকারি সেবা কয়েক ক্লিকে।</p>
+        <p>পরিচয়পত্র, স্বাস্থ্য, ভ্��মণ, ব্যাংকিং ও সরকারি সেবা কয়েক ক্লিকে।</p>
       </div>
 
       <div class="grid searchable" id="cards">
-        <a class="card" href="https://food.wb.gov.in/" target="_blank" rel="noopener" data-category="government" data-search="রেশন ration খাদ্য কার্��� wb government food card">
+        <a class="card" href="https://food.wb.gov.in/" target="_blank" rel="noopener" data-category="government" data-search="রেশন ration খাদ্য কার্ড wb government food card">
           <div class="top"><span class="ico">🪪</span><span class="chip">Government</span></div>
           <h3>রেশন কার্ড</h3>
           <p>খাদ্য ও রেশন তথ্য, স্ট্যাটাস ও আবেদন সম্পর্কিত দ্রুত অ্যাক্সেস।</p>
@@ -915,7 +1034,7 @@
         <a class="card" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener" data-category="travel" data-search="passport পাসপোর্ট visa travel application">
           <div class="top"><span class="ico">🛂</span><span class="chip">Travel</span></div>
           <h3>পাসপোর্ট</h3>
-          <p>ভ্রমণ ও পাসপোর্টের আবেদন এবং স্ট্যাটাস দেখুন।</p>
+          <p>ভ্রমণ ও পাসপোর্টের আবেদন এ���ং স্ট্যাটাস দেখুন।</p>
           <div class="go">সার্ভিস খুলুন <span>↗</span></div>
         </a>
 
@@ -946,7 +1065,7 @@
       <div class="head">
         <small>Quick Tools</small>
         <h2>দ্রুত টুলস</h2>
-        <p>প্রতিদিনের কাজকে স���জ করার জন্য প্রয়োজনীয় টুলস।</p>
+        <p>প্রতিদিনের কাজকে সহজ করার জন্য প্রয়োজনীয় টুলস।</p>
       </div>
 
       <div class="grid searchable">
@@ -983,7 +1102,7 @@
       <div class="head">
         <small>Shortcut Links</small>
         <h2>দরকারি লিংক</h2>
-        <p>সর্বাধিক ব্যবহৃত সরকারি ও পপুলার পোর্টাল একসাথে।</p>
+        <p>সর্বাধিক ব্যবহৃত সরকারি �� পপুলার পোর্টাল একসাথে।</p>
       </div>
 
       <div class="links searchable" id="useful">
