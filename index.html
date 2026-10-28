@@ -7,26 +7,31 @@
   <title>Daily Use Products Official</title>
   <style>
     :root {
-      --bg: #f3f6fb;
-      --bg-2: #edf4ff;
-      --panel: rgba(255,255,255,0.9);
+      --bg: #eef4ff;
+      --bg-soft: #f8fbff;
+      --panel: rgba(255,255,255,0.8);
       --panel-strong: #ffffff;
-      --panel-alt: #f8faff;
-      --line: #e5ebf5;
-      --line-strong: #d6e3f8;
-      --text: #142033;
-      --muted: #58657d;
-      --muted-2: #7a8aa5;
-      --blue: #1766d1;
-      --blue-2: #eaf3ff;
-      --indigo: #243b6d;
-      --indigo-2: #c9d8ff;
-      --gold: #d8b86a;
-      --gold-2: #b98b2d;
-      --green: #1fab7f;
-      --shadow: 0 18px 40px rgba(17, 36, 61, 0.08);
-      --card-shadow: 0 14px 30px rgba(19, 40, 64, 0.07);
-      --radius: 22px;
+      --panel-alt: #f5f8ff;
+      --line: rgba(149, 171, 214, 0.28);
+      --line-strong: rgba(114, 143, 198, 0.42);
+      --text: #13233f;
+      --muted: #53647d;
+      --muted-2: #7584a2;
+      --blue: #1d63dd;
+      --blue-2: #edf4ff;
+      --indigo: #122b4d;
+      --gold: #d7b160;
+      --green: #18a77e;
+      --shadow: 0 22px 50px rgba(20, 40, 72, 0.12);
+      --card-shadow: 0 14px 30px rgba(28, 49, 84, 0.08);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --gradient-primary: linear-gradient(135deg, #1d63dd 0%, #3b82f6 35%, #7fb7ff 100%);
+      --gradient-soft: linear-gradient(135deg, rgba(29,99,221,0.12), rgba(127,183,255,0.08));
+      --glass: rgba(255,255,255,0.58);
+      --dark-panel: linear-gradient(160deg, rgba(13,23,41,0.96), rgba(18,35,63,0.96));
     }
 
     * { box-sizing: border-box; }
@@ -34,11 +39,12 @@
     body {
       margin: 0;
       background:
-        radial-gradient(circle at 15% 12%, rgba(23,102,209,0.08), transparent 25%),
-        radial-gradient(circle at 85% 8%, rgba(216,184,106,0.09), transparent 18%),
-        linear-gradient(180deg, #f7f9fc 0%, #edf3fa 100%);
+        radial-gradient(circle at 12% 12%, rgba(29,99,221,0.12), transparent 22%),
+        radial-gradient(circle at 85% 10%, rgba(215,177,96,0.12), transparent 20%),
+        radial-gradient(circle at 50% 100%, rgba(19, 101, 226, 0.06), transparent 28%),
+        linear-gradient(180deg, #f7faff 0%, #eef5ff 100%);
       color: var(--text);
-      font: 16px/1.7 system-ui, "Noto Sans Bengali", sans-serif;
+      font: 16px/1.7 "Segoe UI", "Inter", "Noto Sans Bengali", sans-serif;
       text-rendering: optimizeLegibility;
     }
 
@@ -47,25 +53,26 @@
     button, input, select { font: inherit; }
 
     .wrap {
-      width: min(1180px, calc(100% - 28px));
+      width: min(1200px, calc(100% - 32px));
       margin: 0 auto;
     }
 
     header {
       position: sticky;
       top: 0;
-      z-index: 80;
-      background: rgba(15, 23, 42, 0.82);
-      backdrop-filter: blur(14px);
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(18px);
       border-bottom: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 10px 30px rgba(12,18,30,0.1);
     }
 
     .nav {
-      min-height: 84px;
+      min-height: 82px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 18px;
       position: relative;
     }
 
@@ -83,21 +90,21 @@
       object-fit: cover;
       border-radius: 18px;
       border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: 0 12px 20px rgba(0,0,0,0.12);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.14);
     }
 
     .brand h1,
     .footbrand h2 {
       margin: 0;
-      line-height: 1.15;
+      line-height: 1.1;
       letter-spacing: -0.04em;
       font-size: clamp(17px, 2vw, 24px);
-      color: white;
+      color: #fff;
     }
 
     .brand p {
       margin: 3px 0 0;
-      color: #d8e5ff;
+      color: #dfeaff;
       font-size: 12px;
     }
 
@@ -115,27 +122,33 @@
       justify-content: center;
       gap: 8px;
       padding: 12px 18px;
-      border-radius: 12px;
+      border-radius: 14px;
       font-weight: 800;
       text-decoration: none;
       cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      position: relative;
+      overflow: hidden;
     }
 
     .nav-cta:hover,
     .primary-btn:hover,
-    .secondary-btn:hover {
-      transform: translateY(-1px);
+    .secondary-btn:hover,
+    .category-chip:hover,
+    .link:hover,
+    .card:hover {
+      transform: translateY(-2px);
     }
 
     .nav-cta {
       color: white;
-      background: linear-gradient(135deg, rgba(97, 144, 255, 0.18), rgba(255,255,255,0.04));
-      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(146, 180, 255, 0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
     }
 
     .menubtn {
-      background: rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.12);
       color: white;
       border-radius: 12px;
@@ -149,9 +162,9 @@
       position: absolute;
       right: 0;
       top: 76px;
-      width: min(280px, calc(100vw - 28px));
+      width: min(300px, calc(100vw - 28px));
       padding: 10px;
-      background: rgba(12, 18, 30, 0.96);
+      background: rgba(10, 15, 27, 0.96);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 18px;
       box-shadow: var(--shadow);
@@ -170,34 +183,35 @@
       position: relative;
       margin-top: 28px;
       background:
-        linear-gradient(135deg, #fdfefe 0%, #f3f8ff 28%, #eef4fe 100%);
-      border: 1px solid var(--line);
-      border-radius: 30px;
-      padding: clamp(24px, 4vw, 48px);
+        radial-gradient(circle at top right, rgba(123, 170, 255, 0.22), transparent 26%),
+        linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(239,246,255,0.96) 44%, rgba(233,242,255,0.96) 100%);
+      border: 1px solid rgba(142, 171, 214, 0.22);
+      border-radius: 32px;
+      padding: clamp(22px, 4vw, 42px);
       overflow: hidden;
-      box-shadow: var(--shadow);
+      box-shadow: 0 30px 60px rgba(30, 60, 110, 0.08);
     }
 
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(120deg, transparent 0%, rgba(23,102,209,0.04) 50%, transparent 100%);
-      transform: translateX(-120%);
+      background: linear-gradient(120deg, transparent 0%, rgba(29,99,221,0.06) 50%, transparent 100%);
+      transform: translateX(-140%);
       animation: gleam 10s linear infinite;
     }
 
     @keyframes gleam {
-      0% { transform: translateX(-120%); }
-      100% { transform: translateX(120%); }
+      0% { transform: translateX(-140%); }
+      100% { transform: translateX(140%); }
     }
 
     .hero-grid {
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: 1.4fr 0.7fr;
-      gap: 26px;
+      grid-template-columns: 1.45fr 0.75fr;
+      gap: 28px;
       align-items: center;
     }
 
@@ -205,31 +219,31 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 12px;
+      padding: 8px 14px;
       border-radius: 999px;
-      border: 1px solid #dfeaff;
-      background: #f4f9ff;
+      border: 1px solid rgba(110,142,224,0.3);
+      background: rgba(245,249,255,0.96);
       color: var(--blue);
-      font-size: 11px;
-      letter-spacing: 0.12em;
+      font-size: 10px;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       font-weight: 800;
+      box-shadow: 0 8px 20px rgba(29,99,221,0.08);
     }
 
     .hero h2 {
       margin: 18px 0 14px;
       max-width: 760px;
-      font-size: clamp(29px, 4.2vw, 52px);
-      line-height: 1.04;
-      letter-spacing: -0.06em;
+      font-size: clamp(30px, 4.3vw, 57px);
+      line-height: 1.02;
+      letter-spacing: -0.07em;
       font-weight: 900;
       color: var(--indigo);
     }
 
     .hero h2 .accent {
       display: inline-block;
-      color: var(--blue);
-      background: linear-gradient(135deg, #1149a2 0%, #3e7def 42%, #8db5ff 100%);
+      background: linear-gradient(135deg, #0f3f96 0%, #2e73f0 42%, #98c4ff 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -237,7 +251,7 @@
 
     .hero p {
       margin: 0;
-      max-width: 640px;
+      max-width: 660px;
       color: var(--muted);
       font-size: clamp(16px, 2vw, 20px);
     }
@@ -246,33 +260,33 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 24px;
+      margin-top: 26px;
     }
 
     .primary-btn {
       color: white;
-      background: linear-gradient(135deg, #184ec7 0%, #2c6af3 50%, #4a86ff 100%);
-      box-shadow: 0 16px 24px rgba(27, 89, 211, 0.2);
+      background: var(--gradient-primary);
+      box-shadow: 0 18px 28px rgba(27, 89, 211, 0.2);
     }
 
     .secondary-btn {
       color: var(--text);
-      background: white;
+      background: rgba(255,255,255,0.9);
       border: 1px solid var(--line);
       box-shadow: var(--card-shadow);
     }
 
     .search {
-      width: min(760px, 100%);
+      width: min(780px, 100%);
       display: flex;
       align-items: center;
       gap: 10px;
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 8px 10px 8px 14px;
-      margin-top: 24px;
-      box-shadow: var(--card-shadow);
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(148,169,210,0.32);
+      border-radius: 20px;
+      padding: 10px 12px 10px 16px;
+      margin-top: 26px;
+      box-shadow: 0 18px 28px rgba(32, 53, 89, 0.07);
     }
 
     .search span {
@@ -280,8 +294,9 @@
       color: var(--blue);
       display: grid;
       place-items: center;
-      width: 34px;
-      height: 34px;
+      width: 32px;
+      height: 32px;
+      filter: drop-shadow(0 8px 15px rgba(29,99,221,0.12));
     }
 
     .search input {
@@ -290,27 +305,49 @@
       border: 0;
       outline: none;
       color: var(--text);
-      font-size: clamp(16px, 2vw, 20px);
+      font-size: clamp(16px, 2vw, 18px);
       padding: 10px 8px;
     }
-    .search input::placeholder { color: #7b8aa7; }
+    .search input::placeholder { color: #7a8aa6; }
 
     .search small {
       padding: 8px 12px;
       white-space: nowrap;
       color: var(--indigo);
-      border-left: 1px solid var(--line);
+      border-left: 1px solid rgba(140, 163, 202, 0.34);
       font-weight: 800;
+      font-size: 12px;
+    }
+
+    .trust-row {
+      margin: 18px 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .trust-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(137,160,216,0.26);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      box-shadow: 0 12px 18px rgba(32,53,89,0.04);
     }
 
     .hero-panel {
       position: relative;
       z-index: 1;
-      background: linear-gradient(180deg, rgba(17, 30, 51, 0.96), rgba(14, 20, 31, 0.98));
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 22px;
+      background: var(--dark-panel);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 26px;
       padding: 18px;
-      box-shadow: 0 20px 36px rgba(17, 30, 51, 0.18);
+      box-shadow: 0 28px 44px rgba(15, 22, 36, 0.16);
       overflow: hidden;
     }
 
@@ -318,10 +355,10 @@
       content: "";
       position: absolute;
       inset: auto -20% -28% auto;
-      width: 220px;
-      height: 220px;
+      width: 210px;
+      height: 210px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(138,154,255,0.18), transparent 62%);
+      background: radial-gradient(circle, rgba(116, 144, 255, 0.22), transparent 62%);
       pointer-events: none;
     }
 
@@ -330,10 +367,11 @@
       z-index: 1;
       background: rgba(255,255,255,0.03);
       border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 16px;
-      padding: 14px 16px;
+      border-radius: 18px;
+      padding: 16px 18px;
       margin-bottom: 12px;
       color: white;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
     }
 
     .mini-head {
@@ -341,9 +379,9 @@
       justify-content: space-between;
       align-items: center;
       gap: 10px;
-      color: #d7def4;
+      color: #d8e1f7;
       font-size: 12px;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .mini-head .delta {
@@ -371,11 +409,11 @@
       justify-content: space-between;
       align-items: center;
       gap: 16px;
-      color: #d7def4;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.04);
-      border-radius: 10px;
-      padding: 8px 10px;
+      color: #dfe8ff;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 9px 10px;
       font-size: 13px;
     }
 
@@ -384,52 +422,31 @@
       font-weight: 800;
     }
 
-    .trust-row {
-      margin: 16px 0 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .trust-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: white;
-      border: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 700;
-      box-shadow: var(--card-shadow);
-    }
-
-    .section { margin: 42px 0; }
+    .section { margin: 48px 0; }
 
     .head {
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
     .head small {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 12px;
+      padding: 8px 13px;
       border-radius: 999px;
-      border: 1px solid #dde8fd;
-      background: #f4f9ff;
+      border: 1px solid rgba(125, 158, 229, 0.25);
+      background: rgba(240,247,255,0.9);
       color: var(--blue);
-      font-size: 11px;
-      letter-spacing: 0.12em;
+      font-size: 10px;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       font-weight: 800;
     }
 
     .head h2 {
       margin: 12px 0 8px;
-      font-size: clamp(26px, 3vw, 36px);
-      line-height: 1.1;
+      font-size: clamp(26px, 3vw, 38px);
+      line-height: 1.08;
       letter-spacing: -0.05em;
       color: var(--indigo);
     }
@@ -445,11 +462,12 @@
       align-items: center;
       gap: 14px;
       padding: 16px 18px;
-      border-radius: 18px;
+      border-radius: 20px;
       background: rgba(255,255,255,0.8);
       border: 1px solid var(--line);
       box-shadow: var(--card-shadow);
       margin-bottom: 18px;
+      backdrop-filter: blur(8px);
     }
 
     .category-label {
@@ -464,7 +482,7 @@
       flex: 1;
       min-width: 220px;
       border: 1px solid var(--line);
-      border-radius: 12px;
+      border-radius: 14px;
       background: #f8fbff;
       color: var(--text);
       padding: 12px 14px;
@@ -478,22 +496,23 @@
     }
 
     .category-chip {
-      border: 1px solid var(--line);
-      background: white;
+      border: 1px solid rgba(151,171,210,0.28);
+      background: rgba(255,255,255,0.86);
       color: var(--text);
       border-radius: 999px;
-      padding: 10px 16px;
+      padding: 11px 16px;
       font-weight: 800;
       cursor: pointer;
       transition: all 0.2s ease;
-      box-shadow: var(--card-shadow);
+      box-shadow: 0 8px 18px rgba(27, 45, 78, 0.04);
     }
 
     .category-chip:hover,
     .category-chip.active {
-      background: linear-gradient(135deg, #edf5ff, #f6f9ff);
-      border-color: #cfe0ff;
+      background: linear-gradient(135deg, #edf5ff 0%, #f6f9ff 100%);
+      border-color: rgba(110,150,236,0.52);
       color: var(--blue);
+      box-shadow: 0 12px 20px rgba(52, 100, 185, 0.08);
     }
 
     .grid {
@@ -507,14 +526,15 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      background: rgba(255,255,255,0.9);
-      border: 1px solid var(--line);
-      border-radius: 20px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(150,179,226,0.3);
+      border-radius: 24px;
       padding: 18px;
       box-shadow: var(--card-shadow);
       min-width: 0;
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
       overflow: hidden;
+      backdrop-filter: blur(10px);
     }
 
     .card::before {
@@ -522,14 +542,13 @@
       position: absolute;
       inset: 0 auto auto 0;
       width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(36,104,220,0.35), transparent, rgba(216,184,106,0.2));
+      height: 2px;
+      background: linear-gradient(90deg, rgba(29,99,221,0.28), rgba(127,183,255,0.14), rgba(215,177,96,0.22));
     }
 
     .card:hover {
-      transform: translateY(-4px);
-      border-color: #cfe0ff;
-      box-shadow: 0 18px 36px rgba(19, 40, 64, 0.1);
+      border-color: rgba(118, 160, 234, 0.45);
+      box-shadow: 0 18px 34px rgba(19, 40, 64, 0.12);
     }
 
     .top {
@@ -540,20 +559,20 @@
     }
 
     .ico {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, #edf5ff, #f7fbff);
-      border: 1px solid #dfeeff;
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #edf4ff 0%, #f8fbff 100%);
+      border: 1px solid rgba(136, 165, 223, 0.35);
       display: grid;
       place-items: center;
-      font-size: 24px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+      font-size: 25px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
     }
 
     .chip {
-      background: #f2f8ff;
-      border: 1px solid #deebff;
+      background: rgba(32,96,214,0.08);
+      border: 1px solid rgba(98, 142, 222, 0.2);
       color: var(--blue);
       border-radius: 999px;
       padding: 6px 9px;
@@ -624,12 +643,13 @@
       gap: 12px;
       min-width: 0;
       padding: 14px 16px;
-      border-radius: 14px;
+      border-radius: 16px;
       background: rgba(255,255,255,0.8);
-      border: 1px solid var(--line);
+      border: 1px solid rgba(148,171,214,0.3);
       box-shadow: var(--card-shadow);
       font-weight: 800;
       color: var(--indigo);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .link i {
@@ -650,19 +670,19 @@
 
     .notice {
       margin-top: 18px;
-      padding: 14px 16px;
-      border: 1px dashed #dfeaff;
+      padding: 15px 18px;
+      border: 1px dashed rgba(126, 156, 224, 0.5);
       background: rgba(255,255,255,0.7);
-      border-radius: 14px;
+      border-radius: 16px;
       color: var(--muted);
       font-size: 13px;
       box-shadow: var(--card-shadow);
     }
 
     footer {
-      margin-top: 48px;
+      margin-top: 52px;
       padding: 34px 0 24px;
-      background: linear-gradient(180deg, #0f172a 0%, #111d2f 100%);
+      background: linear-gradient(180deg, #0d1728 0%, #101d32 100%);
       border-top: 1px solid rgba(255,255,255,0.06);
       color: white;
     }
@@ -777,7 +797,7 @@
         <div>
           <div class="eyebrow">Executive Service Suite</div>
           <h2>সব প্রয়োজনীয় সেবা, <span class="accent">একটি স্মার্ট এক্সিকিউটিভ ড্যাশবোর্ডে</span></h2>
-          <p>সরকারি, পরিচয়পত্র, স্বাস্থ্য, ব্যাংকিং, ভ্রমণ ও দৈনন্দিন প্রয়োজনীয় সেবা এক জায়গায়—দ্রুত, নির্ভুল ও প্রফেশনালভাবে।</p>
+          <p>সরকারি, পরিচয়পত্র, স্বাস্থ্য, ব্যাংকিং, ভ্রমণ ও দৈনন্দিন প্রয়োজনীয় সেবার দ্রুত এক্সেস। স্মার্ট সার্চ, ক্লিন ন্যাভিগেশন এবং প্রিমিয়াম ইউজার ভিজিটর এক্সপেরিয়েন্সসহ আপনার সবচেয়ে প্রয়োজনীয় লিঙ্কগুলো একসাথে।</p>
 
           <div class="hero-cta">
             <a class="primary-btn" href="#important">সার্ভিস ব্রাউজ করুন</a>
@@ -864,7 +884,7 @@
       </div>
 
       <div class="grid searchable" id="cards">
-        <a class="card" href="https://food.wb.gov.in/" target="_blank" rel="noopener" data-category="government" data-search="রেশন ration খাদ্য কার্ড wb government food card">
+        <a class="card" href="https://food.wb.gov.in/" target="_blank" rel="noopener" data-category="government" data-search="রেশন ration খাদ্য কার্��� wb government food card">
           <div class="top"><span class="ico">🪪</span><span class="chip">Government</span></div>
           <h3>রেশন কার্ড</h3>
           <p>খাদ্য ও রেশন তথ্য, স্ট্যাটাস ও আবেদন সম্পর্কিত দ্রুত অ্যাক্সেস।</p>
@@ -906,7 +926,7 @@
           <div class="go">সার্ভিস খুলুন <span>↗</span></div>
         </a>
 
-        <a class="card" href="https://beneficiary.nha.gov.in/" target="_blank" rel="noopener" data-category="health" data-search="ayushman আয়ুষ্মান bharat insurance health service">
+        <a class="card" href="https://beneficiary.nha.gov.in/" target="_blank" rel="noopener" data-category="health" data-search="ayushman আয়ুষ্মান bharat insurance health service">
           <div class="top"><span class="ico">🏥</span><span class="chip">Health</span></div>
           <h3>আয়ুষ্মান স্বাস্থ্য</h3>
           <p>স্বাস্থ্য সুবিধা, বেনিফিট এবং সরকারি স্বাস্থ্য তথ্য।</p>
@@ -926,7 +946,7 @@
       <div class="head">
         <small>Quick Tools</small>
         <h2>দ্রুত টুলস</h2>
-        <p>প্রতিদিনের কাজকে সহজ করার জন্য প্রয়োজনীয় টুলস।</p>
+        <p>প্রতিদিনের কাজকে স���জ করার জন্য প্রয়োজনীয় টুলস।</p>
       </div>
 
       <div class="grid searchable">
@@ -988,7 +1008,7 @@
       </div>
     </section>
 
-    <div class="notice">এই সাইটটি শুধুমাত্র পরিষেবার শর্টকাট ড্যাশবোর্ড। গুরুত্বপূর্ণ তথ্য যাচাই করে ব্যবহার করুন।</div>
+    <div class="notice">এই সাইটটি শুধুমাত্র পরিষেবার শর্টকাট ড্যাশবোর্ড। গুরুত্বপূর্ণ তথ্য যাচাই করে ব্যবহার করুন এবং প্রতিটি পোর্টালে অফিসিয়াল/সংশ্লিষ্ট লিঙ্ক ব্যবহার করুন।</div>
   </main>
 
   <footer>
@@ -1002,280 +1022,93 @@
       </a>
 
       <div class="social" id="social">
-        <strong>আমাদের সোশ্যাল মিডিয়া</strong>
-        <div class="socials" aria-label="Social media links">
-          <a href="https://www.facebook.com/share/1Q3XK1nhjF/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a>
-          <a href="https://www.youtube.com/@YOUR_CHANNEL" target="_blank" rel="noopener noreferrer" aria-label="YouTube">▶</a>
-          <a href="https://www.instagram.com/YOUR_PAGE/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">◎</a>
-          <a href="https://chat.whatsapp.com/CzYLMj9dVm57qxxyJR195d?s=cl&p=a&mlu=4&ilr=4&iam=2" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">◉</a>
-          <a href="https://t.me/YOUR_CHANNEL" target="_blank" rel="noopener noreferrer" aria-label="Telegram">➤</a>
+        <strong>Connect</strong>
+        <div class="socials">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Instagram">◎</a>
+          <a href="#" aria-label="X">X</a>
+          <a href="#" aria-label="LinkedIn">in</a>
         </div>
-        <small>আমাদের সঙ্গে যুক্ত থাকুন।</small>
+        <small>Access • Verify • Act</small>
       </div>
     </div>
   </footer>
 
-  <script type="module">
-    import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyAPvK_clkRscLgb4QfOyLVMKypd2pNrBlw",
-      authDomain: "bangla-personal-dashboard.firebaseapp.com",
-      projectId: "bangla-personal-dashboard",
-      storageBucket: "bangla-personal-dashboard.firebasestorage.app",
-      messagingSenderId: "885984909040",
-      appId: "1:885984909040:web:79ba997fbc99c32ca09435",
-      measurementId: "G-5S6SNNY97L"
-    };
-
-    const $ = (id) => document.getElementById(id);
-
-    const categoryOptions = {
-      all: "সব",
-      government: "সরকারি পরিষেবা",
-      identity: "পরিচয়পত্র",
-      documents: "ডকুমেন্ট ও সার্টিফিকেট",
-      health: "স্বাস্থ্য",
-      education: "শিক্ষা",
-      banking: "ব্যাংকিং ও অর্থ",
-      utility: "ইউটিলিটি পরিষেবা",
-      travel: "ভ্রমণ ও পাসপোর্ট",
-      business: "ব্যবসা ও কাজ",
-      other: "অন্যান্য"
-    };
-
-    const menuBtn = $("menuBtn");
-    const menu = $("menu");
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const menu = document.getElementById('menu');
 
     if (menuBtn && menu) {
-      menuBtn.addEventListener("click", () => {
-        const open = menu.classList.toggle("open");
-        menuBtn.setAttribute("aria-expanded", String(open));
+      menuBtn.addEventListener('click', () => {
+        const isOpen = menu.classList.toggle('open');
+        menuBtn.setAttribute('aria-expanded', String(isOpen));
       });
     }
 
-    document.addEventListener("click", (event) => {
-      if (!menu || !menuBtn) return;
-      const target = event.target;
-      if (!menu.contains(target) && !menuBtn.contains(target)) {
-        menu.classList.remove("open");
-        menuBtn.setAttribute("aria-expanded", "false");
-      }
-    });
+    const searchInput = document.getElementById('search');
+    const cards = Array.from(document.querySelectorAll('.searchable'));
+    const countEl = document.getElementById('count');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const chips = Array.from(document.querySelectorAll('.category-chip'));
+    const errorBox = document.getElementById('error');
 
-    if (menu) {
-      menu.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => menu.classList.remove("open"));
-      });
-    }
+    let activeCategory = 'all';
 
-    function getSelectedCategory() {
-      const select = $("categoryFilter");
-      return select ? select.value : "all";
-    }
-
-    function matchesCategory(element) {
-      const category = (element.dataset.category || "other").toLowerCase();
-      const selected = getSelectedCategory();
-      return selected === "all" || category === selected;
-    }
-
-    function search() {
-      const input = $("search");
-      const count = $("count");
-      if (!input || !count) return;
-
-      const q = input.value.trim().toLowerCase();
+    function applyFilters() {
+      const query = (searchInput ? searchInput.value : '').trim().toLowerCase();
       let visibleCount = 0;
 
-      document.querySelectorAll("[data-search]").forEach((element) => {
-        const text = (element.innerText + " " + (element.dataset.search || "")).toLowerCase();
-        const show = matchesCategory(element) && (!q || text.includes(q));
-        element.classList.toggle("hidden", !show);
-        if (show) visibleCount += 1;
+      const matchesCategory = (el) => {
+        const category = el.dataset.category || 'all';
+        return activeCategory === 'all' || category === activeCategory;
+      };
+
+      cards.forEach((group) => {
+        const items = group.querySelectorAll ? group.querySelectorAll('.card, .link') : [];
+        items.forEach((item) => {
+          const inCategory = matchesCategory(item);
+          const text = ((item.dataset.search || item.textContent) || '').toLowerCase();
+          const inQuery = !query || text.includes(query);
+          const shouldShow = inCategory && inQuery;
+          item.classList.toggle('hidden', !shouldShow);
+          if (shouldShow) visibleCount += 1;
+        });
       });
 
-      count.textContent = q ? `${visibleCount}টি ফলাফল` : "সব পরিষেবা";
+      if (countEl) {
+        countEl.textContent = visibleCount ? `${visibleCount} সার্ভিস` : 'কোন ফলাফল নেই';
+      }
 
-      document.querySelectorAll(".section").forEach((section) => {
-        const items = [...section.querySelectorAll("[data-search]")];
-        const hasVisibleItems = items.some((el) => !el.classList.contains("hidden"));
-        section.classList.toggle("hidden", items.length > 0 && !hasVisibleItems);
-      });
+      if (errorBox) {
+        errorBox.classList.toggle('hidden', visibleCount !== 0);
+        errorBox.textContent = visibleCount === 0 ? 'কোনো সার্ভিস খুঁজে পাওয়া যায়নি। অন্য কীওয়ার্ড চেষ্টা করুন।' : '';
+      }
     }
 
-    const searchInput = $("search");
-    if (searchInput) searchInput.addEventListener("input", search);
+    if (searchInput) {
+      searchInput.addEventListener('input', applyFilters);
+    }
 
-    const categoryFilter = $("categoryFilter");
     if (categoryFilter) {
-      categoryFilter.addEventListener("change", () => {
-        const value = categoryFilter.value;
-        document.querySelectorAll(".category-chip").forEach((chip) => {
-          chip.classList.toggle("active", (chip.dataset.category || "all") === value);
+      categoryFilter.addEventListener('change', (event) => {
+        activeCategory = event.target.value;
+        chips.forEach((chip) => {
+          chip.classList.toggle('active', chip.dataset.category === activeCategory);
         });
-        search();
+        applyFilters();
       });
     }
 
-    document.querySelectorAll(".category-chip").forEach((chip) => {
-      chip.addEventListener("click", () => {
-        const value = chip.dataset.category || "all";
-        if (categoryFilter) categoryFilter.value = value;
-        document.querySelectorAll(".category-chip").forEach((item) => {
-          item.classList.toggle("active", item === chip);
-        });
-        search();
+    chips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        activeCategory = chip.dataset.category || 'all';
+        chips.forEach((el) => el.classList.toggle('active', el === chip));
+        if (categoryFilter) categoryFilter.value = activeCategory;
+        applyFilters();
       });
     });
 
-    const notesButton = $("notes");
-    if (notesButton) {
-      notesButton.addEventListener("click", (event) => {
-        event.preventDefault();
-        const value = prompt("আপনার নোট লিখুন:", localStorage.getItem("dupo-notes") || "");
-        if (value !== null) {
-          localStorage.setItem("dupo-notes", value);
-          alert("নোট এই ব্রাউজারে সংরক্ষিত হয়েছে।");
-        }
-      });
-    }
-
-    const checklistButton = $("checklist");
-    if (checklistButton) {
-      checklistButton.addEventListener("click", (event) => {
-        event.preventDefault();
-        const value = prompt("প্রতি লাইনে একটি ডকুমেন্ট লিখুন:", localStorage.getItem("dupo-checklist") || "আধার কার্ড\nPAN\nভোটার কার্ড");
-        if (value !== null) {
-          localStorage.setItem("dupo-checklist", value);
-          alert("চেকলিস্ট সংরক্ষিত হয়েছে।");
-        }
-      });
-    }
-
-    function safeUrl(value) {
-      try {
-        const url = new URL(String(value));
-        return ["https:", "http:"].includes(url.protocol) ? url.href : "";
-      } catch {
-        return "";
-      }
-    }
-
-    function getCategoryValue(item) {
-      const name = String(item && item.category ? item.category : item && item.tag ? item.tag : "other").trim().toLowerCase();
-      const mapped = {
-        "সরকারি পরিষেবা": "government",
-        "সরকারি": "government",
-        "পরিচয়পত্র": "identity",
-        "পরিচয়পত্র": "identity",
-        "identity": "identity",
-        "identity card": "identity",
-        "ডকুমেন্ট ও সার্টিফিকেট": "documents",
-        "documents": "documents",
-        "document": "documents",
-        "স্বাস্থ্য": "health",
-        "health": "health",
-        "শিক্ষা": "education",
-        "education": "education",
-        "ব্যাংকিং ও অর্থ": "banking",
-        "banking": "banking",
-        "ইউটিলিটি পরিষেবা": "utility",
-        "utility": "utility",
-        "ভ্রমণ ও পাসপোর্ট": "travel",
-        "travel": "travel",
-        "ব্যবসা ও কাজ": "business",
-        "business": "business",
-        "অন্যান্য": "other",
-        "other": "other"
-      };
-      return mapped[name] || "other";
-    }
-
-    function updateOrCreateCard(item) {
-      if (!item || !item.title) return null;
-
-      const title = String(item.title).trim();
-      const url = safeUrl(item.url || "");
-      const category = getCategoryValue(item);
-      const card = document.createElement("a");
-      card.className = "card";
-      card.href = url || "#";
-      card.dataset.category = category;
-
-      if (url) {
-        card.target = "_blank";
-        card.rel = "noopener noreferrer";
-      }
-
-      const top = document.createElement("div");
-      top.className = "top";
-
-      const icon = document.createElement("span");
-      icon.className = "ico";
-      icon.textContent = String(item.icon || "🔗");
-
-      const chip = document.createElement("span");
-      chip.className = "chip";
-      chip.textContent = String(item.tag || categoryOptions[category] || "SERVICE");
-
-      top.append(icon, chip);
-
-      const h = document.createElement("h3");
-      h.textContent = title;
-
-      const p = document.createElement("p");
-      p.textContent = String(item.description || "পরিষেবা খুলুন");
-
-      const go = document.createElement("div");
-      go.className = "go";
-      go.innerHTML = "সার্ভিস খুলুন <span>↗</span>";
-
-      card.append(top, h, p, go);
-      card.dataset.search = [title, item.description, item.keywords, item.tag, item.id, categoryOptions[category]].filter(Boolean).join(" ");
-      return card;
-    }
-
-    function renderCards(items) {
-      if (!Array.isArray(items)) return;
-      const container = $("cards");
-      if (!container) return;
-      container.innerHTML = "";
-      items.forEach((item) => {
-        const card = updateOrCreateCard(item);
-        if (card) container.appendChild(card);
-      });
-      search();
-    }
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const servicesRef = doc(db, "site-data", "services");
-
-    async function loadServices() {
-      try {
-        const snapshot = await getDoc(servicesRef);
-        if (snapshot.exists()) {
-          const data = snapshot.data();
-          const items = Array.isArray(data?.items) ? data.items : [];
-          renderCards(items);
-          if (!items.length) {
-            $("error").textContent = "কোনো সেবা পাওয়া যায়নি।";
-            $("error").classList.remove("hidden");
-          }
-        } else {
-          $("error").textContent = "সার্ভিস ডেটা লোড হয়নি।";
-          $("error").classList.remove("hidden");
-        }
-      } catch (error) {
-        console.error(error);
-        $("error").textContent = "সার্ভিস লোড করতে সমস্যা হয়েছে.";
-        $("error").classList.remove("hidden");
-      }
-    }
-
-    loadServices();
+    applyFilters();
   </script>
 </body>
 </html>
