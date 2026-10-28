@@ -3,27 +3,28 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#07131f">
+  <meta name="theme-color" content="#070d18">
   <title>Daily Use Products Official</title>
   <style>
     :root {
-      --bg: #07131f;
-      --bg-2: #0d1d2e;
-      --panel: rgba(14, 25, 38, 0.84);
-      --panel-strong: #111f2f;
-      --panel-soft: rgba(17,31,47,0.9);
+      --bg: #070d18;
+      --bg-2: #0d1726;
+      --bg-3: #0f1f31;
+      --panel: rgba(12, 22, 35, 0.8);
+      --panel-2: rgba(18, 31, 46, 0.82);
+      --panel-3: rgba(12, 19, 28, 0.9);
       --line: rgba(255,255,255,0.08);
-      --line-strong: rgba(167, 205, 255, 0.22);
-      --text: #edf4ff;
-      --muted: #a8bfd6;
-      --muted-2: #7d97b8;
-      --blue: #4fa3ff;
-      --blue-2: #7dc7ff;
-      --gold: #f7c75d;
-      --gold-2: #ffdf8d;
-      --cyan: #71d8ff;
-      --shadow: 0 24px 64px rgba(2, 6, 12, 0.55);
-      --card-shadow: 0 18px 42px rgba(11, 19, 33, 0.42);
+      --line-strong: rgba(131, 185, 255, 0.22);
+      --text: #edf5ff;
+      --muted: #a9bfd7;
+      --muted-2: #7c90ac;
+      --blue: #74b8ff;
+      --blue-2: #a9d7ff;
+      --gold: #f1c56a;
+      --gold-2: #ffe7aa;
+      --green: #86e8b0;
+      --shadow: 0 30px 80px rgba(1, 5, 10, 0.52);
+      --card-shadow: 0 22px 48px rgba(3, 9, 17, 0.32);
       --radius: 22px;
     }
 
@@ -32,11 +33,12 @@
     body {
       margin: 0;
       background:
-        radial-gradient(circle at top left, rgba(79, 163, 255, 0.18), transparent 20%),
-        radial-gradient(circle at bottom right, rgba(247, 199, 93, 0.12), transparent 25%),
-        linear-gradient(180deg, #050d16 0%, #091b2d 100%);
+        radial-gradient(circle at 15% 10%, rgba(116,184,255,0.18), transparent 22%),
+        radial-gradient(circle at 85% 8%, rgba(241,197,106,0.10), transparent 22%),
+        radial-gradient(circle at 50% 40%, rgba(67, 117, 190, 0.08), transparent 28%),
+        linear-gradient(180deg, #050b14 0%, #0a1625 32%, #07101a 100%);
       color: var(--text);
-      font: 16px/1.6 system-ui, "Noto Sans Bengali", sans-serif;
+      font: 16px/1.7 system-ui, "Noto Sans Bengali", sans-serif;
       text-rendering: optimizeLegibility;
     }
 
@@ -53,7 +55,7 @@
       position: sticky;
       top: 0;
       z-index: 80;
-      background: rgba(7, 19, 31, 0.72);
+      background: rgba(7, 12, 20, 0.7);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--line);
     }
@@ -63,7 +65,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 18px;
       position: relative;
     }
 
@@ -81,22 +83,22 @@
       object-fit: cover;
       border-radius: 16px;
       border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25);
     }
 
     .brand h1,
     .footbrand h2 {
       margin: 0;
-      font-size: clamp(16px, 2vw, 24px);
-      line-height: 1.18;
+      line-height: 1.1;
       letter-spacing: -0.04em;
-      color: #f4f8ff;
+      font-size: clamp(16px, 2vw, 24px);
+      color: var(--text);
     }
 
     .brand p {
-      margin: 4px 0 0;
-      font-size: 12px;
+      margin: 3px 0 0;
       color: var(--muted);
+      font-size: 12px;
     }
 
     .nav-actions {
@@ -105,17 +107,31 @@
       gap: 12px;
     }
 
-    .nav-cta {
+    .nav-cta,
+    .primary-btn,
+    .secondary-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 10px 16px;
+      padding: 12px 18px;
       border-radius: 12px;
-      background: linear-gradient(135deg, rgba(79,163,255,0.18), rgba(125,199,255,0.08));
-      border: 1px solid var(--line-strong);
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .nav-cta:hover,
+    .primary-btn:hover,
+    .secondary-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .nav-cta {
       color: var(--text);
-      font-weight: 700;
+      background: linear-gradient(135deg, rgba(116,184,255,0.12), rgba(169,215,255,0.06));
+      border: 1px solid var(--line-strong);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
     }
 
@@ -136,7 +152,7 @@
       top: 76px;
       width: min(280px, calc(100vw - 28px));
       padding: 10px;
-      background: rgba(12, 22, 34, 0.96);
+      background: rgba(13, 22, 34, 0.96);
       border: 1px solid var(--line);
       border-radius: 18px;
       box-shadow: var(--shadow);
@@ -146,22 +162,22 @@
     .menu a {
       padding: 12px 14px;
       border-radius: 10px;
-      font-weight: 700;
       color: var(--text);
+      font-weight: 700;
     }
-    .menu a:hover { background: rgba(79,163,255,0.08); }
+    .menu a:hover { background: rgba(116,184,255,0.08); }
 
     .hero {
-      margin-top: 26px;
-      border-radius: 30px;
-      padding: clamp(22px, 3vw, 44px);
       position: relative;
-      overflow: hidden;
+      margin-top: 28px;
       background:
-        linear-gradient(135deg, rgba(10, 19, 31, 0.9), rgba(13, 29, 46, 0.88)),
-        radial-gradient(circle at 18% 20%, rgba(79,163,255,0.14), transparent 30%),
-        radial-gradient(circle at 100% 0%, rgba(247,199,93,0.12), transparent 26%);
+        linear-gradient(135deg, rgba(8, 14, 22, 0.96) 0%, rgba(15, 27, 41, 0.96) 42%, rgba(10, 18, 29, 0.9) 100%),
+        radial-gradient(circle at 20% 20%, rgba(116,184,255,0.18), transparent 24%),
+        radial-gradient(circle at 85% 12%, rgba(241,197,106,0.11), transparent 18%);
       border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: clamp(24px, 4vw, 46px);
+      overflow: hidden;
       box-shadow: var(--shadow);
     }
 
@@ -169,12 +185,12 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.03) 50%, transparent 100%);
       transform: translateX(-100%);
-      animation: shine 9s linear infinite;
+      animation: gleam 10s linear infinite;
     }
 
-    @keyframes shine {
+    @keyframes gleam {
       0% { transform: translateX(-100%); }
       100% { transform: translateX(100%); }
     }
@@ -184,7 +200,7 @@
       z-index: 1;
       display: grid;
       grid-template-columns: 1.4fr 0.8fr;
-      gap: 20px;
+      gap: 22px;
       align-items: center;
     }
 
@@ -192,27 +208,29 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gold-2);
-      background: rgba(247,199,93,0.08);
-      border: 1px solid rgba(247, 199, 93, 0.18);
       padding: 8px 12px;
       border-radius: 999px;
+      border: 1px solid rgba(241,197,106,0.18);
+      background: rgba(241,197,106,0.08);
+      color: var(--gold-2);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 800;
     }
 
     .hero h2 {
       margin: 18px 0 12px;
-      font-size: clamp(30px, 5vw, 60px);
-      line-height: 1.05;
-      letter-spacing: -0.06em;
-      max-width: 720px;
+      max-width: 760px;
+      font-size: clamp(32px, 5vw, 62px);
+      line-height: 0.96;
+      letter-spacing: -0.07em;
+      font-weight: 900;
     }
 
     .hero h2 .accent {
-      background: linear-gradient(135deg, var(--gold-2), #fff4c0 40%, var(--blue-2));
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold-2) 0%, #fffaf0 36%, var(--blue-2) 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -220,7 +238,7 @@
 
     .hero p {
       margin: 0;
-      max-width: 650px;
+      max-width: 640px;
       color: var(--muted);
       font-size: clamp(16px, 2vw, 20px);
     }
@@ -229,59 +247,41 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 22px;
+      margin-top: 24px;
     }
-
-    .primary-btn,
-    .secondary-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 14px 20px;
-      border-radius: 14px;
-      font-weight: 800;
-      border: 1px solid transparent;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-
-    .primary-btn:hover,
-    .secondary-btn:hover { transform: translateY(-1px); }
 
     .primary-btn {
-      background: linear-gradient(135deg, #4fa3ff, #7dc7ff 45%, #b9e9ff);
-      color: #06121d;
-      box-shadow: 0 18px 38px rgba(79,163,255,0.25);
+      color: #08121c;
+      background: linear-gradient(135deg, #bfe2ff 0%, #74b8ff 28%, #dfeeff 100%);
+      box-shadow: 0 18px 36px rgba(116,184,255,0.28);
     }
 
     .secondary-btn {
-      background: rgba(255,255,255,0.02);
       color: var(--text);
-      border-color: rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.12);
     }
 
     .search {
+      width: min(760px, 100%);
       display: flex;
       align-items: center;
       gap: 10px;
-      width: min(760px, 100%);
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 16px;
       padding: 8px 10px 8px 14px;
       margin-top: 24px;
-      color: var(--text);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
     }
 
     .search span {
       font-size: 22px;
+      color: var(--gold-2);
       display: grid;
       place-items: center;
       width: 34px;
       height: 34px;
-      color: var(--gold-2);
     }
 
     .search input {
@@ -289,32 +289,31 @@
       background: transparent;
       border: 0;
       outline: none;
-      padding: 10px 8px; 
       color: var(--text);
       font-size: clamp(16px, 2vw, 20px);
+      padding: 10px 8px;
     }
-
-    .search input::placeholder { color: #8ea7c3; }
+    .search input::placeholder { color: #8aa3be; }
 
     .search small {
       padding: 8px 12px;
-      border-left: 1px solid rgba(255,255,255,0.12);
-      color: var(--gold-2);
-      font-weight: 800;
       white-space: nowrap;
+      color: var(--gold-2);
+      border-left: 1px solid rgba(255,255,255,0.1);
+      font-weight: 800;
     }
 
     .hero-panel {
-      background: linear-gradient(180deg, rgba(15, 27, 41, 0.84), rgba(10, 18, 29, 0.8));
+      background: linear-gradient(180deg, rgba(17, 31, 46, 0.9), rgba(11, 18, 27, 0.9));
       border: 1px solid var(--line);
-      border-radius: 24px;
+      border-radius: 22px;
       padding: 18px;
       box-shadow: var(--card-shadow);
     }
 
     .mini-card {
       background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 16px;
       padding: 14px 16px;
       margin-bottom: 12px;
@@ -324,28 +323,28 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 10px;
       color: var(--muted);
       font-size: 12px;
       margin-bottom: 8px;
     }
 
-    .stat {
-      font-size: clamp(27px, 3vw, 36px);
+    .mini-head .delta {
+      color: var(--green);
       font-weight: 800;
-      letter-spacing: -0.05em;
-      color: #fff;
     }
 
-    .delta {
-      color: #9ae6af;
-      font-weight: 700;
-      font-size: 12px;
+    .stat {
+      font-size: clamp(30px, 4vw, 42px);
+      font-weight: 900;
+      letter-spacing: -0.06em;
+      color: var(--text);
     }
 
     .mini-list {
-      margin: 0;
-      padding: 0;
       list-style: none;
+      padding: 0;
+      margin: 0;
       display: grid;
       gap: 8px;
     }
@@ -354,18 +353,38 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 10px;
+      gap: 16px;
       color: var(--muted);
-      font-size: 13px;
-      padding: 8px 10px;
-      border-radius: 10px;
       background: rgba(255,255,255,0.02);
       border: 1px solid rgba(255,255,255,0.04);
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 13px;
     }
 
     .mini-list strong {
       color: var(--text);
       font-weight: 800;
+    }
+
+    .trust-row {
+      margin: 16px 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .trust-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
     }
 
     .section { margin: 42px 0; }
@@ -378,21 +397,21 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gold-2);
-      background: rgba(247,199,93,0.08);
-      border: 1px solid rgba(247,199,93,0.18);
       padding: 8px 12px;
       border-radius: 999px;
+      border: 1px solid rgba(241,197,106,0.18);
+      background: rgba(241,197,106,0.08);
+      color: var(--gold-2);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 800;
     }
 
     .head h2 {
       margin: 12px 0 8px;
-      font-size: clamp(26px, 3vw, 34px);
-      line-height: 1.15;
+      font-size: clamp(26px, 3vw, 36px);
+      line-height: 1.1;
       letter-spacing: -0.05em;
     }
 
@@ -406,18 +425,18 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      background: rgba(17, 31, 47, 0.84);
-      border: 1px solid var(--line);
-      border-radius: 18px;
       padding: 16px 18px;
-      margin-bottom: 18px;
+      border-radius: 18px;
+      background: rgba(17,31,47,0.76);
+      border: 1px solid var(--line);
       box-shadow: var(--card-shadow);
+      margin-bottom: 18px;
     }
 
     .category-label {
       font-size: 12px;
-      letter-spacing: 0.12em;
       text-transform: uppercase;
+      letter-spacing: 0.12em;
       color: var(--muted);
       font-weight: 800;
     }
@@ -427,7 +446,7 @@
       min-width: 220px;
       border: 1px solid var(--line);
       border-radius: 12px;
-      background: rgba(255,255,255,0.02);
+      background: rgba(255,255,255,0.03);
       color: var(--text);
       padding: 12px 14px;
       outline: none;
@@ -452,10 +471,10 @@
 
     .category-chip:hover,
     .category-chip.active {
-      background: linear-gradient(135deg, rgba(79,163,255,0.18), rgba(125,199,255,0.10));
-      border-color: rgba(125,199,255,0.25);
-      color: #ebf7ff;
-      box-shadow: 0 8px 20px rgba(79,163,255,0.15);
+      background: linear-gradient(135deg, rgba(116,184,255,0.12), rgba(169,215,255,0.06));
+      border-color: rgba(169,215,255,0.25);
+      color: #eff8ff;
+      box-shadow: 0 12px 26px rgba(116,184,255,0.12);
     }
 
     .grid {
@@ -465,17 +484,17 @@
     }
 
     .card {
+      position: relative;
       display: flex;
       flex-direction: column;
       gap: 10px;
-      background: linear-gradient(180deg, rgba(17,31,47,0.9), rgba(12,20,29,0.9));
+      background: linear-gradient(180deg, rgba(17,31,47,0.82), rgba(10,17,25,0.88));
       border: 1px solid var(--line);
       border-radius: 20px;
       padding: 18px;
       box-shadow: var(--card-shadow);
       min-width: 0;
       transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-      position: relative;
       overflow: hidden;
     }
 
@@ -485,13 +504,13 @@
       inset: 0 auto auto 0;
       width: 100%;
       height: 1px;
-      background: linear-gradient(90deg, rgba(125,199,255,0.28), transparent, rgba(247,199,93,0.22));
+      background: linear-gradient(90deg, rgba(169,215,255,0.3), transparent, rgba(241,197,106,0.2));
     }
 
     .card:hover {
       transform: translateY(-4px);
-      border-color: rgba(125,199,255,0.25);
-      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.35);
+      border-color: rgba(169,215,255,0.25);
+      box-shadow: 0 18px 38px rgba(0,0,0,0.34);
     }
 
     .top {
@@ -505,8 +524,8 @@
       width: 48px;
       height: 48px;
       border-radius: 14px;
-      background: linear-gradient(135deg, rgba(79,163,255,0.18), rgba(125,199,255,0.06));
-      border: 1px solid rgba(125,199,255,0.14);
+      background: linear-gradient(135deg, rgba(116,184,255,0.18), rgba(169,215,255,0.08));
+      border: 1px solid rgba(169,215,255,0.12);
       display: grid;
       place-items: center;
       font-size: 24px;
@@ -514,8 +533,8 @@
     }
 
     .chip {
-      background: rgba(247,199,93,0.08);
-      border: 1px solid rgba(247,199,93,0.18);
+      background: rgba(241,197,106,0.08);
+      border: 1px solid rgba(241,197,106,0.18);
       color: var(--gold-2);
       border-radius: 999px;
       padding: 6px 9px;
@@ -575,20 +594,20 @@
     .tool .text p {
       margin: 2px 0 0;
       font-size: 12px;
-      color: var(--muted)
+      color: var(--muted);
     }
 
     .link {
       display: flex;
       align-items: center;
       gap: 12px;
+      min-width: 0;
       padding: 14px 16px;
-      background: linear-gradient(180deg, rgba(17,31,47,0.9), rgba(12,20,29,0.9));
-      border: 1px solid var(--line);
       border-radius: 14px;
+      background: linear-gradient(180deg, rgba(17,31,47,0.82), rgba(10,17,25,0.88));
+      border: 1px solid var(--line);
       box-shadow: var(--card-shadow);
       font-weight: 800;
-      min-width: 0;
     }
 
     .link i {
@@ -610,8 +629,8 @@
     .notice {
       margin-top: 18px;
       padding: 14px 16px;
+      border: 1px dashed rgba(169,215,255,0.18);
       background: rgba(255,255,255,0.02);
-      border: 1px dashed rgba(125,199,255,0.18);
       border-radius: 14px;
       color: var(--muted);
       font-size: 13px;
@@ -619,10 +638,10 @@
 
     footer {
       margin-top: 48px;
-      background: linear-gradient(180deg, #07131f 0%, #0b1d2c 100%);
-      color: white;
-      padding: 34px 0 26px;
+      padding: 34px 0 24px;
+      background: linear-gradient(180deg, #07111d 0%, #0b1a29 100%);
       border-top: 1px solid var(--line);
+      color: white;
     }
 
     .footrow {
@@ -652,8 +671,8 @@
     }
 
     .social strong {
+      color: var(--text);
       font-size: 15px;
-      color: #fff;
     }
 
     .socials {
@@ -665,13 +684,13 @@
     .socials a {
       width: 42px;
       height: 42px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.03);
-      color: white;
-      border-radius: 12px;
       display: grid;
       place-items: center;
-      font-weight: 800;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text);
+      font-weight: 900;
     }
 
     .social small {
@@ -694,11 +713,11 @@
       .nav-cta { display: none; }
       .hero { border-radius: 22px; }
       .grid, .tools .grid, .links { grid-template-columns: 1fr; }
-      .category-filter-box { align-items: stretch; flex-direction: column; }
+      .category-filter-box { flex-direction: column; align-items: stretch; }
       .category-filter-box select { width: 100%; min-width: 0; }
       .search { display: block; }
       .search span { display: block; margin-bottom: 6px; }
-      .search small { display: block; margin-top: 8px; padding-left: 0; border-left: 0; }
+      .search small { display: block; margin-top: 8px; border-left: 0; padding-left: 0; }
       .footrow { flex-direction: column; }
     }
   </style>
@@ -734,22 +753,28 @@
       <div class="hero-grid">
         <div>
           <div class="eyebrow">Premium Service Access</div>
-          <h2>All your essential digital services in <span class="accent">one refined hub</span>.</h2>
-          <p>Find trusted government, identity, payment, travel, and daily-use services faster with a focused, elegant dashboard made for modern users.</p>
+          <h2>সব প্রয়োজনীয় সেবা, <span class="accent">একটি প্রিমিয়াম হাবে</span></h2>
+          <p>সরকারি, পরিচয়পত্র, স্বাস্থ্য, ব্যাংকিং, ভ্রমণ ও দৈনন্দিন প্রয়োজনীয় সব অনলাইন পরিষেবা এখন এক জায়গায়—সোজা, দ্রুত এবং আরও আরামদায়কভাবে।</p>
 
           <div class="hero-cta">
-            <a class="primary-btn" href="#important">Browse Services</a>
-            <a class="secondary-btn" href="#tools">Quick Tools</a>
+            <a class="primary-btn" href="#important">সার্ভিস ব্রাউজ করুন</a>
+            <a class="secondary-btn" href="#tools">দ্রুত টুলস</a>
           </div>
 
           <label class="search" aria-label="Search services">
             <span>🔎</span>
-            <input id="search" type="search" placeholder="Search for ration, PAN, voter, passport..." aria-label="Search services">
-            <small id="count">All services</small>
+            <input id="search" type="search" placeholder="সার্চ করুন—রেশন, PAN, ভোটার, পাসপোর্ট..." aria-label="সার্চ করুন">
+            <small id="count">সব পরিষেবা</small>
           </label>
+
+          <div class="trust-row" aria-label="Trust indicators">
+            <span class="trust-pill">✓ Govt-linked access</span>
+            <span class="trust-pill">✓ Verified shortcuts</span>
+            <span class="trust-pill">✓ Quick service search</span>
+          </div>
         </div>
 
-        <aside class="hero-panel" aria-label="Highlights">
+        <aside class="hero-panel" aria-label="Service stats">
           <div class="mini-card">
             <div class="mini-head"><span>Live Access</span><span class="delta">+18.4%</span></div>
             <div class="stat">12K+</div>
@@ -772,104 +797,104 @@
     <section class="section" id="categories">
       <div class="head">
         <small>Categories</small>
-        <h2>Service Categories</h2>
-        <p>Browse by category and jump to the right digital service quickly.</p>
+        <h2>ক্যাটাগরি</h2>
+        <p>সার্ভিসের ধরন অনুযায়ী দ্রুত খুঁজুন।</p>
       </div>
 
       <div class="category-filter-box">
-        <label class="category-label" for="categoryFilter">Filter</label>
+        <label class="category-label" for="categoryFilter">বিভাগ</label>
         <select id="categoryFilter" aria-label="Select service category">
-          <option value="all">All categories</option>
-          <option value="government">Government services</option>
-          <option value="identity">Identity</option>
-          <option value="documents">Documents & certificates</option>
-          <option value="health">Health</option>
-          <option value="education">Education</option>
-          <option value="banking">Banking & finance</option>
-          <option value="utility">Utility services</option>
-          <option value="travel">Travel & passport</option>
-          <option value="business">Business</option>
-          <option value="other">Other</option>
+          <option value="all">সব ক্যাটাগরি</option>
+          <option value="government">সরকারি পরিষেবা</option>
+          <option value="identity">পরিচয়পত্র</option>
+          <option value="documents">ডকুমেন্ট ও সার্টিফিকেট</option>
+          <option value="health">স্বাস্থ্য</option>
+          <option value="education">শিক্ষা</option>
+          <option value="banking">ব্যাংকিং ও অর্থ</option>
+          <option value="utility">ইউটিলিটি পরিষেবা</option>
+          <option value="travel">ভ্রমণ ও পাসপোর্ট</option>
+          <option value="business">ব্যবসা ও কাজ</option>
+          <option value="other">অন্যান্য</option>
         </select>
       </div>
 
       <div class="category-grid" aria-label="Service categories">
-        <button type="button" class="category-chip active" data-category="all">All</button>
-        <button type="button" class="category-chip" data-category="government">Government</button>
-        <button type="button" class="category-chip" data-category="identity">Identity</button>
-        <button type="button" class="category-chip" data-category="documents">Documents</button>
-        <button type="button" class="category-chip" data-category="health">Health</button>
-        <button type="button" class="category-chip" data-category="education">Education</button>
-        <button type="button" class="category-chip" data-category="banking">Banking</button>
-        <button type="button" class="category-chip" data-category="utility">Utility</button>
-        <button type="button" class="category-chip" data-category="travel">Travel</button>
-        <button type="button" class="category-chip" data-category="business">Business</button>
-        <button type="button" class="category-chip" data-category="other">Other</button>
+        <button type="button" class="category-chip active" data-category="all">সব</button>
+        <button type="button" class="category-chip" data-category="government">সরকারি পরিষেবা</button>
+        <button type="button" class="category-chip" data-category="identity">পরিচয়পত্র</button>
+        <button type="button" class="category-chip" data-category="documents">ডকুমেন্ট ও সার্টিফিকেট</button>
+        <button type="button" class="category-chip" data-category="health">স্বাস্থ্য</button>
+        <button type="button" class="category-chip" data-category="education">শিক্ষা</button>
+        <button type="button" class="category-chip" data-category="banking">ব্যাংকিং ও অর্থ</button>
+        <button type="button" class="category-chip" data-category="utility">ইউটিলিটি পরিষেবা</button>
+        <button type="button" class="category-chip" data-category="travel">ভ্রমণ ও পাসপোর্ট</button>
+        <button type="button" class="category-chip" data-category="business">ব্যবসা ও কাজ</button>
+        <button type="button" class="category-chip" data-category="other">অন্যান্য</button>
       </div>
     </section>
 
     <section class="section" id="important">
       <div class="head">
         <small>Essential Services</small>
-        <h2>Important Services</h2>
-        <p>Handpicked essentials for identity, health, travel, banking, and public services.</p>
+        <h2>গুরুত্বপূর্ণ পরিষেবা</h2>
+        <p>পরিচয়পত্র, স্বাস্থ্য, ভ্রমণ, ব্যাংকিং ও সরকারি সেবা কয়েক ক্লিকে।</p>
       </div>
 
       <div class="grid searchable" id="cards">
-        <a class="card" href="https://food.wb.gov.in/" target="_blank" rel="noopener" data-category="government" data-search="ration food government card wb food card">
+        <a class="card" href="https://food.wb.gov.in/" target="_blank" rel="noopener" data-category="government" data-search="রেশন ration খাদ্য কার্ড wb government food card">
           <div class="top"><span class="ico">🪪</span><span class="chip">Government</span></div>
-          <h3>Ration Card</h3>
-          <p>Access food service information, application status, and official updates.</p>
-          <div class="go">Open service <span>↗</span></div>
+          <h3>রেশন কার্ড</h3>
+          <p>খাদ্য ও রেশন তথ্য, স্ট্যাটাস ও আবেদন সম্পর্কিত দ্রুত অ্যাক্সেস।</p>
+          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
         </a>
 
-        <a class="card" href="https://www.incometax.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="pan tax income tax govt identity card">
+        <a class="card" href="https://www.incometax.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="pan প্যান income tax govt identity card">
           <div class="top"><span class="ico">💳</span><span class="chip">Identity</span></div>
           <h3>PAN</h3>
-          <p>Quick access to income tax and PAN-related portal services.</p>
-          <div class="go">Open service <span>↗</span></div>
+          <p>আয়কর ও PAN সংক্রান্ত তথ্য, আবেদন ও সার্ভিস পোর্টাল।</p>
+          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
         </a>
 
-        <a class="card" href="https://voters.eci.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="voter card election government voter service">
+        <a class="card" href="https://voters.eci.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="voter ভোটার কার্ড election government voter service">
           <div class="top"><span class="ico">🗳️</span><span class="chip">Identity</span></div>
-          <h3>Voter Card</h3>
-          <p>Find voter information, corrections, and election service access.</p>
-          <div class="go">Open service <span>↗</span></div>
+          <h3>ভোটার কার্ড</h3>
+          <p>ভোটার সার্ভিস, সংশোধন, তথ্য ও নির্বাচন সংক্রান্ত অ্যাক্সেস।</p>
+          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
         </a>
 
-        <a class="card" href="https://uidai.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="aadhaar card uidai biometric identity service">
+        <a class="card" href="https://uidai.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="aadhaar আধার uidai biometric identity service">
           <div class="top"><span class="ico">🆔</span><span class="chip">Identity</span></div>
-          <h3>Aadhaar</h3>
-          <p>Check updates, registration status, and Aadhaar support details.</p>
-          <div class="go">Open service <span>↗</span></div>
+          <h3>আধার</h3>
+          <p>আধার আপডেট, স্ট্যাটাস ও প্রাসঙ্গিক তথ্য দ্রুত খুঁজুন।</p>
+          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
         </a>
 
-        <a class="card" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener" data-category="travel" data-search="passport travel visa document application">
+        <a class="card" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener" data-category="travel" data-search="passport পাসপোর্ট visa travel application">
           <div class="top"><span class="ico">🛂</span><span class="chip">Travel</span></div>
-          <h3>Passport</h3>
-          <p>Apply or track passport and travel documentation services.</p>
-          <div class="go">Open service <span>↗</span></div>
+          <h3>পাসপোর্ট</h3>
+          <p>ভ্রমণ ও পাসপোর্টের আবেদন এবং স্ট্যাটাস দেখুন।</p>
+          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
         </a>
 
-        <a class="card" href="https://www.digilocker.gov.in/" target="_blank" rel="noopener" data-category="documents" data-search="digilocker document storage verification">
+        <a class="card" href="https://www.digilocker.gov.in/" target="_blank" rel="noopener" data-category="documents" data-search="digilocker ডিজিলকার document storage verification">
           <div class="top"><span class="ico">📂</span><span class="chip">Documents</span></div>
-          <h3>Digilocker</h3>
-          <p>Store, download, and verify official digital documents securely.</p>
-          <div class="go">Open service <span>↗</span></div>
+          <h3>ডিজিলকার</h3>
+          <p>ডকুমেন্ট সংরক্ষণ, ডাউনলোড ও বিশেষ যাচাই সেবা।</p>
+          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
         </a>
 
-        <a class="card" href="https://beneficiary.nha.gov.in/" target="_blank" rel="noopener" data-category="health" data-search="ayushman bharat insurance healthcare health service">
+        <a class="card" href="https://beneficiary.nha.gov.in/" target="_blank" rel="noopener" data-category="health" data-search="ayushman আয়ুষ্মান bharat insurance health service">
           <div class="top"><span class="ico">🏥</span><span class="chip">Health</span></div>
-          <h3>Ayushman Health</h3>
-          <p>Access healthcare benefits, eligibility, and public health information.</p>
-          <div class="go">Open service <span>↗</span></div>
+          <h3>আয়ুষ্মান স্বাস্থ্য</h3>
+          <p>স্বাস্থ্য সুবিধা, বেনিফিট এবং সরকারি স্বাস্থ্য তথ্য।</p>
+          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
         </a>
 
         <a class="card" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener" data-category="documents" data-search="police verification certificate pcc passport clearance">
           <div class="top"><span class="ico">🛡️</span><span class="chip">Certificate</span></div>
           <h3>Police Clearance</h3>
-          <p>Check verification steps and certificate-related procedures.</p>
-          <div class="go">Open service <span>↗</span></div>
+          <p>পুলিশ ভেরিফিকেশন ও সার্টিফিকেট সংক্রান্ত প্রয়োজনীয় তথ্য।</p>
+          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
         </a>
       </div>
     </section>
@@ -877,16 +902,16 @@
     <section class="section tools" id="tools">
       <div class="head">
         <small>Quick Tools</small>
-        <h2>Daily Utility Tools</h2>
-        <p>Keep note-taking, task tracking, and daily workflows organized in one place.</p>
+        <h2>দ্রুত টুলস</h2>
+        <p>প্রতিদিনের কাজকে সহজ করার জন্য প্রয়োজনীয় টুলস।</p>
       </div>
 
       <div class="grid searchable">
         <a class="card tool" href="#" id="notes" data-category="utility" data-search="notes personal note app storage">
           <span class="ico">📝</span>
           <span class="text">
-            <h3>My Notes</h3>
-            <p>Save quick reminders in your browser for everyday use.</p>
+            <h3>আমার নোট</h3>
+            <p>এই ব্রাউজারে আপনার নোট সেভ করুন।</p>
           </span>
           <b>↗</b>
         </a>
@@ -894,8 +919,8 @@
         <a class="card tool" href="#" id="checklist" data-category="utility" data-search="checklist task list document tracker">
           <span class="ico">☑️</span>
           <span class="text">
-            <h3>Checklist</h3>
-            <p>Keep track of daily tasks, documents, and follow-ups.</p>
+            <h3>চেকলিস্ট</h3>
+            <p>কাজ, ডকুমেন্ট ও ফলো-আপ সামলান সহজে।</p>
           </span>
           <b>↗</b>
         </a>
@@ -903,8 +928,8 @@
         <a class="card tool" href="https://www.google.com/" target="_blank" rel="noopener" data-category="utility" data-search="google search web lookup information">
           <span class="ico">🔎</span>
           <span class="text">
-            <h3>Google Search</h3>
-            <p>Find answers, references, and official websites quickly.</p>
+            <h3>গুগল সার্চ</h3>
+            <p>দ্রুত তথ্য খুঁজে নিন ও ওয়েবভিজিট করুন।</p>
           </span>
           <b>↗</b>
         </a>
@@ -914,18 +939,18 @@
     <section class="section" id="links">
       <div class="head">
         <small>Shortcut Links</small>
-        <h2>Useful Shortcuts</h2>
-        <p>Direct access to the most frequently used public and official service portals.</p>
+        <h2>দরকারি লিংক</h2>
+        <p>সর্বাধিক ব্যবহৃত সরকারি ও পপুলার পোর্টাল একসাথে।</p>
       </div>
 
       <div class="links searchable" id="useful">
-        <a class="link" href="https://www.india.gov.in/" target="_blank" rel="noopener" data-category="government" data-search="india government portal official information">
-          <i>🇮🇳</i><span>India Government Portal</span><b>↗</b>
+        <a class="link" href="https://www.india.gov.in/" target="_blank" rel="noopener" data-category="government" data-search="india government portal official info">
+          <i>🇮🇳</i><span>ভারত সরকারী পোর্টাল</span><b>↗</b>
         </a>
         <a class="link" href="https://uidai.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="uidai aadhaar official portal">
-          <i>🆔</i><span>UIDAI / Aadhaar</span><b>↗</b>
+          <i>🆔</i><span>UIDAI / আধার</span><b>↗</b>
         </a>
-        <a class="link" href="https://www.incometax.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="income tax pan tax portal">
+        <a class="link" href="https://www.incometax.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="income tax pan government portal">
           <i>💳</i><span>Income Tax Portal</span><b>↗</b>
         </a>
         <a class="link" href="https://voters.eci.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="voter election service portal">
@@ -940,7 +965,7 @@
       </div>
     </section>
 
-    <div class="notice">This site is a curated service shortcut dashboard, not an official government website. Always verify important information on the original source portal before submitting requests or sensitive details.</div>
+    <div class="notice">এই সাইটটি শুধুমাত্র পরিষেবার শর্টকাট ড্যাশবোর্ড। গুরুত্বপূর্ণ তথ্যের জন্য সর্বদা মূল সরকারী পোর্টাল যাচাই করুন।</div>
   </main>
 
   <footer>
@@ -954,7 +979,7 @@
       </a>
 
       <div class="social" id="social">
-        <strong>Follow us</strong>
+        <strong>আমাদের সোশ্যাল মিডিয়া</strong>
         <div class="socials" aria-label="Social media links">
           <a href="https://www.facebook.com/share/1Q3XK1nhjF/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a>
           <a href="https://www.youtube.com/@YOUR_CHANNEL" target="_blank" rel="noopener noreferrer" aria-label="YouTube">▶</a>
@@ -962,7 +987,7 @@
           <a href="https://chat.whatsapp.com/CzYLMj9dVm57qxxyJR195d?s=cl&p=a&mlu=4&ilr=4&iam=2" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">◉</a>
           <a href="https://t.me/YOUR_CHANNEL" target="_blank" rel="noopener noreferrer" aria-label="Telegram">➤</a>
         </div>
-        <small>Connect with us on social media.</small>
+        <small>আমাদের সঙ্গে যুক্ত থাকুন।</small>
       </div>
     </div>
   </footer>
@@ -984,17 +1009,17 @@
     const $ = (id) => document.getElementById(id);
 
     const categoryOptions = {
-      all: "All",
-      government: "Government",
-      identity: "Identity",
-      documents: "Documents",
-      health: "Health",
-      education: "Education",
-      banking: "Banking",
-      utility: "Utility",
-      travel: "Travel",
-      business: "Business",
-      other: "Other"
+      all: "সব",
+      government: "সরকারি পরিষেবা",
+      identity: "পরিচয়পত্র",
+      documents: "ডকুমেন্ট ও সার্টিফিকেট",
+      health: "স্বাস্থ্য",
+      education: "শিক্ষা",
+      banking: "ব্যাংকিং ও অর্থ",
+      utility: "ইউটিলিটি পরিষেবা",
+      travel: "ভ্রমণ ও পাসপোর্ট",
+      business: "ব্যবসা ও কাজ",
+      other: "অন্যান্য"
     };
 
     const menuBtn = $("menuBtn");
@@ -1048,7 +1073,7 @@
         if (show) visibleCount += 1;
       });
 
-      count.textContent = q ? `${visibleCount} results` : "All services";
+      count.textContent = q ? `${visibleCount}টি ফলাফল` : "সব পরিষেবা";
 
       document.querySelectorAll(".section").forEach((section) => {
         const items = [...section.querySelectorAll("[data-search]")];
@@ -1086,10 +1111,10 @@
     if (notesButton) {
       notesButton.addEventListener("click", (event) => {
         event.preventDefault();
-        const value = prompt("Write your note:", localStorage.getItem("dupo-notes") || "");
+        const value = prompt("আপনার নোট লিখুন:", localStorage.getItem("dupo-notes") || "");
         if (value !== null) {
           localStorage.setItem("dupo-notes", value);
-          alert("Note saved in this browser.");
+          alert("নোট সেভ হয়েছে।");
         }
       });
     }
@@ -1098,10 +1123,10 @@
     if (checklistButton) {
       checklistButton.addEventListener("click", (event) => {
         event.preventDefault();
-        const value = prompt("Add one item per line:", localStorage.getItem("dupo-checklist") || "Aadhaar Card\nPAN\nVoter Card");
+        const value = prompt("প্রতি লাইনে একটি আইটেম লিখুন:", localStorage.getItem("dupo-checklist") || "আধার কার্ড\nPAN\nভোটার কার্ড");
         if (value !== null) {
           localStorage.setItem("dupo-checklist", value);
-          alert("Checklist saved.");
+          alert("চেকলিস্ট সেভ হয়েছে।");
         }
       });
     }
@@ -1158,6 +1183,7 @@
       card.className = "card";
       card.href = url || "#";
       card.dataset.category = category;
+
       if (url) {
         card.target = "_blank";
         card.rel = "noopener noreferrer";
@@ -1180,11 +1206,11 @@
       h.textContent = title;
 
       const p = document.createElement("p");
-      p.textContent = String(item.description || "Open service");
+      p.textContent = String(item.description || "সার্ভিস খুলুন");
 
       const go = document.createElement("div");
       go.className = "go";
-      go.innerHTML = "Open service <span>↗</span>";
+      go.innerHTML = "সার্ভিস খুলুন <span>↗</span>";
 
       card.append(top, h, p, go);
       card.dataset.search = [title, item.description, item.keywords, item.tag, item.id, categoryOptions[category]].filter(Boolean).join(" ");
@@ -1283,7 +1309,7 @@
         const box = $("error");
         if (box) {
           box.classList.remove("hidden");
-          box.textContent = "New card or custom link data could not be loaded. Please verify your Firebase configuration and Firestore rules.";
+          box.textContent = "নতুন কার্ড বা কাস্টম লিংক লোড হয়নি। Firebase কনফিগারেশন ও Firestore Rules যাচাই করুন।";
         }
       } finally {
         search();
