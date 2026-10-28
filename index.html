@@ -3,27 +3,31 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#07111d">
+  <meta name="theme-color" content="#0b0d1a">
   <title>Daily Use Products Official</title>
   <style>
     :root {
-      --bg: #07111d;
-      --bg-2: #0d1828;
-      --bg-3: #101d2d;
-      --panel: rgba(16, 26, 38, 0.84);
-      --panel-2: rgba(20, 31, 45, 0.9);
-      --line: rgba(255,255,255,0.08);
-      --line-strong: rgba(198, 176, 110, 0.26);
-      --text: #edf4ff;
-      --muted: #aec3d8;
-      --muted-2: #8096b3;
-      --blue: #8ec6ff;
-      --blue-2: #cfe6ff;
-      --gold: #d9b86a;
-      --gold-2: #f4dd9a;
-      --green: #8ce4b1;
-      --shadow: 0 30px 70px rgba(2,8,16,0.55);
-      --card-shadow: 0 22px 50px rgba(2,10,18,0.38);
+      --bg: #0b0d1a;
+      --bg-2: #12172a;
+      --bg-3: #171d33;
+      --panel: rgba(19, 22, 37, 0.88);
+      --panel-alt: rgba(25, 21, 40, 0.94);
+      --panel-soft: rgba(255,255,255,0.025);
+      --line: rgba(222, 191, 125, 0.16);
+      --line-strong: rgba(188, 165, 255, 0.22);
+      --text: #f5f1ff;
+      --muted: #d2cce7;
+      --muted-2: #a7a0c2;
+      --blue: #9dbdff;
+      --blue-2: #dfeaff;
+      --royal: #8a6dff;
+      --royal-2: #bda8ff;
+      --violet: #e5dbff;
+      --gold: #d8b86a;
+      --gold-2: #f4de9c;
+      --green: #8ee7b4;
+      --shadow: 0 32px 70px rgba(5, 7, 16, 0.56);
+      --card-shadow: 0 24px 52px rgba(7, 10, 22, 0.42);
       --radius: 24px;
     }
 
@@ -32,9 +36,10 @@
     body {
       margin: 0;
       background:
-        radial-gradient(circle at 15% 10%, rgba(142,198,255,0.18), transparent 22%),
-        radial-gradient(circle at 80% 8%, rgba(217,184,106,0.12), transparent 18%),
-        linear-gradient(180deg, #050c16 0%, #091622 26%, #071018 100%);
+        radial-gradient(circle at 18% 12%, rgba(138,109,255,0.18), transparent 22%),
+        radial-gradient(circle at 80% 6%, rgba(216,184,106,0.12), transparent 18%),
+        radial-gradient(circle at 50% 50%, rgba(72,66,124,0.08), transparent 26%),
+        linear-gradient(180deg, #090c18 0%, #120f21 34%, #090d17 100%);
       color: var(--text);
       font: 16px/1.7 system-ui, "Noto Sans Bengali", sans-serif;
       text-rendering: optimizeLegibility;
@@ -53,13 +58,13 @@
       position: sticky;
       top: 0;
       z-index: 80;
-      background: rgba(7, 12, 20, 0.7);
-      backdrop-filter: blur(16px);
+      background: rgba(10, 12, 21, 0.72);
+      backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--line);
     }
 
     .nav {
-      min-height: 84px;
+      min-height: 86px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -81,7 +86,7 @@
       object-fit: cover;
       border-radius: 18px;
       border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: 0 16px 26px rgba(0,0,0,0.24);
+      box-shadow: 0 18px 28px rgba(0,0,0,0.26);
     }
 
     .brand h1,
@@ -128,7 +133,7 @@
 
     .nav-cta {
       color: var(--text);
-      background: linear-gradient(135deg, rgba(142,198,255,0.12), rgba(217,184,106,0.08));
+      background: linear-gradient(135deg, rgba(138,109,255,0.12), rgba(216,184,106,0.08));
       border: 1px solid var(--line-strong);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
     }
@@ -150,7 +155,7 @@
       top: 76px;
       width: min(280px, calc(100vw - 28px));
       padding: 10px;
-      background: rgba(11, 18, 27, 0.96);
+      background: rgba(12, 14, 24, 0.97);
       border: 1px solid var(--line);
       border-radius: 18px;
       box-shadow: var(--shadow);
@@ -163,18 +168,18 @@
       color: var(--text);
       font-weight: 700;
     }
-    .menu a:hover { background: rgba(142,198,255,0.08); }
+    .menu a:hover { background: rgba(138,109,255,0.08); }
 
     .hero {
       position: relative;
       margin-top: 28px;
       background:
-        linear-gradient(135deg, rgba(9, 15, 24, 0.96) 0%, rgba(16, 25, 38, 0.96) 38%, rgba(11, 17, 26, 0.95) 100%),
-        radial-gradient(circle at 20% 20%, rgba(142,198,255,0.18), transparent 24%),
-        radial-gradient(circle at 85% 10%, rgba(217,184,106,0.12), transparent 18%);
-      border: 1px solid var(--line);
+        linear-gradient(135deg, rgba(11,12,22,0.96) 0%, rgba(20,19,36,0.97) 42%, rgba(15,15,26,0.96) 100%),
+        radial-gradient(circle at 20% 20%, rgba(138,109,255,0.18), transparent 24%),
+        radial-gradient(circle at 84% 10%, rgba(216,184,106,0.12), transparent 18%);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 30px;
-      padding: clamp(24px, 4vw, 46px);
+      padding: clamp(24px, 4vw, 48px);
       overflow: hidden;
       box-shadow: var(--shadow);
     }
@@ -183,7 +188,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.04) 50%, transparent 100%);
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.04) 48%, transparent 100%);
       transform: translateX(-120%);
       animation: gleam 10s linear infinite;
     }
@@ -208,8 +213,8 @@
       gap: 8px;
       padding: 8px 12px;
       border-radius: 999px;
-      border: 1px solid rgba(217,184,106,0.18);
-      background: rgba(217,184,106,0.08);
+      border: 1px solid rgba(216,184,106,0.2);
+      background: rgba(216,184,106,0.08);
       color: var(--gold-2);
       font-size: 11px;
       letter-spacing: 0.12em;
@@ -220,7 +225,7 @@
     .hero h2 {
       margin: 18px 0 14px;
       max-width: 760px;
-      font-size: clamp(30px, 4.4vw, 52px);
+      font-size: clamp(28px, 4.1vw, 52px);
       line-height: 1.04;
       letter-spacing: -0.06em;
       font-weight: 900;
@@ -228,11 +233,11 @@
 
     .hero h2 .accent {
       display: inline-block;
-      background: linear-gradient(135deg, #f5e7ba 0%, #fffaf0 35%, #dceeff 100%);
+      background: linear-gradient(135deg, #fbeaae 0%, #fffaf2 32%, #dfe8ff 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      text-shadow: 0 14px 28px rgba(255,255,255,0.08);
+      text-shadow: 0 18px 28px rgba(255,255,255,0.08);
     }
 
     .hero p {
@@ -250,9 +255,9 @@
     }
 
     .primary-btn {
-      color: #07131f;
-      background: linear-gradient(135deg, #dfeeff 0%, #b9d8ff 24%, #f3dcc0 100%);
-      box-shadow: 0 18px 32px rgba(142,198,255,0.22);
+      color: #140d23;
+      background: linear-gradient(135deg, #f4e7be 0%, #d7c1ff 24%, #b7d5ff 100%);
+      box-shadow: 0 18px 36px rgba(138,109,255,0.24);
     }
 
     .secondary-btn {
@@ -292,7 +297,7 @@
       font-size: clamp(16px, 2vw, 20px);
       padding: 10px 8px;
     }
-    .search input::placeholder { color: #8aa5c1; }
+    .search input::placeholder { color: #9ca9c7; }
 
     .search small {
       padding: 8px 12px;
@@ -303,23 +308,24 @@
     }
 
     .hero-panel {
-      background: linear-gradient(180deg, rgba(16,25,38,0.9), rgba(10,14,22,0.92));
-      border: 1px solid var(--line);
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(180deg, rgba(22,18,35,0.9), rgba(13,16,27,0.94));
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 22px;
       padding: 18px;
       box-shadow: var(--card-shadow);
-      position: relative;
       overflow: hidden;
     }
 
     .hero-panel::before {
       content: "";
       position: absolute;
-      inset: auto -28% -42% auto;
+      inset: auto -30% -40% auto;
       width: 220px;
       height: 220px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(217,184,106,0.16), transparent 62%);
+      background: radial-gradient(circle, rgba(138,109,255,0.18), transparent 62%);
       pointer-events: none;
     }
 
@@ -413,8 +419,8 @@
       gap: 8px;
       padding: 8px 12px;
       border-radius: 999px;
-      border: 1px solid rgba(217,184,106,0.18);
-      background: rgba(217,184,106,0.06);
+      border: 1px solid rgba(216,184,106,0.2);
+      background: rgba(216,184,106,0.08);
       color: var(--gold-2);
       font-size: 11px;
       letter-spacing: 0.12em;
@@ -441,7 +447,7 @@
       gap: 14px;
       padding: 16px 18px;
       border-radius: 18px;
-      background: rgba(16,26,38,0.8);
+      background: rgba(18, 20, 34, 0.82);
       border: 1px solid var(--line);
       box-shadow: var(--card-shadow);
       margin-bottom: 18px;
@@ -485,10 +491,10 @@
 
     .category-chip:hover,
     .category-chip.active {
-      background: linear-gradient(135deg, rgba(142,198,255,0.12), rgba(217,184,106,0.08));
-      border-color: rgba(217,184,106,0.22);
+      background: linear-gradient(135deg, rgba(138,109,255,0.12), rgba(216,184,106,0.08));
+      border-color: rgba(216,184,106,0.2);
       color: #eff8ff;
-      box-shadow: 0 12px 22px rgba(142,198,255,0.10);
+      box-shadow: 0 12px 22px rgba(138,109,255,0.10);
     }
 
     .grid {
@@ -502,7 +508,7 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      background: linear-gradient(180deg, rgba(15,24,36,0.86), rgba(9,15,22,0.88));
+      background: linear-gradient(180deg, rgba(18,20,33,0.9), rgba(10,12,21,0.9));
       border: 1px solid var(--line);
       border-radius: 20px;
       padding: 18px;
@@ -518,12 +524,12 @@
       inset: 0 auto auto 0;
       width: 100%;
       height: 1px;
-      background: linear-gradient(90deg, rgba(217,184,106,0.44), transparent, rgba(142,198,255,0.28));
+      background: linear-gradient(90deg, rgba(216,184,106,0.5), transparent, rgba(138,109,255,0.28));
     }
 
     .card:hover {
       transform: translateY(-4px);
-      border-color: rgba(217,184,106,0.2);
+      border-color: rgba(216,184,106,0.22);
       box-shadow: 0 20px 42px rgba(0,0,0,0.34);
     }
 
@@ -538,8 +544,8 @@
       width: 48px;
       height: 48px;
       border-radius: 14px;
-      background: linear-gradient(135deg, rgba(142,198,255,0.18), rgba(217,184,106,0.08));
-      border: 1px solid rgba(142,198,255,0.12);
+      background: linear-gradient(135deg, rgba(138,109,255,0.18), rgba(216,184,106,0.08));
+      border: 1px solid rgba(138,109,255,0.14);
       display: grid;
       place-items: center;
       font-size: 24px;
@@ -547,8 +553,8 @@
     }
 
     .chip {
-      background: rgba(217,184,106,0.08);
-      border: 1px solid rgba(217,184,106,0.18);
+      background: rgba(216,184,106,0.08);
+      border: 1px solid rgba(216,184,106,0.18);
       color: var(--gold-2);
       border-radius: 999px;
       padding: 6px 9px;
@@ -618,7 +624,7 @@
       min-width: 0;
       padding: 14px 16px;
       border-radius: 14px;
-      background: linear-gradient(180deg, rgba(15,24,36,0.86), rgba(9,15,22,0.88));
+      background: linear-gradient(180deg, rgba(18,20,33,0.9), rgba(10,12,21,0.9));
       border: 1px solid var(--line);
       box-shadow: var(--card-shadow);
       font-weight: 800;
@@ -643,7 +649,7 @@
     .notice {
       margin-top: 18px;
       padding: 14px 16px;
-      border: 1px dashed rgba(142,198,255,0.18);
+      border: 1px dashed rgba(138,109,255,0.18);
       background: rgba(255,255,255,0.02);
       border-radius: 14px;
       color: var(--muted);
@@ -653,7 +659,7 @@
     footer {
       margin-top: 48px;
       padding: 34px 0 24px;
-      background: linear-gradient(180deg, #070f19 0%, #0c1723 100%);
+      background: linear-gradient(180deg, #0a0d18 0%, #11182a 100%);
       border-top: 1px solid var(--line);
       color: white;
     }
@@ -766,9 +772,9 @@
     <section class="hero">
       <div class="hero-grid">
         <div>
-          <div class="eyebrow">Premium Service Access</div>
-          <h2>সব প্রয়োজনীয় সেবা, <span class="accent">একটি প্রিমিয়াম হাবে</span></h2>
-          <p>সরকারি, পরিচয়পত্র, স্বাস্থ্য, ব্যাংকিং, ভ্রমণ ও দৈনন্দিন প্রয়োজনীয় সেবা এক জায়গায়—দ্রুত, নিরাপদ ও সহজে।</p>
+          <div class="eyebrow">Royal Dashboard</div>
+          <h2>সব প্রয়োজনীয় সেবা, <span class="accent">একটি রাজকীয় ড্যাশবোর্ডে</span></h2>
+          <p>সরকারি, পরিচয়পত্র, স্বাস্থ্য, ব্যাংকিং, ভ্রমণ ও দৈনন্দিন প্রয়োজনীয় সেবা এক জায়গায়—দ্রুত, নিরাপদ ও স্মার্টভাবে।</p>
 
           <div class="hero-cta">
             <a class="primary-btn" href="#important">সার্ভিস ব্রাউজ করুন</a>
@@ -782,9 +788,9 @@
           </label>
 
           <div class="trust-row" aria-label="Trust indicators">
-            <span class="trust-pill">✓ Govt-linked access</span>
+            <span class="trust-pill">✓ Royal access</span>
             <span class="trust-pill">✓ Verified shortcuts</span>
-            <span class="trust-pill">✓ Quick service search</span>
+            <span class="trust-pill">✓ Premium search</span>
           </div>
         </div>
 
@@ -1024,7 +1030,7 @@
 
     const categoryOptions = {
       all: "সব",
-      government: "সরকারি পরিষেবা",
+      government: "সরকা��ি পরিষেবা",
       identity: "পরিচয়পত্র",
       documents: "ডকুমেন্ট ও সার্টিফিকেট",
       health: "স্বাস্থ্য",
@@ -1182,7 +1188,7 @@
         "travel": "travel",
         "ব্যবসা ও কাজ": "business",
         "business": "business",
-        "���ন্যান্য": "other",
+        "অন্যান্য": "other",
         "other": "other"
       };
       return mapped[name] || "other";
