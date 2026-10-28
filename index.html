@@ -222,9 +222,9 @@
     .hero h2 {
       margin: 18px 0 12px;
       max-width: 760px;
-      font-size: clamp(32px, 5vw, 62px);
-      line-height: 0.96;
-      letter-spacing: -0.07em;
+      font-size: clamp(28px, 4.3vw, 52px);
+      line-height: 1.02;
+      letter-spacing: -0.06em;
       font-weight: 900;
     }
 
@@ -754,7 +754,7 @@
         <div>
           <div class="eyebrow">Premium Service Access</div>
           <h2>সব প্রয়োজনীয় সেবা, <span class="accent">একটি প্রিমিয়াম হাবে</span></h2>
-          <p>সরকারি, পরিচয়পত্র, স্বাস্থ্য, ব্যাংকিং, ভ্রমণ ও দৈনন্দিন প্রয়োজনীয় সব অনলাইন পরিষেবা এখন এক জায়গায়—সোজা, দ্রুত এবং আরও আরামদায়কভাবে।</p>
+          <p>সরকারি, পরিচয়পত্র, স্বাস্থ্য, ব্যাংকিং, ভ্রমণ ও দৈনন্দিন প্রয়োজনীয় সেবা এক জায়গায়—দ্রুত, নিরাপদ ও সহজে।</p>
 
           <div class="hero-cta">
             <a class="primary-btn" href="#important">সার্ভিস ব্রাউজ করুন</a>
@@ -965,7 +965,7 @@
       </div>
     </section>
 
-    <div class="notice">এই সাইটটি শুধুমাত্র পরিষেবার শর্টকাট ড্যাশবোর্ড। গুরুত্বপূর্ণ তথ্যের জন্য সর্বদা মূল সরকারী পোর্টাল যাচাই করুন।</div>
+    <div class="notice">এই সাইটটি শুধুমাত্র পরিষেবার শর্টকাট ড্যাশবোর্ড। গুরুত্বপূর্ণ তথ্য যাচাই করে ব্যবহার করুন।</div>
   </main>
 
   <footer>
@@ -1114,7 +1114,7 @@
         const value = prompt("আপনার নোট লিখুন:", localStorage.getItem("dupo-notes") || "");
         if (value !== null) {
           localStorage.setItem("dupo-notes", value);
-          alert("নোট সেভ হয়েছে।");
+          alert("নোট এই ব্রাউজারে সংরক্ষিত হয়েছে।");
         }
       });
     }
@@ -1123,10 +1123,10 @@
     if (checklistButton) {
       checklistButton.addEventListener("click", (event) => {
         event.preventDefault();
-        const value = prompt("প্রতি লাইনে একটি আইটেম লিখুন:", localStorage.getItem("dupo-checklist") || "আধার কার্ড\nPAN\nভোটার কার্ড");
+        const value = prompt("প্রতি লাইনে একটি ডকুমেন্ট লিখুন:", localStorage.getItem("dupo-checklist") || "আধার কার্ড\nPAN\nভোটার কার্ড");
         if (value !== null) {
           localStorage.setItem("dupo-checklist", value);
-          alert("চেকলিস্ট সেভ হয়েছে।");
+          alert("চেকলিস্ট সংরক্ষিত হয়েছে।");
         }
       });
     }
@@ -1147,28 +1147,29 @@
     function getCategoryValue(item) {
       const name = String(item && item.category ? item.category : item && item.tag ? item.tag : "other").trim().toLowerCase();
       const mapped = {
-        "government": "government",
-        "identity": "identity",
-        "documents": "documents",
-        "health": "health",
-        "education": "education",
-        "banking": "banking",
-        "utility": "utility",
-        "travel": "travel",
-        "business": "business",
-        "other": "other",
         "সরকারি পরিষেবা": "government",
         "সরকারি": "government",
         "পরিচয়পত্র": "identity",
         "পরিচয়পত্র": "identity",
+        "identity": "identity",
+        "identity card": "identity",
         "ডকুমেন্ট ও সার্টিফিকেট": "documents",
+        "documents": "documents",
+        "document": "documents",
         "স্বাস্থ্য": "health",
+        "health": "health",
         "শিক্ষা": "education",
+        "education": "education",
         "ব্যাংকিং ও অর্থ": "banking",
+        "banking": "banking",
         "ইউটিলিটি পরিষেবা": "utility",
+        "utility": "utility",
         "ভ্রমণ ও পাসপোর্ট": "travel",
+        "travel": "travel",
         "ব্যবসা ও কাজ": "business",
-        "অন্যান্য": "other"
+        "business": "business",
+        "অন্যান্য": "other",
+        "other": "other"
       };
       return mapped[name] || "other";
     }
@@ -1206,7 +1207,7 @@
       h.textContent = title;
 
       const p = document.createElement("p");
-      p.textContent = String(item.description || "সার্ভিস খুলুন");
+      p.textContent = String(item.description || "পরিষেবা খুলুন");
 
       const go = document.createElement("div");
       go.className = "go";
@@ -1221,103 +1222,41 @@
       if (!Array.isArray(items)) return;
       const container = $("cards");
       if (!container) return;
-      container.replaceChildren();
+      container.innerHTML = "";
       items.forEach((item) => {
         const card = updateOrCreateCard(item);
-        if (card) container.append(card);
+        if (card) container.appendChild(card);
       });
+      search();
     }
 
-    function renderCustomLinks(items) {
-      if (!Array.isArray(items)) return;
-      const container = $("useful");
-      if (!container) return;
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const servicesRef = doc(db, "site-data", "services");
 
-      const known = new Set(
-        [...container.querySelectorAll("a")].map((a) => "title:" + normalize(a.textContent || a.querySelector("span")?.textContent || ""))
-      );
-
-      items.forEach((item) => {
-        if (!item || !item.title) return;
-        const title = String(item.title).trim();
-        const url = safeUrl(item.url || "");
-        const category = getCategoryValue(item);
-        if (!title || !url || known.has("title:" + normalize(title))) return;
-
-        known.add("title:" + normalize(title));
-
-        const link = document.createElement("a");
-        link.className = "link";
-        link.href = url;
-        link.target = "_blank";
-        link.rel = "noopener noreferrer";
-        link.dataset.category = category;
-        link.dataset.search = [title, item.description, item.keywords, categoryOptions[category]].filter(Boolean).join(" ");
-
-        const icon = document.createElement("i");
-        icon.textContent = String(item.icon || "🔗");
-
-        const label = document.createElement("span");
-        label.textContent = title;
-
-        const arrow = document.createElement("b");
-        arrow.textContent = "↗";
-
-        link.append(icon, label, arrow);
-        container.append(link);
-      });
-    }
-
-    async function loadDashboard() {
-      if (!firebaseConfig.apiKey || firebaseConfig.apiKey === "AIzaSyAPvK_clkRscLgb4QfOyLVMKypd2pNrBlw") {
-        console.warn("Firebase API key not configured; using built-in static content.");
-        return;
-      }
-
+    async function loadServices() {
       try {
-        const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        const [layoutSnap, linksSnap, settingsSnap] = await Promise.all([
-          getDoc(doc(db, "siteContent", "cardLayout")),
-          getDoc(doc(db, "siteContent", "customLinks")),
-          getDoc(doc(db, "siteContent", "siteSettings"))
-        ]);
-
-        if (layoutSnap.exists() && Array.isArray(layoutSnap.data().cards)) {
-          renderCards(layoutSnap.data().cards);
-        }
-
-        if (linksSnap.exists()) {
-          renderCustomLinks(linksSnap.data().items || []);
-        }
-
-        if (settingsSnap.exists()) {
-          const settings = settingsSnap.data();
-          const brandTitle = document.querySelector(".brand h1");
-          const brandSubtitle = document.querySelector(".brand p");
-          const heroTitle = document.querySelector(".hero h2");
-          const heroSubtitle = document.querySelector(".hero p");
-
-          if (settings.title && brandTitle) brandTitle.textContent = settings.title;
-          if (settings.subtitle && brandSubtitle) brandSubtitle.textContent = settings.subtitle;
-          if (settings.heroTitle && heroTitle) heroTitle.textContent = settings.heroTitle;
-          if (settings.heroSubtitle && heroSubtitle) heroSubtitle.textContent = settings.heroSubtitle;
+        const snapshot = await getDoc(servicesRef);
+        if (snapshot.exists()) {
+          const data = snapshot.data();
+          const items = Array.isArray(data?.items) ? data.items : [];
+          renderCards(items);
+          if (!items.length) {
+            $("error").textContent = "কোনো সেবা পাওয়া যায়নি।";
+            $("error").classList.remove("hidden");
+          }
+        } else {
+          $("error").textContent = "সার্ভিস ডেটা লোড হয়নি।";
+          $("error").classList.remove("hidden");
         }
       } catch (error) {
-        console.error("Firebase loading error:", error);
-        const box = $("error");
-        if (box) {
-          box.classList.remove("hidden");
-          box.textContent = "নতুন কার্ড বা কাস্টম লিংক লোড হয়নি। Firebase কনফিগারেশন ও Firestore Rules যাচাই করুন।";
-        }
-      } finally {
-        search();
+        console.error(error);
+        $("error").textContent = "সার্ভিস লোড করতে সমস্যা হয়েছে.";
+        $("error").classList.remove("hidden");
       }
     }
 
-    search();
-    loadDashboard();
+    loadServices();
   </script>
 </body>
 </html>
