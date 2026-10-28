@@ -177,6 +177,58 @@
       color: var(--mut);
       font-size: 13px;
     }
+    .category-filter-box {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 10px 28px rgba(16, 47, 81, 0.05);
+    }
+    .category-label {
+      font-size: 13px;
+      color: var(--mut);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .category-filter-box select {
+      flex: 1;
+      min-width: 220px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #f9fbff;
+      color: var(--ink);
+      font: inherit;
+      padding: 12px 14px;
+      outline: none;
+    }
+    .category-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .category-chip {
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .category-chip:hover,
+    .category-chip.active {
+      background: #edf5ff;
+      border-color: #b9d4ff;
+      color: #0a5ad6;
+    }
     .grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -357,6 +409,8 @@
       .search { display: block; }
       .search span { display: block; margin-bottom: 6px; }
       .search small { display: block; margin-top: 6px; }
+      .category-filter-box { align-items: stretch; }
+      .category-filter-box select { width: 100%; }
     }
   </style>
 </head>
@@ -372,6 +426,7 @@
       </a>
       <button class="menubtn" id="menuBtn" aria-expanded="false" aria-controls="menu">☰ Menu</button>
       <nav class="menu" id="menu" aria-label="Main menu">
+        <a href="#categories">ক্যাটাগরি</a>
         <a href="#important">গুরুত্বপূর্ণ পরিষেবা</a>
         <a href="#tools">দ্রুত টুলস</a>
         <a href="#links">দরকারি লিংক</a>
@@ -383,9 +438,9 @@
 
   <main class="wrap">
     <section class="hero">
-      <div class="badge">✦ FAST · RELIABLE · SECURE</div>
+      <div class="badge">��� FAST · RELIABLE · SECURE</div>
       <h2>আপনার দরকারি ডিজিটাল পরিষেবা, এক জায়গায়</h2>
-      <p>সরকারি ও জনপ্রিয় অনলাইন পরিষেবা দ্রুত খুঁজে নিতে সাহায্য করে এই পোর্টাল। প্রয়োজনীয় ফর্ম, সেবা ও শর্টকাট একসাথে।</p>
+      <p>সরকারি ও জনপ্রিয় অনলাইন পরিষেবা দ্রুত খুঁজে নিতে সাহায্য করে এই পোর্টাল। প্রয়োজনীয় সার্ভিস, লিংক ও টুলস একসাথে খুঁজে পান সহজে।</p>
 
       <label class="search" aria-label="Search services">
         <span>🔎</span>
@@ -396,6 +451,45 @@
 
     <div id="error" class="notice hidden"></div>
 
+    <section class="section" id="categories">
+      <div class="head">
+        <small>CATEGORIES</small>
+        <h2>ক্যাটা��রি</h2>
+        <p>ক্যাটাগরি বেছে নিয়ে সংশ্লিষ্ট সকল সেবা, লিংক ও টুলস দ্রুত খুঁজুন।</p>
+      </div>
+
+      <div class="category-filter-box">
+        <label class="category-label" for="categoryFilter">বিভাগ</label>
+        <select id="categoryFilter" aria-label="Select service category">
+          <option value="all">সব ক্যাটাগরি</option>
+          <option value="government">সরকারি পরিষেবা</option>
+          <option value="identity">পরিচয়পত্র</option>
+          <option value="documents">ডকুমেন্ট ও সার্টিফিকেট</option>
+          <option value="health">স্বাস্থ্য</option>
+          <option value="education">শিক্ষা</option>
+          <option value="banking">ব্যাংকিং ও অর্থ</option>
+          <option value="utility">ইউটিলিটি পরিষেবা</option>
+          <option value="travel">ভ্রমণ ও পাসপোর্ট</option>
+          <option value="business">ব্যবসা ও কাজ</option>
+          <option value="other">অন্যান্য</option>
+        </select>
+      </div>
+
+      <div class="category-grid" aria-label="Service categories">
+        <button type="button" class="category-chip active" data-category="all">সব</button>
+        <button type="button" class="category-chip" data-category="government">সরকারি পরিষেবা</button>
+        <button type="button" class="category-chip" data-category="identity">পরিচয়পত্র</button>
+        <button type="button" class="category-chip" data-category="documents">ডকুমেন্ট ও সার্টিফিকেট</button>
+        <button type="button" class="category-chip" data-category="health">স্বাস্থ্য</button>
+        <button type="button" class="category-chip" data-category="education">শিক্ষা</button>
+        <button type="button" class="category-chip" data-category="banking">ব্যাংকিং ও অর্থ</button>
+        <button type="button" class="category-chip" data-category="utility">ইউটিলিটি পরিষেবা</button>
+        <button type="button" class="category-chip" data-category="travel">ভ্রমণ ও পাসপোর্ট</button>
+        <button type="button" class="category-chip" data-category="business">ব্যবসা ও কাজ</button>
+        <button type="button" class="category-chip" data-category="other">অন্যান্য</button>
+      </div>
+    </section>
+
     <section class="section" id="important">
       <div class="head">
         <small>ESSENTIAL SERVICES</small>
@@ -403,56 +497,56 @@
         <p>পরিচয়পত্র, স্বাস্থ্য, ভ্রমণ, ব্যাংকিং এবং সরকারি সেবা সহজে খুঁজুন।</p>
       </div>
       <div class="grid searchable" id="cards">
-        <a class="card" href="https://food.wb.gov.in/" target="_blank" rel="noopener" data-search="রেশন ration খাদ্য কার্ড wb government food card">
+        <a class="card" href="https://food.wb.gov.in/" target="_blank" rel="noopener" data-category="government" data-search="রেশন ration খাদ্য কার্ড wb government food card">
           <div class="top"><span class="ico">🪪</span><span class="chip">GOVERNMENT</span></div>
           <h3>রেশন কার্ড</h3>
           <p>খাদ্য ও রেশন সেবা, স্ট্যাটাস ও আবেদন তথ্য দেখুন।</p>
           <div class="go">সার্ভিস খুলুন <span>↗</span></div>
         </a>
 
-        <a class="card" href="https://www.incometax.gov.in/" target="_blank" rel="noopener" data-search="pan প্যান কার্ড income tax govt tax">
+        <a class="card" href="https://www.incometax.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="pan প্যান কার্ড income tax govt tax">
           <div class="top"><span class="ico">💳</span><span class="chip">IDENTITY</span></div>
           <h3>PAN</h3>
           <p>আয়কর ও PAN সংক্রান্ত সেবা ও পরিদর্শন খুঁজুন।</p>
           <div class="go">সার্ভিস খুলুন <span>↗</span></div>
         </a>
 
-        <a class="card" href="https://voters.eci.gov.in/" target="_blank" rel="noopener" data-search="voter ভোটার কার্ড election govt voter card">
+        <a class="card" href="https://voters.eci.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="voter ভোটার কার্ড election govt voter card">
           <div class="top"><span class="ico">🗳️</span><span class="chip">IDENTITY</span></div>
           <h3>ভোটার কার্ড</h3>
           <p>ভোটার সার্ভিস, তথ্য ও সংশোধনের জন্য।</p>
           <div class="go">সার্ভিস খুলুন <span>↗</span></div>
         </a>
 
-        <a class="card" href="https://uidai.gov.in/" target="_blank" rel="noopener" data-search="aadhaar aadhar আধার কার্ড uidai govt biometric">
+        <a class="card" href="https://uidai.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="aadhaar aadhar আধার কার্ড uidai govt biometric">
           <div class="top"><span class="ico">🆔</span><span class="chip">IDENTITY</span></div>
           <h3>আধার কার্ড</h3>
           <p>আধার আপডেট, স্ট্যাটাস ও অনেক প্রয়োজনীয় তথ্য।</p>
           <div class="go">সার্ভিস খুলুন <span>↗</span></div>
         </a>
 
-        <a class="card" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener" data-search="passport পাসপোর্ট visa travel">
+        <a class="card" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener" data-category="travel" data-search="passport পাসপোর্ট visa travel">
           <div class="top"><span class="ico">🛂</span><span class="chip">TRAVEL</span></div>
           <h3>পাসপোর্ট</h3>
           <p>ভ্রমণ, আবেদন ও পাসপোর্ট সংশ্লিষ্ট সেবা।</p>
           <div class="go">সার্ভিস খুলুন <span>↗</span></div>
         </a>
 
-        <a class="card" href="https://www.digilocker.gov.in/" target="_blank" rel="noopener" data-search="digilocker ডিজিলকার document storage">
+        <a class="card" href="https://www.digilocker.gov.in/" target="_blank" rel="noopener" data-category="documents" data-search="digilocker ডিজিলকার document storage">
           <div class="top"><span class="ico">📂</span><span class="chip">DOCUMENTS</span></div>
           <h3>ডিজিলকার</h3>
           <p>ডকুমেন্ট সংরক্ষণ, ডাউনলোড ও যাচাই।</p>
           <div class="go">সার্ভিস খুলুন <span>↗</span></div>
         </a>
 
-        <a class="card" href="https://beneficiary.nha.gov.in/" target="_blank" rel="noopener" data-search="ayushman আয়ুষ্মান bharat health insurance">
+        <a class="card" href="https://beneficiary.nha.gov.in/" target="_blank" rel="noopener" data-category="health" data-search="ayushman আয়ুষ্মান bharat health insurance">
           <div class="top"><span class="ico">🏥</span><span class="chip">HEALTH</span></div>
           <h3>আয়ুষ্মান স্বাস্থ্য</h3>
           <p>স্বাস্থ্য সেবা, সুবিধা ও বেনিফিট সম্পর্কিত তথ্য।</p>
           <div class="go">সার্ভিস খুলুন <span>↗</span></div>
         </a>
 
-        <a class="card" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener" data-search="police clearance certificate pcc police verification passport">
+        <a class="card" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener" data-category="documents" data-search="police clearance certificate pcc police verification passport">
           <div class="top"><span class="ico">🛡️</span><span class="chip">CERTIFICATE</span></div>
           <h3>Police Clearance</h3>
           <p>পুলিশ ভেরিফিকেশন ও সার্টিফিকেট সম্পর্কিত তথ্য।</p>
@@ -468,7 +562,7 @@
         <p>প্রতিদিনের কাজ সহজ করতে প্রয়োজনীয় টুলস সংরক্ষণ করুন।</p>
       </div>
       <div class="grid searchable">
-        <a class="card tool" href="#" id="notes" data-search="আমার নোট notes personal note">
+        <a class="card tool" href="#" id="notes" data-category="utility" data-search="আমার নোট notes personal note">
           <span class="ico">📝</span>
           <span class="text">
             <h3>আমার নোট</h3>
@@ -477,7 +571,7 @@
           <b>↗</b>
         </a>
 
-        <a class="card tool" href="#" id="checklist" data-search="ডকুমেন্ট চেকলিস্ট checklist document list">
+        <a class="card tool" href="#" id="checklist" data-category="utility" data-search="ডকুমেন্ট চেকলিস্ট checklist document list">
           <span class="ico">☑️</span>
           <span class="text">
             <h3>চেকলিস্ট</h3>
@@ -486,7 +580,7 @@
           <b>↗</b>
         </a>
 
-        <a class="card tool" href="https://www.google.com/" target="_blank" rel="noopener" data-search="google search web search">
+        <a class="card tool" href="https://www.google.com/" target="_blank" rel="noopener" data-category="utility" data-search="google search web search">
           <span class="ico">🔎</span>
           <span class="text">
             <h3>গুগল সার্চ</h3>
@@ -504,28 +598,28 @@
         <p>সরকারি ও জনপ্রিয় পরিষেবা আপনার জন্য দ্রুত Shortcut।</p>
       </div>
       <div class="links searchable" id="useful">
-        <a class="link" href="https://www.india.gov.in/" target="_blank" rel="noopener" data-search="india government ভারত সরকারি তথ্য">
+        <a class="link" href="https://www.india.gov.in/" target="_blank" rel="noopener" data-category="government" data-search="india government ভারত সরকারি তথ্য">
           <i>🇮🇳</i><span>ভারত সরকারী পোর্টাল</span><b>↗</b>
         </a>
-        <a class="link" href="https://uidai.gov.in/" target="_blank" rel="noopener" data-search="uidai aadhaar আধার কার্ড">
+        <a class="link" href="https://uidai.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="uidai aadhaar আধার কার্ড">
           <i>🆔</i><span>UIDAI / আধার</span><b>↗</b>
         </a>
-        <a class="link" href="https://www.incometax.gov.in/" target="_blank" rel="noopener" data-search="income tax pan কর">
+        <a class="link" href="https://www.incometax.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="income tax pan কর">
           <i>💳</i><span>Income Tax Portal</span><b>↗</b>
         </a>
-        <a class="link" href="https://voters.eci.gov.in/" target="_blank" rel="noopener" data-search="voter election ভোটার সেবা">
+        <a class="link" href="https://voters.eci.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="voter election ভোটার সেবা">
           <i>🗳️</i><span>Voters Service Portal</span><b>↗</b>
         </a>
-        <a class="link" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener" data-search="passport passport seva">
+        <a class="link" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener" data-category="travel" data-search="passport passport seva">
           <i>🛂</i><span>Passport Seva</span><b>↗</b>
         </a>
-        <a class="link" href="https://www.digilocker.gov.in/" target="_blank" rel="noopener" data-search="digilocker document storage">
+        <a class="link" href="https://www.digilocker.gov.in/" target="_blank" rel="noopener" data-category="documents" data-search="digilocker document storage">
           <i>📂</i><span>Digilocker</span><b>↗</b>
         </a>
       </div>
     </section>
 
-    <div class="notice">এই সাইটটি পরিষেবার শর্টকাট ড্যাশবোর্ড, সরকারি ওয়েবসাইট নয়। ফর্ম জমা দেওয়ার জন্য সরকারী অফিসিয়াল পোর্টাল ব্যবহার করুন।</div>
+    <div class="notice">এই সাইটটি পরিষেবার শর্টকাট ড্যাশবোর্ড, সরকারি ওয়েবসাইট নয়। ফর্ম, আবেদন, লগইন বা ব্যক্তিগত তথ্য জমা দেওয়ার প্রক্রিয়া এখান থেকে পরিচালিত হয় না।</div>
   </main>
 
   <footer>
@@ -568,6 +662,20 @@
 
     const $ = (id) => document.getElementById(id);
 
+    const categoryOptions = {
+      all: "সব",
+      government: "সরকারি পরিষেবা",
+      identity: "পরিচয়পত্র",
+      documents: "ডকুমেন্ট ও সার্টিফিকেট",
+      health: "স্বাস্থ্য",
+      education: "শিক্ষা",
+      banking: "ব্যাংকিং ও অর্থ",
+      utility: "ইউটিলিটি পরিষেবা",
+      travel: "ভ্রমণ ও পাসপোর্ট",
+      business: "ব্যবসা ও কাজ",
+      other: "অন্যান্য"
+    };
+
     const menuBtn = $("menuBtn");
     const menu = $("menu");
     if (menuBtn && menu) {
@@ -592,6 +700,17 @@
       });
     }
 
+    function getSelectedCategory() {
+      const select = $("categoryFilter");
+      return select ? select.value : "all";
+    }
+
+    function matchesCategory(element) {
+      const category = (element.dataset.category || "other").toLowerCase();
+      const selected = getSelectedCategory();
+      return selected === "all" || category === selected;
+    }
+
     function search() {
       const input = $("search");
       const count = $("count");
@@ -602,7 +721,7 @@
 
       document.querySelectorAll("[data-search]").forEach((element) => {
         const text = (element.innerText + " " + (element.dataset.search || "")).toLowerCase();
-        const show = !q || text.includes(q);
+        const show = matchesCategory(element) && (!q || text.includes(q));
         element.classList.toggle("hidden", !show);
         if (show) visibleCount += 1;
       });
@@ -618,6 +737,28 @@
 
     const searchInput = $("search");
     if (searchInput) searchInput.addEventListener("input", search);
+
+    const categoryFilter = $("categoryFilter");
+    if (categoryFilter) {
+      categoryFilter.addEventListener("change", () => {
+        const value = categoryFilter.value;
+        document.querySelectorAll(".category-chip").forEach((chip) => {
+          chip.classList.toggle("active", (chip.dataset.category || "all") === value);
+        });
+        search();
+      });
+    }
+
+    document.querySelectorAll(".category-chip").forEach((chip) => {
+      chip.addEventListener("click", () => {
+        const value = chip.dataset.category || "all";
+        if (categoryFilter) categoryFilter.value = value;
+        document.querySelectorAll(".category-chip").forEach((item) => {
+          item.classList.toggle("active", item === chip);
+        });
+        search();
+      });
+    });
 
     const notesButton = $("notes");
     if (notesButton) {
@@ -635,7 +776,7 @@
     if (checklistButton) {
       checklistButton.addEventListener("click", (event) => {
         event.preventDefault();
-        const value = prompt("প্রতি লাইনে একটি ডকুমেন্ট লিখুন:", localStorage.getItem("dupo-checklist") || "আধার কার্ড\nPAN কার্ড\nভোটার কার্ড");
+        const value = prompt("প্রতি লাইনে একটি ডকুমেন্ট লিখুন:", localStorage.getItem("dupo-checklist") || "আধার কার্ড\nPAN\nভোটার কার্ড");
         if (value !== null) {
           localStorage.setItem("dupo-checklist", value);
           alert("চেকলিস্ট সংরক্ষিত হয়েছে।");
@@ -656,14 +797,45 @@
       return String(value || "").trim().toLowerCase().replace(/\s+/g, " ");
     }
 
+    function getCategoryValue(item) {
+      const name = String(item && item.category ? item.category : item && item.tag ? item.tag : "other").trim().toLowerCase();
+      const mapped = {
+        "সরকারি পরিষেবা": "government",
+        "সরকারি": "government",
+        "পরিচয়পত্র": "identity",
+        "identity": "identity",
+        "identity card": "identity",
+        "ডকুমেন্ট ও সার্টিফিকেট": "documents",
+        "documents": "documents",
+        "document": "documents",
+        "স্বাস্থ্য": "health",
+        "health": "health",
+        "শিক্ষা": "education",
+        "education": "education",
+        "ব্যাংকিং ও অর্থ": "banking",
+        "banking": "banking",
+        "ইউটিলিটি পরিষেবা": "utility",
+        "utility": "utility",
+        "ভ্রমণ ও পাসপোর্ট": "travel",
+        "travel": "travel",
+        "ব্যবসা ও কাজ": "business",
+        "business": "business",
+        "অন্যান্য": "other",
+        "other": "other"
+      };
+      return mapped[name] || "other";
+    }
+
     function updateOrCreateCard(item) {
       if (!item || !item.title) return null;
 
       const title = String(item.title).trim();
       const url = safeUrl(item.url || "");
+      const category = getCategoryValue(item);
       const card = document.createElement("a");
       card.className = "card";
       card.href = url || "#";
+      card.dataset.category = category;
       if (url) {
         card.target = "_blank";
         card.rel = "noopener noreferrer";
@@ -678,7 +850,7 @@
 
       const chip = document.createElement("span");
       chip.className = "chip";
-      chip.textContent = String(item.tag || "SERVICE");
+      chip.textContent = String(item.tag || categoryOptions[category] || "SERVICE");
 
       top.append(icon, chip);
 
@@ -693,7 +865,7 @@
       go.innerHTML = "সার্ভিস খুলুন <span>↗</span>";
 
       card.append(top, h, p, go);
-      card.dataset.search = [title, item.description, item.keywords, item.tag, item.id].filter(Boolean).join(" ");
+      card.dataset.search = [title, item.description, item.keywords, item.tag, item.id, categoryOptions[category]].filter(Boolean).join(" ");
       return card;
     }
 
@@ -721,6 +893,7 @@
         if (!item || !item.title) return;
         const title = String(item.title).trim();
         const url = safeUrl(item.url || "");
+        const category = getCategoryValue(item);
         if (!title || !url || known.has("title:" + normalize(title))) return;
 
         known.add("title:" + normalize(title));
@@ -730,7 +903,8 @@
         link.href = url;
         link.target = "_blank";
         link.rel = "noopener noreferrer";
-        link.dataset.search = [title, item.description, item.keywords].filter(Boolean).join(" ");
+        link.dataset.category = category;
+        link.dataset.search = [title, item.description, item.keywords, categoryOptions[category]].filter(Boolean).join(" ");
 
         const icon = document.createElement("i");
         icon.textContent = String(item.icon || "🔗");
