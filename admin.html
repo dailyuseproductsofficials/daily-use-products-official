@@ -1,91 +1,1273 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Admin Panel | বাংলা পার্সোনাল ড্যাশবোর্ড</title>
-<style>
-*{box-sizing:border-box}body{margin:0;padding:20px 14px;min-height:100vh;font-family:system-ui,"Noto Sans Bengali",sans-serif;background:radial-gradient(circle at top left,#e0eaff,#f5f7fc 45%,#eef2f8);color:#172033}main{max-width:980px;margin:auto}header,.panel{background:white;border:1px solid #e3eaf5;border-radius:20px;padding:22px;margin:14px 0;box-shadow:0 10px 30px #102a560d}header{color:white;background:linear-gradient(120deg,#102a56,#155eef 65%,#6c8cff)}header p{color:#e6edff;margin-bottom:0}h1{margin:0 0 8px;font-size:26px}h2{font-size:19px;margin:0 0 12px}p{line-height:1.55;color:#536176}label{display:block;font-size:14px;margin:12px 0 5px}input,textarea,select{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:10px;font:inherit;background:white}textarea{min-height:75px}button,.linkbtn{display:inline-block;border:0;border-radius:10px;padding:10px 14px;margin:7px 5px 0 0;font:inherit;font-weight:650;cursor:pointer;background:#155eef;color:white;text-decoration:none}button.secondary,.linkbtn.secondary{background:#e8eef8;color:#172033}button.danger{background:#b42318}button:disabled{opacity:.5;cursor:wait}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{min-width:0}.status{padding:12px;border-radius:10px;background:#eef4ff;margin-top:12px;overflow-wrap:anywhere}.item{border-top:1px solid #e2e8f0;padding:14px 0;overflow-wrap:anywhere}.item strong{display:block}.muted{font-size:13px;color:#64748b}.pill{display:inline-block;background:#edf5ff;color:#155eef;border-radius:30px;padding:3px 8px;font-size:12px}.hidden,[hidden]{display:none!important}.backup-note{padding:12px;background:#fff9e8;border:1px solid #f2d28a;border-radius:12px;font-size:13px}.item input{max-width:100%}@media(max-width:620px){.grid{grid-template-columns:1fr}header,.panel{padding:17px}}
-</style>
-</head>
-<body><main>
-<header><h1>🔐 Admin Panel</h1><p>বাংলা পার্সোনাল ড্যাশবোর্ড পরিচালনা করুন</p></header>
-<section id="loginCard" class="panel"><h2>অ্যাডমিন লগইন</h2><p>Firebase Authentication-এ তৈরি করা অ্যাকাউন্ট ব্যবহার করুন।</p><form id="loginForm"><label for="email">ইমেইল</label><input id="email" type="email" autocomplete="username" required><label for="password">পাসওয়ার্ড</label><input id="password" type="password" autocomplete="current-password" required><button id="loginBtn">লগইন করুন</button></form></section>
-<section id="dashboard" hidden>
-<div class="panel"><div class="row" style="justify-content:space-between"><h2>অ্যাডমিন ড্যাশবোর্ড</h2><button id="logoutBtn" class="secondary">লগআউট</button></div><p id="accountInfo" class="muted"></p><div class="row"><a class="linkbtn" href="index.html">🏠 হোমপেজ দেখুন</a><button id="reloadBtn" class="secondary">ডেটা আবার লোড করুন</button><button id="backupBtn" class="secondary">⬇️ ব্যাকআপ ডাউনলোড</button></div><div id="status" class="status" role="status">Firebase সংযোগের অপেক্ষায়...</div><p class="backup-note">শুধু অনুমোদিত অ্যাডমিন যেন Firestore-এ লিখতে পারে, তা Firebase Security Rules দিয়ে নিশ্চিত করুন। ব্যাকআপে customLinks, cardLayout ও siteSettings থাকবে; এটি সম্পূর্ণ Firebase প্রকল্পের ব্যাকআপ নয়।</p></div>
-<div class="panel"><h2>🪪 কার্ড যোগ / সম্পাদনা</h2><p class="muted">মূল ৮টি কার্ডের ID অপরিবর্তিত রাখুন। কার্ডের ক্রম বদলাতে নিচের ↑ / ↓ বোতাম ব্যবহার করুন।</p>
-<form id="cardForm"><input id="cardId" type="hidden"><div class="grid">
-<div class="field"><label for="cardTitle">কার্ডের নাম *</label><input id="cardTitle" maxlength="100" required></div>
-<div class="field"><label for="cardUrl">ওয়েবসাইট URL *</label><input id="cardUrl" type="url" maxlength="1500" placeholder="https://example.com" required></div>
-<div class="field"><label for="cardIcon">আইকন (ইমোজি)</label><input id="cardIcon" maxlength="12" placeholder="🔗"></div>
-<div class="field"><label for="cardCategory">কার্ড ক্যাটাগরি *</label><select id="cardCategory" required>
-<option value="government">সরকারি পরিষেবা</option>
-<option value="identity">পরিচয়পত্র</option>
-<option value="documents">ডকুমেন্ট ও সার্টিফিকেট</option>
-<option value="health">স্বাস্থ্য</option>
-<option value="education">শিক্ষা</option>
-<option value="finance">ব্যাংকিং ও অর্থ</option>
-<option value="utility">ইউটিলিটি পরিষেবা</option>
-<option value="travel">ভ্রমণ ও পাসপোর্ট</option>
-<option value="business">ব্যবসা ও কাজ</option>
-<option value="other">অন্যান্য</option>
-</select></div>
-<div class="field"><label for="cardTag">ট্যাগ</label><input id="cardTag" maxlength="40" placeholder="GOVERNMENT"></div>
-<div class="field"><label for="cardDescription">বিবরণ</label><input id="cardDescription" maxlength="300"></div>
-<div class="field"><label for="cardKeywords">সার্চ কীওয়ার্ড</label><input id="cardKeywords" maxlength="300" placeholder="বাংলা, English"></div>
-</div><div class="row"><button id="saveCardBtn">কার্ড সংরক্ষণ করুন</button><button id="cancelCardBtn" class="secondary" type="button" hidden>এডিট বাতিল</button><button id="newCardBtn" class="secondary" type="button">নতুন কার্ড</button></div></form><div id="cardsList">কার্ড লোড হচ্ছে...</div></div>
-<div class="panel"><h2>🔗 কাস্টম লিংক যোগ / সম্পাদনা</h2><form id="linkForm"><input id="linkId" type="hidden"><div class="grid"><div class="field"><label for="linkTitle">লিংকের নাম *</label><input id="linkTitle" maxlength="100" required></div><div class="field"><label for="linkUrl">ওয়েবসাইট URL *</label><input id="linkUrl" type="url" maxlength="1500" required placeholder="https://example.com"></div><div class="field"><label for="linkDescription">বিবরণ</label><input id="linkDescription" maxlength="300"></div><div class="field"><label for="linkKeywords">সার্চ কীওয়ার্ড</label><input id="linkKeywords" maxlength="300" placeholder="বাংলা, English"></div></div><div class="row"><button id="saveLinkBtn">লিংক সংরক্ষণ করুন</button><button id="cancelLinkBtn" class="secondary" type="button" hidden>এডিট বাতিল</button></div></form><div id="linksList">লিংক লোড হচ্ছে...</div></div>
-<div class="panel"><h2>⚙️ সাইট সেটিংস</h2><label for="siteTitle">সাইটের শিরোনাম</label><input id="siteTitle" maxlength="120" placeholder="Daily Use Products Official"><label for="siteSubtitle">সাবটাইটেল</label><input id="siteSubtitle" maxlength="200" placeholder="Your Premier Digital Services Hub"><button id="saveSettingsBtn">সেটিংস সংরক্ষণ করুন</button><p class="muted">এই সেটিংস Firestore-এর siteSettings ডকুমেন্টে সংরক্ষণ হবে। হোমপেজে প্রয়োগ করতে index.html-এ সেই ডেটা পড়ার কোডও প্রয়োজন।</p></div>
-</section></main>
-<script type="module">
-import {initializeApp,getApps} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-import {getAuth,onAuthStateChanged,signInWithEmailAndPassword,signOut} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-import {getFirestore,doc,getDoc,setDoc} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Panel | Daily Use Products Official</title>
+  <style>
+    :root {
+      --bg: #f3f7ff;
+      --panel: #ffffff;
+      --panel-soft: #f7f9ff;
+      --primary: #165dff;
+      --primary-soft: #eaf2ff;
+      --danger: #d92d20;
+      --danger-soft: #fff1f0;
+      --success: #1f9d61;
+      --success-soft: #ebfff5;
+      --text: #172033;
+      --muted: #66758d;
+      --line: #dde7f5;
+      --shadow: 0 18px 45px rgba(18, 40, 77, 0.12);
+    }
 
-/* Firebase Console > Project settings > Your apps থেকে নিজের Web App config বসান।
-   API key বা পাসওয়ার্ড কাউকে পাঠাবেন না। */
-const firebaseConfig = {
-  apiKey: "AIzaSyBCG2YDeTgVzj6zX3E8EQIJi3S3jmOaNN8",
-  authDomain: "daily-use-products-official.firebaseapp.com",
-  projectId: "daily-use-products-official",
-  storageBucket: "daily-use-products-official.firebasestorage.app",
-  messagingSenderId: "488136359439",
-  appId: "1:488136359439:web:1bcdb9addea4e9e8422d7a"
-};
-const $=id=>document.getElementById(id);
-const app=getApps().length?getApps()[0]:initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);
-const ref=name=>doc(db,"siteContent",name);
-let cards=[],links=[],settings={},editingCardId=null,editingLinkId=null;
-const defaults=[
-{id:"ration-card",category:"government",title:"রেশন কার্ড",url:"https://food.wb.gov.in/",icon:"🪪",tag:"GOVERNMENT",description:"রেশন কার্ড সংক্রান্ত পরিষেবা",keywords:"রেশন ration খাদ্য কার্ড"},
-{id:"pan-card",category:"identity",title:"PAN কার্ড",url:"https://www.incometax.gov.in/",icon:"💳",tag:"IDENTITY",description:"PAN আবেদন ও সংশ্লিষ্ট পরিষেবা",keywords:"pan প্যান কার্ড আয়কর income tax"},
-{id:"voter-card",category:"identity",title:"ভোটার কার্ড",url:"https://voters.eci.gov.in/",icon:"🗳️",tag:"IDENTITY",description:"ভোটার তালিকা ও EPIC পরিষেবা",keywords:"voter ভোটার কার্ড election"},
-{id:"aadhaar-card",category:"identity",title:"আধার কার্ড",url:"https://uidai.gov.in/",icon:"🆔",tag:"IDENTITY",description:"আধার সংক্রান্ত অনলাইন পরিষেবা",keywords:"aadhaar aadhar আধার কার্ড uidai"},
-{id:"passport",category:"travel",title:"পাসপোর্ট সেবা",url:"https://www.passportindia.gov.in/",icon:"🛂",tag:"TRAVEL",description:"পাসপোর্ট আবেদন ও অ্যাপয়েন্টমেন্ট",keywords:"passport পাসপোর্ট visa ভিসা"},
-{id:"digilocker",category:"documents",title:"DigiLocker",url:"https://www.digilocker.gov.in/",icon:"📂",tag:"DOCUMENTS",description:"ডিজিটাল নথি সংগ্রহ ও সংরক্ষণ",keywords:"digilocker ডিজিলকার document"},
-{id:"ayushman",category:"health",title:"আয়ুষ্মান ভারত",url:"https://beneficiary.nha.gov.in/",icon:"🏥",tag:"HEALTH",description:"স্বাস্থ্য প্রকল্পের তথ্য ও পরিষেবা",keywords:"ayushman আয়ুষ্মান bharat health"},
-{id:"pcc",category:"documents",title:"Police Clearance Certificate",url:"https://passportindia.gov.in/",icon:"🛡️",tag:"CERTIFICATE",description:"পুলিশ ক্লিয়ারেন্স সংক্রান্ত তথ্য",keywords:"police clearance certificate pcc পুলিশ"}
-];
-function status(msg,error=false){$("status").textContent=msg;$("status").style.background=error?"#fef3f2":"#eef4ff";$("status").style.color=error?"#b42318":"#172033"}
-function err(e){const map={"auth/invalid-credential":"ইমেইল বা পাসওয়ার্ড সঠিক নয়।","auth/invalid-email":"সঠিক ইমেইল দিন।","auth/too-many-requests":"অনেকবার চেষ্টা হয়েছে; পরে আবার চেষ্টা করুন।","permission-denied":"Firestore Rules অনুমতি দেয়নি।","unavailable":"Firebase সংযোগ নেই।"};return map[e.code]||e.message||"একটি সমস্যা হয়েছে।"}
-function safeUrl(v){try{const u=new URL(v);return ["https:","http:"].includes(u.protocol)}catch{return false}}
-function newId(){return "custom-"+crypto.randomUUID()}
-function resetCard(){ $("cardForm").reset();editingCardId=null;$("cardId").value="";$("saveCardBtn").textContent="কার্ড সংরক্ষণ করুন";$("cancelCardBtn").hidden=true}
-function resetLink(){ $("linkForm").reset();editingLinkId=null;$("linkId").value="";$("saveLinkBtn").textContent="লিংক সংরক্ষণ করুন";$("cancelLinkBtn").hidden=true}
-function renderCards(){const box=$("cardsList");box.replaceChildren();if(!cards.length){box.textContent="কোনো কার্ড নেই।";return}
-cards.forEach((c,i)=>{const el=document.createElement("div");el.className="item";const title=document.createElement("strong");title.textContent=(c.icon||"🔗")+" "+c.title+" ";const badge=document.createElement("span");badge.className="pill";badge.textContent=c.category||"other";title.append(badge);const info=document.createElement("p");info.textContent=(c.description||"")+" · "+(c.url||"");el.append(title,info);
-const up=document.createElement("button");up.className="secondary";up.textContent="↑ উপরে";up.disabled=i===0;up.onclick=()=>moveCard(i,-1);
-const down=document.createElement("button");down.className="secondary";down.textContent="↓ নিচে";down.disabled=i===cards.length-1;down.onclick=()=>moveCard(i,1);
-const edit=document.createElement("button");edit.className="secondary";edit.textContent="এডিট";edit.onclick=()=>{editingCardId=c.id;$("cardId").value=c.id;$("cardTitle").value=c.title||"";$("cardUrl").value=c.url||"";$("cardIcon").value=c.icon||"";$("cardCategory").value=c.category||"other";$("cardTag").value=c.tag||"";$("cardDescription").value=c.description||"";$("cardKeywords").value=Array.isArray(c.keywords)?c.keywords.join(", "):(c.keywords||"");$("saveCardBtn").textContent="পরিবর্তন সংরক্ষণ করুন";$("cancelCardBtn").hidden=false;window.scrollTo({top:0,behavior:"smooth"})};
-const del=document.createElement("button");del.className="danger";del.textContent="মুছুন";del.onclick=async()=>{if(!confirm(`"${c.title}" কার্ডটি মুছবেন?`))return;const old=cards;cards=cards.filter(x=>x.id!==c.id);try{await saveCards();renderCards();status("কার্ড মুছে ফেলা হয়েছে।")}catch(e){cards=old;renderCards();status(err(e),true)}};el.append(up,down,edit,del);box.append(el)})}
-async function saveCards(){await setDoc(ref("cardLayout"),{cards})}
-async function moveCard(i,delta){const j=i+delta;if(j<0||j>=cards.length)return;[cards[i],cards[j]]=[cards[j],cards[i]];renderCards();try{await saveCards();status("কার্ডের ক্রম সংরক্ষণ হয়েছে।")}catch(e){status(err(e),true);await loadData()}}
-function renderLinks(){const box=$("linksList");box.replaceChildren();if(!links.length){box.textContent="এখনও কোনো কাস্টম লিংক নেই।";return}links.forEach(item=>{const el=document.createElement("div");el.className="item";const title=document.createElement("strong");title.textContent=item.title||"নামহীন লিংক";const p=document.createElement("p");p.textContent=(item.description||"")+" · "+(item.url||"");const edit=document.createElement("button");edit.className="secondary";edit.textContent="এডিট";edit.onclick=()=>{editingLinkId=item.id;$("linkId").value=item.id;$("linkTitle").value=item.title||"";$("linkUrl").value=item.url||"";$("linkDescription").value=item.description||"";$("linkKeywords").value=Array.isArray(item.keywords)?item.keywords.join(", "):(item.keywords||"");$("saveLinkBtn").textContent="পরিবর্তন সংরক্ষণ করুন";$("cancelLinkBtn").hidden=false};const del=document.createElement("button");del.className="danger";del.textContent="মুছুন";del.onclick=async()=>{if(!confirm(`"${item.title}" লিংকটি মুছবেন?`))return;const old=links;links=links.filter(x=>x.id!==item.id);try{await setDoc(ref("customLinks"),{items:links});renderLinks();status("লিংক মুছে ফেলা হয়েছে।")}catch(e){links=old;renderLinks();status(err(e),true)}};el.append(title,p,edit,del);box.append(el)})}
-async function loadData(){status("Firestore থেকে ডেটা লোড হচ্ছে...");try{const [cs,ls,ss]=await Promise.all([getDoc(ref("cardLayout")),getDoc(ref("customLinks")),getDoc(ref("siteSettings"))]);const saved=cs.exists()?cs.data().cards:null;cards=Array.isArray(saved)&&saved.length?saved:defaults.map(x=>({...x}));links=ls.exists()&&Array.isArray(ls.data().items)?ls.data().items:[];settings=ss.exists()?ss.data():{};$("siteTitle").value=settings.title||"Daily Use Products Official";$("siteSubtitle").value=settings.subtitle||"Your Premier Digital Services Hub";renderCards();renderLinks();status("Firebase সংযোগ সফল।")}catch(e){status(err(e),true);$("cardsList").textContent="কার্ড লোড হয়নি। Firestore Rules ও Firebase config পরীক্ষা করুন।";$("linksList").textContent="লিংক লোড হয়নি।"}}
-$("loginForm").addEventListener("submit",async e=>{e.preventDefault();if(!firebaseConfig.apiKey || firebaseConfig.apiKey==="YOUR_FIREBASE_API_KEY"){alert("প্রথমে কোডে নিজের Firebase Web API key বসান।");return}$("loginBtn").disabled=true;try{await signInWithEmailAndPassword(auth,$("email").value.trim(),$("password").value)}catch(e){alert(err(e))}finally{$("loginBtn").disabled=false}});
-$("logoutBtn").onclick=()=>signOut(auth).catch(e=>status(err(e),true));$("reloadBtn").onclick=loadData;$("newCardBtn").onclick=resetCard;$("cancelCardBtn").onclick=resetCard;$("cancelLinkBtn").onclick=resetLink;
-$("cardForm").addEventListener("submit",async e=>{e.preventDefault();if(!auth.currentUser)return;const title=$("cardTitle").value.trim(),url=$("cardUrl").value.trim();if(!safeUrl(url)){status("সঠিক http বা https URL দিন।",true);return}const item={id:editingCardId||newId(),title,url,icon:$("cardIcon").value.trim()||"🔗",category:$("cardCategory").value,tag:$("cardTag").value.trim()||"SERVICE",description:$("cardDescription").value.trim(),keywords:$("cardKeywords").value.trim()};const old=cards;cards=editingCardId?cards.map(c=>c.id===editingCardId?item:c):[...cards,item];$("saveCardBtn").disabled=true;try{await saveCards();resetCard();renderCards();status("কার্ড সংরক্ষণ হয়েছে।")}catch(e){cards=old;renderCards();status(err(e),true)}finally{$("saveCardBtn").disabled=false}});
-$("linkForm").addEventListener("submit",async e=>{e.preventDefault();if(!auth.currentUser)return;const title=$("linkTitle").value.trim(),url=$("linkUrl").value.trim();if(!safeUrl(url)){status("সঠিক http বা https URL দিন।",true);return}const item={id:editingLinkId||newId(),title,url,description:$("linkDescription").value.trim(),keywords:$("linkKeywords").value.split(",").map(x=>x.trim()).filter(Boolean)};const old=links;links=editingLinkId?links.map(x=>x.id===editingLinkId?item:x):[...links,item];try{await setDoc(ref("customLinks"),{items:links});resetLink();renderLinks();status("কাস্টম লিংক সংরক্ষণ হয়েছে।")}catch(e){links=old;renderLinks();status(err(e),true)}});
-$("saveSettingsBtn").onclick=async()=>{if(!auth.currentUser)return;settings={...settings,title:$("siteTitle").value.trim(),subtitle:$("siteSubtitle").value.trim()};try{await setDoc(ref("siteSettings"),settings);status("সাইট সেটিংস Firestore-এ সংরক্ষিত হয়েছে।")}catch(e){status(err(e),true)}};
-$("backupBtn").onclick=async()=>{try{const docs={};for(const n of ["customLinks","cardLayout","siteSettings"]){const s=await getDoc(ref(n));docs[n]=s.exists()?s.data():null}const blob=new Blob([JSON.stringify({backupType:"bangla-personal-dashboard",createdAt:new Date().toISOString(),documents:docs},null,2)],{type:"application/json"});const u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download="bangla-dashboard-backup.json";a.click();URL.revokeObjectURL(u);status("ব্যাকআপ ডাউনলোড শুরু হয়েছে।")}catch(e){status(err(e),true)}};
-onAuthStateChanged(auth,async user=>{$("loginCard").hidden=!!user;$("dashboard").hidden=!user;if(user){$("accountInfo").textContent="লগইন করা অ্যাকাউন্ট: "+(user.email||"");await loadData()}else{cards=[];links=[]}});
-</script></body></html>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, "Noto Sans Bengali", sans-serif;
+      background: radial-gradient(circle at top left, #e7eeff, #f4f8ff 42%, #eef3fb 100%);
+      color: var(--text);
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .app {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 22px 14px 40px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 22px;
+      background: linear-gradient(135deg, #0d1c3a, #153d70 62%, #1f5cc3);
+      border-radius: 26px;
+      color: white;
+      box-shadow: var(--shadow);
+      margin-bottom: 22px;
+    }
+
+    .title-wrap h1 {
+      margin: 0;
+      font-size: clamp(24px, 2vw, 36px);
+    }
+    .title-wrap p {
+      margin: 6px 0 0;
+      opacity: 0.8;
+      font-size: 14px;
+    }
+
+    .status-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+    .pill {
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+    }
+    .pill.success { background: rgba(40, 180, 104, 0.12); color: #d8ffe8; }
+    .pill.warning { background: rgba(255, 196, 54, 0.10); color: #ffe4a9; }
+
+    .app-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.8fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: 18px 18px 16px;
+      margin-bottom: 18px;
+    }
+
+    .panel h2 {
+      font-size: 22px;
+      margin: 0 0 8px;
+    }
+    .muted {
+      color: var(--muted);
+      margin: 0 0 14px;
+      font-size: 13px;
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .field.full { grid-column: 1 / -1; }
+    label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    input, select, textarea, button {
+      font: inherit;
+    }
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 12px;
+      padding: 10px 12px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: rgba(22, 93, 255, 0.7);
+      box-shadow: 0 0 0 4px rgba(22, 93, 255, 0.08);
+    }
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    button {
+      border: 0;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+      padding: 11px 14px;
+      font-weight: 700;
+    }
+    button:hover { transform: translateY(-1px); }
+    button:active { transform: translateY(0); }
+    button.primary {
+      background: linear-gradient(135deg, var(--primary), #0a6afe);
+      color: white;
+      box-shadow: 0 14px 26px rgba(12, 92, 244, 0.26);
+    }
+    button.secondary {
+      background: #edf3ff;
+      color: var(--primary);
+      border: 1px solid #dfeaff;
+    }
+    button.danger {
+      background: var(--danger-soft);
+      color: var(--danger);
+      border: 1px solid #ffd8d4;
+    }
+    button.ghost {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--text);
+    }
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .status-box {
+      margin-top: 14px;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      background: var(--primary-soft);
+      color: var(--primary);
+      border: 1px solid #dfeaff;
+    }
+    .status-box.error {
+      background: var(--danger-soft);
+      color: var(--danger);
+      border-color: #ffd8d4;
+    }
+    .status-box.success {
+      background: var(--success-soft);
+      color: var(--success);
+      border-color: #d6f3e6;
+    }
+
+    .list-box {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .entry {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+      border: 1px solid var(--line);
+      background: var(--panel-soft);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .entry-main {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+    .entry-main strong {
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .entry-main small {
+      display: block;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .badge-light {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      padding: 6px 8px;
+      border-radius: 999px;
+      font-weight: 800;
+      background: #edf3ff;
+      color: var(--primary);
+      border: 1px solid #dfeaff;
+    }
+    .badge-light.warning {
+      background: #fff8df;
+      color: #a96c00;
+      border-color: #f7dd8b;
+    }
+    .badge-light.success {
+      background: #ebfff5;
+      color: #1b8d5a;
+      border-color: #cfeee0;
+    }
+    .entry-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .entry-actions button {
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-size: 12px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .stat {
+      background: var(--panel-soft);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px;
+    }
+    .stat small {
+      display: block;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .stat strong {
+      font-size: 22px;
+    }
+
+    .preview-card {
+      position: sticky;
+      top: 18px;
+      background: linear-gradient(180deg, #f9fbff, #eef5ff);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: 12px;
+    }
+    .preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .preview-header h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+    .mini-preview {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: white;
+      padding: 10px;
+      min-height: 420px;
+      overflow: hidden;
+    }
+    .mini-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 14px 14px 0 0;
+      background: linear-gradient(135deg, #06182f, #123f6a);
+      color: white;
+      gap: 10px;
+    }
+    .mini-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+    .mini-brand img {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .mini-brand strong {
+      display: block;
+      font-size: 11px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .mini-brand span {
+      display: block;
+      font-size: 9px;
+      opacity: 0.8;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .mini-hero {
+      background: linear-gradient(135deg, #07162d, #0a2a49 72%, #0d5b92);
+      color: white;
+      border-radius: 0 0 14px 14px;
+      padding: 14px 12px 12px;
+      margin-bottom: 12px;
+    }
+    .mini-hero h4 {
+      margin: 0 0 6px;
+      font-size: 15px;
+      line-height: 1.3;
+    }
+    .mini-hero p {
+      margin: 0;
+      font-size: 10px;
+      color: rgba(255,255,255,0.8);
+    }
+    .mini-search {
+      display: block;
+      width: 100%;
+      margin-top: 8px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.08);
+      padding: 7px 10px;
+      color: white;
+      font-size: 10px;
+    }
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .mini-card {
+      background: #f8fbff;
+      border: 1px solid #e4edf8;
+      border-radius: 12px;
+      padding: 8px 8px 9px;
+      min-height: 74px;
+    }
+    .mini-card .icon {
+      display: inline-grid;
+      place-items: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 8px;
+      background: #eaf2ff;
+      margin-bottom: 6px;
+      font-size: 12px;
+    }
+    .mini-card strong {
+      display: block;
+      font-size: 10px;
+      line-height: 1.3;
+      margin-bottom: 3px;
+    }
+    .mini-card small {
+      color: var(--muted);
+      font-size: 9px;
+    }
+    .mini-links {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px;
+    }
+    .mini-links span {
+      display: block;
+      padding: 7px 8px;
+      border-radius: 8px;
+      background: #f5f8ff;
+      border: 1px solid #e4edf8;
+      font-size: 9px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    @media (max-width: 980px) {
+      .app-shell { grid-template-columns: 1fr; }
+      .preview-card { position: static; }
+    }
+    @media (max-width: 700px) {
+      .grid, .stats { grid-template-columns: 1fr; }
+      .topbar { flex-direction: column; align-items: flex-start; }
+      .status-row { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="title-wrap">
+        <h1>🔐 Admin Panel</h1>
+        <p>Website content management and live content preview</p>
+      </div>
+      <div class="status-row">
+        <span id="savePill" class="pill success">Saved</span>
+        <span id="syncPill" class="pill warning">Preview active</span>
+      </div>
+    </header>
+
+    <div class="app-shell">
+      <section>
+        <div id="loginCard" class="panel">
+          <h2>অ্যাডমিন লগইন</h2>
+          <p class="muted">Firebase Authentication-এ তৈরি হওয়া অ্যাকাউন্ট ব্যবহার করে লগইন করুন।</p>
+          <form id="loginForm">
+            <div class="grid">
+              <div class="field full">
+                <label for="email">ইমেইল</label>
+                <input id="email" type="email" placeholder="you@example.com" required>
+              </div>
+              <div class="field full">
+                <label for="password">পাসওয়ার্ড</label>
+                <input id="password" type="password" placeholder="••••••••" required>
+              </div>
+            </div>
+            <div class="row" style="margin-top: 14px;">
+              <button class="primary" type="submit">লগইন</button>
+            </div>
+          </form>
+          <div id="loginStatus" class="status-box" style="display:none"></div>
+        </div>
+
+        <section id="dashboard" hidden>
+          <div class="panel">
+            <div class="row" style="justify-content:space-between; margin-bottom: 8px;">
+              <h2>অ্যাডমিন ড্যাশবোর্ড</h2>
+              <div class="row">
+                <button id="reloadBtn" class="secondary" type="button">রিফ্রেশ</button>
+                <button id="logoutBtn" class="ghost" type="button">লগআউট</button>
+              </div>
+            </div>
+
+            <p class="muted" id="accountInfo">অ্যাকাউন্ট: —</p>
+
+            <div class="stats">
+              <div class="stat">
+                <small>কার্ড সংখ্যা</small>
+                <strong id="cardCount">0</strong>
+              </div>
+              <div class="stat">
+                <small>লিংক সংখ্যা</small>
+                <strong id="linkCount">0</strong>
+              </div>
+              <div class="stat">
+                <small>শেষ সেভ</small>
+                <strong id="lastSavedText">—</strong>
+              </div>
+            </div>
+
+            <div id="status" class="status-box">ডেটা লোড হচ্ছে...</div>
+          </div>
+
+          <div class="panel">
+            <h2>🪪 কার্ড যোগ / সম্পাদনা</h2>
+            <p class="muted">প্রতিটি কার্ডের পরিবর্তন "+unsaved" ব্যাজ দিয়ে বুঝতে পারবেন।</p>
+            <form id="cardForm">
+              <input id="cardId" type="hidden">
+              <div class="grid">
+                <div class="field">
+                  <label for="cardTitle">কার্ডের নাম *</label>
+                  <input id="cardTitle" maxlength="100" required>
+                </div>
+                <div class="field">
+                  <label for="cardUrl">ওয়েবসাইট URL *</label>
+                  <input id="cardUrl" type="url" maxlength="1500" placeholder="https://example.com" required>
+                </div>
+                <div class="field">
+                  <label for="cardIcon">আইকন (ইমোজি)</label>
+                  <input id="cardIcon" maxlength="12" placeholder="🔗">
+                </div>
+                <div class="field">
+                  <label for="cardTag">ট্যাগ</label>
+                  <input id="cardTag" maxlength="40" placeholder="GOVERNMENT">
+                </div>
+                <div class="field full">
+                  <label for="cardDescription">বিস্তারিত</label>
+                  <textarea id="cardDescription" maxlength="300" placeholder="কার্ডের সারাংশ লিখুন"></textarea>
+                </div>
+                <div class="field full">
+                  <label for="cardKeywords">সার্চ কীওয়ার্ড</label>
+                  <input id="cardKeywords" maxlength="300" placeholder="বাংলা, English, keywords">
+                </div>
+              </div>
+              <div class="row" style="margin-top: 14px;">
+                <button type="submit" class="primary" id="saveCardBtn">কার্ড সংরক্ষণ করুন</button>
+                <button type="button" class="secondary" id="newCardBtn">নতুন কার্ড</button>
+                <button type="button" class="ghost" id="cancelCardBtn" hidden>এডিট বাতিল</button>
+              </div>
+            </form>
+            <div id="cardsList" class="list-box"></div>
+          </div>
+
+          <div class="panel">
+            <h2>🔗 কাস্টম লিংক যোগ / সম্পাদনা</h2>
+            <p class="muted">নতুন লিংক যোগ করে সাইটের শার্টকাট তালিকা সহজে আপডেট করতে পারবেন।</p>
+            <form id="linkForm">
+              <input id="linkId" type="hidden">
+              <div class="grid">
+                <div class="field">
+                  <label for="linkTitle">লিংকের নাম *</label>
+                  <input id="linkTitle" maxlength="120" required>
+                </div>
+                <div class="field">
+                  <label for="linkUrl">লিংক URL *</label>
+                  <input id="linkUrl" type="url" maxlength="1500" placeholder="https://example.com" required>
+                </div>
+                <div class="field">
+                  <label for="linkIcon">আইকন</label>
+                  <input id="linkIcon" maxlength="12" placeholder="🔗">
+                </div>
+                <div class="field">
+                  <label for="linkKeywords">কীওয়ার্ড</label>
+                  <input id="linkKeywords" maxlength="200" placeholder="বাংলা, English">
+                </div>
+              </div>
+              <div class="row" style="margin-top: 14px;">
+                <button type="submit" class="primary" id="saveLinkBtn">লিংক সংরক্ষণ করুন</button>
+                <button type="button" class="secondary" id="newLinkBtn">নতুন লিংক</button>
+                <button type="button" class="ghost" id="cancelLinkBtn" hidden>এডিট বাতিল</button>
+              </div>
+            </form>
+            <div id="linksList" class="list-box"></div>
+          </div>
+
+          <div class="panel">
+            <h2>⚙️ সাইট সেটিংস</h2>
+            <p class="muted">হেডার, সাবটাইটেল ও হিরো কন্টেন্ট আপডেট করুন।</p>
+            <div class="grid">
+              <div class="field">
+                <label for="siteTitle">সাইট শিরোনাম</label>
+                <input id="siteTitle" maxlength="120" placeholder="Daily Use Products Official">
+              </div>
+              <div class="field">
+                <label for="siteSubtitle">সাইট সাবটাই���েল</label>
+                <input id="siteSubtitle" maxlength="160" placeholder="Your Premier Digital Services Hub">
+              </div>
+              <div class="field full">
+                <label for="heroTitle">হিরো শিরোনাম</label>
+                <input id="heroTitle" maxlength="180" placeholder="আপনার দরকারি ডিজিটাল পরিষেবা, এক জায়গায়">
+              </div>
+              <div class="field full">
+                <label for="heroSubtitle">হিরো বিবরণ</label>
+                <textarea id="heroSubtitle" maxlength="260" placeholder="সাইটের প্রধান বিবরণ লিখুন..."></textarea>
+              </div>
+            </div>
+            <div class="row" style="margin-top: 14px;">
+              <button type="button" class="primary" id="saveSettingsBtn">সেটিংস সংরক্ষণ</button>
+              <button type="button" class="secondary" id="backupBtn">ব্যাকআপ JSON</button>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <aside class="preview-card">
+        <div class="preview-header">
+          <h3>Live Preview</h3>
+          <span id="previewBadge" class="badge-light success">Live</span>
+        </div>
+        <div id="sitePreview" class="mini-preview"></div>
+      </aside>
+    </div>
+  </main>
+
+  <script type="module">
+    import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBCG2YDeTgVzj6zX3E8EQIJi3S3jmOaNN8",
+      authDomain: "daily-use-products-official.firebaseapp.com",
+      projectId: "daily-use-products-official",
+      storageBucket: "daily-use-products-official.firebasestorage.app",
+      messagingSenderId: "488136359439",
+      appId: "1:488136359439:web:1bcdb9addea4e9e8422d7a"
+    };
+
+    const $ = (id) => document.getElementById(id);
+    const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const ref = (name) => doc(db, "siteContent", name);
+
+    let cards = [];
+    let links = [];
+    let settings = {};
+    let editingCardId = null;
+    let editingLinkId = null;
+    let lastSavedAt = null;
+    let isDirty = { cards: false, links: false, settings: false };
+
+    const defaults = [
+      { id: "ration-card", category: "government", title: "রেশন কার্ড", url: "https://food.wb.gov.in/", icon: "🪪", tag: "GOVERNMENT", description: "রেশন কার্ড ও খাদ্য সেবা", keywords: "রেশন খাদ্য কার্ড" },
+      { id: "pan-card", category: "identity", title: "PAN কার্ড", url: "https://www.incometax.gov.in/", icon: "💳", tag: "IDENTITY", description: "আয়কর ও PAN তথ্য", keywords: "pan income tax" },
+      { id: "voter-card", category: "identity", title: "ভোটার কার্ড", url: "https://voters.eci.gov.in/", icon: "🗳️", tag: "IDENTITY", description: "ভোটার সেবা", keywords: "ভোটার election" },
+      { id: "aadhaar-card", category: "identity", title: "আধার কার্ড", url: "https://uidai.gov.in/", icon: "🆔", tag: "IDENTITY", description: "আধার স্ট্যাটাস", keywords: "aadhaar aadhar" },
+      { id: "passport", category: "travel", title: "পাসপোর্ট সেবা", url: "https://www.passportindia.gov.in/", icon: "🛂", tag: "TRAVEL", description: "পাসপোর্ট ও ভ্রমণ", keywords: "passport visa" },
+      { id: "digilocker", category: "documents", title: "DigiLocker", url: "https://www.digilocker.gov.in/", icon: "📂", tag: "DOCUMENTS", description: "ডিজিটাল ডকুমেন্ট", keywords: "digilocker document" },
+      { id: "ayushman", category: "health", title: "আয়ুষ্মান ভারত", url: "https://beneficiary.nha.gov.in/", icon: "🏥", tag: "HEALTH", description: "স্বাস্থ্য সেবা", keywords: "ayushman health" },
+      { id: "pcc", category: "documents", title: "Police Clearance Certificate", url: "https://passportindia.gov.in/", icon: "🛡️", tag: "CERTIFICATE", description: "পুলিশ ক্লিয়ারেন্স", keywords: "pcc police clearance" }
+    ];
+
+    function err(e) {
+      const map = {
+        "auth/invalid-credential": "ইমেইল বা পাসওয়ার্ড সঠিক নয়।",
+        "auth/invalid-email": "সঠিক ইমেইল দিন।",
+        "auth/user-disabled": "এই অ্যাকাউন্টটি বন্ধ করা আছে।",
+        "auth/network-request-failed": "নেটওয়ার্ক সমস্যা। 다시 চেষ্টা করুন।"
+      };
+      return map[e?.code] || "কিছু সমস্যা হয়েছে। আবার চেষ্টা করুন।";
+    }
+
+    function setStatus(msg, type = "info") {
+      const box = $("status");
+      if (!box) return;
+      box.textContent = msg;
+      box.classList.remove("error", "success");
+      if (type === "error") box.classList.add("error");
+      if (type === "success") box.classList.add("success");
+    }
+
+    function setLoginStatus(msg, type = "info") {
+      const el = $("loginStatus");
+      if (!el) return;
+      if (!msg) { el.style.display = "none"; return; }
+      el.style.display = "block";
+      el.textContent = msg;
+      el.classList.remove("error", "success");
+      if (type === "error") el.classList.add("error");
+      if (type === "success") el.classList.add("success");
+    }
+
+    function safeUrl(v) {
+      try {
+        const u = new URL(v);
+        return ["https:", "http:"].includes(u.protocol);
+      } catch {
+        return false;
+      }
+    }
+
+    function formatTime(date) {
+      if (!date) return "—";
+      return new Date(date).toLocaleString("bn-BD", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+    }
+
+    function setDirty(type, dirty) {
+      isDirty[type] = dirty;
+      const totalDirty = Object.values(isDirty).some(Boolean);
+      const pill = $("savePill");
+      if (pill) {
+        if (totalDirty) {
+          pill.className = "pill warning";
+          pill.textContent = "Unsaved changes";
+        } else {
+          pill.className = "pill success";
+          pill.textContent = "Saved";
+        }
+      }
+      const badge = $("previewBadge");
+      if (badge) {
+        badge.className = totalDirty ? "badge-light warning" : "badge-light success";
+        badge.textContent = totalDirty ? "Dirty" : "Live";
+      }
+    }
+
+    function updateStatCounters() {
+      $("cardCount").textContent = String(cards.length || 0);
+      $("linkCount").textContent = String(links.length || 0);
+      $("lastSavedText").textContent = lastSavedAt ? formatTime(lastSavedAt) : "—";
+    }
+
+    function resetCardForm() {
+      $("cardForm").reset();
+      editingCardId = null;
+      $("cardId").value = "";
+      $("saveCardBtn").textContent = "কার্ড সংরক্ষণ করুন";
+      $("cancelCardBtn").hidden = true;
+      if (Object.keys(isDirty).length) setDirty("cards", false);
+    }
+
+    function resetLinkForm() {
+      $("linkForm").reset();
+      editingLinkId = null;
+      $("linkId").value = "";
+      $("saveLinkBtn").textContent = "লিংক সংরক্ষণ করুন";
+      $("cancelLinkBtn").hidden = true;
+      if (Object.keys(isDirty).length) setDirty("links", false);
+    }
+
+    function renderCards() {
+      const box = $("cardsList");
+      box.replaceChildren();
+      if (!cards.length) {
+        const empty = document.createElement("div");
+        empty.className = "muted";
+        empty.textContent = "কোনো কার্ড নেই।";
+        box.appendChild(empty);
+        return;
+      }
+
+      cards.forEach((card, index) => {
+        const el = document.createElement("div");
+        el.className = "entry";
+
+        const main = document.createElement("div");
+        main.className = "entry-main";
+
+        const info = document.createElement("div");
+        const title = document.createElement("strong");
+        title.textContent = `${card.icon || "🔗"} ${card.title || "Untitled"}`;
+        const sub = document.createElement("small");
+        sub.textContent = `${card.tag || "SERVICE"} • ${card.url || "—"}`;
+        info.append(title, sub);
+
+        const dirtyBadge = document.createElement("span");
+        dirtyBadge.className = `badge-light ${card.__dirty ? "warning" : "success"}`;
+        dirtyBadge.textContent = card.__dirty ? "Unsaved" : "Saved";
+
+        main.append(info, dirtyBadge);
+
+        const actions = document.createElement("div");
+        actions.className = "entry-actions";
+
+        const up = document.createElement("button");
+        up.className = "secondary";
+        up.textContent = "↑";
+        up.disabled = index === 0;
+        up.onclick = async () => {
+          if (index === 0) return;
+          [cards[index - 1], cards[index]] = [cards[index], cards[index - 1]];
+          renderCards();
+          setDirty("cards", true);
+          renderSitePreview();
+          setStatus("কার্ডের ক্রম পরিবর্তন হয়েছে, কিন্তু এখনও সেভ হয়নি।");
+        };
+
+        const down = document.createElement("button");
+        down.className = "secondary";
+        down.textContent = "↓";
+        down.disabled = index === cards.length - 1;
+        down.onclick = async () => {
+          if (index >= cards.length - 1) return;
+          [cards[index], cards[index + 1]] = [cards[index + 1], cards[index]];
+          renderCards();
+          setDirty("cards", true);
+          renderSitePreview();
+          setStatus("কার্ডের ক্রম পরিবর্তন হয়েছে, কিন্তু এখনও সেভ হয়নি।");
+        };
+
+        const edit = document.createElement("button");
+        edit.className = "secondary";
+        edit.textContent = "এডিট";
+        edit.onclick = () => {
+          editingCardId = card.id;
+          $("cardId").value = card.id;
+          $("cardTitle").value = card.title || "";
+          $("cardUrl").value = card.url || "";
+          $("cardIcon").value = card.icon || "";
+          $("cardTag").value = card.tag || "";
+          $("cardDescription").value = card.description || "";
+          $("cardKeywords").value = card.keywords || "";
+          $("saveCardBtn").textContent = "পরিবর্তন সংরক্ষণ";
+          $("cancelCardBtn").hidden = false;
+          renderSitePreview();
+        };
+
+        const del = document.createElement("button");
+        del.className = "danger";
+        del.textContent = "মুছুন";
+        del.onclick = async () => {
+          if (!confirm(`"${card.title}" কার্ডটি মুছবেন?`)) return;
+          cards = cards.filter((item) => item.id !== card.id);
+          renderCards();
+          renderSitePreview();
+          setDirty("cards", true);
+          setStatus("কার্ড মুছে দেওয়া হয়েছে, কিন্তু এখনও সেভ হয়নি।");
+        };
+
+        actions.append(up, down, edit, del);
+        el.append(main, actions);
+        box.appendChild(el);
+      });
+    }
+
+    function renderLinks() {
+      const box = $("linksList");
+      box.replaceChildren();
+      if (!links.length) {
+        const empty = document.createElement("div");
+        empty.className = "muted";
+        empty.textContent = "কোনো কাস্টম লিংক নেই।";
+        box.appendChild(empty);
+        return;
+      }
+
+      links.forEach((link) => {
+        const el = document.createElement("div");
+        el.className = "entry";
+
+        const main = document.createElement("div");
+        main.className = "entry-main";
+
+        const info = document.createElement("div");
+        const title = document.createElement("strong");
+        title.textContent = `${link.icon || "🔗"} ${link.title || "Untitled"}`;
+        const sub = document.createElement("small");
+        sub.textContent = link.url || "—";
+        info.append(title, sub);
+
+        const badge = document.createElement("span");
+        badge.className = `badge-light ${link.__dirty ? "warning" : "success"}`;
+        badge.textContent = link.__dirty ? "Unsaved" : "Saved";
+
+        main.append(info, badge);
+
+        const actions = document.createElement("div");
+        actions.className = "entry-actions";
+
+        const edit = document.createElement("button");
+        edit.className = "secondary";
+        edit.textContent = "এডিট";
+        edit.onclick = () => {
+          editingLinkId = link.id;
+          $("linkId").value = link.id;
+          $("linkTitle").value = link.title || "";
+          $("linkUrl").value = link.url || "";
+          $("linkIcon").value = link.icon || "";
+          $("linkKeywords").value = link.keywords || "";
+          $("saveLinkBtn").textContent = "পরিবর্তন সংরক্ষণ";
+          $("cancelLinkBtn").hidden = false;
+        };
+
+        const del = document.createElement("button");
+        del.className = "danger";
+        del.textContent = "মুছুন";
+        del.onclick = async () => {
+          if (!confirm(`"${link.title}" লিংকটি মুছবেন?`)) return;
+          links = links.filter((item) => item.id !== link.id);
+          renderLinks();
+          renderSitePreview();
+          setDirty("links", true);
+          setStatus("লিংক মুছে দেওয়া হয়েছে, কিন্তু এখনও সেভ হয়নি।");
+        };
+
+        actions.append(edit, del);
+        el.append(main, actions);
+        box.appendChild(el);
+      });
+    }
+
+    function renderSitePreview() {
+      const preview = $("sitePreview");
+      if (!preview) return;
+
+      const title = $("siteTitle")?.value?.trim() || settings.title || "Daily Use Products Official";
+      const subtitle = $("siteSubtitle")?.value?.trim() || settings.subtitle || "Your Premier Digital Services Hub";
+      const heroTitle = $("heroTitle")?.value?.trim() || settings.heroTitle || "আপনার দরকারি ডিজিটাল পরিষেবা, এক জায়গায়";
+      const heroSubtitle = $("heroSubtitle")?.value?.trim() || settings.heroSubtitle || "সার্ভিস ও সর্টকাট সহজে খুঁজে নিন।";
+
+      const cardPreview = cards.slice(0, 4).map((card) => `
+        <div class="mini-card">
+          <div class="icon">${card.icon || "🔗"}</div>
+          <strong>${card.title || "Untitled"}</strong>
+          <small>${(card.description || card.tag || "Service").slice(0, 22)}</small>
+        </div>
+      `).join("");
+
+      const linkPreview = links.slice(0, 4).map((item) => `<span>${item.title || "Link"}</span>`).join("");
+
+      preview.innerHTML = `
+        <div class="mini-header">
+          <div class="mini-brand">
+            <img src="logo.jpg" alt="logo">
+            <div>
+              <strong>${title}</strong>
+              <span>${subtitle}</span>
+            </div>
+          </div>
+          <span class="badge-light ${isDirty.cards || isDirty.links || isDirty.settings ? "warning" : "success"}">
+            ${isDirty.cards || isDirty.links || isDirty.settings ? "Dirty" : "Live"}
+          </span>
+        </div>
+        <div class="mini-hero">
+          <h4>${heroTitle}</h4>
+          <p>${heroSubtitle}</p>
+          <div class="mini-search">Search services...</div>
+        </div>
+        <div class="mini-grid">${cardPreview}</div>
+        <div class="mini-links">${linkPreview || "<span>Useful links</span><span>Quick tools</span>"}</div>
+      `;
+    }
+
+    async function saveCards() {
+      await setDoc(ref("cardLayout"), { cards, updatedAt: new Date().toISOString() });
+      cards = cards.map((item) => ({ ...item, __dirty: false }));
+      lastSavedAt = new Date();
+      updateStatCounters();
+      setDirty("cards", false);
+      renderCards();
+      setStatus("কার্ডের পরিবর্তন সফলভাবে সেভ হয়েছে।", "success");
+      renderSitePreview();
+    }
+
+    async function saveLinks() {
+      await setDoc(ref("customLinks"), { items: links, updatedAt: new Date().toISOString() });
+      links = links.map((item) => ({ ...item, __dirty: false }));
+      lastSavedAt = new Date();
+      updateStatCounters();
+      setDirty("links", false);
+      renderLinks();
+      setStatus("লিংক পরিবর্তন সফলভাবে সেভ হয়েছে।", "success");
+      renderSitePreview();
+    }
+
+    async function saveSettings() {
+      await setDoc(ref("siteSettings"), {
+        ...settings,
+        title: $("siteTitle").value.trim(),
+        subtitle: $("siteSubtitle").value.trim(),
+        heroTitle: $("heroTitle").value.trim(),
+        heroSubtitle: $("heroSubtitle").value.trim(),
+        updatedAt: new Date().toISOString()
+      });
+      settings = {
+        ...settings,
+        title: $("siteTitle").value.trim(),
+        subtitle: $("siteSubtitle").value.trim(),
+        heroTitle: $("heroTitle").value.trim(),
+        heroSubtitle: $("heroSubtitle").value.trim()
+      };
+      lastSavedAt = new Date();
+      updateStatCounters();
+      setDirty("settings", false);
+      setStatus("সাইট সেটিংস সেভ হয়েছে।", "success");
+      renderSitePreview();
+    }
+
+    function bindCardFormDirty() {
+      const fields = ["cardTitle", "cardUrl", "cardIcon", "cardTag", "cardDescription", "cardKeywords"];
+      fields.forEach((id) => {
+        const el = $(id);
+        if (!el) return;
+        el.addEventListener("input", () => {
+          const row = cards.find((item) => item.id === editingCardId) || cards.find((item) => item.id === $("cardId").value);
+          if (row) {
+            row.__dirty = true;
+            setDirty("cards", true);
+            renderCards();
+          }
+          renderSitePreview();
+        });
+      });
+    }
+
+    function bindLinkFormDirty() {
+      const fields = ["linkTitle", "linkUrl", "linkIcon", "linkKeywords"];
+      fields.forEach((id) => {
+        const el = $(id);
+        if (!el) return;
+        el.addEventListener("input", () => {
+          const row = links.find((item) => item.id === editingLinkId) || links.find((item) => item.id === $("linkId").value);
+          if (row) {
+            row.__dirty = true;
+            setDirty("links", true);
+            renderLinks();
+          }
+          renderSitePreview();
+        });
+      });
+    }
+
+    function bindSettingsDirty() {
+      ["siteTitle", "siteSubtitle", "heroTitle", "heroSubtitle"].forEach((id) => {
+        const el = $(id);
+        if (!el) return;
+        el.addEventListener("input", () => {
+          setDirty("settings", true);
+          renderSitePreview();
+        });
+      });
+    }
+
+    function normalizeCard(item = {}) {
+      return {
+        id: item.id || newId(),
+        title: String(item.title || "").trim(),
+        url: String(item.url || "").trim(),
+        icon: String(item.icon || "🔗").trim() || "🔗",
+        tag: String(item.tag || "SERVICE").trim().toUpperCase(),
+        description: String(item.description || "").trim(),
+        keywords: String(item.keywords || "").trim(),
+        category: String(item.category || "other").trim(),
+        __dirty: !!item.__dirty
+      };
+    }
+
+    function normalizeLink(item = {}) {
+      return {
+        id: item.id || newId(),
+        title: String(item.title || "").trim(),
+        url: String(item.url || "").trim(),
+        icon: String(item.icon || "🔗").trim() || "🔗",
+        keywords: String(item.keywords || "").trim(),
+        __dirty: !!item.__dirty
+      };
+    }
+
+    function newId() {
+      return "custom-" + crypto.randomUUID();
+    }
+
+    async function loadData() {
+      setStatus("Firestore থেকে ডেটা লোড হচ্ছে...");
+      try {
+        const [cardSnap, linksSnap, settingsSnap] = await Promise.all([
+          getDoc(ref("cardLayout")),
+          getDoc(ref("customLinks")),
+          getDoc(ref("siteSettings"))
+        ]);
+
+        cards = (cardSnap.exists() && Array.isArray(cardSnap.data()?.cards)) ? cardSnap.data().cards.map(normalizeCard) : defaults.map((item) => ({ ...item, __dirty: false }));
+        links = (linksSnap.exists() && Array.isArray(linksSnap.data()?.items)) ? linksSnap.data().items.map(normalizeLink) : [];
+        settings = settingsSnap.exists() ? settingsSnap.data() : {};
+
+        lastSavedAt = new Date();
+        $("siteTitle").value = settings.title || "Daily Use Products Official";
+        $("siteSubtitle").value = settings.subtitle || "Your Premier Digital Services Hub";
+        $("heroTitle").value = settings.heroTitle || "আপনার দরকারি ডিজিটাল পরিষেবা, এক জায়গায়";
+        $("heroSubtitle").value = settings.heroSubtitle || "স্বচ্ছ, দ্রুত ও নির্ভরযোগ্য সেবা খুঁজুন।";
+
+        setDirty("cards", false);
+        setDirty("links", false);
+        setDirty("settings", false);
+        updateStatCounters();
+        renderCards();
+        renderLinks();
+        renderSitePreview();
+        setStatus("ডেটা সফলভাবে লোড হয়েছে।", "success");
+      } catch (error) {
+        console.error(error);
+        cards = defaults.map((item) => ({ ...item, __dirty: false }));
+        links = [];
+        setStatus("ডেটা লোড করতে সমস্যা হয়েছে।", "error");
+        renderCards();
+        renderLinks();
+        renderSitePreview();
+      }
+    }
+
+    $("loginForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const email = $("email").value.trim();
+      const pass = $("password").value.trim();
+
+      try {
+        await signInWithEmailAndPassword(auth, email, pass);
+        setLoginStatus("লগইন সফল হয়েছে।", "success");
+      } catch (error) {
+        setLoginStatus(err(error), "error");
+      }
+    });
+
+    $("logoutBtn").addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+        setLoginStatus("সফলভাবে লগআউট হয়েছে।", "success");
+      } catch (error) {
+        setLoginStatus(err(error), "error");
+      }
+    });
+
+    $("reloadBtn").addEventListener("click", loadData);
+
+    $("cardForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!auth.currentUser) return;
+
+      const title = $("cardTitle").value.trim();
+      const url = $("cardUrl").value.trim();
+      if (!title || !url || !safeUrl(url)) {
+        setStatus("সঠিক কার্ডের নাম ও URL দিন।", "error");
+        return;
+      }
+
+      const newCard = normalizeCard({
+        id: editingCardId || $("cardId").value || newId(),
+        title,
+        url,
+        icon: $("cardIcon").value.trim() || "🔗",
+        tag: $("cardTag").value.trim() || "SERVICE",
+        description: $("cardDescription").value.trim(),
+        keywords: $("cardKeywords").value.trim(),
+        category: "other"
+      });
+
+      if (editingCardId) {
+        cards = cards.map((item) => item.id === editingCardId ? { ...newCard, __dirty: true } : item);
+      } else {
+        cards.push({ ...newCard, __dirty: true });
+      }
+
+      renderCards();
+      renderSitePreview();
+      setDirty("cards", true);
+      setStatus("কার্ডের তথ্য আপডেট হয়েছে। এখন Save করুন।");
+      resetCardForm();
+    });
+
+    $("linkForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!auth.currentUser) return;
+
+      const title = $("linkTitle").value.trim();
+      const url = $("linkUrl").value.trim();
+      if (!title || !url || !safeUrl(url)) {
+        setStatus("সঠিক লিংকের নাম ও URL দিন।", "error");
+        return;
+      }
+
+      const newLink = normalizeLink({
+        id: editingLinkId || $("linkId").value || newId(),
+        title,
+        url,
+        icon: $("linkIcon").value.trim() || "🔗",
+        keywords: $("linkKeywords").value.trim(),
+        __dirty: true
+      });
+
+      if (editingLinkId) {
+        links = links.map((item) => item.id === editingLinkId ? newLink : item);
+      } else {
+        links.push(newLink);
+      }
+
+      renderLinks();
+      renderSitePreview();
+      setDirty("links", true);
+      setStatus("লিংক আপডেট হয়েছে। এখন Save করুন।");
+      resetLinkForm();
+    });
+
+    $("newCardBtn").addEventListener("click", resetCardForm);
+    $("cancelCardBtn").addEventListener("click", resetCardForm);
+    $("newLinkBtn").addEventListener("click", resetLinkForm);
+    $("cancelLinkBtn").addEventListener("click", resetLinkForm);
+
+    $("saveSettingsBtn").addEventListener("click", async () => {
+      if (!auth.currentUser) return;
+      await saveSettings();
+    });
+
+    $("backupBtn").addEventListener("click", async () => {
+      const docs = {};
+      for (const key of ["cardLayout", "customLinks", "siteSettings"]) {
+        const snap = await getDoc(ref(key));
+        docs[key] = snap.exists() ? snap.data() : null;
+      }
+      const blob = new Blob([JSON.stringify(docs, null, 2)], { type: "application/json" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = `daily-use-products-backup-${Date.now()}.json`;
+      link.click();
+      URL.revokeObjectURL(link.href);
+      setStatus("ব্যাকআপ JSON ডাউনলোড শুরু হয়েছে।", "success");
+    });
+
+    $("saveCardBtn").addEventListener("click", async () => {
+      if (!auth.currentUser) return;
+      if (Object.values(isDirty).some(Boolean)) {
+        await saveCards();
+      }
+    });
+
+    $("saveLinkBtn").addEventListener("click", async () => {
+      if (!auth.currentUser) return;
+      if (Object.values(isDirty).some(Boolean)) {
+        await saveLinks();
+      }
+    });
+
+    onAuthStateChanged(auth, async (user) => {
+      const loginCard = $("loginCard");
+      const dashboard = $("dashboard");
+      if (user) {
+        loginCard.hidden = true;
+        dashboard.hidden = false;
+        $("accountInfo").textContent = `লগইন করা অ্যাকাউন্ট: ${user.email}`;
+        await loadData();
+      } else {
+        loginCard.hidden = false;
+        dashboard.hidden = true;
+        $("accountInfo").textContent = "অ্যাকাউন্ট: —";
+      }
+    });
+
+    bindCardFormDirty();
+    bindLinkFormDirty();
+    bindSettingsDirty();
+    renderSitePreview();
+    setStatus("সিস্টেম প্রস্তুত।", "success");
+  </script>
+</body>
+</html>
