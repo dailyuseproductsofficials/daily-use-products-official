@@ -1,208 +1,801 @@
 <!doctype html>
-<html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#07162d"><title>Daily Use Products Official</title>
-<style>
-:root{--n:#07162d;--b:#1677ff;--g:#ffc928;--ink:#15243d;--mut:#68768d;--line:#e3eaf4}*{box-sizing:border-box}body{margin:0;background:#f5f8fd;color:var(--ink);font:16px/1.55 system-ui,"Noto Sans Bengali",sans-serif}a{text-decoration:none;color:inherit}.wrap{width:min(1160px,calc(100% - 28px));margin:auto}header{position:sticky;top:0;z-index:5;background:#07162df5;color:white;border-bottom:1px solid #ffffff20}.nav{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:15px}.brand{display:flex;align-items:center;gap:12px}.brand img,.footbrand img{width:55px;height:55px;object-fit:cover;border-radius:50%;border:2px solid var(--g)}h1{font-size:clamp(15px,2.2vw,23px);margin:0}.brand p{margin:2px 0 0;color:#b8cde9;font-size:12px}.menubtn{background:#ffffff12;border:1px solid #ffffff40;color:white;border-radius:12px;padding:10px 15px;font-weight:700;cursor:pointer}.menu{display:none;position:absolute;right:14px;top:70px;background:white;color:var(--ink);padding:9px;border-radius:15px;box-shadow:0 16px 40px #0003;width:260px}.menu.open{display:grid}.menu a{padding:11px;border-radius:9px;font-weight:650}.menu a:hover{background:#edf5ff}.hero{margin:26px 0;background:radial-gradient(ellipse at 85% 10%,#1685ff55,transparent 38%),linear-gradient(125deg,#07162d,#0b2e58 70%,#0872b8);color:white;padding:clamp(25px,5vw,52px);border-radius:26px}.badge{color:#ffe17a;font-size:12px;font-weight:800;letter-spacing:1px}.hero h2{font-size:clamp(27px,5vw,46px);line-height:1.2;margin:14px 0}.hero p{color:#c8d9ef;max-width:640px}.search{background:white;display:flex;max-width:680px;border-radius:14px;padding:6px;color:#66758c}.search span{padding:8px 12px;font-size:22px}.search input{width:100%;min-width:0;border:0;outline:0;padding:8px;color:#14233d}.search small{padding:8px;white-space:nowrap}.section{margin:34px 0}.head{margin-bottom:15px}.head small{color:var(--b);font-weight:800;letter-spacing:1px}.head h2{margin:2px 0;font-size:clamp(22px,3vw,28px)}.head p{margin:0;color:var(--mut);font-size:13px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.card{display:flex;flex-direction:column;gap:9px;background:white;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 10px 28px #102f5510;transition:.2s;min-width:0}.card:hover{transform:translateY(-3px);border-color:#a9ceff}.top{display:flex;align-items:center;justify-content:space-between;gap:8px}.ico{width:46px;height:46px;border-radius:14px;background:#edf5ff;display:grid;place-items:center;font-size:24px}.chip{font-size:10px;color:#1264d8;background:#edf5ff;border-radius:20px;padding:5px 7px;font-weight:800}.card h3{font-size:16px;margin:0}.card p{font-size:12px;color:var(--mut);margin:0;flex:1}.go{color:#0864d5;font-size:13px;font-weight:800;display:flex;justify-content:space-between;margin-top:3px}.tools{grid-template-columns:repeat(3,minmax(0,1fr))}.tool{flex-direction:row;align-items:center}.tool .text{flex:1}.links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.link{display:flex;align-items:center;gap:11px;background:white;border:1px solid var(--line);border-radius:13px;padding:14px;font-weight:700;font-size:13px}.link:hover{border-color:#a9ceff}.link i{font-style:normal;font-size:20px}.link b{margin-left:auto;color:var(--b)}.notice{margin-top:20px;padding:14px;border:1px dashed #c7d5e7;border-radius:13px;color:var(--mut);font-size:12px}footer{background:var(--n);color:white;margin-top:48px;padding:30px 0 18px}.footrow{display:flex;justify-content:space-between;gap:24px;align-items:flex-start}.footbrand{display:flex;gap:12px;align-items:center}.footbrand h2{font-size:17px;margin:0}.footbrand p{color:#b8cde9;font-size:12px;margin:3px 0}.socials{display:flex;gap:8px;flex-wrap:wrap}.socials a{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;border:1px solid #ffffff35;background:#ffffff10;font-weight:900}.socials a:hover{background:var(--b)}.social small{display:block;color:#a9bad0;margin-top:8px}.bottom{border-top:1px solid #ffffff22;margin-top:22px;padding-top:14px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:#a9bad0;font-size:11px}.hidden{display:none!important}
-@media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.tools,.links{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.wrap{width:calc(100% - 22px)}.brand img{width:46px;height:46px}.brand p{display:none}.brand h1{font-size:14px;max-width:190px}.hero{margin-top:17px;border-radius:20px}.grid,.tools,.links{grid-template-columns:1fr}.card{padding:15px}.footrow{flex-direction:column}.search small{display:none}}
-</style></head><body>
-<header><div class="wrap nav"><a class="brand" href="#"><img src="logo.jpg" alt="Daily Use Products Official logo"><div><h1>Daily Use Products Official</h1><p>Your Premier Digital Services Hub</p></div></a><button class="menubtn" id="menuBtn" aria-expanded="false">☰ Menu</button><nav class="menu" id="menu"><a href="#important">গুরুত্বপূর্ণ কার্ড</a><a href="#tools">দ্রুত ব্যবহারের টুলস</a><a href="#links">দরকারি লিংক</a><a href="#social">সোশ্যাল মিডিয়া</a><a href="admin.html">🔐 Admin Login</a></nav></div></header>
-<main class="wrap"><section class="hero"><div class="badge">✦ FAST · RELIABLE · SECURE</div><h2>আপনার দরকারি ডিজিটাল পরিষেবা, এক জায়গায়।</h2><p>সরকারি পোর্টাল, গুরুত্বপূর্ণ কার্ড, অনলাইন ফর্ম ও দৈনন্দিন কাজের টুলস—সহজে খুঁজুন, দ্রুত ব্যবহার করুন।</p><label class="search"><span>⌕</span><input id="search" type="search" placeholder="কার্ড, পরিষেবা বা টুলস খুঁজুন…" aria-label="খুঁজুন"><small id="count">সব পরিষেবা</small></label></section>
-<div id="error" class="notice hidden"></div>
-<section class="section" id="important"><div class="head"><small>ESSENTIAL SERVICES</small><h2>গুরুত্বপূর্ণ কার্ড</h2><p>পরিচয়পত্র ও প্রয়োজনীয় পরিষেবা</p></div><div class="grid searchable" id="cards">
-<a class="card" href="https://food.wb.gov.in/" target="_blank" rel="noopener" data-search="রেশন ration খাদ্য কার্ড"><div class="top"><span class="ico">🪪</span><span class="chip">GOVERNMENT</span></div><h3>রেশন কার্ড</h3><p>রেশন কার্ড সংক্রান্ত পরিষেবা</p><div class="go">পরিষেবা খুলুন <span>↗</span></div></a>
-<a class="card" href="https://www.incometax.gov.in/" target="_blank" rel="noopener" data-search="pan প্যান কার্ড আয়কর income tax"><div class="top"><span class="ico">💳</span><span class="chip">IDENTITY</span></div><h3>PAN কার্ড</h3><p>PAN আবেদন ও সংশ্লিষ্ট পরিষেবা</p><div class="go">পরিষেবা খুলুন <span>↗</span></div></a>
-<a class="card" href="https://voters.eci.gov.in/" target="_blank" rel="noopener" data-search="voter ভোটার কার্ড election"><div class="top"><span class="ico">🗳️</span><span class="chip">IDENTITY</span></div><h3>ভোটার কার্ড</h3><p>ভোটার তালিকা ও EPIC পরিষেবা</p><div class="go">পরিষেবা খুলুন <span>↗</span></div></a>
-<a class="card" href="https://uidai.gov.in/" target="_blank" rel="noopener" data-search="aadhaar aadhar আধার কার্ড uidai"><div class="top"><span class="ico">🆔</span><span class="chip">IDENTITY</span></div><h3>আধার কার্ড</h3><p>আধার সংক্রান্ত অনলাইন পরিষেবা</p><div class="go">পরিষেবা খুলুন <span>↗</span></div></a>
-<a class="card" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener" data-search="passport পাসপোর্ট visa ভিসা"><div class="top"><span class="ico">🛂</span><span class="chip">TRAVEL</span></div><h3>পাসপোর্ট সেবা</h3><p>পাসপোর্ট আবেদন ও অ্যাপয়েন্টমেন্ট</p><div class="go">পরিষেবা খুলুন <span>↗</span></div></a>
-<a class="card" href="https://www.digilocker.gov.in/" target="_blank" rel="noopener" data-search="digilocker ডিজিলকার document"><div class="top"><span class="ico">📂</span><span class="chip">DOCUMENTS</span></div><h3>DigiLocker</h3><p>ডিজিটাল নথি সংগ্রহ ও সংরক্ষণ</p><div class="go">পরিষেবা খুলুন <span>↗</span></div></a>
-<a class="card" href="https://beneficiary.nha.gov.in/" target="_blank" rel="noopener" data-search="ayushman আয়ুষ্মান bharat health"><div class="top"><span class="ico">🏥</span><span class="chip">HEALTH</span></div><h3>আয়ুষ্মান ভারত</h3><p>স্বাস্থ্য প্রকল্পের তথ্য ও পরিষেবা</p><div class="go">পরিষেবা খুলুন <span>↗</span></div></a>
-<a class="card" href="https://passportindia.gov.in/" target="_blank" rel="noopener" data-search="police clearance certificate pcc পুলিশ"><div class="top"><span class="ico">🛡️</span><span class="chip">CERTIFICATE</span></div><h3>Police Clearance Certificate</h3><p>পুলিশ ক্লিয়ারেন্স সংক্রান্ত তথ্য</p><div class="go">পরিষেবা খুলুন <span>↗</span></div></a>
-</div></section>
-<section class="section" id="tools"><div class="head"><small>QUICK TOOLS</small><h2>দ্রুত ব্যবহারের টুলস</h2><p>প্রতিদিনের কাজ গুছিয়ে রাখুন</p></div><div class="grid tools searchable">
-<a class="card tool" href="#" id="notes" data-search="আমার নোট notes"><span class="ico">📝</span><span class="text"><h3>আমার নোট</h3><p>এই ব্রাউজারে নোট রাখুন</p></span><b>→</b></a>
-<a class="card tool" href="#" id="checklist" data-search="ডকুমেন্ট চেকলিস্ট checklist"><span class="ico">☑️</span><span class="text"><h3>ডকুমেন্ট চেকলিস্ট</h3><p>প্রয়োজনীয় কাগজপত্র টিক দিন</p></span><b>→</b></a>
-<a class="card tool" href="https://www.google.com/" target="_blank" rel="noopener" data-search="google সার্চ search"><span class="ico">🔎</span><span class="text"><h3>ওয়েব সার্চ</h3><p>ইন্টারনেটে দ্রুত খুঁজুন</p></span><b>↗</b></a>
-</div></section>
-<section class="section" id="links"><div class="head"><small>USEFUL SHORTCUTS</small><h2>দরকারি কিছু লিংক</h2><p>সরকারি ও জনপ্রিয় পরিষেবায় দ্রুত প্রবেশ</p></div><div class="links searchable" id="useful">
-<a class="link" href="https://www.india.gov.in/" target="_blank" rel="noopener" data-search="india government ভারত সরকারি"><i>🇮🇳</i>ভারত সরকারি পোর্টাল <b>↗</b></a><a class="link" href="https://uidai.gov.in/" target="_blank" rel="noopener" data-search="uidai aadhaar আধার"><i>🆔</i>UIDAI / Aadhaar <b>↗</b></a><a class="link" href="https://www.incometax.gov.in/" target="_blank" rel="noopener" data-search="income tax pan আয়কর"><i>💼</i>Income Tax Portal <b>↗</b></a><a class="link" href="https://voters.eci.gov.in/" target="_blank" rel="noopener" data-search="voter election ভোটার"><i>🗳️</i>Voters’ Service Portal <b>↗</b></a><a class="link" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener" data-search="passport পাসপোর্ট"><i>🛂</i>Passport Seva <b>↗</b></a><a class="link" href="https://www.digilocker.gov.in/" target="_blank" rel="noopener" data-search="digilocker ডিজিলকার"><i>📁</i>DigiLocker <b>↗</b></a></div>
-</div><div class="notice">এই সাইটটি পরিষেবার শর্টকাট ড্যাশবোর্ড, সরকারি ওয়েবসাইট নয়। ফর্ম বা পেমেন্টের আগে অফিসিয়াল URL যাচাই করুন।</div></section></main>
-<footer><div class="wrap"><div class="footrow"><a class="footbrand" href="#"><img src="logo.jpg" alt="ওয়েবসাইটের লোগো"><div><h2>Daily Use Products Official</h2><p>Your Premier Digital Services Hub<br>Internet & Tech Solutions</p>
-  <!-- SOCIAL MEDIA LINKS -->
-<div class="social" id="social">
-  <strong>আমাদের সোশ্যাল মিডিয়া</strong>
-
-  <div class="socials" style="margin-top:10px">
-
-    <!-- Facebook -->
-    <a href="https://www.facebook.com/share/1Q3XK1nhjF/"
-       target="_blank" rel="noopener noreferrer"
-       aria-label="Facebook">f</a>
-
-    <!-- YouTube -->
-    <a href="https://www.youtube.com/@YOUR_CHANNEL"
-       target="_blank" rel="noopener noreferrer"
-       aria-label="YouTube">▶</a>
-
-    <!-- Instagram -->
-    <a href="https://www.instagram.com/YOUR_PAGE/"
-       target="_blank" rel="noopener noreferrer"
-       aria-label="Instagram">◎</a>
-
-    <!-- WhatsApp -->
-    <a href="https://chat.whatsapp.com/CzYLMj9dVm57qxxyJR195d?s=cl&p=a&mlu=4&ilr=4&iam=2"
-       target="_blank" rel="noopener noreferrer"
-       aria-label="WhatsApp">◉</a>
-
-    <!-- Telegram -->
-    <a href="https://t.me/YOUR_CHANNEL"
-       target="_blank" rel="noopener noreferrer"
-       aria-label="Telegram">➤</a>
-
-  </div>
-
-  <small>আমাদের সোশ্যাল মিডিয়ায় যুক্ত থাকুন।</small>
-</div>
-<script type="module">
-import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-
-// নিজের Firebase Web App config-এর apiKey এখানে বসান। API key চ্যাটে পাঠাবেন না।
-const firebaseConfig = {
-  apiKey: "AIzaSyAPvK_clkRscLgb4QfOyLVMKypd2pNrBlw",
-  authDomain: "bangla-personal-dashboard.firebaseapp.com",
-  projectId: "bangla-personal-dashboard",
-  storageBucket: "bangla-personal-dashboard.firebasestorage.app",
-  messagingSenderId: "885984909040",
-  appId: "1:885984909040:web:79ba997fbc99c32ca09435",
-  measurementId: "G-5S6SNNY97L"
-};
-const $ = id => document.getElementById(id);
-$("menuBtn").addEventListener("click", () => {
-  const open = $("menu").classList.toggle("open");
-  $("menuBtn").setAttribute("aria-expanded", String(open));
-});
-document.addEventListener("click", e => {
-  if (!$("menu").contains(e.target) && !$("menuBtn").contains(e.target)) {
-    $("menu").classList.remove("open");
-    $("menuBtn").setAttribute("aria-expanded", "false");
-  }
-});
-$("menu").querySelectorAll("a").forEach(a => a.addEventListener("click", () => $("menu").classList.remove("open")));
-
-function search() {
-  const q = $("search").value.trim().toLocaleLowerCase();
-  let count = 0;
-  document.querySelectorAll("[data-search]").forEach(el => {
-    const text = (el.innerText + " " + (el.dataset.search || "")).toLocaleLowerCase();
-    const show = !q || text.includes(q);
-    el.classList.toggle("hidden", !show);
-    if (show) count++;
-  });
-  $("count").textContent = q ? `${count}টি ফলাফল` : "সব পরিষেবা";
-  document.querySelectorAll(".section").forEach(section => {
-    const items = [...section.querySelectorAll("[data-search]")];
-    section.classList.toggle("hidden", items.length > 0 && !items.some(el => !el.classList.contains("hidden")));
-  });
-}
-$("search").addEventListener("input", search);
-$("notes").addEventListener("click", e => {
-  e.preventDefault();
-  const value = prompt("আপনার নোট লিখুন:", localStorage.getItem("dupo-notes") || "");
-  if (value !== null) { localStorage.setItem("dupo-notes", value); alert("নোট এই ব্রাউজারে সংরক্ষিত হয়েছে।"); }
-});
-$("checklist").addEventListener("click", e => {
-  e.preventDefault();
-  const value = prompt("প্রতি লাইনে একটি ডকুমেন্ট লিখুন:", localStorage.getItem("dupo-checklist") || "আধার কার্ড\nPAN কার্ড\nভোটার কার্ড\nরেশন কার্ড");
-  if (value !== null) { localStorage.setItem("dupo-checklist", value); alert("চেকলিস্ট সংরক্ষিত হয়েছে।"); }
-});
-
-function safeUrl(value) {
-  try { const u = new URL(String(value)); return ["https:", "http:"].includes(u.protocol) ? u.href : ""; }
-  catch { return ""; }
-}
-function normalize(value) { return String(value || "").trim().toLocaleLowerCase().replace(/\s+/g, " "); }
-function updateOrCreateCard(item) {
-  if (!item || !item.title) return null;
-  const title = String(item.title).trim();
-  const url = safeUrl(item.url || "");
-  let card = document.createElement("a"); card.className = "card";
-  const top = document.createElement("div"); top.className = "top";
-  const icon = document.createElement("span"); icon.className = "ico"; icon.textContent = String(item.icon || "🔗");
-  const chip = document.createElement("span"); chip.className = "chip"; chip.textContent = String(item.tag || "SERVICE");
-  top.append(icon, chip);
-  const h = document.createElement("h3"); h.textContent = title;
-  const p = document.createElement("p"); p.textContent = String(item.description || "পরিষেবা খুলুন");
-  const go = document.createElement("div"); go.className = "go"; go.append("পরিষেবা খুলুন ");
-  const arrow = document.createElement("span"); arrow.textContent = "↗"; go.append(arrow);
-  card.append(top, h, p, go); card.href = url || "#";
-  if (url) { card.target = "_blank"; card.rel = "noopener noreferrer"; }
-  card.dataset.search = [title, item.description, item.keywords, item.tag, item.id].filter(Boolean).join(" ");
-  return card;
-}
-function renderCards(items) {
-  if (!Array.isArray(items)) return;
-  const container = $("cards");
-  container.replaceChildren();
-  items.forEach(item => { const card = updateOrCreateCard(item); if (card) container.append(card); });
-}
-
-function renderCustomLinks(items) {
-  if (!Array.isArray(items)) return;
-  const container = $("useful");
-  const known = new Set([...container.querySelectorAll("a")].map(a => "title:" + normalize(a.querySelector("span")?.textContent || a.textContent)));
-  items.forEach(item => {
-    if (!item?.title) return;
-    const title = String(item.title).trim(), url = safeUrl(item.url || "");
-    if (!title || !url || known.has("title:" + normalize(title))) return;
-    known.add("title:" + normalize(title));
-    const a = document.createElement("a"); a.className = "link"; a.href = url; a.target = "_blank"; a.rel = "noopener noreferrer";
-    a.dataset.search = [title, item.description, item.keywords].filter(Boolean).join(" ");
-    const icon = document.createElement("i"); icon.textContent = String(item.icon || "🔗");
-    const label = document.createElement("span"); label.textContent = title;
-    const arrow = document.createElement("b"); arrow.textContent = "↗";
-    a.append(icon, label, arrow); container.append(a);
-  });
-}
-async function loadDashboard() {
-  
-if (
-  !firebaseConfig.apiKey ||
-  firebaseConfig.apiKey === "AIzaSyAPvK_clkRscLgb4QfOyLVMKypd2pNrBlw"
-) {
-  console.warn(
-    "Firebase API key সেট করা হয়নি; বিল্ট-ইন কার্ড চালু থাকবে।"
-  );
-  return;
-}
-
-
-  try {
-    const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const [layoutSnap, linksSnap, settingsSnap] = await Promise.all([
-      getDoc(doc(db, "siteContent", "cardLayout")),
-      getDoc(doc(db, "siteContent", "customLinks")),
-      getDoc(doc(db, "siteContent", "siteSettings"))
-    ]);
-    if (layoutSnap.exists() && Array.isArray(layoutSnap.data().cards)) renderCards(layoutSnap.data().cards);
-    if (linksSnap.exists()) renderCustomLinks(linksSnap.data().items);
-    if (settingsSnap.exists()) {
-      const settings = settingsSnap.data();
-      if (settings.title) document.querySelector(".brand h1").textContent = settings.title;
-      if (settings.subtitle) document.querySelector(".brand p").textContent = settings.subtitle;
-      const heroTitle = document.querySelector(".hero h2");
-      if (settings.heroTitle && heroTitle) heroTitle.textContent = settings.heroTitle;
-      const heroSubtitle = document.querySelector(".hero p");
-      if (settings.heroSubtitle && heroSubtitle) heroSubtitle.textContent = settings.heroSubtitle;
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#07162d">
+  <title>Daily Use Products Official</title>
+  <style>
+    :root {
+      --n: #07162d;
+      --b: #1677ff;
+      --g: #ffc928;
+      --ink: #15243d;
+      --mut: #68768d;
+      --line: #e3eaf4;
+      --white: #fff;
+      --bg: #f5f8fd;
     }
-  } catch (error) {
-    console.error("Firebase loading error:", error);
-    const box = $("error"); box.classList.remove("hidden");
-    box.textContent = "Firebase থেকে নতুন কার্ড বা কাস্টম লিংক লোড হয়নি। Firebase config ও Firestore Rules যাচাই করুন। পুরোনো কার্ড ব্যবহার করতে পারবেন।";
-  } finally { search(); }
-}
-search();
-loadDashboard();
-</script>
-</body></html>
 
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 16px/1.55 system-ui, "Noto Sans Bengali", sans-serif;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .wrap {
+      width: min(1160px, calc(100% - 28px));
+      margin: 0 auto;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(7, 22, 45, 0.96);
+      color: white;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+    }
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand img,
+    .footbrand img {
+      width: 55px;
+      height: 55px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.14);
+    }
+    .brand h1,
+    .footbrand h2 {
+      font-size: clamp(15px, 2vw, 23px);
+      margin: 0;
+      line-height: 1.2;
+    }
+    .brand p {
+      margin: 2px 0 0;
+      color: #b8cde9;
+      font-size: 12px;
+    }
+    .menubtn {
+      background: #fff;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--n);
+      border-radius: 12px;
+      padding: 10px 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .menu {
+      display: none;
+      position: absolute;
+      right: 14px;
+      top: 70px;
+      background: white;
+      color: var(--ink);
+      padding: 10px;
+      border-radius: 15px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+      width: 260px;
+      border: 1px solid var(--line);
+    }
+    .menu.open { display: grid; }
+    .menu a {
+      padding: 11px 12px;
+      border-radius: 9px;
+      font-weight: 600;
+    }
+    .menu a:hover { background: #edf5ff; }
+    .hero {
+      margin: 26px 0 0;
+      background: radial-gradient(ellipse at 85% 15%, rgba(22, 119, 255, 0.16), transparent 38%),
+                  linear-gradient(135deg, #07162d 0%, #0b2e58 70%, #0872b8 100%);
+      color: white;
+      padding: clamp(25px, 4vw, 52px);
+      border-radius: 26px;
+      position: relative;
+      overflow: hidden;
+    }
+    .badge {
+      color: #ffe17a;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+    .hero h2 {
+      font-size: clamp(25px, 5vw, 46px);
+      line-height: 1.2;
+      margin: 14px 0;
+    }
+    .hero p {
+      color: #c8d9ef;
+      max-width: 640px;
+      margin: 0;
+    }
+    .search {
+      background: white;
+      display: flex;
+      align-items: center;
+      max-width: 680px;
+      border-radius: 14px;
+      padding: 6px 8px 6px 16px;
+      color: #66758c;
+      margin-top: 22px;
+      box-shadow: 0 14px 32px rgba(11,46,88,0.18);
+    }
+    .search span {
+      padding-right: 12px;
+      font-weight: 700;
+      color: var(--n);
+    }
+    .search input {
+      width: 100%;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      padding: 8px 12px;
+      color: #14233d;
+      font-size: 22px;
+      background: transparent;
+    }
+    .search small {
+      padding: 8px 12px;
+      white-space: nowrap;
+      color: var(--n);
+      font-weight: 700;
+    }
+    .section { margin: 34px 0; }
+    .head {
+      margin-bottom: 15px;
+    }
+    .head small {
+      color: var(--b);
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+    .head h2 {
+      margin: 2px 0;
+      font-size: clamp(22px, 3vw, 28px);
+    }
+    .head p {
+      margin: 0;
+      color: var(--mut);
+      font-size: 13px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .card {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 10px 28px rgba(16, 47, 81, 0.06);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      min-width: 0;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: #a9cef8;
+    }
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .ico {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: #edf5ff;
+      display: grid;
+      place-items: center;
+      font-size: 24px;
+    }
+    .chip {
+      font-size: 10px;
+      color: #1264d8;
+      background: #edf5ff;
+      border-radius: 20px;
+      padding: 5px 7px;
+      font-weight: 800;
+    }
+    .card h3 {
+      font-size: 16px;
+      margin: 0;
+    }
+    .card p {
+      font-size: 12px;
+      color: var(--mut);
+      margin: 0;
+      flex: 1;
+    }
+    .go {
+      color: #0864d5;
+      font-size: 13px;
+      font-weight: 800;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3px;
+    }
+    .tools .grid,
+    .links {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .tool {
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+    }
+    .tool .text {
+      flex: 1;
+      min-width: 0;
+    }
+    .tool .text h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+    .tool .text p {
+      margin: 0;
+      font-size: 12px;
+      color: var(--mut);
+    }
+    .links {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .link {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      padding: 14px 16px;
+      font-weight: 700;
+    }
+    .link i { font-style: normal; font-size: 20px; }
+    .link b {
+      margin-left: auto;
+      color: var(--b);
+      font-size: 18px;
+    }
+    .notice {
+      margin-top: 20px;
+      padding: 14px 16px;
+      border: 1px dashed #c7d5e7;
+      border-radius: 13px;
+      color: var(--mut);
+      font-size: 12px;
+      background: #fff;
+    }
+    footer {
+      background: var(--n);
+      color: white;
+      margin-top: 48px;
+      padding: 30px 0 18px;
+    }
+    .footrow {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-start;
+    }
+    .footbrand {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .footbrand p {
+      margin: 3px 0 0;
+      color: #b8cde9;
+      font-size: 12px;
+    }
+    .social {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .socials {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .socials a {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.35);
+      background: rgba(255,255,255,0.10);
+      font-weight: 900;
+    }
+    .social small {
+      display: block;
+      color: #a9bad0;
+      margin-top: 8px;
+    }
+    .hidden { display: none !important; }
 
+    @media (max-width: 850px) {
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .tools .grid, .links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 560px) {
+      .wrap { width: calc(100% - 22px); }
+      .brand img, .footbrand img { width: 46px; height: 46px; }
+      .brand p { display: none; }
+      .hero { border-radius: 20px; }
+      .grid, .tools .grid, .links { grid-template-columns: 1fr; }
+      .footrow { flex-direction: column; }
+      .search { display: block; }
+      .search span { display: block; margin-bottom: 6px; }
+      .search small { display: block; margin-top: 6px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#">
+        <img src="logo.jpg" alt="Daily Use Products Official logo">
+        <div>
+          <h1>Daily Use Products Official</h1>
+          <p>Your Premier Digital Services Hub</p>
+        </div>
+      </a>
+      <button class="menubtn" id="menuBtn" aria-expanded="false" aria-controls="menu">☰ Menu</button>
+      <nav class="menu" id="menu" aria-label="Main menu">
+        <a href="#important">গুরুত্বপূর্ণ পরিষেবা</a>
+        <a href="#tools">দ্রুত টুলস</a>
+        <a href="#links">দরকারি লিংক</a>
+        <a href="#social">সোশ্যাল মিডিয়া</a>
+        <a href="admin.html">Admin Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="badge">✦ FAST · RELIABLE · SECURE</div>
+      <h2>আপনার দরকারি ডিজিটাল পরিষেবা, এক জা���গায়</h2>
+      <p>সরকারি ও জনপ্রিয় অনলাইন পরিষেবা দ্রুত খুঁজে নিতে সাহায্য করে এই পোর্টাল। প্রয়োজনীয় ফর্ম, সেবা ও শর্টকাট একসাথে।</p>
+
+      <label class="search" aria-label="Search services">
+        <span>🔎</span>
+        <input id="search" type="search" placeholder="সার্চ করুন, যেমন: রেশন, PAN, ভোটার সেবা..." aria-label="সার্চ করুন">
+        <small id="count">সব পরিষেবা</small>
+      </label>
+    </section>
+
+    <div id="error" class="notice hidden"></div>
+
+    <section class="section" id="important">
+      <div class="head">
+        <small>ESSENTIAL SERVICES</small>
+        <h2>গুরুত্বপূর্ণ পরিষেবা</h2>
+        <p>পরিচয়পত্র, স্বাস্থ্য, ভ্রমণ, ব্যাংকিং এবং সরকারি সেবা সহজে খুঁজুন।</p>
+      </div>
+      <div class="grid searchable" id="cards">
+        <a class="card" href="https://food.wb.gov.in/" target="_blank" rel="noopener" data-search="রেশন ration খাদ্য কার্ড wb government food card">
+          <div class="top"><span class="ico">🪪</span><span class="chip">GOVERNMENT</span></div>
+          <h3>রেশন কার্ড</h3>
+          <p>খাদ্য ও রেশন সেবা, স্ট্যাটাস ও আবেদন তথ্য দেখুন।</p>
+          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
+        </a>
+
+        <a class="card" href="https://www.incometax.gov.in/" target="_blank" rel="noopener" data-search="pan প্যান কার্ড income tax govt tax">
+          <div class="top"><span class="ico">💳</span><span class="chip">IDENTITY</span></div>
+          <h3>PAN</h3>
+          <p>আয়কর ও PAN সংক্রান্ত সেবা ও পরিদর্শন খুঁজুন।</p>
+          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
+        </a>
+
+        <a class="card" href="https://voters.eci.gov.in/" target="_blank" rel="noopener" data-search="voter ভোটার কার্ড election govt voter card">
+          <div class="top"><span class="ico">🗳️</span><span class="chip">IDENTITY</span></div>
+          <h3>ভোটার কার্ড</h3>
+          <p>ভোটার সার্ভিস, তথ্য ও সংশোধনের জন্য।</p>
+          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
+        </a>
+
+        <a class="card" href="https://uidai.gov.in/" target="_blank" rel="noopener" data-search="aadhaar aadhar আধার কার্ড uidai govt biometric">
+          <div class="top"><span class="ico">🆔</span><span class="chip">IDENTITY</span></div>
+          <h3>আধার কার্ড</h3>
+          <p>আধার আপডেট, স্ট্যাটাস ও অনেক প্রয়োজনীয় তথ্য।</p>
+          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
+        </a>
+
+        <a class="card" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener" data-search="passport পাসপোর্ট visa travel">
+          <div class="top"><span class="ico">🛂</span><span class="chip">TRAVEL</span></div>
+          <h3>পাসপোর্ট</h3>
+          <p>ভ্রমণ, আবেদন ও পাসপোর্ট সংশ্লিষ্ট সেবা।</p>
+          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
+        </a>
+
+        <a class="card" href="https://www.digilocker.gov.in/" target="_blank" rel="noopener" data-search="digilocker ডিজিলকার document storage">
+          <div class="top"><span class="ico">📂</span><span class="chip">DOCUMENTS</span></div>
+          <h3>ডিজিলকার</h3>
+          <p>ডকুমেন্ট সংরক্ষণ, ডাউনলোড ও যাচাই।</p>
+          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
+        </a>
+
+        <a class="card" href="https://beneficiary.nha.gov.in/" target="_blank" rel="noopener" data-search="ayushman আয়ুষ্মান bharat health insurance">
+          <div class="top"><span class="ico">🏥</span><span class="chip">HEALTH</span></div>
+          <h3>আয়ুষ্মান স্বাস্থ্য</h3>
+          <p>স্বাস্থ্য সেবা, সুবিধা ও বেনিফিট সম্পর্কিত তথ্য।</p>
+          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
+        </a>
+
+        <a class="card" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener" data-search="police clearance certificate pcc police verification passport">
+          <div class="top"><span class="ico">🛡️</span><span class="chip">CERTIFICATE</span></div>
+          <h3>Police Clearance</h3>
+          <p>পুলিশ ভেরিফিকেশন ও সার্টিফিকেট সম্পর্কিত তথ্য।</p>
+          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section tools" id="tools">
+      <div class="head">
+        <small>QUICK TOOLS</small>
+        <h2>দ্রুত ব্যবহারের টুলস</h2>
+        <p>প্রতিদিনের কাজ সহজ করতে প্রয়োজনীয় টুলস সংরক্ষণ করুন।</p>
+      </div>
+      <div class="grid searchable">
+        <a class="card tool" href="#" id="notes" data-search="আমার নোট notes personal note">
+          <span class="ico">📝</span>
+          <span class="text">
+            <h3>আমার নোট</h3>
+            <p>এই ব্রাউজারে আপনার নোট সংরক্ষণ করুন।</p>
+          </span>
+          <b>↗</b>
+        </a>
+
+        <a class="card tool" href="#" id="checklist" data-search="ডকুমেন্ট চেকলিস্ট checklist document list">
+          <span class="ico">☑️</span>
+          <span class="text">
+            <h3>চেকলিস্ট</h3>
+            <p>প্রতিদিনের কাজ ও ডকুমেন্ট তালিকা রাখুন।</p>
+          </span>
+          <b>↗</b>
+        </a>
+
+        <a class="card tool" href="https://www.google.com/" target="_blank" rel="noopener" data-search="google search web search">
+          <span class="ico">🔎</span>
+          <span class="text">
+            <h3>গুগল সার্চ</h3>
+            <p>দ্রুত তথ্য খুঁজে নিন ও সাইট ভিজিট করুন।</p>
+          </span>
+          <b>↗</b>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="links">
+      <div class="head">
+        <small>USEFUL SHORTCUTS</small>
+        <h2>দরকারি কিছু লিংক</h2>
+        <p>সরকারি ও জনপ্রিয় পরিষেবা আপনার জন্য দ্রুত Shortcut।</p>
+      </div>
+      <div class="links searchable" id="useful">
+        <a class="link" href="https://www.india.gov.in/" target="_blank" rel="noopener" data-search="india government ভারত সরকারি তথ্য">
+          <i>🇮🇳</i><span>ভারত সরকারী পোর্টাল</span><b>↗</b>
+        </a>
+        <a class="link" href="https://uidai.gov.in/" target="_blank" rel="noopener" data-search="uidai aadhaar আধার কার্ড">
+          <i>🆔</i><span>UIDAI / আধার</span><b>↗</b>
+        </a>
+        <a class="link" href="https://www.incometax.gov.in/" target="_blank" rel="noopener" data-search="income tax pan কর">
+          <i>💳</i><span>Income Tax Portal</span><b>↗</b>
+        </a>
+        <a class="link" href="https://voters.eci.gov.in/" target="_blank" rel="noopener" data-search="voter election ভোটার সেবা">
+          <i>🗳️</i><span>Voters Service Portal</span><b>↗</b>
+        </a>
+        <a class="link" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener" data-search="passport passport seva">
+          <i>🛂</i><span>Passport Seva</span><b>↗</b>
+        </a>
+        <a class="link" href="https://www.digilocker.gov.in/" target="_blank" rel="noopener" data-search="digilocker document storage">
+          <i>📂</i><span>Digilocker</span><b>↗</b>
+        </a>
+      </div>
+    </section>
+
+    <div class="notice">এই সাইটটি পরিষেবার শর্টকাট ড্যাশবোর্ড, সরকারি ওয়েবসাইট নয়। ফর্ম জমা দেওয়ার জন্য সরকারী অফিসিয়াল পোর্টাল ব্যবহার করুন।</div>
+  </main>
+
+  <footer>
+    <div class="wrap footrow">
+      <a class="footbrand" href="#">
+        <img src="logo.jpg" alt="Daily Use Products Official logo">
+        <div>
+          <h2>Daily Use Products Official</h2>
+          <p>Your Premier Digital Services Hub<br>Internet & Tech Solutions</p>
+        </div>
+      </a>
+
+      <div class="social" id="social">
+        <strong>আমাদের সোশ্যাল মিডিয়া</strong>
+        <div class="socials" aria-label="Social media links">
+          <a href="https://www.facebook.com/share/1Q3XK1nhjF/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a>
+          <a href="https://www.youtube.com/@YOUR_CHANNEL" target="_blank" rel="noopener noreferrer" aria-label="YouTube">▶</a>
+          <a href="https://www.instagram.com/YOUR_PAGE/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">◎</a>
+          <a href="https://chat.whatsapp.com/CzYLMj9dVm57qxxyJR195d?s=cl&p=a&mlu=4&ilr=4&iam=2" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">◉</a>
+          <a href="https://t.me/YOUR_CHANNEL" target="_blank" rel="noopener noreferrer" aria-label="Telegram">➤</a>
+        </div>
+        <small>আমাদের সোশ্যাল মিডিয়ায় যুক্ত থাকুন।</small>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAPvK_clkRscLgb4QfOyLVMKypd2pNrBlw",
+      authDomain: "bangla-personal-dashboard.firebaseapp.com",
+      projectId: "bangla-personal-dashboard",
+      storageBucket: "bangla-personal-dashboard.firebasestorage.app",
+      messagingSenderId: "885984909040",
+      appId: "1:885984909040:web:79ba997fbc99c32ca09435",
+      measurementId: "G-5S6SNNY97L"
+    };
+
+    const $ = (id) => document.getElementById(id);
+
+    const menuBtn = $("menuBtn");
+    const menu = $("menu");
+    if (menuBtn && menu) {
+      menuBtn.addEventListener("click", () => {
+        const open = menu.classList.toggle("open");
+        menuBtn.setAttribute("aria-expanded", String(open));
+      });
+    }
+
+    document.addEventListener("click", (event) => {
+      if (!menu || !menuBtn) return;
+      const target = event.target;
+      if (!menu.contains(target) && !menuBtn.contains(target)) {
+        menu.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    if (menu) {
+      menu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => menu.classList.remove("open"));
+      });
+    }
+
+    function search() {
+      const input = $("search");
+      const count = $("count");
+      if (!input || !count) return;
+
+      const q = input.value.trim().toLowerCase();
+      let visibleCount = 0;
+
+      document.querySelectorAll("[data-search]").forEach((element) => {
+        const text = (element.innerText + " " + (element.dataset.search || "")).toLowerCase();
+        const show = !q || text.includes(q);
+        element.classList.toggle("hidden", !show);
+        if (show) visibleCount += 1;
+      });
+
+      count.textContent = q ? `${visibleCount}টি ফলাফল` : "সব পরিষেবা";
+
+      document.querySelectorAll(".section").forEach((section) => {
+        const items = [...section.querySelectorAll("[data-search]")];
+        const hasVisibleItems = items.some((el) => !el.classList.contains("hidden"));
+        section.classList.toggle("hidden", items.length > 0 && !hasVisibleItems);
+      });
+    }
+
+    const searchInput = $("search");
+    if (searchInput) searchInput.addEventListener("input", search);
+
+    const notesButton = $("notes");
+    if (notesButton) {
+      notesButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        const value = prompt("আপনার নোট লিখুন:", localStorage.getItem("dupo-notes") || "");
+        if (value !== null) {
+          localStorage.setItem("dupo-notes", value);
+          alert("নোট এই ব্রাউজারে সংরক্ষিত হয়েছে।");
+        }
+      });
+    }
+
+    const checklistButton = $("checklist");
+    if (checklistButton) {
+      checklistButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        const value = prompt("প্রতি লাইনে একটি ডকুমেন্ট লিখুন:", localStorage.getItem("dupo-checklist") || "আধার কার্ড\nPAN কার্ড\nভোটার কার্ড");
+        if (value !== null) {
+          localStorage.setItem("dupo-checklist", value);
+          alert("চেকলিস্ট সংরক্ষিত হয়েছে।");
+        }
+      });
+    }
+
+    function safeUrl(value) {
+      try {
+        const url = new URL(String(value));
+        return ["https:", "http:"].includes(url.protocol) ? url.href : "";
+      } catch {
+        return "";
+      }
+    }
+
+    function normalize(value) {
+      return String(value || "").trim().toLowerCase().replace(/\s+/g, " ");
+    }
+
+    function updateOrCreateCard(item) {
+      if (!item || !item.title) return null;
+
+      const title = String(item.title).trim();
+      const url = safeUrl(item.url || "");
+      const card = document.createElement("a");
+      card.className = "card";
+      card.href = url || "#";
+      if (url) {
+        card.target = "_blank";
+        card.rel = "noopener noreferrer";
+      }
+
+      const top = document.createElement("div");
+      top.className = "top";
+
+      const icon = document.createElement("span");
+      icon.className = "ico";
+      icon.textContent = String(item.icon || "🔗");
+
+      const chip = document.createElement("span");
+      chip.className = "chip";
+      chip.textContent = String(item.tag || "SERVICE");
+
+      top.append(icon, chip);
+
+      const h = document.createElement("h3");
+      h.textContent = title;
+
+      const p = document.createElement("p");
+      p.textContent = String(item.description || "পরিষেবা খুলুন");
+
+      const go = document.createElement("div");
+      go.className = "go";
+      go.innerHTML = "সার্ভিস খুলুন <span>↗</span>";
+
+      card.append(top, h, p, go);
+      card.dataset.search = [title, item.description, item.keywords, item.tag, item.id].filter(Boolean).join(" ");
+      return card;
+    }
+
+    function renderCards(items) {
+      if (!Array.isArray(items)) return;
+      const container = $("cards");
+      if (!container) return;
+      container.replaceChildren();
+      items.forEach((item) => {
+        const card = updateOrCreateCard(item);
+        if (card) container.append(card);
+      });
+    }
+
+    function renderCustomLinks(items) {
+      if (!Array.isArray(items)) return;
+      const container = $("useful");
+      if (!container) return;
+
+      const known = new Set(
+        [...container.querySelectorAll("a")].map((a) => "title:" + normalize(a.textContent || a.querySelector("span")?.textContent || ""))
+      );
+
+      items.forEach((item) => {
+        if (!item || !item.title) return;
+        const title = String(item.title).trim();
+        const url = safeUrl(item.url || "");
+        if (!title || !url || known.has("title:" + normalize(title))) return;
+
+        known.add("title:" + normalize(title));
+
+        const link = document.createElement("a");
+        link.className = "link";
+        link.href = url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.dataset.search = [title, item.description, item.keywords].filter(Boolean).join(" ");
+
+        const icon = document.createElement("i");
+        icon.textContent = String(item.icon || "🔗");
+
+        const label = document.createElement("span");
+        label.textContent = title;
+
+        const arrow = document.createElement("b");
+        arrow.textContent = "↗";
+
+        link.append(icon, label, arrow);
+        container.append(link);
+      });
+    }
+
+    async function loadDashboard() {
+      if (!firebaseConfig.apiKey || firebaseConfig.apiKey === "AIzaSyAPvK_clkRscLgb4QfOyLVMKypd2pNrBlw") {
+        console.warn("Firebase API key not configured; using built-in static content.");
+        return;
+      }
+
+      try {
+        const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const [layoutSnap, linksSnap, settingsSnap] = await Promise.all([
+          getDoc(doc(db, "siteContent", "cardLayout")),
+          getDoc(doc(db, "siteContent", "customLinks")),
+          getDoc(doc(db, "siteContent", "siteSettings"))
+        ]);
+
+        if (layoutSnap.exists() && Array.isArray(layoutSnap.data().cards)) {
+          renderCards(layoutSnap.data().cards);
+        }
+
+        if (linksSnap.exists()) {
+          renderCustomLinks(linksSnap.data().items || []);
+        }
+
+        if (settingsSnap.exists()) {
+          const settings = settingsSnap.data();
+          const brandTitle = document.querySelector(".brand h1");
+          const brandSubtitle = document.querySelector(".brand p");
+          const heroTitle = document.querySelector(".hero h2");
+          const heroSubtitle = document.querySelector(".hero p");
+
+          if (settings.title && brandTitle) brandTitle.textContent = settings.title;
+          if (settings.subtitle && brandSubtitle) brandSubtitle.textContent = settings.subtitle;
+          if (settings.heroTitle && heroTitle) heroTitle.textContent = settings.heroTitle;
+          if (settings.heroSubtitle && heroSubtitle) heroSubtitle.textContent = settings.heroSubtitle;
+        }
+      } catch (error) {
+        console.error("Firebase loading error:", error);
+        const box = $("error");
+        if (box) {
+          box.classList.remove("hidden");
+          box.textContent = "Firebase থেকে নতুন কার্ড বা কাস্টম লিংক লোড হয়নি। Firebase config ও Firestore Rules যাচাই করুন।";
+        }
+      } finally {
+        search();
+      }
+    }
+
+    search();
+    loadDashboard();
+  </script>
+</body>
+</html>
