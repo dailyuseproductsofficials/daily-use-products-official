@@ -3,23 +3,28 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#07162d">
+  <meta name="theme-color" content="#07131f">
   <title>Daily Use Products Official</title>
   <style>
     :root {
-      --navy: #07162d;
-      --navy-2: #0d2444;
-      --blue: #1677ff;
-      --blue-soft: #edf5ff;
-      --gold: #ffc928;
-      --orange: #ff8a4c;
-      --ink: #18273f;
-      --muted: #68768d;
-      --line: #e4ebf6;
-      --white: #ffffff;
-      --bg: #f4f7fc;
-      --shadow: 0 18px 50px rgba(9, 23, 48, 0.10);
-      --card-shadow: 0 16px 40px rgba(16, 47, 81, 0.07);
+      --bg: #07131f;
+      --bg-2: #0d1d2e;
+      --panel: rgba(14, 25, 38, 0.84);
+      --panel-strong: #111f2f;
+      --panel-soft: rgba(17,31,47,0.9);
+      --line: rgba(255,255,255,0.08);
+      --line-strong: rgba(167, 205, 255, 0.22);
+      --text: #edf4ff;
+      --muted: #a8bfd6;
+      --muted-2: #7d97b8;
+      --blue: #4fa3ff;
+      --blue-2: #7dc7ff;
+      --gold: #f7c75d;
+      --gold-2: #ffdf8d;
+      --cyan: #71d8ff;
+      --shadow: 0 24px 64px rgba(2, 6, 12, 0.55);
+      --card-shadow: 0 18px 42px rgba(11, 19, 33, 0.42);
+      --radius: 22px;
     }
 
     * { box-sizing: border-box; }
@@ -27,10 +32,10 @@
     body {
       margin: 0;
       background:
-        radial-gradient(circle at top left, rgba(22,119,255,0.10), transparent 28%),
-        radial-gradient(circle at bottom right, rgba(255,201,40,0.08), transparent 22%),
-        var(--bg);
-      color: var(--ink);
+        radial-gradient(circle at top left, rgba(79, 163, 255, 0.18), transparent 20%),
+        radial-gradient(circle at bottom right, rgba(247, 199, 93, 0.12), transparent 25%),
+        linear-gradient(180deg, #050d16 0%, #091b2d 100%);
+      color: var(--text);
       font: 16px/1.6 system-ui, "Noto Sans Bengali", sans-serif;
       text-rendering: optimizeLegibility;
     }
@@ -40,22 +45,21 @@
     button, input, select { font: inherit; }
 
     .wrap {
-      width: min(1160px, calc(100% - 28px));
+      width: min(1180px, calc(100% - 28px));
       margin: 0 auto;
     }
 
     header {
       position: sticky;
       top: 0;
-      z-index: 50;
-      background: rgba(7, 22, 45, 0.88);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,0.12);
-      color: white;
+      z-index: 80;
+      background: rgba(7, 19, 31, 0.72);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
     }
 
     .nav {
-      min-height: 82px;
+      min-height: 84px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -75,35 +79,54 @@
       width: 56px;
       height: 56px;
       object-fit: cover;
-      border-radius: 18px;
-      border: 2px solid rgba(255,255,255,0.16);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.12);
-      flex-shrink: 0;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.2);
     }
 
     .brand h1,
     .footbrand h2 {
       margin: 0;
-      line-height: 1.2;
-      letter-spacing: -0.04em;
       font-size: clamp(16px, 2vw, 24px);
+      line-height: 1.18;
+      letter-spacing: -0.04em;
+      color: #f4f8ff;
     }
 
     .brand p {
-      margin: 2px 0 0;
+      margin: 4px 0 0;
       font-size: 12px;
-      color: #bfd3f0;
+      color: var(--muted);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(79,163,255,0.18), rgba(125,199,255,0.08));
+      border: 1px solid var(--line-strong);
+      color: var(--text);
+      font-weight: 700;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
     }
 
     .menubtn {
-      border: 1px solid rgba(255,255,255,0.2);
-      background: #fff;
-      color: var(--navy);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text);
       border-radius: 12px;
       padding: 10px 16px;
       font-weight: 800;
       cursor: pointer;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
     }
 
     .menu {
@@ -111,12 +134,11 @@
       position: absolute;
       right: 0;
       top: 76px;
-      width: min(260px, calc(100vw - 30px));
+      width: min(280px, calc(100vw - 28px));
       padding: 10px;
-      background: rgba(255,255,255,0.96);
-      color: var(--ink);
-      border-radius: 16px;
+      background: rgba(12, 22, 34, 0.96);
       border: 1px solid var(--line);
+      border-radius: 18px;
       box-shadow: var(--shadow);
     }
 
@@ -125,121 +147,255 @@
       padding: 12px 14px;
       border-radius: 10px;
       font-weight: 700;
-      color: var(--ink);
+      color: var(--text);
     }
-    .menu a:hover { background: #edf5ff; }
+    .menu a:hover { background: rgba(79,163,255,0.08); }
 
     .hero {
-      margin-top: 28px;
-      background:
-        radial-gradient(circle at 85% 18%, rgba(255,201,40,0.18), transparent 18%),
-        radial-gradient(circle at 20% 20%, rgba(255,138,76,0.18), transparent 14%),
-        linear-gradient(135deg, #07162d 0%, #0a2749 55%, #0c6ab9 100%);
-      color: white;
-      border-radius: 28px;
-      padding: clamp(26px, 4vw, 52px);
+      margin-top: 26px;
+      border-radius: 30px;
+      padding: clamp(22px, 3vw, 44px);
       position: relative;
       overflow: hidden;
-      box-shadow: 0 30px 55px rgba(7, 22, 45, 0.18);
+      background:
+        linear-gradient(135deg, rgba(10, 19, 31, 0.9), rgba(13, 29, 46, 0.88)),
+        radial-gradient(circle at 18% 20%, rgba(79,163,255,0.14), transparent 30%),
+        radial-gradient(circle at 100% 0%, rgba(247,199,93,0.12), transparent 26%);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
     }
 
-    .hero::after {
+    .hero::before {
       content: "";
       position: absolute;
-      inset: auto -40px -70px auto;
-      width: 220px;
-      height: 220px;
-      background: rgba(255,255,255,0.06);
-      border-radius: 50%;
-      filter: blur(6px);
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+      transform: translateX(-100%);
+      animation: shine 9s linear infinite;
     }
 
-    .badge {
-      display: inline-block;
-      color: #ffe18b;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      padding: 8px 12px;
-      border-radius: 999px;
+    @keyframes shine {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       font-size: 12px;
       font-weight: 800;
       letter-spacing: 0.12em;
       text-transform: uppercase;
+      color: var(--gold-2);
+      background: rgba(247,199,93,0.08);
+      border: 1px solid rgba(247, 199, 93, 0.18);
+      padding: 8px 12px;
+      border-radius: 999px;
     }
 
     .hero h2 {
-      margin: 18px 0 14px;
+      margin: 18px 0 12px;
+      font-size: clamp(30px, 5vw, 60px);
+      line-height: 1.05;
+      letter-spacing: -0.06em;
       max-width: 720px;
-      font-size: clamp(30px, 5vw, 52px);
-      line-height: 1.15;
-      letter-spacing: -0.04em;
+    }
+
+    .hero h2 .accent {
+      background: linear-gradient(135deg, var(--gold-2), #fff4c0 40%, var(--blue-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     .hero p {
       margin: 0;
-      max-width: 700px;
-      color: #d9e7fb;
-      font-size: clamp(15px, 1.8vw, 18px);
+      max-width: 650px;
+      color: var(--muted);
+      font-size: clamp(16px, 2vw, 20px);
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 20px;
+      border-radius: 14px;
+      font-weight: 800;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .primary-btn:hover,
+    .secondary-btn:hover { transform: translateY(-1px); }
+
+    .primary-btn {
+      background: linear-gradient(135deg, #4fa3ff, #7dc7ff 45%, #b9e9ff);
+      color: #06121d;
+      box-shadow: 0 18px 38px rgba(79,163,255,0.25);
+    }
+
+    .secondary-btn {
+      background: rgba(255,255,255,0.02);
+      color: var(--text);
+      border-color: rgba(255,255,255,0.12);
     }
 
     .search {
       display: flex;
       align-items: center;
       gap: 10px;
-      background: rgba(255,255,255,0.97);
+      width: min(760px, 100%);
+      background: rgba(255,255,255,0.03);
       border: 1px solid rgba(255,255,255,0.12);
       border-radius: 16px;
       padding: 8px 10px 8px 14px;
-      max-width: 720px;
-      margin-top: 28px;
-      box-shadow: 0 16px 36px rgba(11,46,88,0.18);
-      color: var(--ink);
+      margin-top: 24px;
+      color: var(--text);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
     }
 
     .search span {
       font-size: 22px;
       display: grid;
       place-items: center;
-      width: 36px;
-      height: 36px;
+      width: 34px;
+      height: 34px;
+      color: var(--gold-2);
     }
 
     .search input {
       width: 100%;
-      border: 0;
       background: transparent;
+      border: 0;
       outline: none;
-      color: var(--ink);
-      font-size: clamp(17px, 2vw, 22px);
-      padding: 8px 8px 8px 0;
+      padding: 10px 8px; 
+      color: var(--text);
+      font-size: clamp(16px, 2vw, 20px);
     }
+
+    .search input::placeholder { color: #8ea7c3; }
 
     .search small {
-      white-space: nowrap;
       padding: 8px 12px;
-      border-left: 1px solid var(--line);
+      border-left: 1px solid rgba(255,255,255,0.12);
+      color: var(--gold-2);
       font-weight: 800;
-      color: var(--navy);
+      white-space: nowrap;
     }
 
-    .section { margin: 38px 0; }
-    .head {
-      margin-bottom: 18px;
+    .hero-panel {
+      background: linear-gradient(180deg, rgba(15, 27, 41, 0.84), rgba(10, 18, 29, 0.8));
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 18px;
+      box-shadow: var(--card-shadow);
     }
-    .head small {
-      display: inline-block;
-      color: var(--blue);
-      font-weight: 900;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
+
+    .mini-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 16px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+    }
+
+    .mini-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    .stat {
+      font-size: clamp(27px, 3vw, 36px);
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      color: #fff;
+    }
+
+    .delta {
+      color: #9ae6af;
+      font-weight: 700;
       font-size: 12px;
     }
-    .head h2 {
-      margin: 8px 0 6px;
-      font-size: clamp(24px, 3vw, 34px);
-      line-height: 1.2;
-      letter-spacing: -0.04em;
+
+    .mini-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
     }
+
+    .mini-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .mini-list strong {
+      color: var(--text);
+      font-weight: 800;
+    }
+
+    .section { margin: 42px 0; }
+
+    .head {
+      margin-bottom: 20px;
+    }
+
+    .head small {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-2);
+      background: rgba(247,199,93,0.08);
+      border: 1px solid rgba(247,199,93,0.18);
+      padding: 8px 12px;
+      border-radius: 999px;
+    }
+
+    .head h2 {
+      margin: 12px 0 8px;
+      font-size: clamp(26px, 3vw, 34px);
+      line-height: 1.15;
+      letter-spacing: -0.05em;
+    }
+
     .head p {
       margin: 0;
       color: var(--muted);
@@ -250,7 +406,7 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      background: white;
+      background: rgba(17, 31, 47, 0.84);
       border: 1px solid var(--line);
       border-radius: 18px;
       padding: 16px 18px;
@@ -260,10 +416,10 @@
 
     .category-label {
       font-size: 12px;
-      font-weight: 900;
-      color: var(--muted);
-      letter-spacing: 0.10em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 800;
     }
 
     .category-filter-box select {
@@ -271,8 +427,8 @@
       min-width: 220px;
       border: 1px solid var(--line);
       border-radius: 12px;
-      background: #f9fbff;
-      color: var(--ink);
+      background: rgba(255,255,255,0.02);
+      color: var(--text);
       padding: 12px 14px;
       outline: none;
     }
@@ -285,21 +441,21 @@
 
     .category-chip {
       border: 1px solid var(--line);
-      background: white;
-      color: var(--ink);
+      background: rgba(255,255,255,0.02);
+      color: var(--text);
       border-radius: 999px;
       padding: 10px 16px;
       font-weight: 800;
       cursor: pointer;
-      transition: all .2s ease;
+      transition: all 0.2s ease;
     }
 
     .category-chip:hover,
     .category-chip.active {
-      background: linear-gradient(135deg, #edf5ff, #dfeeff);
-      border-color: #b7d5ff;
-      color: #0055d4;
-      box-shadow: 0 10px 20px rgba(22,119,255,0.08);
+      background: linear-gradient(135deg, rgba(79,163,255,0.18), rgba(125,199,255,0.10));
+      border-color: rgba(125,199,255,0.25);
+      color: #ebf7ff;
+      box-shadow: 0 8px 20px rgba(79,163,255,0.15);
     }
 
     .grid {
@@ -312,19 +468,30 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      background: white;
+      background: linear-gradient(180deg, rgba(17,31,47,0.9), rgba(12,20,29,0.9));
       border: 1px solid var(--line);
       border-radius: 20px;
       padding: 18px;
       box-shadow: var(--card-shadow);
       min-width: 0;
       transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(125,199,255,0.28), transparent, rgba(247,199,93,0.22));
     }
 
     .card:hover {
       transform: translateY(-4px);
-      border-color: #b9d4ff;
-      box-shadow: 0 20px 40px rgba(16, 47, 81, 0.10);
+      border-color: rgba(125,199,255,0.25);
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.35);
     }
 
     .top {
@@ -338,28 +505,30 @@
       width: 48px;
       height: 48px;
       border-radius: 14px;
-      background: linear-gradient(135deg, #edf5ff, #dfeeff);
+      background: linear-gradient(135deg, rgba(79,163,255,0.18), rgba(125,199,255,0.06));
+      border: 1px solid rgba(125,199,255,0.14);
       display: grid;
       place-items: center;
       font-size: 24px;
-      box-shadow: inset 0 0 0 1px rgba(22,119,255,0.06);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
     }
 
     .chip {
-      background: #edf5ff;
-      color: #1264d8;
-      border-radius: 20px;
-      padding: 6px 8px;
+      background: rgba(247,199,93,0.08);
+      border: 1px solid rgba(247,199,93,0.18);
+      color: var(--gold-2);
+      border-radius: 999px;
+      padding: 6px 9px;
       font-size: 10px;
-      font-weight: 900;
-      letter-spacing: 0.06em;
+      font-weight: 800;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
     .card h3 {
       margin: 0;
       font-size: 17px;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
     }
 
     .card p {
@@ -373,9 +542,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: var(--blue);
-      font-weight: 900;
-      font-size: 14px;
+      color: var(--blue-2);
+      font-weight: 800;
+      font-size: 13px;
       margin-top: 4px;
     }
 
@@ -406,7 +575,7 @@
     .tool .text p {
       margin: 2px 0 0;
       font-size: 12px;
-      color: var(--muted);
+      color: var(--muted)
     }
 
     .link {
@@ -414,7 +583,7 @@
       align-items: center;
       gap: 12px;
       padding: 14px 16px;
-      background: white;
+      background: linear-gradient(180deg, rgba(17,31,47,0.9), rgba(12,20,29,0.9));
       border: 1px solid var(--line);
       border-radius: 14px;
       box-shadow: var(--card-shadow);
@@ -430,22 +599,19 @@
       text-align: center;
     }
 
-    .link span {
-      display: block;
-      min-width: 0;
-    }
+    .link span { display: block; min-width: 0; }
 
     .link b {
       margin-left: auto;
-      color: var(--blue);
+      color: var(--blue-2);
       font-size: 18px;
     }
 
     .notice {
       margin-top: 18px;
       padding: 14px 16px;
-      background: #fff;
-      border: 1px dashed #c7d8ef;
+      background: rgba(255,255,255,0.02);
+      border: 1px dashed rgba(125,199,255,0.18);
       border-radius: 14px;
       color: var(--muted);
       font-size: 13px;
@@ -453,9 +619,10 @@
 
     footer {
       margin-top: 48px;
-      background: linear-gradient(180deg, #07162d 0%, #091b33 100%);
+      background: linear-gradient(180deg, #07131f 0%, #0b1d2c 100%);
       color: white;
       padding: 34px 0 26px;
+      border-top: 1px solid var(--line);
     }
 
     .footrow {
@@ -473,7 +640,7 @@
 
     .footbrand p {
       margin: 4px 0 0;
-      color: #c8d9ef;
+      color: var(--muted);
       font-size: 12px;
     }
 
@@ -486,6 +653,7 @@
 
     .social strong {
       font-size: 15px;
+      color: #fff;
     }
 
     .socials {
@@ -497,8 +665,8 @@
     .socials a {
       width: 42px;
       height: 42px;
-      border: 1px solid rgba(255,255,255,0.22);
-      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.03);
       color: white;
       border-radius: 12px;
       display: grid;
@@ -507,13 +675,14 @@
     }
 
     .social small {
-      color: #b3c7e0;
+      color: var(--muted);
       font-size: 12px;
     }
 
     .hidden { display: none !important; }
 
-    @media (max-width: 850px) {
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
       .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .tools .grid, .links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
@@ -522,13 +691,14 @@
       .wrap { width: calc(100% - 22px); }
       .brand img, .footbrand img { width: 46px; height: 46px; }
       .brand p { display: none; }
+      .nav-cta { display: none; }
       .hero { border-radius: 22px; }
       .grid, .tools .grid, .links { grid-template-columns: 1fr; }
       .category-filter-box { align-items: stretch; flex-direction: column; }
       .category-filter-box select { width: 100%; min-width: 0; }
       .search { display: block; }
       .search span { display: block; margin-bottom: 6px; }
-      .search small { display: block; margin-top: 8px; border: 0; padding-left: 0; }
+      .search small { display: block; margin-top: 8px; padding-left: 0; border-left: 0; }
       .footrow { flex-direction: column; }
     }
   </style>
@@ -544,13 +714,16 @@
         </div>
       </a>
 
-      <button class="menubtn" id="menuBtn" aria-expanded="false" aria-controls="menu">☰ Menu</button>
+      <div class="nav-actions">
+        <a class="nav-cta" href="#important">Explore Services</a>
+        <button class="menubtn" id="menuBtn" aria-expanded="false" aria-controls="menu">☰ Menu</button>
+      </div>
 
       <nav class="menu" id="menu" aria-label="Main menu">
         <a href="#categories">ক্যাটাগরি</a>
         <a href="#important">গুরুত্বপূর্ণ পরিষেবা</a>
         <a href="#tools">দ্রুত টুলস</a>
-        <a href="#links">দরকারি লিঙ্ক</a>
+        <a href="#links">দরকারি লিংক</a>
         <a href="#social">সোশ্যাল মিডিয়া</a>
       </nav>
     </div>
@@ -558,15 +731,40 @@
 
   <main class="wrap">
     <section class="hero">
-      <div class="badge">Fast · Reliable · Secure</div>
-      <h2>আপনার প্রয়োজনীয় ডিজিটাল পরিষেবা, এক জায়গায়</h2>
-      <p>সরকারি, জনপ্রিয় ও দৈনন্দিন প্রয়োজনীয় অনলাইন সেবা দ্রুত খুঁজে নিতে সাহায্য করে এই পোর্টাল। প্রয়োজন অনুযায়ী বিভাগ, সার্চ ও টুলস ব্যবহার করুন।</p>
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Premium Service Access</div>
+          <h2>All your essential digital services in <span class="accent">one refined hub</span>.</h2>
+          <p>Find trusted government, identity, payment, travel, and daily-use services faster with a focused, elegant dashboard made for modern users.</p>
 
-      <label class="search" aria-label="Search services">
-        <span>🔎</span>
-        <input id="search" type="search" placeholder="সার্চ করুন, যেমন: রেশন, PAN, ভোটার সেবা..." aria-label="সার্চ করুন">
-        <small id="count">সব পরিষেবা</small>
-      </label>
+          <div class="hero-cta">
+            <a class="primary-btn" href="#important">Browse Services</a>
+            <a class="secondary-btn" href="#tools">Quick Tools</a>
+          </div>
+
+          <label class="search" aria-label="Search services">
+            <span>🔎</span>
+            <input id="search" type="search" placeholder="Search for ration, PAN, voter, passport..." aria-label="Search services">
+            <small id="count">All services</small>
+          </label>
+        </div>
+
+        <aside class="hero-panel" aria-label="Highlights">
+          <div class="mini-card">
+            <div class="mini-head"><span>Live Access</span><span class="delta">+18.4%</span></div>
+            <div class="stat">12K+</div>
+          </div>
+
+          <div class="mini-card">
+            <div class="mini-head"><span>Top Categories</span><span class="delta">Updated</span></div>
+            <ul class="mini-list">
+              <li><span>Identity</span><strong>4</strong></li>
+              <li><span>Documents</span><strong>3</strong></li>
+              <li><span>Travel</span><strong>2</strong></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
     </section>
 
     <div id="error" class="notice hidden"></div>
@@ -574,104 +772,104 @@
     <section class="section" id="categories">
       <div class="head">
         <small>Categories</small>
-        <h2>ক্যাটাগরি</h2>
-        <p>ক্যাটাগরি বেছে নিয়ে সংশ্লিষ্ট সকল সেবা, লিংক ও টুলস দ্রুত খুঁজুন।</p>
+        <h2>Service Categories</h2>
+        <p>Browse by category and jump to the right digital service quickly.</p>
       </div>
 
       <div class="category-filter-box">
-        <label class="category-label" for="categoryFilter">বিভাগ</label>
+        <label class="category-label" for="categoryFilter">Filter</label>
         <select id="categoryFilter" aria-label="Select service category">
-          <option value="all">সব ক্যাটাগরি</option>
-          <option value="government">সরকারি পরিষেবা</option>
-          <option value="identity">পরিচয়পত্র</option>
-          <option value="documents">ডকুমেন্ট ও সার্টিফিকেট</option>
-          <option value="health">স্বাস্থ্য</option>
-          <option value="education">শিক্ষা</option>
-          <option value="banking">ব্যাংকিং ও অর্থ</option>
-          <option value="utility">ইউটিলিটি পরিষেবা</option>
-          <option value="travel">ভ্রমণ ও পাসপোর্ট</option>
-          <option value="business">ব্যবসা ও কাজ</option>
-          <option value="other">অন্যান্য</option>
+          <option value="all">All categories</option>
+          <option value="government">Government services</option>
+          <option value="identity">Identity</option>
+          <option value="documents">Documents & certificates</option>
+          <option value="health">Health</option>
+          <option value="education">Education</option>
+          <option value="banking">Banking & finance</option>
+          <option value="utility">Utility services</option>
+          <option value="travel">Travel & passport</option>
+          <option value="business">Business</option>
+          <option value="other">Other</option>
         </select>
       </div>
 
       <div class="category-grid" aria-label="Service categories">
-        <button type="button" class="category-chip active" data-category="all">সব</button>
-        <button type="button" class="category-chip" data-category="government">সরকারি পরিষেবা</button>
-        <button type="button" class="category-chip" data-category="identity">পরিচয়পত্র</button>
-        <button type="button" class="category-chip" data-category="documents">ডকুমেন্ট ও সার্টিফিকেট</button>
-        <button type="button" class="category-chip" data-category="health">স্বাস্থ্য</button>
-        <button type="button" class="category-chip" data-category="education">শিক্ষা</button>
-        <button type="button" class="category-chip" data-category="banking">ব্যাংকিং ও অর্থ</button>
-        <button type="button" class="category-chip" data-category="utility">ইউটিলিটি পরিষেবা</button>
-        <button type="button" class="category-chip" data-category="travel">ভ্রমণ ও পাসপোর্ট</button>
-        <button type="button" class="category-chip" data-category="business">ব্যবসা ও কাজ</button>
-        <button type="button" class="category-chip" data-category="other">অন্যান্য</button>
+        <button type="button" class="category-chip active" data-category="all">All</button>
+        <button type="button" class="category-chip" data-category="government">Government</button>
+        <button type="button" class="category-chip" data-category="identity">Identity</button>
+        <button type="button" class="category-chip" data-category="documents">Documents</button>
+        <button type="button" class="category-chip" data-category="health">Health</button>
+        <button type="button" class="category-chip" data-category="education">Education</button>
+        <button type="button" class="category-chip" data-category="banking">Banking</button>
+        <button type="button" class="category-chip" data-category="utility">Utility</button>
+        <button type="button" class="category-chip" data-category="travel">Travel</button>
+        <button type="button" class="category-chip" data-category="business">Business</button>
+        <button type="button" class="category-chip" data-category="other">Other</button>
       </div>
     </section>
 
     <section class="section" id="important">
       <div class="head">
         <small>Essential Services</small>
-        <h2>গুরুত্বপূর্ণ পরিষেবা</h2>
-        <p>পরিচয়পত্র, স্বাস্থ্য, ভ্রমণ, ব্যাংকিং এবং সরকারি সেবা সহজে খুঁজুন।</p>
+        <h2>Important Services</h2>
+        <p>Handpicked essentials for identity, health, travel, banking, and public services.</p>
       </div>
 
       <div class="grid searchable" id="cards">
-        <a class="card" href="https://food.wb.gov.in/" target="_blank" rel="noopener" data-category="government" data-search="রেশন ration খাদ্য কার্ড wb government food card">
+        <a class="card" href="https://food.wb.gov.in/" target="_blank" rel="noopener" data-category="government" data-search="ration food government card wb food card">
           <div class="top"><span class="ico">🪪</span><span class="chip">Government</span></div>
-          <h3>রেশন কার্ড</h3>
-          <p>খাদ্য ও রেশন সেবা, স্ট্যাটাস ও আবেদন তথ্য দেখুন।</p>
-          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
+          <h3>Ration Card</h3>
+          <p>Access food service information, application status, and official updates.</p>
+          <div class="go">Open service <span>↗</span></div>
         </a>
 
-        <a class="card" href="https://www.incometax.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="pan প্যান কার্ড income tax govt tax">
+        <a class="card" href="https://www.incometax.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="pan tax income tax govt identity card">
           <div class="top"><span class="ico">💳</span><span class="chip">Identity</span></div>
           <h3>PAN</h3>
-          <p>আয়কর ও PAN সংক্রান্ত সেবা ও পরিদর্শন খুঁজুন।</p>
-          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
+          <p>Quick access to income tax and PAN-related portal services.</p>
+          <div class="go">Open service <span>↗</span></div>
         </a>
 
-        <a class="card" href="https://voters.eci.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="voter ভোটার কার্ড election govt voter card">
+        <a class="card" href="https://voters.eci.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="voter card election government voter service">
           <div class="top"><span class="ico">🗳️</span><span class="chip">Identity</span></div>
-          <h3>ভোটার কার্ড</h3>
-          <p>ভোটার সার্ভিস, তথ্য ও সংশোধনের জন্য।</p>
-          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
+          <h3>Voter Card</h3>
+          <p>Find voter information, corrections, and election service access.</p>
+          <div class="go">Open service <span>↗</span></div>
         </a>
 
-        <a class="card" href="https://uidai.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="aadhaar aadhar আধার কার্ড uidai govt biometric">
+        <a class="card" href="https://uidai.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="aadhaar card uidai biometric identity service">
           <div class="top"><span class="ico">🆔</span><span class="chip">Identity</span></div>
-          <h3>আধার কার্ড</h3>
-          <p>আধার আপডেট, স্ট্যাটাস ও প্রয়োজনীয় তথ্য।</p>
-          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
+          <h3>Aadhaar</h3>
+          <p>Check updates, registration status, and Aadhaar support details.</p>
+          <div class="go">Open service <span>↗</span></div>
         </a>
 
-        <a class="card" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener" data-category="travel" data-search="passport পাসপোর্ট visa travel">
+        <a class="card" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener" data-category="travel" data-search="passport travel visa document application">
           <div class="top"><span class="ico">🛂</span><span class="chip">Travel</span></div>
-          <h3>পাসপোর্ট</h3>
-          <p>ভ্রমণ, আবেদন ও পাসপোর্ট সংশ্লিষ্ট সেবা।</p>
-          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
+          <h3>Passport</h3>
+          <p>Apply or track passport and travel documentation services.</p>
+          <div class="go">Open service <span>↗</span></div>
         </a>
 
-        <a class="card" href="https://www.digilocker.gov.in/" target="_blank" rel="noopener" data-category="documents" data-search="digilocker ডিজিলকার document storage">
+        <a class="card" href="https://www.digilocker.gov.in/" target="_blank" rel="noopener" data-category="documents" data-search="digilocker document storage verification">
           <div class="top"><span class="ico">📂</span><span class="chip">Documents</span></div>
-          <h3>ডিজিলকার</h3>
-          <p>ডকুমেন্ট সংরক্ষণ, ডাউনলোড ও যাচাই।</p>
-          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
+          <h3>Digilocker</h3>
+          <p>Store, download, and verify official digital documents securely.</p>
+          <div class="go">Open service <span>↗</span></div>
         </a>
 
-        <a class="card" href="https://beneficiary.nha.gov.in/" target="_blank" rel="noopener" data-category="health" data-search="ayushman আয়ুষ্মান bharat health insurance">
+        <a class="card" href="https://beneficiary.nha.gov.in/" target="_blank" rel="noopener" data-category="health" data-search="ayushman bharat insurance healthcare health service">
           <div class="top"><span class="ico">🏥</span><span class="chip">Health</span></div>
-          <h3>আয়ুষ্মান স্বাস্থ্য</h3>
-          <p>স্বাস্থ্য সেবা, সুবিধা ও বেনিফিট সম্পর্কিত তথ্য।</p>
-          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
+          <h3>Ayushman Health</h3>
+          <p>Access healthcare benefits, eligibility, and public health information.</p>
+          <div class="go">Open service <span>↗</span></div>
         </a>
 
-        <a class="card" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener" data-category="documents" data-search="police clearance certificate pcc police verification passport">
+        <a class="card" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener" data-category="documents" data-search="police verification certificate pcc passport clearance">
           <div class="top"><span class="ico">🛡️</span><span class="chip">Certificate</span></div>
           <h3>Police Clearance</h3>
-          <p>পুলিশ ভেরিফিকেশন ও সার্টিফিকেট সম্পর্কিত তথ্য।</p>
-          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
+          <p>Check verification steps and certificate-related procedures.</p>
+          <div class="go">Open service <span>↗</span></div>
         </a>
       </div>
     </section>
@@ -679,34 +877,34 @@
     <section class="section tools" id="tools">
       <div class="head">
         <small>Quick Tools</small>
-        <h2>দ্রুত ব্যবহারের টুলস</h2>
-        <p>প্রতিদিনের কাজ সহজ করতে প্রয়োজনীয় টুলস সংরক্ষণ করুন।</p>
+        <h2>Daily Utility Tools</h2>
+        <p>Keep note-taking, task tracking, and daily workflows organized in one place.</p>
       </div>
 
       <div class="grid searchable">
-        <a class="card tool" href="#" id="notes" data-category="utility" data-search="আমার নোট notes personal note">
+        <a class="card tool" href="#" id="notes" data-category="utility" data-search="notes personal note app storage">
           <span class="ico">📝</span>
           <span class="text">
-            <h3>আমার নোট</h3>
-            <p>এই ব্রাউজারে আপনার নোট সংরক্ষণ করুন।</p>
+            <h3>My Notes</h3>
+            <p>Save quick reminders in your browser for everyday use.</p>
           </span>
           <b>↗</b>
         </a>
 
-        <a class="card tool" href="#" id="checklist" data-category="utility" data-search="ডকুমেন্ট চেকলিস্ট checklist document list">
+        <a class="card tool" href="#" id="checklist" data-category="utility" data-search="checklist task list document tracker">
           <span class="ico">☑️</span>
           <span class="text">
-            <h3>চেকলিস্ট</h3>
-            <p>প্রতিদিনের কাজ ও ডকুমেন্ট তালিকা রাখুন।</p>
+            <h3>Checklist</h3>
+            <p>Keep track of daily tasks, documents, and follow-ups.</p>
           </span>
           <b>↗</b>
         </a>
 
-        <a class="card tool" href="https://www.google.com/" target="_blank" rel="noopener" data-category="utility" data-search="google search web search">
+        <a class="card tool" href="https://www.google.com/" target="_blank" rel="noopener" data-category="utility" data-search="google search web lookup information">
           <span class="ico">🔎</span>
           <span class="text">
-            <h3>গুগল সার্চ</h3>
-            <p>দ্রুত তথ্য খুঁজে নিন ও সাইট ভিজিট করুন।</p>
+            <h3>Google Search</h3>
+            <p>Find answers, references, and official websites quickly.</p>
           </span>
           <b>↗</b>
         </a>
@@ -715,34 +913,34 @@
 
     <section class="section" id="links">
       <div class="head">
-        <small>Useful Shortcuts</small>
-        <h2>দরকারি কিছু লিঙ্ক</h2>
-        <p>সরকারি ও জনপ্রিয় পরিষেবা আপনার জন্য দ্রুত শাটারকাট।</p>
+        <small>Shortcut Links</small>
+        <h2>Useful Shortcuts</h2>
+        <p>Direct access to the most frequently used public and official service portals.</p>
       </div>
 
       <div class="links searchable" id="useful">
-        <a class="link" href="https://www.india.gov.in/" target="_blank" rel="noopener" data-category="government" data-search="india government ভারত সরকারি তথ্য">
-          <i>🇮🇳</i><span>ভারত সরকারী পোর্টাল</span><b>↗</b>
+        <a class="link" href="https://www.india.gov.in/" target="_blank" rel="noopener" data-category="government" data-search="india government portal official information">
+          <i>🇮🇳</i><span>India Government Portal</span><b>↗</b>
         </a>
-        <a class="link" href="https://uidai.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="uidai aadhaar আধার কার্ড">
-          <i>🆔</i><span>UIDAI / আধার</span><b>↗</b>
+        <a class="link" href="https://uidai.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="uidai aadhaar official portal">
+          <i>🆔</i><span>UIDAI / Aadhaar</span><b>↗</b>
         </a>
-        <a class="link" href="https://www.incometax.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="income tax pan কর">
+        <a class="link" href="https://www.incometax.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="income tax pan tax portal">
           <i>💳</i><span>Income Tax Portal</span><b>↗</b>
         </a>
-        <a class="link" href="https://voters.eci.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="voter election ভোটার সেবা">
-          <i>🗳️</i><span>Voters Service Portal</span><b>↗</b>
+        <a class="link" href="https://voters.eci.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="voter election service portal">
+          <i>🗳️</i><span>Voter Service Portal</span><b>↗</b>
         </a>
-        <a class="link" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener" data-category="travel" data-search="passport passport seva">
+        <a class="link" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener" data-category="travel" data-search="passport seva travel service portal">
           <i>🛂</i><span>Passport Seva</span><b>↗</b>
         </a>
-        <a class="link" href="https://www.digilocker.gov.in/" target="_blank" rel="noopener" data-category="documents" data-search="digilocker document storage">
+        <a class="link" href="https://www.digilocker.gov.in/" target="_blank" rel="noopener" data-category="documents" data-search="digilocker document storage portal">
           <i>📂</i><span>Digilocker</span><b>↗</b>
         </a>
       </div>
     </section>
 
-    <div class="notice">এই সাইটটি শুধুমাত্র পরিষেবার শর্টকাট ড্যাশবোর্ড। এটি কোন সরকারি ওয়েবসাইট নয়। ব্যবহারকারী নিজে সঠিক ওয়েবসাইটে যান।</div>
+    <div class="notice">This site is a curated service shortcut dashboard, not an official government website. Always verify important information on the original source portal before submitting requests or sensitive details.</div>
   </main>
 
   <footer>
@@ -756,7 +954,7 @@
       </a>
 
       <div class="social" id="social">
-        <strong>আমাদের সোশ্যাল মিডিয়া</strong>
+        <strong>Follow us</strong>
         <div class="socials" aria-label="Social media links">
           <a href="https://www.facebook.com/share/1Q3XK1nhjF/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a>
           <a href="https://www.youtube.com/@YOUR_CHANNEL" target="_blank" rel="noopener noreferrer" aria-label="YouTube">▶</a>
@@ -764,7 +962,7 @@
           <a href="https://chat.whatsapp.com/CzYLMj9dVm57qxxyJR195d?s=cl&p=a&mlu=4&ilr=4&iam=2" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">◉</a>
           <a href="https://t.me/YOUR_CHANNEL" target="_blank" rel="noopener noreferrer" aria-label="Telegram">➤</a>
         </div>
-        <small>আমাদের সোশ্যাল মিডিয়ায় যুক্ত থাকুন।</small>
+        <small>Connect with us on social media.</small>
       </div>
     </div>
   </footer>
@@ -786,17 +984,17 @@
     const $ = (id) => document.getElementById(id);
 
     const categoryOptions = {
-      all: "সব",
-      government: "সরকারি পরিষেবা",
-      identity: "পরিচয়পত্র",
-      documents: "ডকুমেন্ট ও সার্টিফিকেট",
-      health: "স্বাস্থ্য",
-      education: "শিক্ষা",
-      banking: "ব্যাংকিং ও অর্থ",
-      utility: "ইউটিলিটি পরিষেবা",
-      travel: "ভ্রমণ ও পাসপোর্ট",
-      business: "ব্যবসা ও কাজ",
-      other: "অন্যান্য"
+      all: "All",
+      government: "Government",
+      identity: "Identity",
+      documents: "Documents",
+      health: "Health",
+      education: "Education",
+      banking: "Banking",
+      utility: "Utility",
+      travel: "Travel",
+      business: "Business",
+      other: "Other"
     };
 
     const menuBtn = $("menuBtn");
@@ -850,7 +1048,7 @@
         if (show) visibleCount += 1;
       });
 
-      count.textContent = q ? `${visibleCount}টি ফলাফল` : "সব পরিষেবা";
+      count.textContent = q ? `${visibleCount} results` : "All services";
 
       document.querySelectorAll(".section").forEach((section) => {
         const items = [...section.querySelectorAll("[data-search]")];
@@ -888,10 +1086,10 @@
     if (notesButton) {
       notesButton.addEventListener("click", (event) => {
         event.preventDefault();
-        const value = prompt("আপনার নোট লিখুন:", localStorage.getItem("dupo-notes") || "");
+        const value = prompt("Write your note:", localStorage.getItem("dupo-notes") || "");
         if (value !== null) {
           localStorage.setItem("dupo-notes", value);
-          alert("নোট এই ব্রাউজারে সংরক্ষিত হয়েছে।");
+          alert("Note saved in this browser.");
         }
       });
     }
@@ -900,10 +1098,10 @@
     if (checklistButton) {
       checklistButton.addEventListener("click", (event) => {
         event.preventDefault();
-        const value = prompt("প্রতি লাইনে একটি ডকুমেন্ট লিখুন:", localStorage.getItem("dupo-checklist") || "আধার কার্ড\nPAN\nভোটার কার্ড");
+        const value = prompt("Add one item per line:", localStorage.getItem("dupo-checklist") || "Aadhaar Card\nPAN\nVoter Card");
         if (value !== null) {
           localStorage.setItem("dupo-checklist", value);
-          alert("চেকলিস্ট সংরক্ষিত হয়েছে।");
+          alert("Checklist saved.");
         }
       });
     }
@@ -924,29 +1122,28 @@
     function getCategoryValue(item) {
       const name = String(item && item.category ? item.category : item && item.tag ? item.tag : "other").trim().toLowerCase();
       const mapped = {
+        "government": "government",
+        "identity": "identity",
+        "documents": "documents",
+        "health": "health",
+        "education": "education",
+        "banking": "banking",
+        "utility": "utility",
+        "travel": "travel",
+        "business": "business",
+        "other": "other",
         "সরকারি পরিষেবা": "government",
         "সরকারি": "government",
         "পরিচয়পত্র": "identity",
         "পরিচয়পত্র": "identity",
-        "identity": "identity",
-        "identity card": "identity",
         "ডকুমেন্ট ও সার্টিফিকেট": "documents",
-        "documents": "documents",
-        "document": "documents",
         "স্বাস্থ্য": "health",
-        "health": "health",
         "শিক্ষা": "education",
-        "education": "education",
         "ব্যাংকিং ও অর্থ": "banking",
-        "banking": "banking",
         "ইউটিলিটি পরিষেবা": "utility",
-        "utility": "utility",
         "ভ্রমণ ও পাসপোর্ট": "travel",
-        "travel": "travel",
         "ব্যবসা ও কাজ": "business",
-        "business": "business",
-        "অন্যান্য": "other",
-        "other": "other"
+        "অন্যান্য": "other"
       };
       return mapped[name] || "other";
     }
@@ -961,7 +1158,6 @@
       card.className = "card";
       card.href = url || "#";
       card.dataset.category = category;
-
       if (url) {
         card.target = "_blank";
         card.rel = "noopener noreferrer";
@@ -984,11 +1180,11 @@
       h.textContent = title;
 
       const p = document.createElement("p");
-      p.textContent = String(item.description || "পরিষেবা খুলুন");
+      p.textContent = String(item.description || "Open service");
 
       const go = document.createElement("div");
       go.className = "go";
-      go.innerHTML = "সার্ভিস খুলুন <span>↗</span>";
+      go.innerHTML = "Open service <span>↗</span>";
 
       card.append(top, h, p, go);
       card.dataset.search = [title, item.description, item.keywords, item.tag, item.id, categoryOptions[category]].filter(Boolean).join(" ");
@@ -1087,7 +1283,7 @@
         const box = $("error");
         if (box) {
           box.classList.remove("hidden");
-          box.textContent = "Firebase থেকে নতুন কার্ড বা কাস্টম লিংক লোড হয়নি। Firebase config ও Firestore Rules যাচাই করুন।";
+          box.textContent = "New card or custom link data could not be loaded. Please verify your Firebase configuration and Firestore rules.";
         }
       } finally {
         search();
