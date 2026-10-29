@@ -81,8 +81,7 @@
       min-width: 0;
     }
 
-    .brand img,
-    .footbrand img {
+    .brand img, .footbrand img {
       width: 56px;
       height: 56px;
       object-fit: cover;
@@ -91,8 +90,7 @@
       box-shadow: 0 12px 20px rgba(0,0,0,0.2);
     }
 
-    .brand h1,
-    .footbrand h2 {
+    .brand h1, .footbrand h2 {
       margin: 0;
       line-height: 1.1;
       letter-spacing: -0.04em;
@@ -100,11 +98,7 @@
       color: white;
     }
 
-    .brand p {
-      margin: 3px 0 0;
-      color: #d9e9ff;
-      font-size: 12px;
-    }
+    .brand p { margin: 3px 0 0; color: #d9e9ff; font-size: 12px; }
 
     .nav-actions {
       display: flex;
@@ -495,7 +489,8 @@
       font-size: 14px;
     }
 
-    .category-filter-box {
+    .category-filter-box,
+    .card-search-box {
       display: flex;
       align-items: center;
       gap: 14px;
@@ -516,7 +511,8 @@
       font-weight: 800;
     }
 
-    .category-filter-box select {
+    .category-filter-box select,
+    .card-search-box input {
       flex: 1;
       min-width: 220px;
       border: 1px solid var(--line);
@@ -526,6 +522,8 @@
       padding: 12px 14px;
       outline: none;
     }
+
+    .card-search-box input::placeholder { color: #8da5c9; }
 
     .category-grid {
       display: flex;
@@ -605,9 +603,7 @@
       filter: saturate(1.05);
     }
 
-    .card:hover::after {
-      opacity: 1;
-    }
+    .card:hover::after { opacity: 1; }
 
     .top {
       display: flex;
@@ -648,9 +644,7 @@
       transition: transform 0.2s ease;
     }
 
-    .card:hover .chip {
-      transform: translateX(2px);
-    }
+    .card:hover .chip { transform: translateX(2px); }
 
     .card h3 {
       margin: 0;
@@ -762,10 +756,7 @@
       transition: transform 0.2s ease;
     }
 
-    .link:hover i {
-      transform: scale(1.15);
-    }
-
+    .link:hover i { transform: scale(1.15); }
     .link span { display: block; min-width: 0; }
 
     .link b {
@@ -775,9 +766,7 @@
       transition: transform 0.22s ease;
     }
 
-    .link:hover b {
-      transform: translate(4px, -2px);
-    }
+    .link:hover b { transform: translate(4px, -2px); }
 
     .notice {
       margin-top: 18px;
@@ -864,6 +853,8 @@
       .hero-grid { grid-template-columns: 1fr; }
       .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .tools .grid, .links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .category-filter-box, .card-search-box { flex-direction: column; align-items: stretch; }
+      .category-filter-box select, .card-search-box input { width: 100%; min-width: 0; }
     }
 
     @media (max-width: 560px) {
@@ -873,8 +864,6 @@
       .nav-cta { display: none; }
       .hero { border-radius: 22px; }
       .grid, .tools .grid, .links { grid-template-columns: 1fr; }
-      .category-filter-box { flex-direction: column; align-items: stretch; }
-      .category-filter-box select { width: 100%; min-width: 0; }
       .search { display: block; }
       .search span { display: block; margin-bottom: 6px; }
       .search small { display: block; margin-top: 8px; border-left: 0; padding-left: 0; }
@@ -913,8 +902,8 @@
       <div class="hero-grid">
         <div>
           <div class="eyebrow">Executive Service Suite</div>
-          <h2>সব প্রয়োজনীয় সেবা, <span class="accent">একটি স্মার্ট এক্সিকিউটিভ ড্যাশবোর্ডে</span></h2>
-          <p>সর���ারি, পরিচয়পত্র, স্বাস্থ্য, ব্যাংকিং, ভ্রমণ ও দৈনন্দিন প্রয়োজনীয় সেবার দ্রুত এক্সেস। স্মার্ট সার্চ, ক্লিন ন্যাভিগেশন এবং প্রিমিয়াম ভিজিটর এক্সপেরিয়েন্সসহ আপনার সবচেয়ে প্রয়োজনীয় লিঙ্কগুলো একসাথে।</p>
+          <h2>সব প্রয়োজনীয় সেবা, <span class="accent">একটি স্মার্ট এক্সিকিউটিভ ড্য���শবোর্ডে</span></h2>
+          <p>সরকারি, পরিচয়পত্র, স্বাস্থ্য, ব্যাংকিং, ভ্রমণ ও দৈনন্দিন প্রয়োজনীয় সেবা এক জায়গায়। দ্রুত খুঁজুন, দ্রুত নিন।</p>
 
           <div class="hero-cta">
             <a class="primary-btn" href="#important">সার্ভিস ব্রাউজ করুন</a>
@@ -978,6 +967,11 @@
         </select>
       </div>
 
+      <div class="card-search-box">
+        <label class="category-label" for="cardSearch">Card Search</label>
+        <input id="cardSearch" type="search" placeholder="রেশন, PAN, ভোটার, পাসপোর্ট, সনদ, ব্যাংক..." aria-label="Search cards by keyword">
+      </div>
+
       <div class="category-grid" aria-label="Service categories">
         <button type="button" class="category-chip active" data-category="all">সব</button>
         <button type="button" class="category-chip" data-category="government">সরকারি পরিষেবা</button>
@@ -1000,62 +994,86 @@
         <p>পরিচয়পত্র, স্বাস্থ্য, ভ্রমণ, ব্যাংকিং ও সরকারি সেবা কয়েক ক্লিকে।</p>
       </div>
 
-      <div class="grid searchable" id="cards">
-        <a class="card" href="https://food.wb.gov.in/" target="_blank" rel="noopener" data-category="government" data-search="রেশন ration খাদ্য কার্ড wb government food card">
-          <div class="top"><span class="ico">🪪</span><span class="chip">Government</span></div>
+      <div class="grid">
+        <article class="card" data-category="government" data-keywords="রেশন ration food card govt subsidy subsidy card">
+          <div class="top">
+            <div class="ico">🧾</div>
+            <span class="chip">Government</span>
+          </div>
           <h3>রেশন কার্ড</h3>
-          <p>খাদ্য ও রেশন তথ্য, স্ট্যাটাস ও আবেদন সম্পর্কিত দ্রুত অ্যাক্সেস।</p>
-          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
-        </a>
+          <p>সার্বিক সরকারী খাদ্য সহায়তা, স্ট্যাটাস যাচাই ও আপডেট তথ্য দ্রুত খুঁজুন।</p>
+          <div class="go"><span>Open</span> <span>→</span></div>
+        </article>
 
-        <a class="card" href="https://www.incometax.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="pan প্যান income tax govt identity card">
-          <div class="top"><span class="ico">💳</span><span class="chip">Identity</span></div>
-          <h3>PAN</h3>
-          <p>আয়কর ও PAN সংক্রান্ত তথ্য, আবেদন ও সার্ভিস পোর্টাল।</p>
-          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
-        </a>
+        <article class="card" data-category="identity" data-keywords="ভোটার voter id card election nid identity card">
+          <div class="top">
+            <div class="ico">🪪</div>
+            <span class="chip">Identity</span>
+          </div>
+          <h3>ভোটার আইডি</h3>
+          <p>ভোটার তালিকা, সংশোধন, ডুপ্লিকেট যাচাই ও পরিচয়পত্র তথ্য সহজে জানুন।</p>
+          <div class="go"><span>Open</span> <span>→</span></div>
+        </article>
 
-        <a class="card" href="https://voters.eci.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="voter ভোটার কার্ড election government voter service">
-          <div class="top"><span class="ico">🗳️</span><span class="chip">Identity</span></div>
-          <h3>ভোটার কার্ড</h3>
-          <p>ভোটার সার্ভিস, সংশোধন, তথ্য ও নির্বাচন সংক্রান্ত অ্যাক্সেস।</p>
-          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
-        </a>
+        <article class="card" data-category="travel" data-keywords="পাসপোর্ট passport visa travel application travel card">
+          <div class="top">
+            <div class="ico">✈️</div>
+            <span class="chip">Travel</span>
+          </div>
+          <h3>পাসপোর্ট আবেদন</h3>
+          <p>নতুন পাসপোর্ট, নবায়ন, ডকুমেন্ট ডিপোজিট ও ভ্রমণ তথ্য অনলাইনে দেখুন।</p>
+          <div class="go"><span>Open</span> <span>→</span></div>
+        </article>
 
-        <a class="card" href="https://myaadhaar.uidai.gov.in/en" target="_blank" rel="noopener" data-category="identity" data-search="aadhaar আধার uidai biometric identity service">
-          <div class="top"><span class="ico">🆔</span><span class="chip">Identity</span></div>
-          <h3>আধার</h3>
-          <p>আধার আপডেট, স্ট্যাটাস ও প্রাসঙ্গিক তথ্য দ্রুত খুঁজুন।</p>
-          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
-        </a>
+        <article class="card" data-category="documents" data-keywords="সনদ certificate birth death marriage certificate document">
+          <div class="top">
+            <div class="ico">📄</div>
+            <span class="chip">Documents</span>
+          </div>
+          <h3>জন্ম সনদ</h3>
+          <p>জন্ম, মৃত্যু, বিবাহ ও অন্যান্য অফিসিয়াল সনদ সংশোধন ও রি‌ইস্যু সুবিধা।</p>
+          <div class="go"><span>Open</span> <span>→</span></div>
+        </article>
 
-        <a class="card" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener" data-category="travel" data-search="passport পাসপোর্ট visa travel application">
-          <div class="top"><span class="ico">🛂</span><span class="chip">Travel</span></div>
-          <h3>পাসপোর্ট</h3>
-          <p>ভ্রমণ ও পাসপোর্টের আবেদন এবং স্ট্যাটাস দেখুন।</p>
-          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
-        </a>
+        <article class="card" data-category="health" data-keywords="স্বাস্থ্য health hospital patient care medical doctor appointment">
+          <div class="top">
+            <div class="ico">🏥</div>
+            <span class="chip">Health</span>
+          </div>
+          <h3>হাসপাতাল তথ্য</h3>
+          <p>বেসরকারি ও সরকারি হাসপাতাল, ডাক্তারের অ্যাপয়েন্টমেন্ট ও চিকিৎসা তথ্য চেক করুন।</p>
+          <div class="go"><span>Open</span> <span>→</span></div>
+        </article>
 
-        <a class="card" href="https://www.digilocker.gov.in/" target="_blank" rel="noopener" data-category="documents" data-search="digilocker ডিজিলকার document storage verification">
-          <div class="top"><span class="ico">📂</span><span class="chip">Documents</span></div>
-          <h3>ডিজিলকার</h3>
-          <p>ডকুমেন্ট সংরক্ষণ, ডাউনলোড ও বিশেষ যাচাই সেবা।</p>
-          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
-        </a>
+        <article class="card" data-category="banking" data-keywords="ব্যাংক bank loan account saving account credit card debit bank statement">
+          <div class="top">
+            <div class="ico">🏦</div>
+            <span class="chip">Banking</span>
+          </div>
+          <h3>ব্যাংক অ্যাকাউন্ট</h3>
+          <p>সেভিংস, লোন, কার্ড ও ব্যাংকিং স্টেটমেন্টের প্রয়োজনীয় তথ্য এক জায়গায়।</p>
+          <div class="go"><span>Open</span> <span>→</span></div>
+        </article>
 
-        <a class="card" href="https://beneficiary.nha.gov.in/" target="_blank" rel="noopener" data-category="health" data-search="ayushman আয়ুষ্মান bharat insurance health service">
-          <div class="top"><span class="ico">🏥</span><span class="chip">Health</span></div>
-          <h3>আয়ুষ্মান স্বাস্থ্য</h3>
-          <p>স্বাস্থ্য সুবিধা, বেনিফিট এবং সরকারি স্বাস্থ্য তথ্য।</p>
-          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
-        </a>
+        <article class="card" data-category="utility" data-keywords="ইউটিলিটি utility electricity gas water bill meter bill payment">
+          <div class="top">
+            <div class="ico">⚡</div>
+            <span class="chip">Utility</span>
+          </div>
+          <h3>বিল পেমেন্ট</h3>
+          <p>বিদ্যুৎ, গ্যাস, পানির বিল, ধারে-দেনা ও ইউটিলিটি সার্ভিস আপডেট সহজে দেখুন।</p>
+          <div class="go"><span>Open</span> <span>→</span></div>
+        </article>
 
-        <a class="card" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener" data-category="documents" data-search="police verification certificate pcc passport clearance">
-          <div class="top"><span class="ico">🛡️</span><span class="chip">Certificate</span></div>
-          <h3>Police Clearance</h3>
-          <p>পুলিশ ভেরিফিকেশন ও সার্টিফিকেট সংক্রান্ত প্রয়োজনীয় তথ্য।</p>
-          <div class="go">সার্ভিস খুলুন <span>↗</span></div>
-        </a>
+        <article class="card" data-category="business" data-keywords="ব্যবসা business trade license tax tin company registration registration firm">
+          <div class="top">
+            <div class="ico">📊</div>
+            <span class="chip">Business</span>
+          </div>
+          <h3>ট্রেড লাইসেন্স</h3>
+          <p>ট্যাক্স, লাইসেন্স, ফার্ম রেজিস্ট্রেশন ও ব্যবসায়িক নথিপত্রের তথ্য একসাথে।</p>
+          <div class="go"><span>Open</span> <span>→</span></div>
+        </article>
       </div>
     </section>
 
@@ -1063,200 +1081,161 @@
       <div class="head">
         <small>Quick Tools</small>
         <h2>দ্রুত টুলস</h2>
-        <p>প্রতিদিনের কাজকে সহজ করার জন্য প্রয়োজনীয় টুলস।</p>
+        <p>সার্ভিস খুঁজে নিতে প্রয়োজনীয় দ্রুত টুলস।</p>
       </div>
 
-      <div class="grid searchable">
-        <a class="card tool" href="#" id="notes" data-category="utility" data-search="notes personal note app storage">
-          <span class="ico">📝</span>
-          <span class="text">
-            <h3>আমার নোট</h3>
-            <p>এই ব্রাউজারে আপনার নোট সেভ করুন।</p>
-          </span>
-          <b>↗</b>
-        </a>
+      <div class="grid">
+        <article class="card tool" data-category="government" data-keywords="tool calculator eligibility check gov public service app known">
+          <div class="ico">🧮</div>
+          <div class="text">
+            <h3>এলিজিবিলিটি চেক</h3>
+            <p>কোন সেবা আপনার জন্য উপযুক্ত, তা দ্রুত যাচাই করুন।</p>
+          </div>
+        </article>
 
-        <a class="card tool" href="#" id="checklist" data-category="utility" data-search="checklist task list document tracker">
-          <span class="ico">☑️</span>
-          <span class="text">
-            <h3>চেকলিস্ট</h3>
-            <p>কাজ, ডকুমেন্ট ও ফলো-আপ সামলান সহজে।</p>
-          </span>
-          <b>↗</b>
-        </a>
+        <article class="card tool" data-category="documents" data-keywords="document tracker status check certificate progress renew">
+          <div class="ico">📍</div>
+          <div class="text">
+            <h3>ডকুমেন্ট ট্র্যাক</h3>
+            <p>স্ট্যাটাস দেখুন, এগিয়ে চলেছে কি না জানতে পারবেন।</p>
+          </div>
+        </article>
 
-        <a class="card tool" href="https://www.google.com/" target="_blank" rel="noopener" data-category="utility" data-search="google search web lookup information">
-          <span class="ico">🔎</span>
-          <span class="text">
-            <h3>গুগল সার্চ</h3>
-            <p>দ্রুত তথ্য খুঁজে নিন ও ওয়েবভিজিট করুন।</p>
-          </span>
-          <b>↗</b>
-        </a>
+        <article class="card tool" data-category="travel" data-keywords="passport visa appointment booking travel apply"> 
+          <div class="ico">🗓️</div>
+          <div class="text">
+            <h3>অ্যাপয়েন্টমেন্ট</h3>
+            <p>পাসপোর্ট ও ভিসা অ্যাপয়েন্টমেন্ট বুক করুন দ্রুত।</p>
+          </div>
+        </article>
       </div>
     </section>
 
     <section class="section" id="links">
       <div class="head">
-        <small>Shortcut Links</small>
+        <small>Important Links</small>
         <h2>দরকারি লিংক</h2>
-        <p>সর্বাধিক ব্যবহৃত সরকারি ও পপুলার পোর্টাল একসাথে।</p>
+        <p>সার্ভিস ও অফিসিয়াল লিঙ্ক দ্রুত অ্যাক্সেস করুন।</p>
       </div>
 
-      <div class="links searchable" id="useful">
-        <a class="link" href="https://www.india.gov.in/" target="_blank" rel="noopener" data-category="government" data-search="india government portal official info">
-          <i>🇮🇳</i><span>ভারত সরকারী পোর্টাল</span><b>↗</b>
-        </a>
-        <a class="link" href="https://myaadhaar.uidai.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="uidai aadhaar official portal">
-          <i>🆔</i><span>UIDAI / আধার</span><b>↗</b>
-        </a>
-        <a class="link" href="https://www.incometax.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="income tax pan government portal">
-          <i>💳</i><span>Income Tax Portal</span><b>↗</b>
-        </a>
-        <a class="link" href="https://voters.eci.gov.in/" target="_blank" rel="noopener" data-category="identity" data-search="voter election service portal">
-          <i>🗳️</i><span>Voter Service Portal</span><b>↗</b>
-        </a>
-        <a class="link" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener" data-category="travel" data-search="passport seva travel service portal">
-          <i>🛂</i><span>Passport Seva</span><b>↗</b>
-        </a>
-        <a class="link" href="https://www.digilocker.gov.in/" target="_blank" rel="noopener" data-category="documents" data-search="digilocker document storage portal">
-          <i>📂</i><span>Digilocker</span><b>↗</b>
-        </a>
+      <div class="links">
+        <a class="link" href="#" aria-label="Official portal"><i>🔗</i><span>Official Portal</span><b>→</b></a>
+        <a class="link" href="#" aria-label="Phone support"><i>📞</i><span>Phone Support</span><b>→</b></a>
+        <a class="link" href="#" aria-label="Service guide"><i>📘</i><span>Service Guide</span><b>→</b></a>
       </div>
     </section>
 
-    <div class="notice">এই সাইটটি শুধুমাত্র পরিষেবার শর্টকাট ড্যাশবোর্ড। গুরুত্বপূর্ণ তথ্য যাচাই করে ব্যবহার করুন এবং প্রতিটি পোর্টালে অফিসিয়াল/সংশ্লিষ্ট লিঙ্ক ব্যবহার করুন।</div>
+    <section class="section" id="social">
+      <div class="head">
+        <small>Social</small>
+        <h2>সোশ্যাল মিডিয়া</h2>
+        <p>আমাদের আপডেট, নোটিশ ও নতুন সেবা ফলো করুন।</p>
+      </div>
+
+      <div class="socials">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Instagram">◎</a>
+        <a href="#" aria-label="X">X</a>
+        <a href="#" aria-label="YouTube">▶</a>
+      </div>
+    </section>
   </main>
 
   <footer>
     <div class="wrap footrow">
-      <a class="footbrand" href="#">
+      <div class="footbrand">
         <img src="logo.jpg" alt="Daily Use Products Official logo">
         <div>
           <h2>Daily Use Products Official</h2>
-          <p>Your Premier Digital Services Hub<br>Internet &amp; Tech Solutions</p>
+          <p>Your Premier Digital Services Hub</p>
         </div>
-      </a>
+      </div>
 
-      <div class="social" id="social">
-        <strong>Connect</strong>
+      <div class="social">
+        <strong>Follow us</strong>
         <div class="socials">
-          <a href="#" aria-label="Facebook">f</a>
-          <a href="#" aria-label="Instagram">◎</a>
-          <a href="#" aria-label="X">X</a>
-          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#">f</a>
+          <a href="#">◎</a>
+          <a href="#">X</a>
+          <a href="#">▶</a>
         </div>
-        <small>Access • Verify • Act</small>
+        <small>Fast access. Verified info. Smart search.</small>
       </div>
     </div>
   </footer>
 
   <script>
-    const menuBtn = document.getElementById('menuBtn');
-    const menu = document.getElementById('menu');
+    (function () {
+      const normalize = (value) => (value || '').toLowerCase().replace(/[^a-z0-9\u0980-\u09ff\s]/g, ' ').replace(/\s+/g, ' ').trim();
+      const cards = Array.from(document.querySelectorAll('.card'));
+      const categoryButtons = Array.from(document.querySelectorAll('.category-chip'));
+      const categoryFilter = document.getElementById('categoryFilter');
+      const cardSearch = document.getElementById('cardSearch');
+      const heroSearch = document.getElementById('search');
+      const resultCount = document.getElementById('count');
 
-    if (menuBtn && menu) {
-      menuBtn.addEventListener('click', () => {
-        const isOpen = menu.classList.toggle('open');
-        menuBtn.setAttribute('aria-expanded', String(isOpen));
+      cards.forEach((card) => {
+        const keywords = card.getAttribute('data-keywords') || '';
+        const text = (card.textContent || '') + ' ' + keywords;
+        card.dataset.searchText = normalize(text);
       });
-    }
 
-    const searchInput = document.getElementById('search');
-    const cards = Array.from(document.querySelectorAll('.searchable'));
-    const countEl = document.getElementById('count');
-    const categoryFilter = document.getElementById('categoryFilter');
-    const chips = Array.from(document.querySelectorAll('.category-chip'));
-    const errorBox = document.getElementById('error');
-
-    let activeCategory = 'all';
-
-    function applyFilters() {
-      const query = (searchInput ? searchInput.value : '').trim().toLowerCase();
-      let visibleCount = 0;
-
-      const matchesCategory = (el) => {
-        const category = el.dataset.category || 'all';
-        return activeCategory === 'all' || category === activeCategory;
+      const setCategory = (value) => {
+        categoryButtons.forEach((button) => {
+          const match = button.dataset.category === value;
+          button.classList.toggle('active', match);
+        });
+        if (categoryFilter) categoryFilter.value = value;
       };
 
-      cards.forEach((group) => {
-        const items = group.querySelectorAll ? group.querySelectorAll('.card, .link') : [];
-        items.forEach((item) => {
-          const inCategory = matchesCategory(item);
-          const text = ((item.dataset.search || item.textContent) || '').toLowerCase();
-          const inQuery = !query || text.includes(query);
-          const shouldShow = inCategory && inQuery;
-          item.classList.toggle('hidden', !shouldShow);
-          if (shouldShow) visibleCount += 1;
+      const applyCardFilters = () => {
+        const activeCategory = categoryFilter ? categoryFilter.value : 'all';
+        const keyword = normalize(cardSearch ? cardSearch.value : '');
+        let visible = 0;
+
+        cards.forEach((card) => {
+          const categoryMatches = activeCategory === 'all' || card.dataset.category === activeCategory;
+          const searchMatches = !keyword || card.dataset.searchText.includes(keyword);
+          const visibleCard = categoryMatches && searchMatches;
+          card.classList.toggle('hidden', !visibleCard);
+          if (visibleCard) visible += 1;
         });
-      });
 
-      if (countEl) {
-        countEl.textContent = visibleCount ? `${visibleCount} সার্ভিস` : 'কোন ফলাফল নেই';
-      }
-
-      if (errorBox) {
-        errorBox.classList.toggle('hidden', visibleCount !== 0);
-        errorBox.textContent = visibleCount === 0 ? 'কোনো সার্ভিস খুঁজে পাওয়া যায়নি। অন্য কীওয়ার্ড চেষ্টা করুন।' : '';
-      }
-    }
-
-    if (searchInput) {
-      searchInput.addEventListener('input', applyFilters);
-    }
-
-    if (categoryFilter) {
-      categoryFilter.addEventListener('change', (event) => {
-        activeCategory = event.target.value;
-        chips.forEach((chip) => {
-          chip.classList.toggle('active', chip.dataset.category === activeCategory);
-        });
-        applyFilters();
-      });
-    }
-
-    chips.forEach((chip) => {
-      chip.addEventListener('click', () => {
-        activeCategory = chip.dataset.category || 'all';
-        chips.forEach((el) => el.classList.toggle('active', el === chip));
-        if (categoryFilter) categoryFilter.value = activeCategory;
-        applyFilters();
-      });
-    });
-
-    function animateCounter(element) {
-      const target = Number(element.dataset.target || 0);
-      const suffix = element.dataset.suffix || '';
-      const duration = 1200;
-      const start = performance.now();
-
-      function update(now) {
-        const progress = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const value = target * eased;
-        const display = target >= 10 ? Math.round(value) : value.toFixed(1);
-        element.textContent = `${display}${suffix}`;
-
-        if (progress < 1) requestAnimationFrame(update);
-        else element.textContent = `${target}${suffix}`;
-      }
-
-      requestAnimationFrame(update);
-    }
-
-    const counters = document.querySelectorAll('[data-target]');
-    const counterObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateCounter(entry.target);
-          counterObserver.unobserve(entry.target);
+        if (resultCount) {
+          resultCount.textContent = keyword ? `ফলাফল: ${visible}` : 'সব পরিষেবা';
         }
-      });
-    }, { threshold: 0.45 });
+      };
 
-    counters.forEach((counter) => counterObserver.observe(counter));
-    applyFilters();
+      categoryButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          setCategory(button.dataset.category);
+          applyCardFilters();
+        });
+      });
+
+      if (categoryFilter) {
+        categoryFilter.addEventListener('change', () => {
+          setCategory(categoryFilter.value);
+          applyCardFilters();
+        });
+      }
+
+      if (cardSearch) {
+        cardSearch.addEventListener('input', applyCardFilters);
+      }
+
+      if (heroSearch) {
+        heroSearch.addEventListener('input', () => {
+          const value = normalize(heroSearch.value);
+          cards.forEach((card) => {
+            const matches = !value || card.dataset.searchText.includes(value);
+            card.classList.toggle('hidden', !matches);
+          });
+        });
+      }
+
+      applyCardFilters();
+    })();
   </script>
 </body>
 </html>
