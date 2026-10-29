@@ -798,6 +798,35 @@
       return card.titleBn || card.titleEn || 'Untitled';
     }
 
+    function applyDashboardTextCorrections() {
+      const adminToggle = document.getElementById('adminToggle');
+      if (adminToggle) adminToggle.textContent = '⚙ অ্যাডমিন';
+
+      const adminHeader = document.querySelector('.admin-header h3');
+      if (adminHeader) adminHeader.textContent = 'Admin Panel / অ্যাডমিন প্যানেল';
+
+      const socialTabBtn = document.querySelector('.tab-btn[data-tab="social"]');
+      if (socialTabBtn) socialTabBtn.textContent = 'Social / সোশ্যাল মিডিয়া';
+
+      const categoryTabBtn = document.querySelector('.tab-btn[data-tab="categories"]');
+      if (categoryTabBtn) categoryTabBtn.textContent = 'Categories / ক্যাটাগরি';
+
+      const socialSummary = document.querySelector('#socialTab .admin-summary');
+      if (socialSummary) socialSummary.textContent = 'Update social media links and contact shortcuts. / সোশ্যাল মিডিয়া ও কন্টাক্ট লিংক আপডেট করুন।';
+
+      const socialFooterTitle = document.querySelector('#social strong');
+      if (socialFooterTitle) socialFooterTitle.textContent = 'Social Media / সোশ্যাল মিডিয়া';
+
+      const settingsSummary = document.querySelector('#settingsTab .admin-summary');
+      if (settingsSummary) settingsSummary.textContent = 'Manage brand content, hero text, and cards from one place. / ব্র্যান্ড কনটেন্ট, হিরো টেক্সট ও কার্ডগুলো এক জায়গায় পরিচালনা করুন।';
+
+      const cardsSummary = document.querySelector('#cardsTab .admin-summary');
+      if (cardsSummary) cardsSummary.textContent = 'Add new cards, update existing cards, assign category, type, keywords, and direct URL. / নতুন কার্ড যোগ করুন, পুরনো কার্ড আপডেট করুন, ক্যাটাগরি, টাইপ, কীওয়ার্ড ও লিংক ঠিক করুন।';
+
+      const categoriesSummary = document.querySelector('#categoriesTab .admin-summary');
+      if (categoriesSummary) categoriesSummary.textContent = 'Add category names and use them when creating cards. / ক্যাটাগরি যোগ করুন এবং কার্ড তৈরি করার সময় ব্যবহার করুন।';
+    }
+
     function renderSite() {
       const site = appData.site;
       document.getElementById('siteBrandName').textContent = site.brandName;
@@ -835,7 +864,7 @@
       const socials = document.getElementById('socialLinks');
       socials.innerHTML = Object.entries(appData.socialLinks).map(([key, value]) => {
         if (!value) return '';
-        const label = key.charAt(0).toUpperCase() + key.slice(1); 
+        const label = key.charAt(0).toUpperCase() + key.slice(1);
         const icon = key === 'facebook' ? 'f' : key === 'instagram' ? '◎' : key === 'youtube' ? '▶' : key === 'telegram' ? '✈' : key === 'whatsapp' ? 'W' : '•';
         return `<a href="${value}" target="_blank" rel="noreferrer" aria-label="${label}">${icon}</a>`;
       }).join('');
@@ -1115,6 +1144,7 @@
     function init() {
       appData = normalizeData(safeLoadData());
       selectedCardId = appData.cards[0]?.id ?? null;
+      applyDashboardTextCorrections();
       refreshForms();
       renderSite();
     }
