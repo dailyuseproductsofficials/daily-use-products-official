@@ -730,7 +730,7 @@
       site: {
         brandName: 'Daily Use Products Official',
         tagline: 'Your Premier Digital Services Hub',
-        heroTitle: 'সব প্রয়োজনীয় সেবা, <span class="accent">একটি স্মার্ট এক্সিকিউটিভ ড্যা���বোর্ডে</span>',
+        heroTitle: 'সব প্রয়োজনীয় সেবা, <span class="accent">একটি স্মার্ট এক্সিকিউটিভ ড্যাশবোর্ডে</span>',
         heroText: 'সরকারি, পরিচয়পত্র, স্বাস্থ্য, ব্যাংকিং, ভ্রমণ ও দৈনন্দিন প্রয়োজনীয় সেবাগুলো এক জায়গায়, দ্রুত ও নির্ভুলভাবে।',
       },
       categories: ['Identity', 'Documents', 'Travel', 'Banking', 'Health', 'Education', 'Utility', 'Business'],
@@ -846,20 +846,24 @@
         return '<div class="notice">এখানে এখন কোনো কার্ড নেই। Admin panel থেকে নতুন কার্ড যোগ করুন।</div>';
       }
 
-      return cards.map((card) => `
-        <article class="card">
-          <div class="top">
-            <div class="ico">${escapeHTML(card.icon || '📌')}</div>
-            <span class="chip">${escapeHTML(card.category)}</span>
-          </div>
-          <h3>${escapeHTML(card.titleBn || card.titleEn)}</h3>
-          <p>${escapeHTML(card.descriptionBn || card.descriptionEn || 'No description available')}</p>
-          <div class="go">
-            <span>${escapeHTML(card.type === 'important-service' ? 'Open service' : 'Open tool')}</span>
-            <span>→</span>
-          </div>
-        </article>
-      `).join('');
+      return cards.map((card) => {
+        const href = card.url || '#';
+        const isExternal = /^https?:\/\//i.test(href) || /^mailto:/i.test(href);
+        return `
+          <a class="card" href="${escapeHTML(href)}" target="${isExternal ? '_blank' : '_self'}" rel="${isExternal ? 'noopener noreferrer' : ''}">
+            <div class="top">
+              <div class="ico">${escapeHTML(card.icon || '📌')}</div>
+              <span class="chip">${escapeHTML(card.category)}</span>
+            </div>
+            <h3>${escapeHTML(card.titleBn || card.titleEn)}</h3>
+            <p>${escapeHTML(card.descriptionBn || card.descriptionEn || 'No description available')}</p>
+            <div class="go">
+              <span>${escapeHTML(card.type === 'important-service' ? 'Open service' : 'Open tool')}</span>
+              <span>→</span>
+            </div>
+          </a>
+        `;
+      }).join('');
     }
 
     function renderLinkGrid(cards) {
