@@ -24,12 +24,12 @@
       --indigo: #f3f7ff;
       --gold: #f7cf7e;
       --green: #4de3a8;
-      --shadow: 0 28px 60px rgba(0, 0, 0, 0.5);
-      --card-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+      --shadow: 0 28px 60px rgba(0,0,0,0.5);
+      --card-shadow: 0 18px 40px rgba(0,0,0,0.25);
       --gradient-primary: linear-gradient(135deg, #63c5ff 0%, #3577ff 35%, #5d8dff 100%);
       --gradient-soft: linear-gradient(135deg, rgba(126, 192, 255, 0.15), rgba(93, 141, 255, 0.08));
-      --dark-glow: 0 0 40px rgba(87, 149, 255, 0.24);
-      --gold-glow: 0 0 30px rgba(247, 207, 126, 0.18);
+      --danger: #ff8a8a;
+      --success: #7ce7b5;
     }
 
     * { box-sizing: border-box; }
@@ -48,12 +48,10 @@
 
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
-    button, input, select { font: inherit; }
+    button, input, select, textarea { font: inherit; }
+    textarea { resize: vertical; }
 
-    .wrap {
-      width: min(1200px, calc(100% - 32px));
-      margin: 0 auto;
-    }
+    .wrap { width: min(1200px, calc(100% - 32px)); margin: 0 auto; }
 
     header {
       position: sticky;
@@ -100,11 +98,7 @@
       color: white;
     }
 
-    .brand p {
-      margin: 3px 0 0;
-      color: #d9e9ff;
-      font-size: 12px;
-    }
+    .brand p { margin: 3px 0 0; color: #d9e9ff; font-size: 12px; }
 
     .nav-actions {
       display: flex;
@@ -114,7 +108,10 @@
 
     .nav-cta,
     .primary-btn,
-    .secondary-btn {
+    .secondary-btn,
+    .admin-toggle,
+    .admin-action,
+    .ghost-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -128,49 +125,48 @@
       position: relative;
       overflow: hidden;
       will-change: transform;
+      border: 1px solid transparent;
+    }
+
+    .nav-cta, .primary-btn {
+      color: white;
+      background: var(--gradient-primary);
+      box-shadow: 0 18px 28px rgba(27, 89, 211, 0.28), 0 0 30px rgba(95, 146, 255, 0.25);
+    }
+
+    .secondary-btn,
+    .ghost-btn,
+    .admin-toggle {
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(150, 176, 220, 0.28);
+      box-shadow: var(--card-shadow);
+    }
+
+    .admin-toggle, .admin-action, .ghost-btn {
+      padding: 10px 14px;
+      font-size: 13px;
+    }
+
+    .admin-action {
+      background: rgba(126,192,255,0.12);
+      border-color: rgba(126,192,255,0.28);
+      color: white;
+    }
+
+    .ghost-btn {
+      background: rgba(255,255,255,0.02);
     }
 
     .nav-cta:hover,
     .primary-btn:hover,
     .secondary-btn:hover,
-    .category-chip:hover,
-    .card:hover,
-    .link:hover,
-    .socials a:hover,
-    .trust-pill:hover,
-    .mini-card:hover {
+    .admin-toggle:hover,
+    .admin-action:hover,
+    .ghost-btn:hover {
       transform: translateY(-4px);
-    }
-
-    .nav-cta {
-      color: white;
-      background: rgba(140, 176, 255, 0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
-    }
-
-    .nav-cta:hover,
-    .primary-btn:hover,
-    .secondary-btn:hover {
       box-shadow: 0 18px 30px rgba(53, 94, 170, 0.22);
       filter: saturate(1.08);
-    }
-
-    .menubtn {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.12);
-      color: white;
-      border-radius: 12px;
-      padding: 10px 16px;
-      font-weight: 800;
-      cursor: pointer;
-      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
-    }
-
-    .menubtn:hover {
-      transform: translateY(-2px);
-      background: rgba(255,255,255,0.08);
-      box-shadow: 0 12px 20px rgba(0,0,0,0.2);
     }
 
     .menu {
@@ -194,10 +190,7 @@
       font-weight: 700;
       transition: transform 0.2s ease, background 0.2s ease;
     }
-    .menu a:hover {
-      background: rgba(255,255,255,0.04);
-      transform: translateX(2px);
-    }
+    .menu a:hover { background: rgba(255,255,255,0.04); transform: translateX(2px); }
 
     .hero {
       position: relative;
@@ -226,76 +219,19 @@
       100% { transform: translateX(150%); }
     }
 
-    .hero-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1.45fr 0.75fr;
-      gap: 28px;
-      align-items: center;
-    }
-
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.45fr 0.75fr; gap: 28px; align-items: center; }
     .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(126, 192, 255, 0.25);
-      background: rgba(18, 33, 52, 0.9);
-      color: var(--blue-2);
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-weight: 800;
-      box-shadow: 0 8px 20px rgba(48, 89, 255, 0.08);
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px;
+      border: 1px solid rgba(126, 192, 255, 0.25); background: rgba(18, 33, 52, 0.9); color: var(--blue-2);
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 800; box-shadow: 0 8px 20px rgba(48, 89, 255, 0.08);
     }
 
     .hero h2 {
-      margin: 18px 0 14px;
-      max-width: 760px;
-      font-size: clamp(30px, 4.3vw, 57px);
-      line-height: 1.02;
-      letter-spacing: -0.07em;
-      font-weight: 900;
-      color: white;
+      margin: 18px 0 14px; max-width: 760px; font-size: clamp(30px, 4.3vw, 57px); line-height: 1.02; letter-spacing: -0.07em; font-weight: 900; color: white;
     }
-
-    .hero h2 .accent {
-      display: inline-block;
-      background: linear-gradient(135deg, #8fe0ff 0%, #8ea2ff 30%, #d7ffff 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 30px rgba(126, 192, 255, 0.18);
-    }
-
-    .hero p {
-      margin: 0;
-      max-width: 660px;
-      color: var(--muted);
-      font-size: clamp(16px, 2vw, 20px);
-    }
-
-    .hero-cta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 26px;
-    }
-
-    .primary-btn {
-      color: white;
-      background: var(--gradient-primary);
-      box-shadow: 0 18px 28px rgba(27, 89, 211, 0.28), 0 0 30px rgba(95, 146, 255, 0.25);
-    }
-
-    .secondary-btn {
-      color: var(--text);
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(150, 176, 220, 0.28);
-      box-shadow: var(--card-shadow);
-    }
+    .hero h2 .accent { display: inline-block; background: linear-gradient(135deg, #8fe0ff 0%, #8ea2ff 30%, #d7ffff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: 0 0 30px rgba(126, 192, 255, 0.18); }
+    .hero p { margin: 0; max-width: 660px; color: var(--muted); font-size: clamp(16px, 2vw, 20px); }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
 
     .search {
       width: min(780px, 100%);
@@ -310,600 +246,180 @@
       box-shadow: 0 18px 28px rgba(0,0,0,0.12);
       transition: box-shadow 0.2s ease, transform 0.2s ease;
     }
-
-    .search:hover {
-      box-shadow: 0 18px 30px rgba(0,0,0,0.2);
-      transform: translateY(-1px);
-    }
-
+    .search:hover { box-shadow: 0 18px 30px rgba(0,0,0,0.2); transform: translateY(-1px); }
     .search span {
-      font-size: 22px;
-      color: var(--blue);
-      display: grid;
-      place-items: center;
-      width: 32px;
-      height: 32px;
-      filter: drop-shadow(0 8px 15px rgba(126,192,255,0.22));
+      font-size: 22px; color: var(--blue); display: grid; place-items: center; width: 32px; height: 32px; filter: drop-shadow(0 8px 15px rgba(126,192,255,0.22));
     }
-
     .search input {
-      width: 100%;
-      background: transparent;
-      border: 0;
-      outline: none;
-      color: var(--text);
-      font-size: clamp(16px, 2vw, 18px);
-      padding: 10px 8px;
+      width: 100%; background: transparent; border: 0; outline: none; color: var(--text); font-size: clamp(16px, 2vw, 18px); padding: 10px 8px;
     }
     .search input::placeholder { color: #8b9fc5; }
+    .search small { padding: 8px 12px; white-space: nowrap; color: var(--indigo); border-left: 1px solid rgba(140, 163, 202, 0.34); font-weight: 800; font-size: 12px; }
 
-    .search small {
-      padding: 8px 12px;
-      white-space: nowrap;
-      color: var(--indigo);
-      border-left: 1px solid rgba(140, 163, 202, 0.34);
-      font-weight: 800;
-      font-size: 12px;
-    }
-
-    .trust-row {
-      margin: 18px 0 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
+    .trust-row { margin: 18px 0 0; display: flex; flex-wrap: wrap; gap: 10px; }
     .trust-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(137,160,216,0.22);
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 700;
-      box-shadow: 0 12px 18px rgba(0,0,0,0.12);
+      display: inline-flex; align-items: center; gap: 8px; padding: 9px 12px; border-radius: 999px; background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(137,160,216,0.22); color: var(--muted); font-size: 12px; font-weight: 700; box-shadow: 0 12px 18px rgba(0,0,0,0.12);
       transition: transform 0.22s ease, box-shadow 0.22s ease;
     }
-
-    .trust-pill:hover {
-      box-shadow: 0 16px 26px rgba(0,0,0,0.18);
-    }
+    .trust-pill:hover { box-shadow: 0 16px 26px rgba(0,0,0,0.18); }
 
     .hero-panel {
-      position: relative;
-      z-index: 1;
-      background: linear-gradient(180deg, rgba(16, 25, 38, 0.96), rgba(10, 16, 28, 0.96));
-      border: 1px solid rgba(167, 184, 220, 0.12);
-      border-radius: 26px;
-      padding: 18px;
-      box-shadow: 0 28px 44px rgba(0, 0, 0, 0.26), inset 0 1px 0 rgba(255,255,255,0.04);
-      overflow: hidden;
+      position: relative; z-index: 1; background: linear-gradient(180deg, rgba(16, 25, 38, 0.96), rgba(10, 16, 28, 0.96));
+      border: 1px solid rgba(167, 184, 220, 0.12); border-radius: 26px; padding: 18px; box-shadow: 0 28px 44px rgba(0, 0, 0, 0.26), inset 0 1px 0 rgba(255,255,255,0.04); overflow: hidden;
     }
-
     .hero-panel::before {
-      content: "";
-      position: absolute;
-      inset: auto -20% -28% auto;
-      width: 210px;
-      height: 210px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(126, 192, 255, 0.22), transparent 62%);
-      pointer-events: none;
+      content: ""; position: absolute; inset: auto -20% -28% auto; width: 210px; height: 210px; border-radius: 50%; background: radial-gradient(circle, rgba(126, 192, 255, 0.22), transparent 62%); pointer-events: none;
     }
 
-    .mini-card {
-      position: relative;
-      z-index: 1;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 18px;
-      padding: 16px 18px;
-      margin-bottom: 12px;
-      color: white;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-      transition: transform 0.22s ease, box-shadow 0.22s ease;
-    }
-
-    .mini-card:hover {
-      box-shadow: 0 16px 26px rgba(0,0,0,0.18);
-    }
-
-    .mini-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      color: #d8e1f7;
-      font-size: 12px;
-      margin-bottom: 10px;
-    }
-
-    .mini-head .delta {
-      color: var(--green);
-      font-weight: 800;
-    }
-
-    .stat {
-      font-size: clamp(28px, 4vw, 42px);
-      font-weight: 900;
-      letter-spacing: -0.06em;
-      color: white;
-      text-shadow: 0 10px 20px rgba(126,192,255,0.16);
-    }
-
-    .mini-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 8px;
-    }
-
-    .mini-list li {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      color: #dfe8ff;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 12px;
-      padding: 9px 10px;
-      font-size: 13px;
-    }
-
-    .mini-list strong {
-      color: white;
-      font-weight: 800;
-    }
+    .mini-card { position: relative; z-index: 1; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 16px 18px; margin-bottom: 12px; color: white; box-shadow: inset 0 1px 0 rgba(255,255,255,0.04); transition: transform 0.22s ease, box-shadow 0.22s ease; }
+    .mini-card:hover { box-shadow: 0 16px 26px rgba(0,0,0,0.18); }
+    .mini-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; color: #d8e1f7; font-size: 12px; margin-bottom: 10px; }
+    .mini-head .delta { color: var(--green); font-weight: 800; }
+    .stat { font-size: clamp(28px, 4vw, 42px); font-weight: 900; letter-spacing: -0.06em; color: white; text-shadow: 0 10px 20px rgba(126,192,255,0.16); }
+    .mini-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+    .mini-list li { display: flex; justify-content: space-between; align-items: center; gap: 16px; color: #dfe8ff; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 9px 10px; font-size: 13px; }
+    .mini-list strong { color: white; font-weight: 800; }
 
     .section { margin: 48px 0; }
-
-    .head {
-      margin-bottom: 22px;
-    }
-
+    .head { margin-bottom: 22px; }
     .head small {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 13px;
-      border-radius: 999px;
-      border: 1px solid rgba(126, 192, 255, 0.2);
-      background: rgba(17, 26, 39, 0.76);
-      color: var(--blue-2);
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-weight: 800;
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 13px; border-radius: 999px; border: 1px solid rgba(126, 192, 255, 0.2); background: rgba(17, 26, 39, 0.76); color: var(--blue-2); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 800;
     }
-
-    .head h2 {
-      margin: 12px 0 8px;
-      font-size: clamp(26px, 3vw, 38px);
-      line-height: 1.08;
-      letter-spacing: -0.05em;
-      color: white;
-    }
-
-    .head p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
+    .head h2 { margin: 12px 0 8px; font-size: clamp(26px, 3vw, 38px); line-height: 1.08; letter-spacing: -0.05em; color: white; }
+    .head p { margin: 0; color: var(--muted); font-size: 14px; }
 
     .category-filter-box,
     .card-search-box {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 16px 18px;
-      border-radius: 20px;
-      background: rgba(18, 28, 43, 0.8);
-      border: 1px solid var(--line);
-      box-shadow: var(--card-shadow);
-      margin-bottom: 18px;
-      backdrop-filter: blur(8px);
+      display: flex; align-items: center; gap: 14px; padding: 16px 18px; border-radius: 20px; background: rgba(18, 28, 43, 0.8); border: 1px solid var(--line); box-shadow: var(--card-shadow); margin-bottom: 18px; backdrop-filter: blur(8px);
     }
-
-    .category-label {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      font-weight: 800;
-    }
-
+    .category-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); font-weight: 800; }
     .category-filter-box select,
-    .card-search-box input {
-      flex: 1;
-      min-width: 220px;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: rgba(11,18,28,0.9);
-      color: var(--text);
-      padding: 12px 14px;
-      outline: none;
+    .card-search-box input,
+    .admin-form input,
+    .admin-form select,
+    .admin-form textarea,
+    .new-category-box input {
+      flex: 1; min-width: 220px; border: 1px solid var(--line); border-radius: 14px; background: rgba(11,18,28,0.9); color: var(--text); padding: 12px 14px; outline: none;
     }
-
-    .card-search-box {
-      position: relative;
-    }
-
-    .search-input-wrap {
-      position: relative;
-      flex: 1;
-      min-width: 220px;
-    }
-
-    .card-search-box input {
-      width: 100%;
-      min-width: 0;
-    }
-
+    .card-search-box { position: relative; }
+    .search-input-wrap { position: relative; flex: 1; min-width: 220px; }
+    .card-search-box input { width: 100%; min-width: 0; }
     .card-search-box input::placeholder { color: #8da5c9; }
-
     .search-clear-btn {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      border: 0;
-      background: rgba(255,255,255,0.08);
-      color: var(--text);
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-weight: 900;
-      transition: background 0.2s ease, transform 0.2s ease;
+      position: absolute; right: 10px; top: 50%; transform: translateY(-50%); border: 0; background: rgba(255,255,255,0.08); color: var(--text); width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-weight: 900; transition: background 0.2s ease, transform 0.2s ease;
     }
+    .search-clear-btn:hover { background: rgba(126, 192, 255, 0.18); transform: translateY(-50%) scale(1.05); }
+    .search-clear-btn.hidden { display: none; }
+    .match-highlight { background: rgba(126, 192, 255, 0.3); color: white; border-radius: 6px; padding: 0 3px; box-shadow: inset 0 0 0 1px rgba(126, 192, 255, 0.25); }
 
-    .search-clear-btn:hover {
-      background: rgba(126, 192, 255, 0.18);
-      transform: translateY(-50%) scale(1.05);
-    }
-
-    .search-clear-btn.hidden {
-      display: none;
-    }
-
-    .match-highlight {
-      background: rgba(126, 192, 255, 0.3);
-      color: white;
-      border-radius: 6px;
-      padding: 0 3px;
-      box-shadow: inset 0 0 0 1px rgba(126, 192, 255, 0.25);
-    }
-
-    .category-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
+    .category-grid { display: flex; flex-wrap: wrap; gap: 10px; }
     .category-chip {
-      border: 1px solid rgba(151,171,210,0.28);
-      background: rgba(17, 24, 34, 0.85);
-      color: var(--text);
-      border-radius: 999px;
-      padding: 11px 16px;
-      font-weight: 800;
-      cursor: pointer;
-      transition: all 0.22s ease;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+      border: 1px solid rgba(151,171,210,0.28); background: rgba(17, 24, 34, 0.85); color: var(--text); border-radius: 999px; padding: 11px 16px; font-weight: 800; cursor: pointer; transition: all 0.22s ease; box-shadow: 0 8px 18px rgba(0,0,0,0.12);
     }
-
     .category-chip:hover,
     .category-chip.active {
-      background: linear-gradient(135deg, rgba(22, 39, 62, 0.95), rgba(24, 39, 57, 0.95));
-      border-color: rgba(126, 192, 255, 0.5);
-      color: var(--blue-2);
-      box-shadow: 0 12px 20px rgba(60, 95, 176, 0.18);
-      transform: translateY(-3px) scale(1.02);
+      background: linear-gradient(135deg, rgba(22, 39, 62, 0.95), rgba(24, 39, 57, 0.95)); border-color: rgba(126, 192, 255, 0.5); color: var(--blue-2); box-shadow: 0 12px 20px rgba(60, 95, 176, 0.18); transform: translateY(-3px) scale(1.02);
     }
 
     .grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px;
     }
 
     .card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      background: rgba(17, 24, 34, 0.8);
-      border: 1px solid rgba(150,179,226,0.18);
-      border-radius: 24px;
-      padding: 18px;
-      box-shadow: var(--card-shadow);
-      min-width: 0;
-      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
-      will-change: transform;
+      position: relative; display: flex; flex-direction: column; gap: 10px; background: rgba(17, 24, 34, 0.8); border: 1px solid rgba(150,179,226,0.18); border-radius: 24px; padding: 18px; box-shadow: var(--card-shadow); min-width: 0; transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease; overflow: hidden; backdrop-filter: blur(10px); will-change: transform;
     }
-
     .card::before {
-      content: "";
-      position: absolute;
-      inset: 0 auto auto 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, rgba(126,192,255,0.45), rgba(126,192,255,0.18), rgba(247,207,126,0.2));
+      content: ""; position: absolute; inset: 0 auto auto 0; width: 100%; height: 2px; background: linear-gradient(90deg, rgba(126,192,255,0.45), rgba(126,192,255,0.18), rgba(247,207,126,0.2));
     }
-
     .card::after {
-      content: "";
-      position: absolute;
-      inset: auto -20% -40% auto;
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(126, 192, 255, 0.12), transparent 65%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
+      content: ""; position: absolute; inset: auto -20% -40% auto; width: 150px; height: 150px; border-radius: 50%; background: radial-gradient(circle, rgba(126, 192, 255, 0.12), transparent 65%); opacity: 0; transition: opacity 0.3s ease; pointer-events: none;
     }
-
-    .card:hover {
-      border-color: rgba(126, 192, 255, 0.34);
-      box-shadow: 0 22px 36px rgba(0,0,0,0.26), 0 0 30px rgba(94, 130, 255, 0.12);
-      filter: saturate(1.05);
-    }
-
-    .card:hover::after {
-      opacity: 1;
-    }
-
-    .top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-    }
-
+    .card:hover { border-color: rgba(126, 192, 255, 0.34); box-shadow: 0 22px 36px rgba(0,0,0,0.26), 0 0 30px rgba(94, 130, 255, 0.12); filter: saturate(1.05); }
+    .card:hover::after { opacity: 1; }
+    .top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
     .ico {
-      width: 52px;
-      height: 52px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, rgba(25, 38, 60, 0.96), rgba(17, 24, 38, 0.96));
-      border: 1px solid rgba(126, 192, 255, 0.15);
-      display: grid;
-      place-items: center;
-      font-size: 25px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 12px 18px rgba(0,0,0,0.14);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      width: 52px; height: 52px; border-radius: 16px; background: linear-gradient(135deg, rgba(25, 38, 60, 0.96), rgba(17, 24, 38, 0.96)); border: 1px solid rgba(126, 192, 255, 0.15); display: grid; place-items: center; font-size: 25px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 12px 18px rgba(0,0,0,0.14); transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-
-    .card:hover .ico,
-    .tool:hover .ico {
-      transform: rotate(-4deg) scale(1.06);
-      box-shadow: 0 14px 20px rgba(126,192,255,0.14);
-    }
-
+    .card:hover .ico { transform: rotate(-4deg) scale(1.06); box-shadow: 0 14px 20px rgba(126,192,255,0.14); }
     .chip {
-      background: rgba(126,192,255,0.08);
-      border: 1px solid rgba(126, 192, 255, 0.2);
-      color: var(--blue-2);
-      border-radius: 999px;
-      padding: 6px 9px;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      transition: transform 0.2s ease;
+      background: rgba(126,192,255,0.08); border: 1px solid rgba(126, 192, 255, 0.2); color: var(--blue-2); border-radius: 999px; padding: 6px 9px; font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; transition: transform 0.2s ease;
     }
+    .card:hover .chip { transform: translateX(2px); }
+    .card h3 { margin: 0; font-size: 17px; letter-spacing: -0.03em; color: white; }
+    .card p { margin: 0; flex: 1; color: var(--muted); font-size: 13px; }
+    .go { display: flex; justify-content: space-between; align-items: center; color: var(--blue); font-weight: 800; font-size: 13px; margin-top: 4px; }
+    .go span { transition: transform 0.22s ease; display: inline-block; }
+    .card:hover .go span { transform: translate(4px, -2px); }
 
-    .card:hover .chip {
-      transform: translateX(2px);
-    }
+    .tools .grid, .links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .tool { flex-direction: row; align-items: center; gap: 12px; padding: 16px; }
+    .tool .text { flex: 1; min-width: 0; }
+    .tool .text h3 { margin: 0; font-size: 16px; color: white; }
+    .tool .text p { margin: 2px 0 0; font-size: 12px; color: var(--muted); }
 
-    .card h3 {
-      margin: 0;
-      font-size: 17px;
-      letter-spacing: -0.03em;
-      color: white;
-    }
-
-    .card p {
-      margin: 0;
-      flex: 1;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .go {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: var(--blue);
-      font-weight: 800;
-      font-size: 13px;
-      margin-top: 4px;
-    }
-
-    .go span {
-      transition: transform 0.22s ease;
-      display: inline-block;
-    }
-
-    .card:hover .go span {
-      transform: translate(4px, -2px);
-    }
-
-    .tools .grid,
-    .links {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .tool {
-      flex-direction: row;
-      align-items: center;
-      gap: 12px;
-      padding: 16px;
-    }
-
-    .tool .text {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .tool .text h3 {
-      margin: 0;
-      font-size: 16px;
-      color: white;
-    }
-
-    .tool .text p {
-      margin: 2px 0 0;
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .link {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-      padding: 14px 16px;
-      border-radius: 16px;
-      background: rgba(17, 24, 34, 0.7);
-      border: 1px solid rgba(148,171,214,0.2);
-      box-shadow: var(--card-shadow);
-      font-weight: 800;
-      color: white;
-      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .link::after {
-      content: "";
-      position: absolute;
-      inset: 0 auto 0 -10%;
-      width: 24%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transform: translateX(-120%) skewX(-18deg);
-      transition: transform 0.5s ease;
-    }
-
-    .link:hover {
-      border-color: rgba(126, 192, 255, 0.4);
-      box-shadow: 0 22px 36px rgba(0,0,0,0.26), 0 0 20px rgba(126,192,255,0.08);
-      filter: saturate(1.03);
-    }
-
-    .link:hover::after {
-      transform: translateX(500%) skewX(-18deg);
-    }
-
-    .link i {
-      font-style: normal;
-      font-size: 22px;
-      width: 26px;
-      display: inline-block;
-      text-align: center;
-      transition: transform 0.2s ease;
-    }
-
+    .link { display: flex; align-items: center; gap: 12px; min-width: 0; padding: 14px 16px; border-radius: 16px; background: rgba(17, 24, 34, 0.7); border: 1px solid rgba(148,171,214,0.2); box-shadow: var(--card-shadow); font-weight: 800; color: white; transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease; position: relative; overflow: hidden; }
+    .link::after { content: ""; position: absolute; inset: 0 auto 0 -10%; width: 24%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transform: translateX(-120%) skewX(-18deg); transition: transform 0.5s ease; }
+    .link:hover { border-color: rgba(126, 192, 255, 0.4); box-shadow: 0 22px 36px rgba(0,0,0,0.26), 0 0 20px rgba(126,192,255,0.08); filter: saturate(1.03); }
+    .link:hover::after { transform: translateX(500%) skewX(-18deg); }
+    .link i { font-style: normal; font-size: 22px; width: 26px; display: inline-block; text-align: center; transition: transform 0.2s ease; }
     .link:hover i { transform: scale(1.15); }
     .link span { display: block; min-width: 0; }
-
-    .link b {
-      margin-left: auto;
-      color: var(--blue);
-      font-size: 18px;
-      transition: transform 0.22s ease;
-    }
-
+    .link b { margin-left: auto; color: var(--blue); font-size: 18px; transition: transform 0.22s ease; }
     .link:hover b { transform: translate(4px, -2px); }
 
-    .notice {
-      margin-top: 18px;
-      padding: 15px 18px;
-      border: 1px dashed rgba(126, 156, 224, 0.5);
-      background: rgba(17, 24, 34, 0.7);
-      border-radius: 16px;
-      color: var(--muted);
-      font-size: 13px;
-      box-shadow: var(--card-shadow);
-    }
+    .notice { margin-top: 18px; padding: 15px 18px; border: 1px dashed rgba(126, 156, 224, 0.5); background: rgba(17, 24, 34, 0.7); border-radius: 16px; color: var(--muted); font-size: 13px; box-shadow: var(--card-shadow); }
 
-    footer {
-      margin-top: 52px;
-      padding: 34px 0 24px;
-      background: linear-gradient(180deg, #090f1a 0%, #0c1524 100%);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      color: white;
-    }
-
-    .footrow {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 22px;
-    }
-
-    .footbrand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .footbrand p {
-      margin: 4px 0 0;
-      color: #cfe1ff;
-      font-size: 12px;
-    }
-
-    .social {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      align-items: flex-start;
-    }
-
-    .social strong {
-      color: white;
-      font-size: 15px;
-    }
-
-    .socials {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
+    footer { margin-top: 52px; padding: 34px 0 24px; background: linear-gradient(180deg, #090f1a 0%, #0c1524 100%); border-top: 1px solid rgba(255,255,255,0.06); color: white; }
+    .footrow { display: flex; justify-content: space-between; align-items: flex-start; gap: 22px; }
+    .footbrand { display: flex; align-items: center; gap: 12px; }
+    .footbrand p { margin: 4px 0 0; color: #cfe1ff; font-size: 12px; }
+    .social { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+    .social strong { color: white; font-size: 15px; }
+    .socials { display: flex; gap: 8px; flex-wrap: wrap; }
     .socials a {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.12);
-      color: white;
-      font-weight: 900;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); color: white; font-weight: 900; transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     }
+    .socials a:hover { background: rgba(126,192,255,0.12); box-shadow: 0 14px 24px rgba(0,0,0,0.18); }
+    .social small { color: #d7def4; font-size: 12px; }
 
-    .socials a:hover {
-      background: rgba(126,192,255,0.12);
-      box-shadow: 0 14px 24px rgba(0,0,0,0.18);
+    .admin-shell {
+      position: fixed; inset: 0 0 0 auto; width: min(520px, calc(100% - 24px)); transform: translateX(120%); transition: transform 0.28s ease; z-index: 200;
+      background: rgba(7, 12, 20, 0.97); border-left: 1px solid rgba(126,192,255,0.18); box-shadow: -25px 0 50px rgba(0,0,0,0.4); backdrop-filter: blur(18px);
     }
+    .admin-shell.open { transform: translateX(0); }
+    .admin-header {
+      display: flex; justify-content: space-between; align-items: center; padding: 18px 20px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .admin-header h3 { margin: 0; font-size: 22px; }
+    .close-admin { border: 0; background: rgba(255,255,255,0.06); color: white; width: 36px; height: 36px; border-radius: 12px; cursor: pointer; }
+    .admin-body { height: calc(100vh - 80px); overflow: auto; padding: 18px 20px 32px; }
 
-    .social small {
-      color: #d7def4;
-      font-size: 12px;
+    .admin-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .tab-btn { background: rgba(255,255,255,0.04); color: var(--text); border: 1px solid rgba(150,176,220,0.16); border-radius: 12px; padding: 8px 12px; cursor: pointer; }
+    .tab-btn.active { background: rgba(126,192,255,0.12); border-color: rgba(126,192,255,0.25); color: white; }
+
+    .admin-panel-section { display: none; }
+    .admin-panel-section.active { display: block; }
+
+    .admin-form {
+      display: grid; gap: 14px;
     }
+    .field-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+    .field { display: grid; gap: 7px; }
+    .field label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); font-weight: 800; }
+    .admin-form textarea { min-height: 90px; }
+    .admin-form select, .admin-form input, .admin-form textarea { width: 100%; }
+    .new-category-box {
+      display: flex; gap: 8px; align-items: center; margin-top: 8px;
+    }
+    .new-category-box input { min-width: 0; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .tag-item { display: inline-flex; align-items: center; gap: 6px; background: rgba(126,192,255,0.08); border: 1px solid rgba(126,192,255,0.16); border-radius: 999px; padding: 6px 10px; color: var(--blue-2); font-weight: 700; }
+    .tag-item button { border: 0; background: transparent; color: white; cursor: pointer; font-size: 14px; }
+
+    .admin-summary { padding: 12px 14px; background: rgba(126,192,255,0.05); border: 1px solid rgba(126,192,255,0.12); border-radius: 14px; color: var(--muted); margin-bottom: 14px; }
+    .admin-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
 
     .hidden { display: none !important; }
 
@@ -913,6 +429,7 @@
       .tools .grid, .links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .category-filter-box, .card-search-box { flex-direction: column; align-items: stretch; }
       .category-filter-box select, .search-input-wrap { width: 100%; min-width: 0; }
+      .field-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 560px) {
@@ -935,14 +452,14 @@
       <a class="brand" href="#">
         <img src="logo.jpg" alt="Daily Use Products Official logo">
         <div>
-          <h1>Daily Use Products Official</h1>
-          <p>Your Premier Digital Services Hub</p>
+          <h1 id="siteBrandName">Daily Use Products Official</h1>
+          <p id="siteTagline">Your Premier Digital Services Hub</p>
         </div>
       </a>
 
       <div class="nav-actions">
         <a class="nav-cta" href="#important">Explore Services</a>
-        <button class="menubtn" id="menuBtn" aria-expanded="false" aria-controls="menu">☰ Menu</button>
+        <button class="admin-toggle" id="adminToggle" type="button">⚙ Admin</button>
       </div>
 
       <nav class="menu" id="menu" aria-label="Main menu">
@@ -960,8 +477,8 @@
       <div class="hero-grid">
         <div>
           <div class="eyebrow">Executive Service Suite</div>
-          <h2>সব প্রয়োজনীয় সেবা, <span class="accent">একটি স্মার্ট এক্সিকিউটিভ ড্যাশবোর্ডে</span></h2>
-          <p>সরকারি, পরিচয়পত্র, স্বাস্থ্য, ব্যাংকিং, ভ্রমণ ও দৈনন্দিন প্রয়োজনীয় সেবা এক জায়গায়। দ্রুত খুঁজুন, দ্রুত নিন।</p>
+          <h2 id="heroTitle">সব প্রয়োজনীয় সেবা, <span class="accent">একটি স্মার্ট এক্সিকিউটিভ ড্যাশবোর্ডে</span></h2>
+          <p id="heroText">সরকারি, পরিচয়পত্র, স্বাস্থ্য, ব্যাংকিং, ভ্রমণ ও দৈনন্দিন প্রয়োজনীয় সেবাগুলো এক জায়গায়, দ্রুত ও নির্ভুলভাবে।</p>
 
           <div class="hero-cta">
             <a class="primary-btn" href="#important">সার্ভিস ব্রাউজ করুন</a>
@@ -999,391 +516,606 @@
       </div>
     </section>
 
-    <div id="error" class="notice hidden"></div>
-
     <section class="section" id="categories">
       <div class="head">
         <small>Categories</small>
-        <h2>ক্যাটাগরি</h2>
-        <p>সার্ভিসের ধরন অনুযায়ী দ্রুত খুঁজুন।</p>
+        <h2>ক্যাটাগরি / Categories</h2>
+        <p>সব ধরনের সেবা সহজে খুঁজুন।</p>
       </div>
-
-      <div class="category-filter-box">
-        <label class="category-label" for="categoryFilter">বিভাগ</label>
-        <select id="categoryFilter" aria-label="Select service category">
-          <option value="all">সব ক্যাটাগরি</option>
-          <option value="government">সরকারি পরিষেবা</option>
-          <option value="identity">পরিচয়পত্র</option>
-          <option value="documents">ডকুমেন্ট ও সার্টিফিকেট</option>
-          <option value="health">স্বাস্থ্য</option>
-          <option value="education">শিক্ষা</option>
-          <option value="banking">ব্যাংকিং ও অর্থ</option>
-          <option value="utility">ইউটিলিটি পরিষেবা</option>
-          <option value="travel">ভ্রমণ ও পাসপোর্ট</option>
-          <option value="business">ব্যবসা ও কাজ</option>
-          <option value="other">অন্যান্য</option>
-        </select>
-      </div>
-
-      <div class="card-search-box">
-        <label class="category-label" for="cardSearch">Card Search</label>
-        <div class="search-input-wrap">
-          <input id="cardSearch" type="search" placeholder="রেশনের নাম, PAN, ভোটার, পাসপোর্ট, সনদ, ব্যাংক..." aria-label="Search cards by keyword">
-          <button id="cardSearchClear" type="button" class="search-clear-btn hidden" aria-label="Clear card search">✕</button>
-        </div>
-      </div>
-
-      <div class="category-grid" aria-label="Service categories">
-        <button type="button" class="category-chip active" data-category="all">সব</button>
-        <button type="button" class="category-chip" data-category="government">সরকারি পরিষেবা</button>
-        <button type="button" class="category-chip" data-category="identity">পরিচয়পত্র</button>
-        <button type="button" class="category-chip" data-category="documents">ডকুমেন্ট ও সার্টিফিকেট</button>
-        <button type="button" class="category-chip" data-category="health">স্বাস্থ্য</button>
-        <button type="button" class="category-chip" data-category="education">শিক্ষা</button>
-        <button type="button" class="category-chip" data-category="banking">ব্যাংকিং ও অর্থ</button>
-        <button type="button" class="category-chip" data-category="utility">ইউটিলিটি পরিষেবা</button>
-        <button type="button" class="category-chip" data-category="travel">ভ্রমণ ও পাসপোর্ট</button>
-        <button type="button" class="category-chip" data-category="business">ব্যবসা ও কাজ</button>
-        <button type="button" class="category-chip" data-category="other">অন্যান্য</button>
-      </div>
+      <div class="category-grid" id="categoryGrid"></div>
     </section>
 
     <section class="section" id="important">
       <div class="head">
-        <small>Essential Services</small>
-        <h2>গুরুত্বপূর্ণ পরিষেবা</h2>
-        <p>পরিচয়পত্র, স্বাস্থ্য, ভ্রমণ, ব্যাংকিং ও সরকারি সেবা কয়েক ক্লিকে।</p>
+        <small>Featured</small>
+        <h2>গুরুত্বপূর্ণ পরিষেবা / Important Services</h2>
+        <p>সার্ভিস, নথি, প্রাতিষ্ঠানিক ও ব্যক্তিগত প্রয়োজনের দ্রুত এক্সেস।</p>
       </div>
-
-      <div class="grid">
-        <article class="card" data-category="government" data-keywords="রেশন ration food card govt subsidy government subsidy সরকারি খাদ্য">
-          <div class="top">
-            <div class="ico">🧾</div>
-            <span class="chip">Government</span>
-          </div>
-          <h3>রেশন কার্ড</h3>
-          <p>সার্বিক সরকারী খাদ্য সহায়তা, স্ট্যাটাস যাচাই ও আপডেট তথ্য দ্রুত খুঁজুন।</p>
-          <div class="go"><span>Open</span> <span>→</span></div>
-        </article>
-
-        <article class="card" data-category="identity" data-keywords="ভোটার voter id card election nid identity national identity card ভোটার আইডি">
-          <div class="top">
-            <div class="ico">🪪</div>
-            <span class="chip">Identity</span>
-          </div>
-          <h3>ভোটার আইডি</h3>
-          <p>ভোটার তালিকা, সংশোধন, ডুপ্লিকেট যাচাই ও পরিচয়পত্র তথ্য সহজে জানুন।</p>
-          <div class="go"><span>Open</span> <span>→</span></div>
-        </article>
-
-        <article class="card" data-category="travel" data-keywords="পাসপোর্ট passport visa travel application ভ্রমণ visa application passport renewal">
-          <div class="top">
-            <div class="ico">✈️</div>
-            <span class="chip">Travel</span>
-          </div>
-          <h3>পাসপোর্ট আবেদন</h3>
-          <p>নতুন পাসপোর্ট, নবায়ন, ডকুমেন্ট ডিপোজিট ও ভ্রমণ তথ্য অনলাইনে দেখুন।</p>
-          <div class="go"><span>Open</span> <span>→</span></div>
-        </article>
-
-        <article class="card" data-category="documents" data-keywords="সনদ certificate birth death marriage certificate document জন্ম সনদ marriage registration">
-          <div class="top">
-            <div class="ico">📄</div>
-            <span class="chip">Documents</span>
-          </div>
-          <h3>জন্ম সনদ</h3>
-          <p>জন্ম, মৃত্যু, বিবাহ ও অন্যান্য অফিসিয়াল সনদ সংশোধন ও রি‌ইস্যু সুবিধা।</p>
-          <div class="go"><span>Open</span> <span>→</span></div>
-        </article>
-
-        <article class="card" data-category="health" data-keywords="স্বাস্থ্য health hospital patient care medical doctor appointment treatment clinic">
-          <div class="top">
-            <div class="ico">🏥</div>
-            <span class="chip">Health</span>
-          </div>
-          <h3>হাসপাতাল তথ্য</h3>
-          <p>বেসরকারি ও সরকারি হাসপ��তাল, ডাক্তারের অ্যাপয়েন্টমেন্ট ও চিকিৎসা তথ্য চেক করুন।</p>
-          <div class="go"><span>Open</span> <span>→</span></div>
-        </article>
-
-        <article class="card" data-category="banking" data-keywords="ব্যাংক bank loan account saving savings credit card debit bank statement banking finance">
-          <div class="top">
-            <div class="ico">🏦</div>
-            <span class="chip">Banking</span>
-          </div>
-          <h3>ব্যাংক অ্যাকাউন্ট</h3>
-          <p>সেভিংস, লোন, কার্ড ও ব্যাংকিং স্টেটমেন্টের প্রয়োজনীয় তথ্য এক জায়গায়।</p>
-          <div class="go"><span>Open</span> <span>→</span></div>
-        </article>
-
-        <article class="card" data-category="utility" data-keywords="ইউটিলিটি utility electricity gas water bill meter bill payment electricity bill">
-          <div class="top">
-            <div class="ico">⚡</div>
-            <span class="chip">Utility</span>
-          </div>
-          <h3>বিল পেমেন্ট</h3>
-          <p>বিদ্যুৎ, গ্যাস, পানির বিল, ধারে-দেনা ও ইউটিলিটি সার্ভিস আপডেট সহজে দেখুন।</p>
-          <div class="go"><span>Open</span> <span>→</span></div>
-        </article>
-
-        <article class="card" data-category="business" data-keywords="ব্যবসা business trade license tax tin company registration registration firm">
-          <div class="top">
-            <div class="ico">📊</div>
-            <span class="chip">Business</span>
-          </div>
-          <h3>ট্রেড লাইসেন্স</h3>
-          <p>ট্যাক্স, লাইসেন্স, ফার্ম রেজিস্ট্রেশন ও ব্যবসায়িক নথিপত্রের তথ্য একসাথে।</p>
-          <div class="go"><span>Open</span> <span>→</span></div>
-        </article>
-      </div>
+      <div class="grid" id="importantGrid"></div>
     </section>
 
     <section class="section tools" id="tools">
       <div class="head">
-        <small>Quick Tools</small>
-        <h2>দ্রুত টুলস</h2>
-        <p>সার্ভিস খুঁজে নিতে প্রয়োজনীয় দ্রুত টুলস।</p>
+        <small>Tools</small>
+        <h2>দ্রুত টুলস / Quick Tools</h2>
+        <p>এক ক্লিকে প্রয়োজনীয় কাজ শেষ করুন।</p>
       </div>
-
-      <div class="grid">
-        <article class="card tool" data-category="government" data-keywords="tool calculator eligibility check gov public service application eligibility">
-          <div class="ico">🧮</div>
-          <div class="text">
-            <h3>এলিজিবিলিটি চেক</h3>
-            <p>কোন সেবা আপনার জন্য উপযুক্ত, তা দ্রুত যাচাই করুন।</p>
-          </div>
-        </article>
-
-        <article class="card tool" data-category="documents" data-keywords="document tracker status check certificate progress renew application status">
-          <div class="ico">📍</div>
-          <div class="text">
-            <h3>ডকুমেন্ট ট্র্যাক</h3>
-            <p>স্ট্যাটাস দেখুন, এগিয়ে চলেছে কি না জানতে পারবেন।</p>
-          </div>
-        </article>
-
-        <article class="card tool" data-category="travel" data-keywords="passport visa appointment booking travel apply schedule">
-          <div class="ico">🗓️</div>
-          <div class="text">
-            <h3>অ্যাপয়েন্টমেন্ট</h3>
-            <p>পাসপোর্ট ও ভিসা অ্যাপয়েন্টমেন্ট বুক করুন দ্রুত।</p>
-          </div>
-        </article>
-      </div>
+      <div class="grid" id="quickGrid"></div>
     </section>
 
     <section class="section" id="links">
       <div class="head">
-        <small>Important Links</small>
-        <h2>দরকারি লিংক</h2>
-        <p>সার্ভিস ও অফিসিয়াল লিঙ্ক দ্রুত অ্যাক্সেস করুন।</p>
+        <small>Links</small>
+        <h2>দরকারি লিংক / Useful Links</h2>
+        <p>প্রতিষ্ঠান, অফিস ও প্রয়োজনীয় রিসোর্স।</p>
       </div>
-
-      <div class="links">
-        <a class="link" href="#" aria-label="Official portal"><i>🔗</i><span>Official Portal</span><b>→</b></a>
-        <a class="link" href="#" aria-label="Phone support"><i>📞</i><span>Phone Support</span><b>→</b></a>
-        <a class="link" href="#" aria-label="Service guide"><i>📘</i><span>Service Guide</span><b>→</b></a>
-      </div>
-    </section>
-
-    <section class="section" id="social">
-      <div class="head">
-        <small>Social</small>
-        <h2>সোশ্যাল মিডিয়া</h2>
-        <p>আমাদের আপডেট, নোটিশ ও নতুন সেবা ফলো করুন।</p>
-      </div>
-
-      <div class="socials">
-        <a href="#" aria-label="Facebook">f</a>
-        <a href="#" aria-label="Instagram">◎</a>
-        <a href="#" aria-label="X">X</a>
-        <a href="#" aria-label="YouTube">▶</a>
-      </div>
+      <div class="links" id="linksGrid"></div>
     </section>
   </main>
 
-  <footer>
+  <footer id="social">
     <div class="wrap footrow">
       <div class="footbrand">
         <img src="logo.jpg" alt="Daily Use Products Official logo">
         <div>
-          <h2>Daily Use Products Official</h2>
-          <p>Your Premier Digital Services Hub</p>
+          <h2 id="footerBrand">Daily Use Products Official</h2>
+          <p id="footerTagline">Your Premier Digital Services Hub</p>
         </div>
       </div>
 
       <div class="social">
-        <strong>Follow us</strong>
-        <div class="socials">
-          <a href="#">f</a>
-          <a href="#">◎</a>
-          <a href="#">X</a>
-          <a href="#">▶</a>
-        </div>
-        <small>Fast access. Verified info. Smart search.</small>
+        <strong>Social Media / সোশ্যাল মিডিয়া</strong>
+        <div class="socials" id="socialLinks"></div>
+        <small>Manage links directly through the admin panel.</small>
       </div>
     </div>
   </footer>
 
+  <aside class="admin-shell" id="adminShell" aria-label="Admin dashboard">
+    <div class="admin-header">
+      <h3>Admin Dashboard / এডমিন ড্যাশবোর্ড</h3>
+      <button class="close-admin" id="closeAdmin" type="button" aria-label="Close admin panel">✕</button>
+    </div>
+
+    <div class="admin-body">
+      <div class="admin-tabs">
+        <button class="tab-btn active" data-tab="settings" type="button">Site Settings / সাইট সেটিংস</button>
+        <button class="tab-btn" data-tab="cards" type="button">Cards / কার্ডস</button>
+        <button class="tab-btn" data-tab="social" type="button">Social / সোশ্যাল</button>
+        <button class="tab-btn" data-tab="categories" type="button">Categories / ক্যাটাগরি</button>
+      </div>
+
+      <div class="admin-panel-section active" id="settingsTab">
+        <div class="admin-summary">Manage brand content, hero text, and card behavior from one place. / ব্র্যান্ড কনটেন্ট, হিরো টেক্সট ও কার্ড সেটিং এক জায়গায় পরিচালনা করুন।</div>
+        <form class="admin-form" id="siteSettingsForm">
+          <div class="field">
+            <label for="brandNameInput">Brand Name / ব্র্যান্ডের নাম</label>
+            <input id="brandNameInput" name="brandName" type="text">
+          </div>
+
+          <div class="field">
+            <label for="taglineInput">Tagline / ট্যাগলাইন</label>
+            <input id="taglineInput" name="tagline" type="text">
+          </div>
+
+          <div class="field">
+            <label for="heroTitleInput">Hero Title / হিরো শিরোনাম</label>
+            <input id="heroTitleInput" name="heroTitle" type="text">
+          </div>
+
+          <div class="field">
+            <label for="heroTextInput">Hero Description / হিরো বর্ণনা</label>
+            <textarea id="heroTextInput" name="heroText"></textarea>
+          </div>
+
+          <div class="admin-actions">
+            <button class="admin-action" type="submit">Save Settings / সেটিংস সংরক্ষণ</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="admin-panel-section" id="cardsTab">
+        <div class="admin-summary">Add new cards, update old cards, assign category, type, keywords and direct URL. / নতুন কার্ড যোগ করুন, পুরনো কার্ড সংশোধন করুন, ক্যাটাগরি, টাইপ, কীওয়ার্ড ও লিংক আপডেট করুন।</div>
+        <form class="admin-form" id="cardForm">
+          <div class="field">
+            <label for="cardSelector">Select Card / কার্ড নির্বাচন</label>
+            <select id="cardSelector" name="cardSelector"></select>
+          </div>
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="cardTitleBn">Title (Bangla) / শিরোনাম (বাংলা)</label>
+              <input id="cardTitleBn" name="titleBn" type="text">
+            </div>
+            <div class="field">
+              <label for="cardTitleEn">Title (English) / শিরোনাম (ইংরেজি)</label>
+              <input id="cardTitleEn" name="titleEn" type="text">
+            </div>
+          </div>
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="cardCategory">Category / ক্যাটাগরি</label>
+              <select id="cardCategory" name="category"></select>
+            </div>
+            <div class="field">
+              <label for="cardType">Card Type / কার্ড টাইপ</label>
+              <select id="cardType" name="type">
+                <option value="important-service">Important Service / গুরুত্বপূর্ণ পরিষেবা</option>
+                <option value="quick-tool">Quick Tool / দ্রুত টুল</option>
+                <option value="useful-link">Useful Link / দরকারি লিংক</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="cardIcon">Icon / আইকন</label>
+              <input id="cardIcon" name="icon" type="text" placeholder="📄 or 🏛️">
+            </div>
+            <div class="field">
+              <label for="cardUrl">URL / লিংক</label>
+              <input id="cardUrl" name="url" type="url" placeholder="https://example.com">
+            </div>
+          </div>
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="cardDescriptionBn">Description (Bangla) / বর্ণনা (বাংলা)</label>
+              <textarea id="cardDescriptionBn" name="descriptionBn"></textarea>
+            </div>
+            <div class="field">
+              <label for="cardDescriptionEn">Description (English) / বর্ণনা (ইংরেজি)</label>
+              <textarea id="cardDescriptionEn" name="descriptionEn"></textarea>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="cardKeywords">Keywords / কীওয়ার্ড</label>
+            <input id="cardKeywords" name="keywords" type="text" placeholder="voter, pan, identity, official">
+          </div>
+
+          <div class="admin-actions">
+            <button class="admin-action" type="submit">Save Card / কার্ড সংরক্ষণ</button>
+            <button class="ghost-btn" type="button" id="newCardBtn">New Card / নতুন কার্ড</button>
+            <button class="ghost-btn" type="button" id="deleteCardBtn">Delete Card / কার্ড মুছুন</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="admin-panel-section" id="socialTab">
+        <div class="admin-summary">Update social media links and contact shortcuts. / সোসাল মিডিয়া ও কন্টাক্ট লিংক আপডেট করুন।</div>
+        <form class="admin-form" id="socialForm">
+          <div class="field">
+            <label for="facebookInput">Facebook</label>
+            <input id="facebookInput" name="facebook" type="url">
+          </div>
+          <div class="field">
+            <label for="instagramInput">Instagram</label>
+            <input id="instagramInput" name="instagram" type="url">
+          </div>
+          <div class="field">
+            <label for="youtubeInput">YouTube</label>
+            <input id="youtubeInput" name="youtube" type="url">
+          </div>
+          <div class="field">
+            <label for="telegramInput">Telegram</label>
+            <input id="telegramInput" name="telegram" type="url">
+          </div>
+          <div class="field">
+            <label for="whatsappInput">WhatsApp</label>
+            <input id="whatsappInput" name="whatsapp" type="url">
+          </div>
+          <div class="admin-actions">
+            <button class="admin-action" type="submit">Save Social Links / লিংক সংরক্ষণ</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="admin-panel-section" id="categoriesTab">
+        <div class="admin-summary">Add category names and use them when creating cards. / ক্যাটাগরি যোগ করুন ও কার্ডগুলোতে ব্যবহার করুন।</div>
+        <div class="new-category-box">
+          <input id="newCategoryInput" type="text" placeholder="Add category / নতুন ক্যাটাগরি...">
+          <button class="admin-action" id="addCategoryBtn" type="button">Add / যোগ করুন</button>
+        </div>
+        <div class="tag-list" id="categoryTags"></div>
+      </div>
+    </div>
+  </aside>
+
   <script>
-    (function () {
-      const normalize = (value) => (value || '').toLowerCase().replace(/[^a-z0-9\u0980-\u09ff\s]/g, ' ').replace(/\s+/g, ' ').trim();
+    const STORAGE_KEY = 'daily-use-products-admin-v1';
 
-      const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const defaultData = {
+      site: {
+        brandName: 'Daily Use Products Official',
+        tagline: 'Your Premier Digital Services Hub',
+        heroTitle: 'সব প্রয়োজনীয় সেবা, <span class="accent">একটি স্মার্ট এক্সিকিউটিভ ড্যা���বোর্ডে</span>',
+        heroText: 'সরকারি, পরিচয়পত্র, স্বাস্থ্য, ব্যাংকিং, ভ্রমণ ও দৈনন্দিন প্রয়োজনীয় সেবাগুলো এক জায়গায়, দ্রুত ও নির্ভুলভাবে।',
+      },
+      categories: ['Identity', 'Documents', 'Travel', 'Banking', 'Health', 'Education', 'Utility', 'Business'],
+      socialLinks: {
+        facebook: 'https://facebook.com',
+        instagram: 'https://instagram.com',
+        youtube: 'https://youtube.com',
+        telegram: 'https://t.me',
+        whatsapp: 'https://wa.me/8801700000000',
+      },
+      cards: [
+        { id: 1, titleBn: 'ভোটার কার্ড', titleEn: 'Voter Card', descriptionBn: 'নির্ভুল ও দ্রুত ভোটার তথ্য দেখুন।', descriptionEn: 'Access voter information quickly and correctly.', category: 'Identity', type: 'important-service', icon: '🪪', url: '#', keywords: 'voter, identity, card', order: 1 },
+        { id: 2, titleBn: 'পাসপোর্ট', titleEn: 'Passport', descriptionBn: 'পরিচয় ও ভ্রমণ সেবার জন্য দ্রুত আবেদন.', descriptionEn: 'Fast passport service for identity and travel needs.', category: 'Documents', type: 'important-service', icon: '🛂', url: '#', keywords: 'passport, travel, document', order: 2 },
+        { id: 3, titleBn: 'ট্যাক্স ফাইল', titleEn: 'Tax File', descriptionBn: 'কর, রিটার্ন ও নথি সংক্রান্ত সেবা।', descriptionEn: 'Tax return and document support.', category: 'Documents', type: 'important-service', icon: '📑', url: '#', keywords: 'tax, return, finance', order: 3 },
+        { id: 4, titleBn: 'রেশন কার্ড', titleEn: 'Ration Card', descriptionBn: 'রেশন ও নিত্যপ্রয়োজনীয় সহায়ক সেবা।', descriptionEn: 'Daily support and ration information.', category: 'Utility', type: 'important-service', icon: '🧾', url: '#', keywords: 'ration, utility, subsidy', order: 4 },
+        { id: 5, titleBn: 'আর্থিক হিসাব', titleEn: 'Finance Check', descriptionBn: 'মানি লেনদেন ও ব্যালেন্স যাচাই করুন।', descriptionEn: 'Check finances, balances and financial updates.', category: 'Banking', type: 'quick-tool', icon: '💳', url: '#', keywords: 'bank, finance, balance', order: 5 },
+        { id: 6, titleBn: 'ইন্টারনেট বিল', titleEn: 'Internet Bill', descriptionBn: 'ইন্টারনেট বিল, পেমেন্ট ও আপডেট।', descriptionEn: 'Internet bill payment updates.', category: 'Utility', type: 'quick-tool', icon: '📡', url: '#', keywords: 'internet, bill, payment', order: 6 },
+        { id: 7, titleBn: 'হেলথ কেয়ার', titleEn: 'Health Care', descriptionBn: 'স্বাস্থ্য, মেডিকেল ও বেকার সেবা তথ্য।', descriptionEn: 'Healthcare and medical support resources.', category: 'Health', type: 'quick-tool', icon: '🩺', url: '#', keywords: 'health, medical, care', order: 7 },
+        { id: 8, titleBn: 'গভর্নমেন্ট পোর্টাল', titleEn: 'Gov Portal', descriptionBn: 'সরকারি অফিসিয়াল পোর্টাল ও তথ্য কেন্দ্র।', descriptionEn: 'Official government portal and information hub.', category: 'Documents', type: 'useful-link', icon: '🔗', url: '#', keywords: 'government, portal, official', order: 8 },
+        { id: 9, titleBn: 'এনআইডি ডক', titleEn: 'NID Doc', descriptionBn: 'জাতীয় পরিচয়পত্র ও লগইন সহায়তা।', descriptionEn: 'National ID and login assistance.', category: 'Identity', type: 'useful-link', icon: '🆔', url: '#', keywords: 'nid, identity, official', order: 9 },
+        { id: 10, titleBn: 'আন্তর্জাতিক ভ্রমণ', titleEn: 'International Travel', descriptionBn: 'ভিসা, বিমান ও আন্তর্জাতিক যাত্রা তথ্য।', descriptionEn: 'Visa and flight travel information.', category: 'Travel', type: 'useful-link', icon: '✈️', url: '#', keywords: 'travel, visa, flight', order: 10 }
+      ]
+    };
 
-      const cards = Array.from(document.querySelectorAll('.card'));
-      const categoryButtons = Array.from(document.querySelectorAll('.category-chip'));
-      const categoryFilter = document.getElementById('categoryFilter');
-      const cardSearch = document.getElementById('cardSearch');
-      const cardSearchClear = document.getElementById('cardSearchClear');
-      const heroSearch = document.getElementById('search');
-      const resultCount = document.getElementById('count');
+    function safeLoadData() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : structuredClone(defaultData);
+      } catch (error) {
+        return structuredClone(defaultData);
+      }
+    }
 
-      cards.forEach((card) => {
-        const keywords = card.getAttribute('data-keywords') || '';
-        const heading = card.querySelector('h3')?.textContent || '';
-        const body = card.querySelector('p')?.textContent || '';
-        const searchText = normalize([heading, body, keywords].join(' '));
-        card.dataset.searchText = searchText;
-        card.dataset.titleText = heading;
-        card.dataset.bodyText = body;
+    function saveData(data) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    function normalizeData(data) {
+      const base = structuredClone(defaultData);
+      return {
+        site: { ...base.site, ...(data?.site || {}) },
+        categories: Array.isArray(data?.categories) && data.categories.length ? data.categories : base.categories,
+        socialLinks: { ...base.socialLinks, ...(data?.socialLinks || {}) },
+        cards: Array.isArray(data?.cards) && data.cards.length ? data.cards : base.cards
+      };
+    }
+
+    let appData = normalizeData(safeLoadData());
+    let selectedCardId = appData.cards[0]?.id ?? null;
+    let currentCategoryFilter = 'All';
+    let currentSearch = '';
+    let activeTab = 'settings';
+
+    function escapeHTML(value = '') {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function getCardTitle(card) {
+      if (!card) return '';
+      return card.titleBn || card.titleEn || 'Untitled';
+    }
+
+    function renderSite() {
+      const site = appData.site;
+      document.getElementById('siteBrandName').textContent = site.brandName;
+      document.getElementById('siteTagline').textContent = site.tagline;
+      document.getElementById('footerBrand').textContent = site.brandName;
+      document.getElementById('footerTagline').textContent = site.tagline;
+      document.getElementById('heroTitle').innerHTML = site.heroTitle;
+      document.getElementById('heroText').textContent = site.heroText;
+
+      const categoryGrid = document.getElementById('categoryGrid');
+      const allCats = ['All', ...appData.categories];
+      categoryGrid.innerHTML = allCats.map((category) => {
+        const active = currentCategoryFilter === category ? 'active' : '';
+        return `<button class="category-chip ${active}" data-category="${escapeHTML(category)}">${escapeHTML(category)}</button>`;
+      }).join('');
+
+      const filteredCards = appData.cards.filter(card => {
+        const matchesCategory = currentCategoryFilter === 'All' || card.category === currentCategoryFilter;
+        const term = currentSearch.trim().toLowerCase();
+        const matchesSearch = !term || [card.titleBn, card.titleEn, card.descriptionBn, card.descriptionEn, card.category, card.keywords].join(' ').toLowerCase().includes(term);
+        return matchesCategory && matchesSearch;
       });
 
-      const setCategory = (value) => {
-        categoryButtons.forEach((button) => {
-          const match = button.dataset.category === value;
-          button.classList.toggle('active', match);
-        });
-        if (categoryFilter) categoryFilter.value = value;
+      const importantCards = filteredCards.filter(card => card.type === 'important-service');
+      const quickCards = filteredCards.filter(card => card.type === 'quick-tool');
+      const linkCards = filteredCards.filter(card => card.type === 'useful-link');
+
+      document.getElementById('importantGrid').innerHTML = renderCardGrid(importantCards);
+      document.getElementById('quickGrid').innerHTML = renderCardGrid(quickCards);
+      document.getElementById('linksGrid').innerHTML = renderLinkGrid(linkCards);
+
+      const countNode = document.getElementById('count');
+      countNode.textContent = filteredCards.length ? `${filteredCards.length} মিলছে` : 'কোনো ফলাফল নেই';
+
+      const socials = document.getElementById('socialLinks');
+      socials.innerHTML = Object.entries(appData.socialLinks).map(([key, value]) => {
+        if (!value) return '';
+        const label = key.charAt(0).toUpperCase() + key.slice(1); 
+        const icon = key === 'facebook' ? 'f' : key === 'instagram' ? '◎' : key === 'youtube' ? '▶' : key === 'telegram' ? '✈' : key === 'whatsapp' ? 'W' : '•';
+        return `<a href="${value}" target="_blank" rel="noreferrer" aria-label="${label}">${icon}</a>`;
+      }).join('');
+    }
+
+    function renderCardGrid(cards) {
+      if (!cards.length) {
+        return '<div class="notice">এখানে এখন কোনো কার্ড নেই। Admin panel থেকে নতুন কার্ড যোগ করুন।</div>';
+      }
+
+      return cards.map((card) => `
+        <article class="card">
+          <div class="top">
+            <div class="ico">${escapeHTML(card.icon || '📌')}</div>
+            <span class="chip">${escapeHTML(card.category)}</span>
+          </div>
+          <h3>${escapeHTML(card.titleBn || card.titleEn)}</h3>
+          <p>${escapeHTML(card.descriptionBn || card.descriptionEn || 'No description available')}</p>
+          <div class="go">
+            <span>${escapeHTML(card.type === 'important-service' ? 'Open service' : 'Open tool')}</span>
+            <span>→</span>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function renderLinkGrid(cards) {
+      if (!cards.length) {
+        return '<div class="notice">এখানে এখন কোনো দরকারি লিংক নেই।</div>';
+      }
+
+      return cards.map((card) => `
+        <a class="link" href="${escapeHTML(card.url || '#')}" target="_blank" rel="noreferrer">
+          <i>${escapeHTML(card.icon || '🔗')}</i>
+          <span>
+            <strong>${escapeHTML(card.titleBn || card.titleEn)}</strong>
+          </span>
+          <b>→</b>
+        </a>
+      `).join('');
+    }
+
+    function renderCardSelect() {
+      const selector = document.getElementById('cardSelector');
+      selector.innerHTML = ['<option value="new">New card / নতুন কার্ড</option>']
+        .concat(appData.cards.map(card => `<option value="${card.id}">${escapeHTML(getCardTitle(card))}</option>`))
+        .join('');
+
+      if (selectedCardId) {
+        selector.value = String(selectedCardId);
+      } else {
+        selector.value = 'new';
+      }
+    }
+
+    function fillCardForm(card) {
+      const fields = {
+        cardTitleBn: card?.titleBn || '',
+        cardTitleEn: card?.titleEn || '',
+        cardDescriptionBn: card?.descriptionBn || '',
+        cardDescriptionEn: card?.descriptionEn || '',
+        cardKeywords: card?.keywords || '',
+        cardIcon: card?.icon || '',
+        cardUrl: card?.url || '',
+        cardType: card?.type || 'important-service',
+        cardCategory: card?.category || appData.categories[0] || 'Identity'
       };
 
-      const applyHighlight = (element, query) => {
-        if (!element || !query) {
-          element.innerHTML = element.dataset.originalHtml || element.textContent;
-          return;
-        }
-
-        const terms = normalize(query).split(/\s+/).filter(Boolean);
-        if (!terms.length) {
-          element.innerHTML = element.dataset.originalHtml || element.textContent;
-          return;
-        }
-
-        let html = element.dataset.originalHtml || element.textContent;
-        terms.forEach((term) => {
-          if (!term) return;
-          const regex = new RegExp(escapeRegExp(term), 'gi');
-          html = html.replace(regex, (match) => '<mark class="match-highlight">' + match + '</mark>');
-        });
-        element.innerHTML = html;
-      };
-
-      const resetCardHighlights = (card) => {
-        const title = card.querySelector('h3');
-        const body = card.querySelector('p');
-        if (title) {
-          title.dataset.originalHtml = title.textContent;
-          title.innerHTML = title.textContent;
-        }
-        if (body) {
-          body.dataset.originalHtml = body.textContent;
-          body.innerHTML = body.textContent;
-        }
-      };
-
-      cards.forEach((card) => {
-        const title = card.querySelector('h3');
-        const body = card.querySelector('p');
-        if (title) title.dataset.originalHtml = title.textContent;
-        if (body) body.dataset.originalHtml = body.textContent;
+      Object.entries(fields).forEach(([id, value]) => {
+        const input = document.getElementById(id);
+        if (input) input.value = value;
       });
+    }
 
-      const updateClearButton = (input, button) => {
-        if (!input || !button) return;
-        button.classList.toggle('hidden', !input.value.trim());
+    function clearCardForm() {
+      document.getElementById('cardForm').reset();
+      document.getElementById('cardType').value = 'important-service';
+      document.getElementById('cardCategory').value = appData.categories[0] || 'Identity';
+      selectedCardId = null;
+      document.getElementById('cardSelector').value = 'new';
+    }
+
+    function renderCategoryOptions() {
+      const categorySelect = document.getElementById('cardCategory');
+      categorySelect.innerHTML = appData.categories.map(cat => `<option value="${escapeHTML(cat)}">${escapeHTML(cat)}</option>`).join('');
+      if (appData.categories.length) {
+        categorySelect.value = appData.categories[0];
+      }
+
+      const tags = document.getElementById('categoryTags');
+      tags.innerHTML = appData.categories.map(cat => `
+        <span class="tag-item">${escapeHTML(cat)} <button type="button" data-remove-category="${escapeHTML(cat)}">×</button></span>
+      `).join('');
+    }
+
+    function renderSocialForm() {
+      const socialForm = document.getElementById('socialForm');
+      Object.keys(appData.socialLinks).forEach((key) => {
+        const field = socialForm.elements[key];
+        if (field) field.value = appData.socialLinks[key] || '';
+      });
+    }
+
+    function renderSettingsForm() {
+      const site = appData.site;
+      document.getElementById('brandNameInput').value = site.brandName;
+      document.getElementById('taglineInput').value = site.tagline;
+      document.getElementById('heroTitleInput').value = site.heroTitle.replace(/<[^>]*>/g, '');
+      document.getElementById('heroTextInput').value = site.heroText;
+    }
+
+    function refreshForms() {
+      renderCardSelect();
+      renderCategoryOptions();
+      renderSocialForm();
+      renderSettingsForm();
+      if (selectedCardId) {
+        const target = appData.cards.find(card => card.id === selectedCardId);
+        fillCardForm(target);
+      } else {
+        clearCardForm();
+      }
+    }
+
+    function createCardFromForm(form) {
+      const nextId = appData.cards.length ? Math.max(...appData.cards.map(card => Number(card.id || 0))) + 1 : 1;
+      return {
+        id: selectedCardId || nextId,
+        titleBn: form.cardTitleBn.value.trim(),
+        titleEn: form.cardTitleEn.value.trim() || form.cardTitleBn.value.trim(),
+        descriptionBn: form.cardDescriptionBn.value.trim(),
+        descriptionEn: form.cardDescriptionEn.value.trim() || form.cardDescriptionBn.value.trim(),
+        category: form.cardCategory.value,
+        type: form.cardType.value,
+        icon: form.cardIcon.value.trim() || '📌',
+        url: form.cardUrl.value.trim() || '#',
+        keywords: form.cardKeywords.value.trim(),
+        order: selectedCardId ? appData.cards.find(c => c.id === selectedCardId)?.order ?? appData.cards.length + 1 : appData.cards.length + 1
       };
+    }
 
-      const applyCardFilters = () => {
-        const activeCategory = categoryFilter ? categoryFilter.value : 'all';
-        const keyword = normalize(cardSearch ? cardSearch.value : '');
-        let visible = 0;
+    document.getElementById('search').addEventListener('input', (event) => {
+      currentSearch = event.target.value;
+      renderSite();
+    });
 
-        cards.forEach((card) => {
-          const categoryMatches = activeCategory === 'all' || card.dataset.category === activeCategory;
-          const searchTerms = keyword ? keyword.split(/\s+/).filter(Boolean) : [];
-          const searchMatches = !searchTerms.length || searchTerms.every((term) => card.dataset.searchText.includes(term));
-          const visibleCard = categoryMatches && searchMatches;
-          card.classList.toggle('hidden', !visibleCard);
+    document.getElementById('categoryGrid').addEventListener('click', (event) => {
+      const button = event.target.closest('[data-category]');
+      if (!button) return;
+      currentCategoryFilter = button.dataset.category;
+      renderSite();
+    });
 
-          resetCardHighlights(card);
-          if (visibleCard && keyword) {
-            const title = card.querySelector('h3');
-            const body = card.querySelector('p');
-            applyHighlight(title, keyword);
-            applyHighlight(body, keyword);
-          }
-
-          if (visibleCard) visible += 1;
-        });
-
-        if (resultCount) {
-          resultCount.textContent = keyword ? `ফলাফল: ${visible}` : 'সব পরিষেবা';
-        }
+    document.getElementById('siteSettingsForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      appData.site = {
+        ...appData.site,
+        brandName: form.brandName.value.trim() || defaultData.site.brandName,
+        tagline: form.tagline.value.trim() || defaultData.site.tagline,
+        heroTitle: form.heroTitle.value.trim() ? `<span class="accent">${escapeHTML(form.heroTitle.value.trim())}</span>` : defaultData.site.heroTitle,
+        heroText: form.heroText.value.trim() || defaultData.site.heroText,
       };
+      saveData(appData);
+      renderSite();
+      document.getElementById('adminToggle').click();
+    });
 
-      categoryButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-          setCategory(button.dataset.category);
-          applyCardFilters();
+    document.getElementById('cardSelector').addEventListener('change', (event) => {
+      const value = event.target.value;
+      if (value === 'new') {
+        selectedCardId = null;
+        clearCardForm();
+        return;
+      }
+      selectedCardId = Number(value);
+      const card = appData.cards.find(c => c.id === selectedCardId);
+      if (card) fillCardForm(card);
+    });
+
+    document.getElementById('cardForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const cardData = createCardFromForm(form);
+
+      if (selectedCardId) {
+        appData.cards = appData.cards.map(card => card.id === selectedCardId ? cardData : card);
+      } else {
+        appData.cards.push(cardData);
+      }
+
+      saveData(appData);
+      selectedCardId = cardData.id;
+      renderSite();
+      refreshForms();
+    });
+
+    document.getElementById('newCardBtn').addEventListener('click', () => {
+      selectedCardId = null;
+      clearCardForm();
+    });
+
+    document.getElementById('deleteCardBtn').addEventListener('click', () => {
+      if (!selectedCardId) return;
+      if (!confirm('Delete this card? / এই কার্ডটি মুছবেন?')) return;
+      appData.cards = appData.cards.filter(card => card.id !== selectedCardId);
+      saveData(appData);
+      selectedCardId = appData.cards[0]?.id ?? null;
+      renderSite();
+      refreshForms();
+    });
+
+    document.getElementById('socialForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      appData.socialLinks = {
+        facebook: form.facebook.value.trim(),
+        instagram: form.instagram.value.trim(),
+        youtube: form.youtube.value.trim(),
+        telegram: form.telegram.value.trim(),
+        whatsapp: form.whatsapp.value.trim(),
+      };
+      saveData(appData);
+      renderSite();
+    });
+
+    document.getElementById('addCategoryBtn').addEventListener('click', () => {
+      const input = document.getElementById('newCategoryInput');
+      const value = input.value.trim();
+      if (!value) return;
+      if (!appData.categories.includes(value)) {
+        appData.categories.push(value);
+        saveData(appData);
+        renderSite();
+        refreshForms();
+      }
+      input.value = '';
+    });
+
+    document.getElementById('categoryTags').addEventListener('click', (event) => {
+      const btn = event.target.closest('[data-remove-category]');
+      if (!btn) return;
+      const category = btn.dataset.removeCategory;
+      appData.categories = appData.categories.filter(item => item !== category);
+      appData.cards = appData.cards.map(card => ({
+        ...card,
+        category: card.category === category ? appData.categories[0] || 'General' : card.category
+      }));
+      saveData(appData);
+      renderSite();
+      refreshForms();
+    });
+
+    document.getElementById('adminToggle').addEventListener('click', () => {
+      const shell = document.getElementById('adminShell');
+      shell.classList.toggle('open');
+    });
+
+    document.getElementById('closeAdmin').addEventListener('click', () => {
+      document.getElementById('adminShell').classList.remove('open');
+    });
+
+    document.querySelectorAll('.tab-btn').forEach((button) => {
+      button.addEventListener('click', () => {
+        activeTab = button.dataset.tab;
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.toggle('active', btn === button));
+        document.querySelectorAll('.admin-panel-section').forEach(section => {
+          section.classList.toggle('active', section.id === `${activeTab}Tab`);
         });
       });
+    });
 
-      if (categoryFilter) {
-        categoryFilter.addEventListener('change', () => {
-          setCategory(categoryFilter.value);
-          applyCardFilters();
-        });
-      }
+    function init() {
+      appData = normalizeData(safeLoadData());
+      selectedCardId = appData.cards[0]?.id ?? null;
+      refreshForms();
+      renderSite();
+    }
 
-      if (cardSearch) {
-        cardSearch.addEventListener('input', () => {
-          updateClearButton(cardSearch, cardSearchClear);
-          applyCardFilters();
-        });
-      }
-
-      if (cardSearchClear) {
-        cardSearchClear.addEventListener('click', () => {
-          if (cardSearch) {
-            cardSearch.value = '';
-            updateClearButton(cardSearch, cardSearchClear);
-            applyCardFilters();
-            cardSearch.focus();
-          }
-        });
-      }
-
-      if (heroSearch) {
-        heroSearch.addEventListener('input', () => {
-          const value = normalize(heroSearch.value);
-          cards.forEach((card) => {
-            const matches = !value || card.dataset.searchText.includes(value);
-            card.classList.toggle('hidden', !matches);
-            resetCardHighlights(card);
-            if (matches && value) {
-              const title = card.querySelector('h3');
-              const body = card.querySelector('p');
-              applyHighlight(title, value);
-              applyHighlight(body, value);
-            }
-          });
-        });
-      }
-
-      updateClearButton(cardSearch, cardSearchClear);
-      setCategory('all');
-      applyCardFilters();
-    })();
+    init();
   </script>
 </body>
 </html>
