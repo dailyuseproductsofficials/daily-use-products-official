@@ -81,7 +81,8 @@
       min-width: 0;
     }
 
-    .brand img, .footbrand img {
+    .brand img,
+    .footbrand img {
       width: 56px;
       height: 56px;
       object-fit: cover;
@@ -90,7 +91,8 @@
       box-shadow: 0 12px 20px rgba(0,0,0,0.2);
     }
 
-    .brand h1, .footbrand h2 {
+    .brand h1,
+    .footbrand h2 {
       margin: 0;
       line-height: 1.1;
       letter-spacing: -0.04em;
@@ -98,7 +100,11 @@
       color: white;
     }
 
-    .brand p { margin: 3px 0 0; color: #d9e9ff; font-size: 12px; }
+    .brand p {
+      margin: 3px 0 0;
+      color: #d9e9ff;
+      font-size: 12px;
+    }
 
     .nav-actions {
       display: flex;
@@ -523,7 +529,55 @@
       outline: none;
     }
 
+    .card-search-box {
+      position: relative;
+    }
+
+    .search-input-wrap {
+      position: relative;
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .card-search-box input {
+      width: 100%;
+      min-width: 0;
+    }
+
     .card-search-box input::placeholder { color: #8da5c9; }
+
+    .search-clear-btn {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 0;
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: 900;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .search-clear-btn:hover {
+      background: rgba(126, 192, 255, 0.18);
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    .search-clear-btn.hidden {
+      display: none;
+    }
+
+    .match-highlight {
+      background: rgba(126, 192, 255, 0.3);
+      color: white;
+      border-radius: 6px;
+      padding: 0 3px;
+      box-shadow: inset 0 0 0 1px rgba(126, 192, 255, 0.25);
+    }
 
     .category-grid {
       display: flex;
@@ -603,7 +657,9 @@
       filter: saturate(1.05);
     }
 
-    .card:hover::after { opacity: 1; }
+    .card:hover::after {
+      opacity: 1;
+    }
 
     .top {
       display: flex;
@@ -644,7 +700,9 @@
       transition: transform 0.2s ease;
     }
 
-    .card:hover .chip { transform: translateX(2px); }
+    .card:hover .chip {
+      transform: translateX(2px);
+    }
 
     .card h3 {
       margin: 0;
@@ -854,7 +912,7 @@
       .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .tools .grid, .links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .category-filter-box, .card-search-box { flex-direction: column; align-items: stretch; }
-      .category-filter-box select, .card-search-box input { width: 100%; min-width: 0; }
+      .category-filter-box select, .search-input-wrap { width: 100%; min-width: 0; }
     }
 
     @media (max-width: 560px) {
@@ -902,7 +960,7 @@
       <div class="hero-grid">
         <div>
           <div class="eyebrow">Executive Service Suite</div>
-          <h2>সব প্রয়োজনীয় সেবা, <span class="accent">একটি স্মার্ট এক্সিকিউটিভ ড্য���শবোর্ডে</span></h2>
+          <h2>সব প্রয়োজনীয় সেবা, <span class="accent">একটি স্মার্ট এক্সিকিউটিভ ড্যাশবোর্ডে</span></h2>
           <p>সরকারি, পরিচয়পত্র, স্বাস্থ্য, ব্যাংকিং, ভ্রমণ ও দৈনন্দিন প্রয়োজনীয় সেবা এক জায়গায়। দ্রুত খুঁজুন, দ্রুত নিন।</p>
 
           <div class="hero-cta">
@@ -969,7 +1027,10 @@
 
       <div class="card-search-box">
         <label class="category-label" for="cardSearch">Card Search</label>
-        <input id="cardSearch" type="search" placeholder="রেশন, PAN, ভোটার, পাসপোর্ট, সনদ, ব্যাংক..." aria-label="Search cards by keyword">
+        <div class="search-input-wrap">
+          <input id="cardSearch" type="search" placeholder="রেশনের নাম, PAN, ভোটার, পাসপোর্ট, সনদ, ব্যাংক..." aria-label="Search cards by keyword">
+          <button id="cardSearchClear" type="button" class="search-clear-btn hidden" aria-label="Clear card search">✕</button>
+        </div>
       </div>
 
       <div class="category-grid" aria-label="Service categories">
@@ -995,7 +1056,7 @@
       </div>
 
       <div class="grid">
-        <article class="card" data-category="government" data-keywords="রেশন ration food card govt subsidy subsidy card">
+        <article class="card" data-category="government" data-keywords="রেশন ration food card govt subsidy government subsidy সরকারি খাদ্য">
           <div class="top">
             <div class="ico">🧾</div>
             <span class="chip">Government</span>
@@ -1005,7 +1066,7 @@
           <div class="go"><span>Open</span> <span>→</span></div>
         </article>
 
-        <article class="card" data-category="identity" data-keywords="ভোটার voter id card election nid identity card">
+        <article class="card" data-category="identity" data-keywords="ভোটার voter id card election nid identity national identity card ভোটার আইডি">
           <div class="top">
             <div class="ico">🪪</div>
             <span class="chip">Identity</span>
@@ -1015,7 +1076,7 @@
           <div class="go"><span>Open</span> <span>→</span></div>
         </article>
 
-        <article class="card" data-category="travel" data-keywords="পাসপোর্ট passport visa travel application travel card">
+        <article class="card" data-category="travel" data-keywords="পাসপোর্ট passport visa travel application ভ্রমণ visa application passport renewal">
           <div class="top">
             <div class="ico">✈️</div>
             <span class="chip">Travel</span>
@@ -1025,7 +1086,7 @@
           <div class="go"><span>Open</span> <span>→</span></div>
         </article>
 
-        <article class="card" data-category="documents" data-keywords="সনদ certificate birth death marriage certificate document">
+        <article class="card" data-category="documents" data-keywords="সনদ certificate birth death marriage certificate document জন্ম সনদ marriage registration">
           <div class="top">
             <div class="ico">📄</div>
             <span class="chip">Documents</span>
@@ -1035,17 +1096,17 @@
           <div class="go"><span>Open</span> <span>→</span></div>
         </article>
 
-        <article class="card" data-category="health" data-keywords="স্বাস্থ্য health hospital patient care medical doctor appointment">
+        <article class="card" data-category="health" data-keywords="স্বাস্থ্য health hospital patient care medical doctor appointment treatment clinic">
           <div class="top">
             <div class="ico">🏥</div>
             <span class="chip">Health</span>
           </div>
           <h3>হাসপাতাল তথ্য</h3>
-          <p>বেসরকারি ও সরকারি হাসপাতাল, ডাক্তারের অ্যাপয়েন্টমেন্ট ও চিকিৎসা তথ্য চেক করুন।</p>
+          <p>বেসরকারি ও সরকারি হাসপ��তাল, ডাক্তারের অ্যাপয়েন্টমেন্ট ও চিকিৎসা তথ্য চেক করুন।</p>
           <div class="go"><span>Open</span> <span>→</span></div>
         </article>
 
-        <article class="card" data-category="banking" data-keywords="ব্যাংক bank loan account saving account credit card debit bank statement">
+        <article class="card" data-category="banking" data-keywords="ব্যাংক bank loan account saving savings credit card debit bank statement banking finance">
           <div class="top">
             <div class="ico">🏦</div>
             <span class="chip">Banking</span>
@@ -1055,7 +1116,7 @@
           <div class="go"><span>Open</span> <span>→</span></div>
         </article>
 
-        <article class="card" data-category="utility" data-keywords="ইউটিলিটি utility electricity gas water bill meter bill payment">
+        <article class="card" data-category="utility" data-keywords="ইউটিলিটি utility electricity gas water bill meter bill payment electricity bill">
           <div class="top">
             <div class="ico">⚡</div>
             <span class="chip">Utility</span>
@@ -1085,7 +1146,7 @@
       </div>
 
       <div class="grid">
-        <article class="card tool" data-category="government" data-keywords="tool calculator eligibility check gov public service app known">
+        <article class="card tool" data-category="government" data-keywords="tool calculator eligibility check gov public service application eligibility">
           <div class="ico">🧮</div>
           <div class="text">
             <h3>এলিজিবিলিটি চেক</h3>
@@ -1093,7 +1154,7 @@
           </div>
         </article>
 
-        <article class="card tool" data-category="documents" data-keywords="document tracker status check certificate progress renew">
+        <article class="card tool" data-category="documents" data-keywords="document tracker status check certificate progress renew application status">
           <div class="ico">📍</div>
           <div class="text">
             <h3>ডকুমেন্ট ট্র্যাক</h3>
@@ -1101,7 +1162,7 @@
           </div>
         </article>
 
-        <article class="card tool" data-category="travel" data-keywords="passport visa appointment booking travel apply"> 
+        <article class="card tool" data-category="travel" data-keywords="passport visa appointment booking travel apply schedule">
           <div class="ico">🗓️</div>
           <div class="text">
             <h3>অ্যাপয়েন্টমেন্ট</h3>
@@ -1167,17 +1228,25 @@
   <script>
     (function () {
       const normalize = (value) => (value || '').toLowerCase().replace(/[^a-z0-9\u0980-\u09ff\s]/g, ' ').replace(/\s+/g, ' ').trim();
+
+      const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
       const cards = Array.from(document.querySelectorAll('.card'));
       const categoryButtons = Array.from(document.querySelectorAll('.category-chip'));
       const categoryFilter = document.getElementById('categoryFilter');
       const cardSearch = document.getElementById('cardSearch');
+      const cardSearchClear = document.getElementById('cardSearchClear');
       const heroSearch = document.getElementById('search');
       const resultCount = document.getElementById('count');
 
       cards.forEach((card) => {
         const keywords = card.getAttribute('data-keywords') || '';
-        const text = (card.textContent || '') + ' ' + keywords;
-        card.dataset.searchText = normalize(text);
+        const heading = card.querySelector('h3')?.textContent || '';
+        const body = card.querySelector('p')?.textContent || '';
+        const searchText = normalize([heading, body, keywords].join(' '));
+        card.dataset.searchText = searchText;
+        card.dataset.titleText = heading;
+        card.dataset.bodyText = body;
       });
 
       const setCategory = (value) => {
@@ -1188,6 +1257,52 @@
         if (categoryFilter) categoryFilter.value = value;
       };
 
+      const applyHighlight = (element, query) => {
+        if (!element || !query) {
+          element.innerHTML = element.dataset.originalHtml || element.textContent;
+          return;
+        }
+
+        const terms = normalize(query).split(/\s+/).filter(Boolean);
+        if (!terms.length) {
+          element.innerHTML = element.dataset.originalHtml || element.textContent;
+          return;
+        }
+
+        let html = element.dataset.originalHtml || element.textContent;
+        terms.forEach((term) => {
+          if (!term) return;
+          const regex = new RegExp(escapeRegExp(term), 'gi');
+          html = html.replace(regex, (match) => '<mark class="match-highlight">' + match + '</mark>');
+        });
+        element.innerHTML = html;
+      };
+
+      const resetCardHighlights = (card) => {
+        const title = card.querySelector('h3');
+        const body = card.querySelector('p');
+        if (title) {
+          title.dataset.originalHtml = title.textContent;
+          title.innerHTML = title.textContent;
+        }
+        if (body) {
+          body.dataset.originalHtml = body.textContent;
+          body.innerHTML = body.textContent;
+        }
+      };
+
+      cards.forEach((card) => {
+        const title = card.querySelector('h3');
+        const body = card.querySelector('p');
+        if (title) title.dataset.originalHtml = title.textContent;
+        if (body) body.dataset.originalHtml = body.textContent;
+      });
+
+      const updateClearButton = (input, button) => {
+        if (!input || !button) return;
+        button.classList.toggle('hidden', !input.value.trim());
+      };
+
       const applyCardFilters = () => {
         const activeCategory = categoryFilter ? categoryFilter.value : 'all';
         const keyword = normalize(cardSearch ? cardSearch.value : '');
@@ -1195,9 +1310,19 @@
 
         cards.forEach((card) => {
           const categoryMatches = activeCategory === 'all' || card.dataset.category === activeCategory;
-          const searchMatches = !keyword || card.dataset.searchText.includes(keyword);
+          const searchTerms = keyword ? keyword.split(/\s+/).filter(Boolean) : [];
+          const searchMatches = !searchTerms.length || searchTerms.every((term) => card.dataset.searchText.includes(term));
           const visibleCard = categoryMatches && searchMatches;
           card.classList.toggle('hidden', !visibleCard);
+
+          resetCardHighlights(card);
+          if (visibleCard && keyword) {
+            const title = card.querySelector('h3');
+            const body = card.querySelector('p');
+            applyHighlight(title, keyword);
+            applyHighlight(body, keyword);
+          }
+
           if (visibleCard) visible += 1;
         });
 
@@ -1221,7 +1346,21 @@
       }
 
       if (cardSearch) {
-        cardSearch.addEventListener('input', applyCardFilters);
+        cardSearch.addEventListener('input', () => {
+          updateClearButton(cardSearch, cardSearchClear);
+          applyCardFilters();
+        });
+      }
+
+      if (cardSearchClear) {
+        cardSearchClear.addEventListener('click', () => {
+          if (cardSearch) {
+            cardSearch.value = '';
+            updateClearButton(cardSearch, cardSearchClear);
+            applyCardFilters();
+            cardSearch.focus();
+          }
+        });
       }
 
       if (heroSearch) {
@@ -1230,10 +1369,19 @@
           cards.forEach((card) => {
             const matches = !value || card.dataset.searchText.includes(value);
             card.classList.toggle('hidden', !matches);
+            resetCardHighlights(card);
+            if (matches && value) {
+              const title = card.querySelector('h3');
+              const body = card.querySelector('p');
+              applyHighlight(title, value);
+              applyHighlight(body, value);
+            }
           });
         });
       }
 
+      updateClearButton(cardSearch, cardSearchClear);
+      setCategory('all');
       applyCardFilters();
     })();
   </script>
