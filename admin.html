@@ -1,499 +1,420 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="bn">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin Panel | Daily Use Products Official</title>
-  <style>
-    :root {
-      --bg: #f3f7ff;
-      --panel: #ffffff;
-      --panel-soft: #f7f9ff;
-      --primary: #165dff;
-      --primary-soft: #eaf2ff;
-      --danger: #d92d20;
-      --danger-soft: #fff1f0;
-      --success: #1f9d61;
-      --success-soft: #ebfff5;
-      --text: #172033;
-      --muted: #66758d;
-      --line: #dde7f5;
-      --shadow: 0 18px 45px rgba(18, 40, 77, 0.12);
-    }
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Panel | Daily Use Products Official</title>
+    <style>
+      :root {
+        --bg: #edf3ff;
+        --bg-2: #f6f9ff;
+        --panel: #ffffff;
+        --panel-soft: #f5f8ff;
+        --primary: #1e63ff;
+        --primary-2: #0d47c9;
+        --text: #162234;
+        --muted: #627495;
+        --line: #dfe9f8;
+        --success: #1a9c64;
+        --success-soft: #ebfff5;
+        --warning: #ca8a00;
+        --warning-soft: #fff6da;
+        --danger: #d92d20;
+        --danger-soft: #fff0ee;
+        --shadow: 0 18px 45px rgba(17, 32, 60, 0.12);
+      }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: system-ui, "Noto Sans Bengali", sans-serif;
-      background: radial-gradient(circle at top left, #e7eeff, #f4f8ff 42%, #eef3fb 100%);
-      color: var(--text);
-    }
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: "Noto Sans Bengali", "Segoe UI", sans-serif;
+        background: linear-gradient(180deg, #edf4ff 0%, #f8faff 100%);
+        color: var(--text);
+      }
+      a { color: inherit; text-decoration: none; }
+      img { max-width: 100%; display: block; }
+      button, input, textarea, select { font: inherit; }
+      button {
+        cursor: pointer;
+        border: 0;
+        border-radius: 12px;
+        padding: 11px 14px;
+        font-weight: 700;
+        transition: transform 0.14s ease, opacity 0.14s ease;
+      }
+      button:hover { transform: translateY(-1px); }
+      button:active { transform: translateY(0); }
+      button:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+      input, textarea, select {
+        width: 100%;
+        border: 1px solid var(--line);
+        background: white;
+        border-radius: 12px;
+        padding: 10px 12px;
+        color: var(--text);
+        outline: none;
+      }
+      input:focus, textarea:focus, select:focus {
+        border-color: rgba(30, 99, 255, 0.7);
+        box-shadow: 0 0 0 4px rgba(30, 99, 255, 0.08);
+      }
+      textarea { min-height: 110px; resize: vertical; }
 
-    .app {
-      max-width: 1500px;
-      margin: 0 auto;
-      padding: 22px 14px 40px;
-    }
+      .app {
+        max-width: 1460px;
+        margin: 0 auto;
+        padding: 22px 14px 40px;
+      }
 
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 14px;
-      padding: 18px 22px;
-      background: linear-gradient(135deg, #0d1c3a, #153d70 62%, #1f5cc3);
-      border-radius: 26px;
-      color: white;
-      box-shadow: var(--shadow);
-      margin-bottom: 22px;
-    }
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 14px;
+        padding: 20px 22px;
+        background: linear-gradient(135deg, #071d39, #103a6d 60%, #1247bb);
+        color: white;
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+        margin-bottom: 22px;
+      }
 
-    .title-wrap h1 {
-      margin: 0;
-      font-size: clamp(24px, 2vw, 36px);
-    }
-    .title-wrap p {
-      margin: 6px 0 0;
-      opacity: 0.8;
-      font-size: 14px;
-    }
+      .topbar h1 {
+        margin: 0;
+        font-size: clamp(24px, 2vw, 34px);
+      }
+      .topbar p {
+        margin: 6px 0 0;
+        opacity: 0.86;
+        font-size: 14px;
+      }
 
-    .status-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 10px;
-    }
-    .pill {
-      border-radius: 999px;
-      padding: 8px 12px;
-      font-size: 12px;
-      font-weight: 700;
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.08);
-    }
-    .pill.success { background: rgba(40, 180, 104, 0.12); color: #d8ffe8; }
-    .pill.warning { background: rgba(255, 196, 54, 0.10); color: #ffe4a9; }
+      .status-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        padding: 8px 12px;
+        font-size: 12px;
+        font-weight: 800;
+      }
+      .pill.success {
+        background: rgba(26, 156, 100, 0.15);
+        color: #dafeef;
+        border: 1px solid rgba(255,255,255,0.15);
+      }
+      .pill.warning {
+        background: rgba(255, 200, 74, 0.14);
+        color: #fff0b0;
+        border: 1px solid rgba(255,255,255,0.15);
+      }
 
-    .app-shell {
-      display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.8fr);
-      gap: 20px;
-      align-items: start;
-    }
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.72fr);
+        gap: 20px;
+        align-items: start;
+      }
 
-    .panel {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      box-shadow: var(--shadow);
-      padding: 18px 18px 16px;
-      margin-bottom: 18px;
-    }
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        box-shadow: var(--shadow);
+        padding: 18px 18px 16px;
+        margin-bottom: 18px;
+      }
+      .panel h2 {
+        margin: 0 0 8px;
+        font-size: 22px;
+      }
+      .muted {
+        margin: 0 0 16px;
+        color: var(--muted);
+        font-size: 13px;
+      }
 
-    .panel h2 {
-      font-size: 22px;
-      margin: 0 0 8px;
-    }
-    .muted {
-      color: var(--muted);
-      margin: 0 0 14px;
-      font-size: 13px;
-    }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .field { display: flex; flex-direction: column; gap: 7px; }
+      .field.full { grid-column: 1 / -1; }
+      label {
+        font-size: 13px;
+        font-weight: 800;
+      }
 
-    .row {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-    .field.full { grid-column: 1 / -1; }
-    label {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text);
-    }
-    input, select, textarea, button {
-      font: inherit;
-    }
-    input, select, textarea {
-      width: 100%;
-      border: 1px solid var(--line);
-      background: white;
-      border-radius: 12px;
-      padding: 10px 12px;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-    input:focus, select:focus, textarea:focus {
-      border-color: rgba(22, 93, 255, 0.7);
-      box-shadow: 0 0 0 4px rgba(22, 93, 255, 0.08);
-    }
-    textarea {
-      min-height: 110px;
-      resize: vertical;
-    }
+      .btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-2)); color: white; box-shadow: 0 14px 26px rgba(28, 84, 220, 0.22); }
+      .btn-secondary { background: #edf3ff; color: var(--primary); border: 1px solid #dfeaff; }
+      .btn-danger { background: var(--danger-soft); color: var(--danger); border: 1px solid #ffd3ce; }
+      .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
 
-    button {
-      border: 0;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: transform 0.15s ease, opacity 0.15s ease;
-      padding: 11px 14px;
-      font-weight: 700;
-    }
-    button:hover { transform: translateY(-1px); }
-    button:active { transform: translateY(0); }
-    button.primary {
-      background: linear-gradient(135deg, var(--primary), #0a6afe);
-      color: white;
-      box-shadow: 0 14px 26px rgba(12, 92, 244, 0.26);
-    }
-    button.secondary {
-      background: #edf3ff;
-      color: var(--primary);
-      border: 1px solid #dfeaff;
-    }
-    button.danger {
-      background: var(--danger-soft);
-      color: var(--danger);
-      border: 1px solid #ffd8d4;
-    }
-    button.ghost {
-      background: transparent;
-      border: 1px solid var(--line);
-      color: var(--text);
-    }
-    button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
-    }
+      .row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
 
-    .status-box {
-      margin-top: 14px;
-      border-radius: 12px;
-      padding: 10px 12px;
-      font-size: 13px;
-      font-weight: 700;
-      background: var(--primary-soft);
-      color: var(--primary);
-      border: 1px solid #dfeaff;
-    }
-    .status-box.error {
-      background: var(--danger-soft);
-      color: var(--danger);
-      border-color: #ffd8d4;
-    }
-    .status-box.success {
-      background: var(--success-soft);
-      color: var(--success);
-      border-color: #d6f3e6;
-    }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+      .stat {
+        background: var(--panel-soft);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 12px;
+      }
+      .stat small {
+        display: block;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+      .stat strong {
+        display: block;
+        font-size: 22px;
+      }
 
-    .list-box {
-      display: grid;
-      gap: 10px;
-      margin-top: 12px;
-    }
-    .entry {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 10px;
-      align-items: center;
-      border: 1px solid var(--line);
-      background: var(--panel-soft);
-      border-radius: 14px;
-      padding: 10px 12px;
-    }
-    .entry-main {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-width: 0;
-    }
-    .entry-main strong {
-      display: block;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .entry-main small {
-      display: block;
-      color: var(--muted);
-      margin-top: 2px;
-    }
-    .badge-light {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
-      padding: 6px 8px;
-      border-radius: 999px;
-      font-weight: 800;
-      background: #edf3ff;
-      color: var(--primary);
-      border: 1px solid #dfeaff;
-    }
-    .badge-light.warning {
-      background: #fff8df;
-      color: #a96c00;
-      border-color: #f7dd8b;
-    }
-    .badge-light.success {
-      background: #ebfff5;
-      color: #1b8d5a;
-      border-color: #cfeee0;
-    }
-    .entry-actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-    .entry-actions button {
-      padding: 8px 10px;
-      border-radius: 10px;
-      font-size: 12px;
-    }
+      .list-box {
+        display: grid;
+        gap: 10px;
+        margin-top: 12px;
+      }
+      .entry {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        align-items: center;
+        padding: 10px 12px;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        background: var(--panel-soft);
+      }
+      .entry-main {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 0;
+      }
+      .entry-main strong {
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .entry-main small {
+        display: block;
+        margin-top: 2px;
+        color: var(--muted);
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        padding: 5px 8px;
+        font-size: 10px;
+        font-weight: 800;
+      }
+      .badge.success { background: var(--success-soft); color: var(--success); }
+      .badge.warning { background: var(--warning-soft); color: var(--warning); }
+      .entry-actions {
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+      }
+      .entry-actions button {
+        padding: 8px 10px;
+        border-radius: 10px;
+        font-size: 12px;
+      }
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-    .stat {
-      background: var(--panel-soft);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 12px;
-    }
-    .stat small {
-      display: block;
-      color: var(--muted);
-      margin-bottom: 6px;
-    }
-    .stat strong {
-      font-size: 22px;
-    }
+      .preview-card {
+        position: sticky;
+        top: 18px;
+        background: linear-gradient(180deg, #f9fbff, #edf5ff);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        box-shadow: var(--shadow);
+        padding: 12px;
+      }
+      .preview-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+      .preview-header h3 {
+        margin: 0;
+        font-size: 18px;
+      }
+      .mini-preview {
+        min-height: 420px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        overflow: hidden;
+        background: white;
+      }
+      .mini-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        background: linear-gradient(135deg, #06182f, #123f6a);
+        color: white;
+        padding: 10px 12px;
+      }
+      .mini-brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+      }
+      .mini-brand img {
+        width: 30px;
+        height: 30px;
+        border-radius: 10px;
+        object-fit: cover;
+        border: 1px solid rgba(255,255,255,0.18);
+      }
+      .mini-brand strong {
+        display: block;
+        font-size: 11px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .mini-brand span {
+        display: block;
+        font-size: 9px;
+        opacity: 0.8;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .mini-hero {
+        background: linear-gradient(135deg, #07162d, #0a2a49 72%, #0d5b92);
+        color: white;
+        padding: 14px 12px 12px;
+      }
+      .mini-hero h4 {
+        margin: 0 0 6px;
+        font-size: 15px;
+      }
+      .mini-hero p {
+        margin: 0;
+        color: rgba(255,255,255,0.82);
+        font-size: 10px;
+      }
+      .mini-search {
+        display: block;
+        width: 100%;
+        margin-top: 8px;
+        padding: 7px 10px;
+        border-radius: 10px;
+        border: 1px solid rgba(255,255,255,0.2);
+        background: rgba(255,255,255,0.06);
+        color: white;
+        font-size: 10px;
+      }
+      .mini-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        padding: 10px;
+      }
+      .mini-card {
+        background: #f7fbff;
+        border: 1px solid #e4edf8;
+        border-radius: 12px;
+        padding: 8px;
+        min-height: 76px;
+      }
+      .mini-card .icon {
+        display: inline-grid;
+        place-items: center;
+        width: 25px;
+        height: 25px;
+        border-radius: 8px;
+        background: #ebf2ff;
+        margin-bottom: 6px;
+        font-size: 12px;
+      }
+      .mini-card strong {
+        display: block;
+        font-size: 10px;
+        line-height: 1.3;
+        margin-bottom: 3px;
+      }
+      .mini-card small {
+        color: var(--muted);
+        font-size: 9px;
+      }
+      .mini-links {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px;
+        padding: 0 10px 10px;
+      }
+      .mini-links span {
+        display: block;
+        text-align: center;
+        padding: 7px 8px;
+        border-radius: 8px;
+        background: #f5f8ff;
+        border: 1px solid #e5edf8;
+        font-size: 9px;
+        font-weight: 800;
+      }
 
-    .preview-card {
-      position: sticky;
-      top: 18px;
-      background: linear-gradient(180deg, #f9fbff, #eef5ff);
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      box-shadow: var(--shadow);
-      padding: 12px;
-    }
-    .preview-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 10px;
-    }
-    .preview-header h3 {
-      margin: 0;
-      font-size: 18px;
-    }
-    .mini-preview {
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: white;
-      padding: 10px;
-      min-height: 420px;
-      overflow: hidden;
-    }
-    .mini-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 12px;
-      border-radius: 14px 14px 0 0;
-      background: linear-gradient(135deg, #06182f, #123f6a);
-      color: white;
-      gap: 10px;
-    }
-    .mini-brand {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      min-width: 0;
-    }
-    .mini-brand img {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 1px solid rgba(255,255,255,0.25);
-    }
-    .mini-brand strong {
-      display: block;
-      font-size: 11px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .mini-brand span {
-      display: block;
-      font-size: 9px;
-      opacity: 0.8;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .mini-hero {
-      background: linear-gradient(135deg, #07162d, #0a2a49 72%, #0d5b92);
-      color: white;
-      border-radius: 0 0 14px 14px;
-      padding: 14px 12px 12px;
-      margin-bottom: 12px;
-    }
-    .mini-hero h4 {
-      margin: 0 0 6px;
-      font-size: 15px;
-      line-height: 1.3;
-    }
-    .mini-hero p {
-      margin: 0;
-      font-size: 10px;
-      color: rgba(255,255,255,0.8);
-    }
-    .mini-search {
-      display: block;
-      width: 100%;
-      margin-top: 8px;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.22);
-      background: rgba(255,255,255,0.08);
-      padding: 7px 10px;
-      color: white;
-      font-size: 10px;
-    }
-    .mini-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
-    }
-    .mini-card {
-      background: #f8fbff;
-      border: 1px solid #e4edf8;
-      border-radius: 12px;
-      padding: 8px 8px 9px;
-      min-height: 74px;
-    }
-    .mini-card .icon {
-      display: inline-grid;
-      place-items: center;
-      width: 24px;
-      height: 24px;
-      border-radius: 8px;
-      background: #eaf2ff;
-      margin-bottom: 6px;
-      font-size: 12px;
-    }
-    .mini-card strong {
-      display: block;
-      font-size: 10px;
-      line-height: 1.3;
-      margin-bottom: 3px;
-    }
-    .mini-card small {
-      color: var(--muted);
-      font-size: 9px;
-    }
-    .mini-links {
-      margin-top: 10px;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 7px;
-    }
-    .mini-links span {
-      display: block;
-      padding: 7px 8px;
-      border-radius: 8px;
-      background: #f5f8ff;
-      border: 1px solid #e4edf8;
-      font-size: 9px;
-      font-weight: 700;
-      text-align: center;
-    }
-
-    @media (max-width: 980px) {
-      .app-shell { grid-template-columns: 1fr; }
-      .preview-card { position: static; }
-    }
-    @media (max-width: 700px) {
-      .grid, .stats { grid-template-columns: 1fr; }
-      .topbar { flex-direction: column; align-items: flex-start; }
-      .status-row { justify-content: flex-start; }
-    }
-  </style>
-</head>
-<body>
-  <main class="app">
-    <header class="topbar">
-      <div class="title-wrap">
-        <h1>🔐 Admin Panel</h1>
-        <p>Website content management and live content preview</p>
-      </div>
-      <div class="status-row">
-        <span id="savePill" class="pill success">Saved</span>
-        <span id="syncPill" class="pill warning">Preview active</span>
-      </div>
-    </header>
-
-    <div class="app-shell">
-      <section>
-        <div id="loginCard" class="panel">
-          <h2>অ্যাডমিন লগইন</h2>
-          <p class="muted">Firebase Authentication-এ তৈরি হওয়া অ্যাকাউন্ট ব্যবহার করে লগইন করুন।</p>
-          <form id="loginForm">
-            <div class="grid">
-              <div class="field full">
-                <label for="email">ইমেইল</label>
-                <input id="email" type="email" placeholder="you@example.com" required>
-              </div>
-              <div class="field full">
-                <label for="password">পাসওয়ার্ড</label>
-                <input id="password" type="password" placeholder="••••••••" required>
-              </div>
-            </div>
-            <div class="row" style="margin-top: 14px;">
-              <button class="primary" type="submit">লগইন</button>
-            </div>
-          </form>
-          <div id="loginStatus" class="status-box" style="display:none"></div>
+      @media (max-width: 980px) {
+        .layout { grid-template-columns: 1fr; }
+        .preview-card { position: static; }
+      }
+      @media (max-width: 700px) {
+        .grid, .stats { grid-template-columns: 1fr; }
+        .topbar { flex-direction: column; align-items: flex-start; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div>
+          <h1>🔐 Admin Panel</h1>
+          <p>ওয়েবসাইট কনটেন্ট ম্যানেজমেন্ট ও লাইভ প্রিভিউ</p>
         </div>
+        <div class="status-group">
+          <span id="savePill" class="pill success">Saved</span>
+          <span id="syncPill" class="pill warning">Preview active</span>
+        </div>
+      </header>
 
-        <section id="dashboard" hidden>
+      <div class="layout">
+        <section>
           <div class="panel">
-            <div class="row" style="justify-content:space-between; margin-bottom: 8px;">
+            <div class="row" style="justify-content: space-between; margin-bottom: 8px;">
               <h2>অ্যাডমিন ড্যাশবোর্ড</h2>
               <div class="row">
-                <button id="reloadBtn" class="secondary" type="button">রিফ্রেশ</button>
-                <button id="logoutBtn" class="ghost" type="button">লগআউট</button>
+                <button id="reloadBtn" type="button" class="btn-secondary">রিফ্রেশ</button>
+                <button id="resetBtn" type="button" class="btn-ghost">ডিফল্ট</button>
               </div>
             </div>
-
-            <p class="muted" id="accountInfo">অ্যাকাউন্ট: —</p>
+            <p class="muted" id="accountInfo">অ্যাকাউন্ট: স্থানীয় মোড (Local admin)</p>
 
             <div class="stats">
               <div class="stat">
@@ -510,12 +431,42 @@
               </div>
             </div>
 
-            <div id="status" class="status-box">ডেটা লোড হচ্ছে...</div>
+            <div id="statusBox" class="muted" style="margin:0; font-weight:700; padding:10px 12px; border:1px solid var(--line); border-radius:12px; background: var(--panel-soft);">ডেটা লোড হচ্ছে...</div>
+          </div>
+
+          <div class="panel">
+            <h2>⚙️ সাইট সেটিংস</h2>
+            <p class="muted">হেডার, সাবটাইটেল ও হিরো টেক্সট আপডেট করুন।</p>
+            <div class="grid">
+              <div class="field">
+                <label for="siteTitle">সাইট শিরোনাম</label>
+                <input id="siteTitle" maxlength="120" placeholder="Daily Use Products Official">
+              </div>
+              <div class="field">
+                <label for="siteSubtitle">সাইট সাবটাইটেল</label>
+                <input id="siteSubtitle" maxlength="160" placeholder="Your Premier Digital Services Hub">
+              </div>
+              <div class="field full">
+                <label for="heroEyebrow">হিরো ইব্রো</label>
+                <input id="heroEyebrow" maxlength="100" placeholder="Executive Service Suite">
+              </div>
+              <div class="field full">
+                <label for="heroTitle">হিরো শিরোনাম</label>
+                <input id="heroTitle" maxlength="180" placeholder="সব প্রয়োজনীয় সেবা, একটি স্মার্ট ড্যাশবোর্ডে">
+              </div>
+              <div class="field full">
+                <label for="heroText">হিরো বিবরণ</label>
+                <textarea id="heroText" maxlength="260" placeholder="সাইটের প্রধান বিবরণ লিখুন..."></textarea>
+              </div>
+            </div>
+            <div class="row" style="margin-top: 14px;">
+              <button type="button" class="btn-primary" id="saveSettingsBtn">সেটিংস সংরক্ষণ</button>
+            </div>
           </div>
 
           <div class="panel">
             <h2>🪪 কার্ড যোগ / সম্পাদনা</h2>
-            <p class="muted">প্রতিটি কার্ডের পরিবর্তন "+unsaved" ব্যাজ দিয়ে বুঝতে পারবেন।</p>
+            <p class="muted">কার্ডের ক্রম বদলাতে ↑/↓ বাটন ব্যবহার করুন।</p>
             <form id="cardForm">
               <input id="cardId" type="hidden">
               <div class="grid">
@@ -524,38 +475,42 @@
                   <input id="cardTitle" maxlength="100" required>
                 </div>
                 <div class="field">
-                  <label for="cardUrl">ওয়েবসাইট URL *</label>
-                  <input id="cardUrl" type="url" maxlength="1500" placeholder="https://example.com" required>
-                </div>
-                <div class="field">
-                  <label for="cardIcon">আইকন (ইমোজি)</label>
-                  <input id="cardIcon" maxlength="12" placeholder="🔗">
-                </div>
-                <div class="field">
                   <label for="cardTag">ট্যাগ</label>
-                  <input id="cardTag" maxlength="40" placeholder="GOVERNMENT">
+                  <input id="cardTag" maxlength="40" placeholder="Identity">
+                </div>
+                <div class="field">
+                  <label for="cardIcon">আইকন</label>
+                  <input id="cardIcon" maxlength="12" placeholder="🆔">
+                </div>
+                <div class="field">
+                  <label for="cardSection">সেকশন</label>
+                  <select id="cardSection">
+                    <option value="categories">Categories</option>
+                    <option value="important">Important Services</option>
+                    <option value="tools">Quick Tools</option>
+                  </select>
                 </div>
                 <div class="field full">
                   <label for="cardDescription">বিস্তারিত</label>
                   <textarea id="cardDescription" maxlength="300" placeholder="কার্ডের সারাংশ লিখুন"></textarea>
                 </div>
                 <div class="field full">
-                  <label for="cardKeywords">সার্চ কীওয়ার্ড</label>
-                  <input id="cardKeywords" maxlength="300" placeholder="বাংলা, English, keywords">
+                  <label for="cardUrl">URL</label>
+                  <input id="cardUrl" type="url" maxlength="1500" placeholder="https://example.com">
                 </div>
               </div>
               <div class="row" style="margin-top: 14px;">
-                <button type="submit" class="primary" id="saveCardBtn">কার্ড সংরক্ষণ করুন</button>
-                <button type="button" class="secondary" id="newCardBtn">নতুন কার্ড</button>
-                <button type="button" class="ghost" id="cancelCardBtn" hidden>এডিট বাতিল</button>
+                <button type="submit" class="btn-primary" id="saveCardBtn">কার্ড সংরক্ষণ করুন</button>
+                <button type="button" class="btn-secondary" id="newCardBtn">নতুন কার্ড</button>
+                <button type="button" class="btn-ghost" id="cancelCardBtn" hidden>এডিট বাতিল</button>
               </div>
             </form>
             <div id="cardsList" class="list-box"></div>
           </div>
 
           <div class="panel">
-            <h2>🔗 কাস্টম লিংক যোগ / সম্পাদনা</h2>
-            <p class="muted">নতুন লিংক যোগ করে সাইটের শার্টকাট তালিকা সহজে আপডেট করতে পারবেন।</p>
+            <h2>🔗 কাস্টম লিংক</h2>
+            <p class="muted">লিংক যোগ, এডিট ও حذف করুন।</p>
             <form id="linkForm">
               <input id="linkId" type="hidden">
               <div class="grid">
@@ -564,710 +519,452 @@
                   <input id="linkTitle" maxlength="120" required>
                 </div>
                 <div class="field">
-                  <label for="linkUrl">লিংক URL *</label>
-                  <input id="linkUrl" type="url" maxlength="1500" placeholder="https://example.com" required>
-                </div>
-                <div class="field">
                   <label for="linkIcon">আইকন</label>
                   <input id="linkIcon" maxlength="12" placeholder="🔗">
                 </div>
-                <div class="field">
-                  <label for="linkKeywords">কীওয়ার্ড</label>
-                  <input id="linkKeywords" maxlength="200" placeholder="বাংলা, English">
+                <div class="field full">
+                  <label for="linkUrl">URL *</label>
+                  <input id="linkUrl" type="url" maxlength="1500" placeholder="https://example.com" required>
                 </div>
               </div>
               <div class="row" style="margin-top: 14px;">
-                <button type="submit" class="primary" id="saveLinkBtn">লিংক সংরক্ষণ করুন</button>
-                <button type="button" class="secondary" id="newLinkBtn">নতুন লিংক</button>
-                <button type="button" class="ghost" id="cancelLinkBtn" hidden>এডিট বাতিল</button>
+                <button type="submit" class="btn-primary" id="saveLinkBtn">লিংক সংরক্ষণ</button>
+                <button type="button" class="btn-secondary" id="newLinkBtn">নতুন লিংক</button>
+                <button type="button" class="btn-ghost" id="cancelLinkBtn" hidden>এডিট বাতিল</button>
               </div>
             </form>
             <div id="linksList" class="list-box"></div>
           </div>
-
-          <div class="panel">
-            <h2>⚙️ সাইট সেটিংস</h2>
-            <p class="muted">হেডার, সাবটাইটেল ও হিরো কন্টেন্ট আপডেট করুন।</p>
-            <div class="grid">
-              <div class="field">
-                <label for="siteTitle">সাইট শিরোনাম</label>
-                <input id="siteTitle" maxlength="120" placeholder="Daily Use Products Official">
-              </div>
-              <div class="field">
-                <label for="siteSubtitle">সাইট সাবটাই���েল</label>
-                <input id="siteSubtitle" maxlength="160" placeholder="Your Premier Digital Services Hub">
-              </div>
-              <div class="field full">
-                <label for="heroTitle">হিরো শিরোনাম</label>
-                <input id="heroTitle" maxlength="180" placeholder="আপনার দরকারি ডিজিটাল পরিষেবা, এক জায়গায়">
-              </div>
-              <div class="field full">
-                <label for="heroSubtitle">হিরো বিবরণ</label>
-                <textarea id="heroSubtitle" maxlength="260" placeholder="সাইটের প্রধান বিবরণ লিখুন..."></textarea>
-              </div>
-            </div>
-            <div class="row" style="margin-top: 14px;">
-              <button type="button" class="primary" id="saveSettingsBtn">সেটিংস সংরক্ষণ</button>
-              <button type="button" class="secondary" id="backupBtn">ব্যাকআপ JSON</button>
-            </div>
-          </div>
         </section>
-      </section>
 
-      <aside class="preview-card">
-        <div class="preview-header">
-          <h3>Live Preview</h3>
-          <span id="previewBadge" class="badge-light success">Live</span>
-        </div>
-        <div id="sitePreview" class="mini-preview"></div>
-      </aside>
-    </div>
-  </main>
+        <aside class="preview-card">
+          <div class="preview-header">
+            <h3>Live Preview</h3>
+            <span id="previewBadge" class="badge success">Live</span>
+          </div>
+          <div id="sitePreview" class="mini-preview"></div>
+        </aside>
+      </div>
+    </main>
 
-  <script type="module">
-    import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-    import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+    <script>
+      const STORAGE_KEY = 'dailyUseProductsOfficialConfigV1';
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyBCG2YDeTgVzj6zX3E8EQIJi3S3jmOaNN8",
-      authDomain: "daily-use-products-official.firebaseapp.com",
-      projectId: "daily-use-products-official",
-      storageBucket: "daily-use-products-official.firebasestorage.app",
-      messagingSenderId: "488136359439",
-      appId: "1:488136359439:web:1bcdb9addea4e9e8422d7a"
-    };
-
-    const $ = (id) => document.getElementById(id);
-    const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
-    const ref = (name) => doc(db, "siteContent", name);
-
-    let cards = [];
-    let links = [];
-    let settings = {};
-    let editingCardId = null;
-    let editingLinkId = null;
-    let lastSavedAt = null;
-    let isDirty = { cards: false, links: false, settings: false };
-
-    const defaults = [
-      { id: "ration-card", category: "government", title: "রেশন কার্ড", url: "https://food.wb.gov.in/", icon: "🪪", tag: "GOVERNMENT", description: "রেশন কার্ড ও খাদ্য সেবা", keywords: "রেশন খাদ্য কার্ড" },
-      { id: "pan-card", category: "identity", title: "PAN কার্ড", url: "https://www.incometax.gov.in/", icon: "💳", tag: "IDENTITY", description: "আয়কর ও PAN তথ্য", keywords: "pan income tax" },
-      { id: "voter-card", category: "identity", title: "ভোটার কার্ড", url: "https://voters.eci.gov.in/", icon: "🗳️", tag: "IDENTITY", description: "ভোটার সেবা", keywords: "ভোটার election" },
-      { id: "aadhaar-card", category: "identity", title: "আধার কার্ড", url: "https://uidai.gov.in/", icon: "🆔", tag: "IDENTITY", description: "আধার স্ট্যাটাস", keywords: "aadhaar aadhar" },
-      { id: "passport", category: "travel", title: "পাসপোর্ট সেবা", url: "https://www.passportindia.gov.in/", icon: "🛂", tag: "TRAVEL", description: "পাসপোর্ট ও ভ্রমণ", keywords: "passport visa" },
-      { id: "digilocker", category: "documents", title: "DigiLocker", url: "https://www.digilocker.gov.in/", icon: "📂", tag: "DOCUMENTS", description: "ডিজিটাল ডকুমেন্ট", keywords: "digilocker document" },
-      { id: "ayushman", category: "health", title: "আয়ুষ্মান ভারত", url: "https://beneficiary.nha.gov.in/", icon: "🏥", tag: "HEALTH", description: "স্বাস্থ্য সেবা", keywords: "ayushman health" },
-      { id: "pcc", category: "documents", title: "Police Clearance Certificate", url: "https://passportindia.gov.in/", icon: "🛡️", tag: "CERTIFICATE", description: "পুলিশ ক্লিয়ারেন্স", keywords: "pcc police clearance" }
-    ];
-
-    function err(e) {
-      const map = {
-        "auth/invalid-credential": "ইমেইল বা পাসওয়ার্ড সঠিক নয়।",
-        "auth/invalid-email": "সঠিক ইমেইল দিন।",
-        "auth/user-disabled": "এই অ্যাকাউন্টটি বন্ধ করা আছে।",
-        "auth/network-request-failed": "নেটওয়ার্ক সমস্যা। 다시 চেষ্টা করুন।"
+      const defaultConfig = {
+        brandName: 'Daily Use Products Official',
+        subtitle: 'Your Premier Digital Services Hub',
+        heroEyebrow: 'Executive Service Suite',
+        heroTitle: 'সব প্রয়োজনীয় সেবা, <span class="accent">একটি স্মার্ট এক্সিকিউটিভ ড্যাশবোর্ডে</span>',
+        heroText: 'সরকারি, পরিচয়পত্র, স্বাস্থ্য, ব্যাংকিং, ভ্রমণ ও দৈনন্দিন প্রয়োজনীয় সেবা এক জায়গায়। দ্রুত খুঁজুন, দ্রুত সম্পন্ন করুন।',
+        cards: [
+          { id: 'identity-cat', title: 'পরিচয়', description: 'ভোটার, পাসপোর্ট ও আধার ইত্যাদি সেবা।', icon: '🆔', tag: 'Identity', url: '#important', section: 'categories' },
+          { id: 'documents-cat', title: 'নথি', description: 'ট্যাক্স, ফাইল ও অফিসিয়াল নথি।', icon: '📄', tag: 'Documents', url: '#important', section: 'categories' },
+          { id: 'travel-cat', title: 'ভ্রমণ', description: 'ভিসা, পাসপোর্ট ও আন্তর্জাতিক পরিষেবা।', icon: '✈️', tag: 'Travel', url: '#important', section: 'categories' },
+          { id: 'banking-cat', title: 'ব্যাংকিং', description: 'হিসাব, লেনদেন ও আর্থিক সেবা।', icon: '🏦', tag: 'Banking', url: '#important', section: 'categories' },
+          { id: 'voter-card', title: 'ভোটার কার্ড', description: 'নির্ভুল ও দ্রুত ভোটার পরিষেবা।', icon: '🧾', tag: 'Identity', url: '#', section: 'important' },
+          { id: 'passport-card', title: 'পাসপোর্ট', description: 'পরিচয় ও ভ্রমণ সংক্রান্ত আবেদন।', icon: '🛂', tag: 'Documents', url: '#', section: 'important' },
+          { id: 'tax-card', title: 'ট্যাক্স ফাইল', description: 'কর, রিটার্ন ও নথি আপডেট।', icon: '📑', tag: 'Documents', url: '#', section: 'important' },
+          { id: 'finance-card', title: 'আর্থিক হিসাব', description: 'মানি লেনদেন ও আর্থিক ব্যবস্থাপনা।', icon: '🧮', tag: 'Banking', url: '#', section: 'important' },
+          { id: 'utility-card', title: 'ইন্টারনেট বিল', description: 'ইন্টারনেট ও ইউটিলিটি বিলের দ্রুত পরিষেবা।', icon: '💳', tag: 'Utility', url: '#', section: 'tools' },
+          { id: 'health-card', title: 'হেলথ কেয়ার', description: 'স্বাস্থ্য, মেডিকেল ও সেবা সংক্রান্ত তথ্য।', icon: '🩺', tag: 'Health', url: '#', section: 'tools' },
+          { id: 'gov-card', title: 'গভর্নমেন্ট পোর্টাল', description: 'সরকারি সাইট ও অফিসিয়াল ড্যাশবোর্ড।', icon: '🏛️', tag: 'Official', url: '#', section: 'tools' },
+          { id: 'edu-card', title: 'শিক্ষা সেবা', description: 'শিক্ষা সংক্রান্ত তথ্য ও সুবিধা।', icon: '🎓', tag: 'Education', url: '#', section: 'tools' }
+        ],
+        links: [
+          { id: 'portal-link', title: 'অফিসিয়াল পোর্টাল', url: '#', icon: '🔗' },
+          { id: 'gov-link', title: 'সরকারি সাইট', url: '#', icon: '🏛️' },
+          { id: 'contact-link', title: 'কন্টাক্ট সেন্টার', url: '#', icon: '📞' },
+          { id: 'tax-link', title: 'ট্যাক্স ও ফাইল', url: '#', icon: '🧾' },
+          { id: 'travel-link', title: 'পাসপোর্ট ও ভ্রমণ', url: '#', icon: '🛂' },
+          { id: 'support-link', title: 'সহায়তা', url: '#', icon: '💬' }
+        ]
       };
-      return map[e?.code] || "কিছু সমস্যা হয়েছে। আবার চেষ্টা করুন।";
-    }
 
-    function setStatus(msg, type = "info") {
-      const box = $("status");
-      if (!box) return;
-      box.textContent = msg;
-      box.classList.remove("error", "success");
-      if (type === "error") box.classList.add("error");
-      if (type === "success") box.classList.add("success");
-    }
+      let config = loadConfig();
+      let editingCardId = null;
+      let editingLinkId = null;
 
-    function setLoginStatus(msg, type = "info") {
-      const el = $("loginStatus");
-      if (!el) return;
-      if (!msg) { el.style.display = "none"; return; }
-      el.style.display = "block";
-      el.textContent = msg;
-      el.classList.remove("error", "success");
-      if (type === "error") el.classList.add("error");
-      if (type === "success") el.classList.add("success");
-    }
-
-    function safeUrl(v) {
-      try {
-        const u = new URL(v);
-        return ["https:", "http:"].includes(u.protocol);
-      } catch {
-        return false;
+      function clone(value) {
+        return JSON.parse(JSON.stringify(value));
       }
-    }
 
-    function formatTime(date) {
-      if (!date) return "—";
-      return new Date(date).toLocaleString("bn-BD", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric",
-        hour: "2-digit",
-        minute: "2-digit"
-      });
-    }
-
-    function setDirty(type, dirty) {
-      isDirty[type] = dirty;
-      const totalDirty = Object.values(isDirty).some(Boolean);
-      const pill = $("savePill");
-      if (pill) {
-        if (totalDirty) {
-          pill.className = "pill warning";
-          pill.textContent = "Unsaved changes";
-        } else {
-          pill.className = "pill success";
-          pill.textContent = "Saved";
+      function loadConfig() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return clone(defaultConfig);
+          const parsed = JSON.parse(raw);
+          return {
+            brandName: parsed.brandName || defaultConfig.brandName,
+            subtitle: parsed.subtitle || defaultConfig.subtitle,
+            heroEyebrow: parsed.heroEyebrow || defaultConfig.heroEyebrow,
+            heroTitle: parsed.heroTitle || defaultConfig.heroTitle,
+            heroText: parsed.heroText || defaultConfig.heroText,
+            cards: Array.isArray(parsed.cards) && parsed.cards.length ? parsed.cards : clone(defaultConfig.cards),
+            links: Array.isArray(parsed.links) && parsed.links.length ? parsed.links : clone(defaultConfig.links)
+          };
+        } catch (error) {
+          return clone(defaultConfig);
         }
       }
-      const badge = $("previewBadge");
-      if (badge) {
-        badge.className = totalDirty ? "badge-light warning" : "badge-light success";
-        badge.textContent = totalDirty ? "Dirty" : "Live";
-      }
-    }
 
-    function updateStatCounters() {
-      $("cardCount").textContent = String(cards.length || 0);
-      $("linkCount").textContent = String(links.length || 0);
-      $("lastSavedText").textContent = lastSavedAt ? formatTime(lastSavedAt) : "—";
-    }
-
-    function resetCardForm() {
-      $("cardForm").reset();
-      editingCardId = null;
-      $("cardId").value = "";
-      $("saveCardBtn").textContent = "কার্ড সংরক্ষণ করুন";
-      $("cancelCardBtn").hidden = true;
-      if (Object.keys(isDirty).length) setDirty("cards", false);
-    }
-
-    function resetLinkForm() {
-      $("linkForm").reset();
-      editingLinkId = null;
-      $("linkId").value = "";
-      $("saveLinkBtn").textContent = "লিংক সংরক্ষণ করুন";
-      $("cancelLinkBtn").hidden = true;
-      if (Object.keys(isDirty).length) setDirty("links", false);
-    }
-
-    function renderCards() {
-      const box = $("cardsList");
-      box.replaceChildren();
-      if (!cards.length) {
-        const empty = document.createElement("div");
-        empty.className = "muted";
-        empty.textContent = "কোনো কার্ড নেই।";
-        box.appendChild(empty);
-        return;
+      function saveConfig() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
+        const now = new Date();
+        document.getElementById('lastSavedText').textContent = now.toLocaleString('bn-BD', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: 'short', year: 'numeric' });
+        document.getElementById('savePill').className = 'pill success';
+        document.getElementById('savePill').textContent = 'Saved';
+        document.getElementById('previewBadge').className = 'badge success';
+        document.getElementById('previewBadge').textContent = 'Live';
+        document.getElementById('statusBox').textContent = 'সাইটের পরিবর্তন সফলভাবে সংরক্ষিত হয়েছে।';
+        document.getElementById('statusBox').style.color = '#1a9c64';
+        document.getElementById('statusBox').style.borderColor = '#cfeee0';
+        document.getElementById('statusBox').style.background = '#ebfff5';
       }
 
-      cards.forEach((card, index) => {
-        const el = document.createElement("div");
-        el.className = "entry";
-
-        const main = document.createElement("div");
-        main.className = "entry-main";
-
-        const info = document.createElement("div");
-        const title = document.createElement("strong");
-        title.textContent = `${card.icon || "🔗"} ${card.title || "Untitled"}`;
-        const sub = document.createElement("small");
-        sub.textContent = `${card.tag || "SERVICE"} • ${card.url || "—"}`;
-        info.append(title, sub);
-
-        const dirtyBadge = document.createElement("span");
-        dirtyBadge.className = `badge-light ${card.__dirty ? "warning" : "success"}`;
-        dirtyBadge.textContent = card.__dirty ? "Unsaved" : "Saved";
-
-        main.append(info, dirtyBadge);
-
-        const actions = document.createElement("div");
-        actions.className = "entry-actions";
-
-        const up = document.createElement("button");
-        up.className = "secondary";
-        up.textContent = "↑";
-        up.disabled = index === 0;
-        up.onclick = async () => {
-          if (index === 0) return;
-          [cards[index - 1], cards[index]] = [cards[index], cards[index - 1]];
-          renderCards();
-          setDirty("cards", true);
-          renderSitePreview();
-          setStatus("কার্ডের ক্রম পরিবর্তন হয়েছে, কিন্তু এখনও সেভ হয়নি।");
-        };
-
-        const down = document.createElement("button");
-        down.className = "secondary";
-        down.textContent = "↓";
-        down.disabled = index === cards.length - 1;
-        down.onclick = async () => {
-          if (index >= cards.length - 1) return;
-          [cards[index], cards[index + 1]] = [cards[index + 1], cards[index]];
-          renderCards();
-          setDirty("cards", true);
-          renderSitePreview();
-          setStatus("কার্ডের ক্রম পরিবর্তন হয়েছে, কিন্তু এখনও সেভ হয়নি।");
-        };
-
-        const edit = document.createElement("button");
-        edit.className = "secondary";
-        edit.textContent = "এডিট";
-        edit.onclick = () => {
-          editingCardId = card.id;
-          $("cardId").value = card.id;
-          $("cardTitle").value = card.title || "";
-          $("cardUrl").value = card.url || "";
-          $("cardIcon").value = card.icon || "";
-          $("cardTag").value = card.tag || "";
-          $("cardDescription").value = card.description || "";
-          $("cardKeywords").value = card.keywords || "";
-          $("saveCardBtn").textContent = "পরিবর্তন সংরক্ষণ";
-          $("cancelCardBtn").hidden = false;
-          renderSitePreview();
-        };
-
-        const del = document.createElement("button");
-        del.className = "danger";
-        del.textContent = "মুছুন";
-        del.onclick = async () => {
-          if (!confirm(`"${card.title}" কার্ডটি মুছবেন?`)) return;
-          cards = cards.filter((item) => item.id !== card.id);
-          renderCards();
-          renderSitePreview();
-          setDirty("cards", true);
-          setStatus("কার্ড মুছে দেওয়া হয়েছে, কিন্তু এখনও সেভ হয়নি।");
-        };
-
-        actions.append(up, down, edit, del);
-        el.append(main, actions);
-        box.appendChild(el);
-      });
-    }
-
-    function renderLinks() {
-      const box = $("linksList");
-      box.replaceChildren();
-      if (!links.length) {
-        const empty = document.createElement("div");
-        empty.className = "muted";
-        empty.textContent = "কোনো কাস্টম লিংক নেই।";
-        box.appendChild(empty);
-        return;
+      function setStatus(message, type = 'info') {
+        const box = document.getElementById('statusBox');
+        box.textContent = message;
+        if (type === 'success') {
+          box.style.color = '#1a9c64';
+          box.style.borderColor = '#cfeee0';
+          box.style.background = '#ebfff5';
+        } else if (type === 'error') {
+          box.style.color = '#d92d20';
+          box.style.borderColor = '#ffd3ce';
+          box.style.background = '#fff0ee';
+        } else {
+          box.style.color = '#627495';
+          box.style.borderColor = '#dfe9f8';
+          box.style.background = '#f5f8ff';
+        }
       }
 
-      links.forEach((link) => {
-        const el = document.createElement("div");
-        el.className = "entry";
+      function updateCounters() {
+        document.getElementById('cardCount').textContent = String(config.cards.length);
+        document.getElementById('linkCount').textContent = String(config.links.length);
+      }
 
-        const main = document.createElement("div");
-        main.className = "entry-main";
+      function fillSiteSettingsForm() {
+        document.getElementById('siteTitle').value = config.brandName;
+        document.getElementById('siteSubtitle').value = config.subtitle;
+        document.getElementById('heroEyebrow').value = config.heroEyebrow;
+        document.getElementById('heroTitle').value = config.heroTitle.replace(/<[^>]*>/g, '');
+        document.getElementById('heroText').value = config.heroText;
+      }
 
-        const info = document.createElement("div");
-        const title = document.createElement("strong");
-        title.textContent = `${link.icon || "🔗"} ${link.title || "Untitled"}`;
-        const sub = document.createElement("small");
-        sub.textContent = link.url || "—";
-        info.append(title, sub);
+      function renderCards() {
+        const box = document.getElementById('cardsList');
+        box.innerHTML = '';
 
-        const badge = document.createElement("span");
-        badge.className = `badge-light ${link.__dirty ? "warning" : "success"}`;
-        badge.textContent = link.__dirty ? "Unsaved" : "Saved";
+        if (!config.cards.length) {
+          const empty = document.createElement('div');
+          empty.className = 'muted';
+          empty.textContent = 'কোনো কার্ড নেই।';
+          box.appendChild(empty);
+          return;
+        }
 
-        main.append(info, badge);
+        config.cards.forEach((card, index) => {
+          const entry = document.createElement('div');
+          entry.className = 'entry';
 
-        const actions = document.createElement("div");
-        actions.className = "entry-actions";
+          const main = document.createElement('div');
+          main.className = 'entry-main';
 
-        const edit = document.createElement("button");
-        edit.className = "secondary";
-        edit.textContent = "এডিট";
-        edit.onclick = () => {
-          editingLinkId = link.id;
-          $("linkId").value = link.id;
-          $("linkTitle").value = link.title || "";
-          $("linkUrl").value = link.url || "";
-          $("linkIcon").value = link.icon || "";
-          $("linkKeywords").value = link.keywords || "";
-          $("saveLinkBtn").textContent = "পরিবর্তন সংরক্ষণ";
-          $("cancelLinkBtn").hidden = false;
-        };
+          const badge = document.createElement('span');
+          badge.className = 'badge success';
+          badge.textContent = card.section || 'general';
 
-        const del = document.createElement("button");
-        del.className = "danger";
-        del.textContent = "মুছুন";
-        del.onclick = async () => {
-          if (!confirm(`"${link.title}" লিংকটি মুছবেন?`)) return;
-          links = links.filter((item) => item.id !== link.id);
-          renderLinks();
-          renderSitePreview();
-          setDirty("links", true);
-          setStatus("লিংক মুছে দেওয়া হয়েছে, কিন্তু এখনও সেভ হয়নি।");
-        };
+          const info = document.createElement('div');
+          const title = document.createElement('strong');
+          title.textContent = `${card.icon || '🔗'} ${card.title || 'Untitled'}`;
+          const sub = document.createElement('small');
+          sub.textContent = `${card.tag || 'Service'} • ${card.url || '—'}`;
+          info.appendChild(title);
+          info.appendChild(sub);
 
-        actions.append(edit, del);
-        el.append(main, actions);
-        box.appendChild(el);
-      });
-    }
+          main.appendChild(badge);
+          main.appendChild(info);
 
-    function renderSitePreview() {
-      const preview = $("sitePreview");
-      if (!preview) return;
+          const actions = document.createElement('div');
+          actions.className = 'entry-actions';
 
-      const title = $("siteTitle")?.value?.trim() || settings.title || "Daily Use Products Official";
-      const subtitle = $("siteSubtitle")?.value?.trim() || settings.subtitle || "Your Premier Digital Services Hub";
-      const heroTitle = $("heroTitle")?.value?.trim() || settings.heroTitle || "আপনার দরকারি ডিজিটাল পরিষেবা, এক জায়গায়";
-      const heroSubtitle = $("heroSubtitle")?.value?.trim() || settings.heroSubtitle || "সার্ভিস ও সর্টকাট সহজে খুঁজে নিন।";
+          const upBtn = document.createElement('button');
+          upBtn.type = 'button';
+          upBtn.className = 'btn-secondary';
+          upBtn.textContent = '↑';
+          upBtn.disabled = index === 0;
+          upBtn.onclick = () => {
+            if (index === 0) return;
+            [config.cards[index - 1], config.cards[index]] = [config.cards[index], config.cards[index - 1]];
+            renderAll();
+            setStatus('কার্ডের ক্রম আপডেট হয়েছে।', 'info');
+          };
 
-      const cardPreview = cards.slice(0, 4).map((card) => `
-        <div class="mini-card">
-          <div class="icon">${card.icon || "🔗"}</div>
-          <strong>${card.title || "Untitled"}</strong>
-          <small>${(card.description || card.tag || "Service").slice(0, 22)}</small>
-        </div>
-      `).join("");
+          const downBtn = document.createElement('button');
+          downBtn.type = 'button';
+          downBtn.className = 'btn-secondary';
+          downBtn.textContent = '↓';
+          downBtn.disabled = index === config.cards.length - 1;
+          downBtn.onclick = () => {
+            if (index >= config.cards.length - 1) return;
+            [config.cards[index], config.cards[index + 1]] = [config.cards[index + 1], config.cards[index]];
+            renderAll();
+            setStatus('কার্ডের ক্রম আপডেট হয়েছে।', 'info');
+          };
 
-      const linkPreview = links.slice(0, 4).map((item) => `<span>${item.title || "Link"}</span>`).join("");
+          const editBtn = document.createElement('button');
+          editBtn.type = 'button';
+          editBtn.className = 'btn-secondary';
+          editBtn.textContent = 'এডিট';
+          editBtn.onclick = () => {
+            editingCardId = card.id;
+            document.getElementById('cardId').value = card.id;
+            document.getElementById('cardTitle').value = card.title || '';
+            document.getElementById('cardTag').value = card.tag || '';
+            document.getElementById('cardIcon').value = card.icon || '';
+            document.getElementById('cardSection').value = card.section || 'categories';
+            document.getElementById('cardDescription').value = card.description || '';
+            document.getElementById('cardUrl').value = card.url || '';
+            document.getElementById('saveCardBtn').textContent = 'পরিবর্তন সংরক্ষণ';
+            document.getElementById('cancelCardBtn').hidden = false;
+            setStatus('কার্ড এডিট মোডে আছে।', 'info');
+          };
 
-      preview.innerHTML = `
-        <div class="mini-header">
-          <div class="mini-brand">
-            <img src="logo.jpg" alt="logo">
-            <div>
-              <strong>${title}</strong>
-              <span>${subtitle}</span>
-            </div>
+          const delBtn = document.createElement('button');
+          delBtn.type = 'button';
+          delBtn.className = 'btn-danger';
+          delBtn.textContent = 'মুছুন';
+          delBtn.onclick = () => {
+            if (!confirm(`"${card.title}" কার্ডটি মুছবেন?`)) return;
+            config.cards = config.cards.filter(item => item.id !== card.id);
+            renderAll();
+            setStatus('কার্ডটি মুছে দেওয়া হয়েছে।', 'success');
+          };
+
+          actions.appendChild(upBtn);
+          actions.appendChild(downBtn);
+          actions.appendChild(editBtn);
+          actions.appendChild(delBtn);
+          entry.appendChild(main);
+          entry.appendChild(actions);
+          box.appendChild(entry);
+        });
+      }
+
+      function renderLinks() {
+        const box = document.getElementById('linksList');
+        box.innerHTML = '';
+
+        if (!config.links.length) {
+          const empty = document.createElement('div');
+          empty.className = 'muted';
+          empty.textContent = 'কোনো কাস্টম লিংক নেই।';
+          box.appendChild(empty);
+          return;
+        }
+
+        config.links.forEach((link) => {
+          const entry = document.createElement('div');
+          entry.className = 'entry';
+
+          const main = document.createElement('div');
+          main.className = 'entry-main';
+
+          const badge = document.createElement('span');
+          badge.className = 'badge success';
+          badge.textContent = 'Link';
+
+          const info = document.createElement('div');
+          const title = document.createElement('strong');
+          title.textContent = `${link.icon || '🔗'} ${link.title || 'Untitled'}`;
+          const sub = document.createElement('small');
+          sub.textContent = link.url || '—';
+          info.appendChild(title);
+          info.appendChild(sub);
+
+          main.appendChild(badge);
+          main.appendChild(info);
+
+          const actions = document.createElement('div');
+          actions.className = 'entry-actions';
+
+          const editBtn = document.createElement('button');
+          editBtn.type = 'button';
+          editBtn.className = 'btn-secondary';
+          editBtn.textContent = 'এডিট';
+          editBtn.onclick = () => {
+            editingLinkId = link.id;
+            document.getElementById('linkId').value = link.id;
+            document.getElementById('linkTitle').value = link.title || '';
+            document.getElementById('linkIcon').value = link.icon || '';
+            document.getElementById('linkUrl').value = link.url || '';
+            document.getElementById('saveLinkBtn').textContent = 'পরিবর্তন সংরক্ষণ';
+            document.getElementById('cancelLinkBtn').hidden = false;
+          };
+
+          const delBtn = document.createElement('button');
+          delBtn.type = 'button';
+          delBtn.className = 'btn-danger';
+          delBtn.textContent = 'মুছুন';
+          delBtn.onclick = () => {
+            if (!confirm(`"${link.title}" লিংকটি মুছবেন?`)) return;
+            config.links = config.links.filter(item => item.id !== link.id);
+            renderAll();
+            setStatus('লিংকটি মুছে দেওয়া হয়েছে।', 'success');
+          };
+
+          actions.appendChild(editBtn);
+          actions.appendChild(delBtn);
+          entry.appendChild(main);
+          entry.appendChild(actions);
+          box.appendChild(entry);
+        });
+      }
+
+      function renderPreview() {
+        const preview = document.getElementById('sitePreview');
+        const cardPreview = config.cards.slice(0, 4).map(card => `
+          <div class="mini-card">
+            <div class="icon">${card.icon || '🔗'}</div>
+            <strong>${card.title || 'Untitled'}</strong>
+            <small>${(card.description || card.tag || 'Service').slice(0, 22)}</small>
           </div>
-          <span class="badge-light ${isDirty.cards || isDirty.links || isDirty.settings ? "warning" : "success"}">
-            ${isDirty.cards || isDirty.links || isDirty.settings ? "Dirty" : "Live"}
-          </span>
-        </div>
-        <div class="mini-hero">
-          <h4>${heroTitle}</h4>
-          <p>${heroSubtitle}</p>
-          <div class="mini-search">Search services...</div>
-        </div>
-        <div class="mini-grid">${cardPreview}</div>
-        <div class="mini-links">${linkPreview || "<span>Useful links</span><span>Quick tools</span>"}</div>
-      `;
-    }
+        `).join('');
 
-    async function saveCards() {
-      await setDoc(ref("cardLayout"), { cards, updatedAt: new Date().toISOString() });
-      cards = cards.map((item) => ({ ...item, __dirty: false }));
-      lastSavedAt = new Date();
-      updateStatCounters();
-      setDirty("cards", false);
-      renderCards();
-      setStatus("কার্ডের পরিবর্তন সফলভাবে সেভ হয়েছে।", "success");
-      renderSitePreview();
-    }
+        const linkPreview = config.links.slice(0, 4).map(link => `<span>${link.title || 'Link'}</span>`).join('');
 
-    async function saveLinks() {
-      await setDoc(ref("customLinks"), { items: links, updatedAt: new Date().toISOString() });
-      links = links.map((item) => ({ ...item, __dirty: false }));
-      lastSavedAt = new Date();
-      updateStatCounters();
-      setDirty("links", false);
-      renderLinks();
-      setStatus("লিংক পরিবর্তন সফলভাবে সেভ হয়েছে।", "success");
-      renderSitePreview();
-    }
+        preview.innerHTML = `
+          <div class="mini-header">
+            <div class="mini-brand">
+              <img src="logo.jpg" alt="logo">
+              <div>
+                <strong>${config.brandName}</strong>
+                <span>${config.subtitle}</span>
+              </div>
+            </div>
+            <span class="badge success">Live</span>
+          </div>
+          <div class="mini-hero">
+            <h4>${config.heroTitle}</h4>
+            <p>${config.heroText}</p>
+            <div class="mini-search">Search services...</div>
+          </div>
+          <div class="mini-grid">${cardPreview}</div>
+          <div class="mini-links">${linkPreview || '<span>Useful links</span><span>Quick tools</span>'}</div>
+        `;
+      }
 
-    async function saveSettings() {
-      await setDoc(ref("siteSettings"), {
-        ...settings,
-        title: $("siteTitle").value.trim(),
-        subtitle: $("siteSubtitle").value.trim(),
-        heroTitle: $("heroTitle").value.trim(),
-        heroSubtitle: $("heroSubtitle").value.trim(),
-        updatedAt: new Date().toISOString()
-      });
-      settings = {
-        ...settings,
-        title: $("siteTitle").value.trim(),
-        subtitle: $("siteSubtitle").value.trim(),
-        heroTitle: $("heroTitle").value.trim(),
-        heroSubtitle: $("heroSubtitle").value.trim()
-      };
-      lastSavedAt = new Date();
-      updateStatCounters();
-      setDirty("settings", false);
-      setStatus("সাইট সেটিংস সেভ হয়েছে।", "success");
-      renderSitePreview();
-    }
-
-    function bindCardFormDirty() {
-      const fields = ["cardTitle", "cardUrl", "cardIcon", "cardTag", "cardDescription", "cardKeywords"];
-      fields.forEach((id) => {
-        const el = $(id);
-        if (!el) return;
-        el.addEventListener("input", () => {
-          const row = cards.find((item) => item.id === editingCardId) || cards.find((item) => item.id === $("cardId").value);
-          if (row) {
-            row.__dirty = true;
-            setDirty("cards", true);
-            renderCards();
-          }
-          renderSitePreview();
-        });
-      });
-    }
-
-    function bindLinkFormDirty() {
-      const fields = ["linkTitle", "linkUrl", "linkIcon", "linkKeywords"];
-      fields.forEach((id) => {
-        const el = $(id);
-        if (!el) return;
-        el.addEventListener("input", () => {
-          const row = links.find((item) => item.id === editingLinkId) || links.find((item) => item.id === $("linkId").value);
-          if (row) {
-            row.__dirty = true;
-            setDirty("links", true);
-            renderLinks();
-          }
-          renderSitePreview();
-        });
-      });
-    }
-
-    function bindSettingsDirty() {
-      ["siteTitle", "siteSubtitle", "heroTitle", "heroSubtitle"].forEach((id) => {
-        const el = $(id);
-        if (!el) return;
-        el.addEventListener("input", () => {
-          setDirty("settings", true);
-          renderSitePreview();
-        });
-      });
-    }
-
-    function normalizeCard(item = {}) {
-      return {
-        id: item.id || newId(),
-        title: String(item.title || "").trim(),
-        url: String(item.url || "").trim(),
-        icon: String(item.icon || "🔗").trim() || "🔗",
-        tag: String(item.tag || "SERVICE").trim().toUpperCase(),
-        description: String(item.description || "").trim(),
-        keywords: String(item.keywords || "").trim(),
-        category: String(item.category || "other").trim(),
-        __dirty: !!item.__dirty
-      };
-    }
-
-    function normalizeLink(item = {}) {
-      return {
-        id: item.id || newId(),
-        title: String(item.title || "").trim(),
-        url: String(item.url || "").trim(),
-        icon: String(item.icon || "🔗").trim() || "🔗",
-        keywords: String(item.keywords || "").trim(),
-        __dirty: !!item.__dirty
-      };
-    }
-
-    function newId() {
-      return "custom-" + crypto.randomUUID();
-    }
-
-    async function loadData() {
-      setStatus("Firestore থেকে ডেটা লোড হচ্ছে...");
-      try {
-        const [cardSnap, linksSnap, settingsSnap] = await Promise.all([
-          getDoc(ref("cardLayout")),
-          getDoc(ref("customLinks")),
-          getDoc(ref("siteSettings"))
-        ]);
-
-        cards = (cardSnap.exists() && Array.isArray(cardSnap.data()?.cards)) ? cardSnap.data().cards.map(normalizeCard) : defaults.map((item) => ({ ...item, __dirty: false }));
-        links = (linksSnap.exists() && Array.isArray(linksSnap.data()?.items)) ? linksSnap.data().items.map(normalizeLink) : [];
-        settings = settingsSnap.exists() ? settingsSnap.data() : {};
-
-        lastSavedAt = new Date();
-        $("siteTitle").value = settings.title || "Daily Use Products Official";
-        $("siteSubtitle").value = settings.subtitle || "Your Premier Digital Services Hub";
-        $("heroTitle").value = settings.heroTitle || "আপনার দরকারি ডিজিটাল পরিষেবা, এক জায়গায়";
-        $("heroSubtitle").value = settings.heroSubtitle || "স্বচ্ছ, দ্রুত ও নির্ভরযোগ্য সেবা খুঁজুন।";
-
-        setDirty("cards", false);
-        setDirty("links", false);
-        setDirty("settings", false);
-        updateStatCounters();
+      function renderAll() {
+        updateCounters();
         renderCards();
         renderLinks();
-        renderSitePreview();
-        setStatus("ডেটা সফলভাবে লোড হয়েছে।", "success");
-      } catch (error) {
-        console.error(error);
-        cards = defaults.map((item) => ({ ...item, __dirty: false }));
-        links = [];
-        setStatus("ডেটা লোড করতে সমস্যা হয়েছে।", "error");
-        renderCards();
-        renderLinks();
-        renderSitePreview();
-      }
-    }
-
-    $("loginForm").addEventListener("submit", async (event) => {
-      event.preventDefault();
-      const email = $("email").value.trim();
-      const pass = $("password").value.trim();
-
-      try {
-        await signInWithEmailAndPassword(auth, email, pass);
-        setLoginStatus("লগইন সফল হয়েছে।", "success");
-      } catch (error) {
-        setLoginStatus(err(error), "error");
-      }
-    });
-
-    $("logoutBtn").addEventListener("click", async () => {
-      try {
-        await signOut(auth);
-        setLoginStatus("সফলভাবে লগআউট হয়েছে।", "success");
-      } catch (error) {
-        setLoginStatus(err(error), "error");
-      }
-    });
-
-    $("reloadBtn").addEventListener("click", loadData);
-
-    $("cardForm").addEventListener("submit", async (event) => {
-      event.preventDefault();
-      if (!auth.currentUser) return;
-
-      const title = $("cardTitle").value.trim();
-      const url = $("cardUrl").value.trim();
-      if (!title || !url || !safeUrl(url)) {
-        setStatus("সঠিক কার্ডের নাম ও URL দিন।", "error");
-        return;
+        renderPreview();
+        fillSiteSettingsForm();
       }
 
-      const newCard = normalizeCard({
-        id: editingCardId || $("cardId").value || newId(),
-        title,
-        url,
-        icon: $("cardIcon").value.trim() || "🔗",
-        tag: $("cardTag").value.trim() || "SERVICE",
-        description: $("cardDescription").value.trim(),
-        keywords: $("cardKeywords").value.trim(),
-        category: "other"
-      });
-
-      if (editingCardId) {
-        cards = cards.map((item) => item.id === editingCardId ? { ...newCard, __dirty: true } : item);
-      } else {
-        cards.push({ ...newCard, __dirty: true });
+      function resetCardForm() {
+        editingCardId = null;
+        document.getElementById('cardForm').reset();
+        document.getElementById('cardId').value = '';
+        document.getElementById('saveCardBtn').textContent = 'কার্ড সংরক্ষণ করুন';
+        document.getElementById('cancelCardBtn').hidden = true;
       }
 
-      renderCards();
-      renderSitePreview();
-      setDirty("cards", true);
-      setStatus("কার্ডের তথ্য আপডেট হয়েছে। এখন Save করুন।");
-      resetCardForm();
-    });
-
-    $("linkForm").addEventListener("submit", async (event) => {
-      event.preventDefault();
-      if (!auth.currentUser) return;
-
-      const title = $("linkTitle").value.trim();
-      const url = $("linkUrl").value.trim();
-      if (!title || !url || !safeUrl(url)) {
-        setStatus("সঠিক লিংকের নাম ও URL দিন।", "error");
-        return;
+      function resetLinkForm() {
+        editingLinkId = null;
+        document.getElementById('linkForm').reset();
+        document.getElementById('linkId').value = '';
+        document.getElementById('saveLinkBtn').textContent = 'লিংক সংরক্ষণ';
+        document.getElementById('cancelLinkBtn').hidden = true;
       }
 
-      const newLink = normalizeLink({
-        id: editingLinkId || $("linkId").value || newId(),
-        title,
-        url,
-        icon: $("linkIcon").value.trim() || "🔗",
-        keywords: $("linkKeywords").value.trim(),
-        __dirty: true
-      });
+      function saveCardFromForm(event) {
+        event.preventDefault();
+        const title = document.getElementById('cardTitle').value.trim();
+        const description = document.getElementById('cardDescription').value.trim();
+        const url = document.getElementById('cardUrl').value.trim();
+        const icon = document.getElementById('cardIcon').value.trim() || '🔗';
+        const tag = document.getElementById('cardTag').value.trim() || 'Service';
+        const section = document.getElementById('cardSection').value || 'categories';
 
-      if (editingLinkId) {
-        links = links.map((item) => item.id === editingLinkId ? newLink : item);
-      } else {
-        links.push(newLink);
+        if (!title) {
+          setStatus('কার্ডের নাম লিখতে হবে।', 'error');
+          return;
+        }
+
+        const payload = { id: editingCardId || `card-${Date.now()}`, title, description, url, icon, tag, section };
+
+        if (editingCardId) {
+          config.cards = config.cards.map(card => card.id === editingCardId ? payload : card);
+          setStatus('কার্ড আপডেট করা হয়েছে।', 'success');
+        } else {
+          config.cards.push(payload);
+          setStatus('নতুন কার্ড যোগ হয়েছে।', 'success');
+        }
+
+        saveConfig();
+        renderAll();
+        resetCardForm();
       }
 
-      renderLinks();
-      renderSitePreview();
-      setDirty("links", true);
-      setStatus("লিংক আপডেট হয়েছে। এখন Save করুন।");
-      resetLinkForm();
-    });
+      function saveLinkFromForm(event) {
+        event.preventDefault();
+        const title = document.getElementById('linkTitle').value.trim();
+        const url = document.getElementById('linkUrl').value.trim();
+        const icon = document.getElementById('linkIcon').value.trim() || '🔗';
 
-    $("newCardBtn").addEventListener("click", resetCardForm);
-    $("cancelCardBtn").addEventListener("click", resetCardForm);
-    $("newLinkBtn").addEventListener("click", resetLinkForm);
-    $("cancelLinkBtn").addEventListener("click", resetLinkForm);
+        if (!title || !url) {
+          setStatus('লিংকের নাম ও URL লিখতে হবে।', 'error');
+          return;
+        }
 
-    $("saveSettingsBtn").addEventListener("click", async () => {
-      if (!auth.currentUser) return;
-      await saveSettings();
-    });
+        const payload = { id: editingLinkId || `link-${Date.now()}`, title, url, icon };
 
-    $("backupBtn").addEventListener("click", async () => {
-      const docs = {};
-      for (const key of ["cardLayout", "customLinks", "siteSettings"]) {
-        const snap = await getDoc(ref(key));
-        docs[key] = snap.exists() ? snap.data() : null;
+        if (editingLinkId) {
+          config.links = config.links.map(link => link.id === editingLinkId ? payload : link);
+          setStatus('লিংক আপডেট করা হয়েছে।', 'success');
+        } else {
+          config.links.push(payload);
+          setStatus('নতুন লিংক যোগ হয়েছে।', 'success');
+        }
+
+        saveConfig();
+        renderAll();
+        resetLinkForm();
       }
-      const blob = new Blob([JSON.stringify(docs, null, 2)], { type: "application/json" });
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = `daily-use-products-backup-${Date.now()}.json`;
-      link.click();
-      URL.revokeObjectURL(link.href);
-      setStatus("ব্যাকআপ JSON ডাউনলোড শুরু হয়েছে।", "success");
-    });
 
-    $("saveCardBtn").addEventListener("click", async () => {
-      if (!auth.currentUser) return;
-      if (Object.values(isDirty).some(Boolean)) {
-        await saveCards();
+      function saveSiteSettings() {
+        config.brandName = document.getElementById('siteTitle').value.trim() || defaultConfig.brandName;
+        config.subtitle = document.getElementById('siteSubtitle').value.trim() || defaultConfig.subtitle;
+        config.heroEyebrow = document.getElementById('heroEyebrow').value.trim() || defaultConfig.heroEyebrow;
+        config.heroTitle = document.getElementById('heroTitle').value.trim() || defaultConfig.heroTitle;
+        config.heroText = document.getElementById('heroText').value.trim() || defaultConfig.heroText;
+        saveConfig();
+        renderAll();
+        setStatus('সাইট সেটিংস সংরক্ষিত হয়েছে।', 'success');
       }
-    });
 
-    $("saveLinkBtn").addEventListener("click", async () => {
-      if (!auth.currentUser) return;
-      if (Object.values(isDirty).some(Boolean)) {
-        await saveLinks();
+      function resetToDefault() {
+        if (!confirm('সব কনফিগারেশন ডিফল্টে ফিরিয়ে আনবেন?')) return;
+        config = clone(defaultConfig);
+        saveConfig();
+        renderAll();
+        setStatus('ডিফল্ট কনফিগারেশন চালু হয়েছে।', 'success');
       }
-    });
 
-    onAuthStateChanged(auth, async (user) => {
-      const loginCard = $("loginCard");
-      const dashboard = $("dashboard");
-      if (user) {
-        loginCard.hidden = true;
-        dashboard.hidden = false;
-        $("accountInfo").textContent = `লগইন করা অ্যাকাউন্ট: ${user.email}`;
-        await loadData();
-      } else {
-        loginCard.hidden = false;
-        dashboard.hidden = true;
-        $("accountInfo").textContent = "অ্যাকাউন্ট: —";
-      }
-    });
+      document.getElementById('cardForm').addEventListener('submit', saveCardFromForm);
+      document.getElementById('linkForm').addEventListener('submit', saveLinkFromForm);
+      document.getElementById('saveSettingsBtn').addEventListener('click', saveSiteSettings);
+      document.getElementById('newCardBtn').addEventListener('click', () => { resetCardForm(); setStatus('নতুন কার্ডের জন্য ফর্ম খালি করা হয়েছে।', 'info'); });
+      document.getElementById('newLinkBtn').addEventListener('click', () => { resetLinkForm(); setStatus('নতুন লিংকের জন্য ফর্ম খালি করা হয়েছে।', 'info'); });
+      document.getElementById('cancelCardBtn').addEventListener('click', resetCardForm);
+      document.getElementById('cancelLinkBtn').addEventListener('click', resetLinkForm);
+      document.getElementById('reloadBtn').addEventListener('click', () => { config = loadConfig(); renderAll(); setStatus('ডেটা রিফ্রেশ হয়েছে।', 'success'); });
+      document.getElementById('resetBtn').addEventListener('click', resetToDefault);
 
-    bindCardFormDirty();
-    bindLinkFormDirty();
-    bindSettingsDirty();
-    renderSitePreview();
-    setStatus("সিস্টেম প্রস্তুত।", "success");
-  </script>
-</body>
+      renderAll();
+      setStatus('অ্যাডমিন ড্যাশবোর্ড প্রস্তুত।', 'success');
+    </script>
+  </body>
 </html>
