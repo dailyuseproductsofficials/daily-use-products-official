@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel | Daily Use Products Official</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #edf3ff;
+        --bg-dark: #0a1220;
+        --panel: #ffffff;
+        --panel-soft: #f5f8ff;
+        --muted: #65758f;
+        --text: #162235;
+        --line: #dfe9f9;
+        --primary: #165dff;
+        --primary-soft: #eaf2ff;
+        --success: #1f9d61;
+        --success-soft: #ebfff5;
+        --warning: #d68a00;
+        --warning-soft: #fff7e7;
+        --danger: #d92d20;
+        --danger-soft: #fff1f0;
+        --shadow: 0 18px 40px rgba(17, 34, 66, 0.12);
+        --shadow-strong: 0 30px 60px rgba(10, 17, 32, 0.15);
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: "Noto Sans Bengali", "Segoe UI", sans-serif;
+        background: linear-gradient(180deg, #eef4ff 0%, #f7faff 100%);
+        color: var(--text);
+      }
+
+      a { color: inherit; text-decoration: none; }
+      img { max-width: 100%; display: block; }
+      button, input, select, textarea { font: inherit; }
+
+      .app {
+        max-width: 1500px;
+        margin: 0 auto;
+        padding: 22px 18px 48px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 18px 22px;
+        color: #fff;
+        background: linear-gradient(135deg, #0e1c35 0%, #173765 60%, #1f5ecc 100%);
+        border-radius: 26px;
+        box-shadow: var(--shadow-strong);
+        margin-bottom: 24px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .brand-mark {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        display: grid;
+        place-items: center;
+        font-size: 24px;
+        background: rgba(255,255,255,0.12);
+        border: 1px solid rgba(255,255,255,0.15);
+      }
+
+      .brand h1 {
+        margin: 0;
+        font-size: clamp(22px, 2vw, 32px);
+        line-height: 1.2;
+      }
+
+      .brand p {
+        margin: 4px 0 0;
+        opacity: 0.82;
+        font-size: 13px;
+      }
+
+      .status-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .pill {
+        border: 1px solid rgba(255,255,255,0.18);
+        background: rgba(255,255,255,0.08);
+        color: #f0f6ff;
+        font-size: 12px;
+        padding: 8px 11px;
+        border-radius: 999px;
+        font-weight: 700;
+      }
+
+      .pill.success {
+        background: rgba(31,157,97,0.12);
+        color: #dfffee;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(330px, 1fr) minmax(410px, 1.1fr);
+        gap: 22px;
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        box-shadow: var(--shadow);
+        padding: 18px;
+      }
+
+      .panel h2 {
+        margin: 0 0 8px;
+        font-size: 24px;
+      }
+
+      .panel-sub {
+        margin: 0 0 16px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .field-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .field.full {
+        grid-column: 1 / -1;
+      }
+
+      label {
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      input, select, textarea {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: #fff;
+        color: var(--text);
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      input:focus, select:focus, textarea:focus {
+        border-color: rgba(22, 93, 255, 0.8);
+        box-shadow: 0 0 0 4px rgba(22, 93, 255, 0.08);
+      }
+
+      textarea {
+        min-height: 110px;
+        resize: vertical;
+      }
+
+      .btn-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      button {
+        border: 0;
+        border-radius: 12px;
+        padding: 11px 14px;
+        font-weight: 800;
+        cursor: pointer;
+        transition: transform 0.15s ease, opacity 0.15s ease;
+      }
+
+      button:hover { transform: translateY(-1px); }
+      button:active { transform: translateY(0); }
+
+      button.primary {
+        background: linear-gradient(135deg, var(--primary), #0a6afe);
+        color: #fff;
+        box-shadow: 0 12px 20px rgba(15, 96, 245, 0.25);
+      }
+
+      button.secondary {
+        background: #edf3ff;
+        border: 1px solid #dfeaff;
+        color: var(--primary);
+      }
+
+      button.warning {
+        background: var(--warning-soft);
+        color: var(--warning);
+        border: 1px solid #f9d98e;
+      }
+
+      button.danger {
+        background: var(--danger-soft);
+        color: var(--danger);
+        border: 1px solid #ffd9d3;
+      }
+
+      button.ghost {
+        background: transparent;
+        border: 1px solid var(--line);
+        color: var(--text);
+      }
+
+      .status-box {
+        margin-top: 14px;
+        display: none;
+        border-radius: 12px;
+        padding: 11px 12px;
+        font-size: 13px;
+        font-weight: 700;
+        border: 1px solid transparent;
+      }
+
+      .status-box.show {
+        display: block;
+      }
+
+      .status-box.success {
+        color: var(--success);
+        background: var(--success-soft);
+        border-color: #cfeedc;
+      }
+
+      .status-box.error {
+        color: var(--danger);
+        background: var(--danger-soft);
+        border-color: #ffd8d4;
+      }
+
+      .section-list {
+        margin-top: 18px;
+        display: grid;
+        gap: 12px;
+      }
+
+      .item {
+        background: var(--panel-soft);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 12px 12px 10px;
+      }
+
+      .item-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 8px;
+      }
+
+      .item-title {
+        font-weight: 800;
+        font-size: 15px;
+      }
+
+      .item-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 5px 8px;
+        border-radius: 999px;
+        background: rgba(22, 93, 255, 0.08);
+        color: var(--primary);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      .item-meta {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .item-actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+      }
+
+      .mini-btn {
+        padding: 7px 10px;
+        border-radius: 10px;
+        border: 1px solid var(--line);
+        background: #fff;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .mini-btn.primary {
+        border-color: rgba(22, 93, 255, 0.25);
+        background: rgba(22, 93, 255, 0.06);
+        color: var(--primary);
+      }
+
+      .mini-btn.danger {
+        border-color: rgba(217, 45, 32, 0.22);
+        background: rgba(217, 45, 32, 0.04);
+        color: var(--danger);
+      }
+
+      .preview-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .preview-site {
+        background: linear-gradient(180deg, #0a1220 0%, #0d1730 100%);
+        min-height: 700px;
+        border-radius: 26px;
+        padding: 20px 18px 18px;
+        color: #edf3ff;
+        border: 1px solid rgba(170, 189, 230, 0.12);
+      }
+
+      .preview-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      .preview-head h3 {
+        margin: 0;
+        font-size: 22px;
+      }
+
+      .preview-badge {
+        background: rgba(126, 192, 255, 0.08);
+        color: #d4ecff;
+        border: 1px solid rgba(126, 192, 255, 0.2);
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .preview-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .preview-card {
+        background: rgba(17, 24, 34, 0.82);
+        border: 1px solid rgba(150,179,226,0.2);
+        border-radius: 18px;
+        padding: 14px;
+        min-height: 116px;
+      }
+
+      .preview-card h4 {
+        margin: 0 0 8px;
+        font-size: 18px;
+      }
+
+      .preview-card p {
+        margin: 0;
+        color: #b9caeb;
+        font-size: 12px;
+        line-height: 1.7;
+      }
+
+      .preview-link {
+        display: inline-flex;
+        margin-top: 12px;
+        padding: 8px 10px;
+        border-radius: 10px;
+        background: rgba(126, 192, 255, 0.1);
+        border: 1px solid rgba(126, 192, 255, 0.2);
+        color: #bfe4ff;
+        font-size: 11px;
+        font-weight: 800;
+      }
+
+      .sheet-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 8px;
+      }
+
+      .section-select {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 6px;
+      }
+
+      @media (max-width: 1000px) {
+        .layout { grid-template-columns: 1fr; }
+      }
+
+      @media (max-width: 560px) {
+        .field-grid { grid-template-columns: 1fr; }
+        .topbar { flex-direction: column; align-items: flex-start; }
+        .status-row { justify-content: flex-start; }
+        .preview-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark">🛍️</div>
+          <div>
+            <h1>Admin Panel</h1>
+            <p>Daily Use Products Official</p>
+          </div>
+        </div>
+        <div class="status-row">
+          <span class="pill success">ড্যাশবোর্ড অনলাইন</span>
+          <span class="pill">সাইট কনটেন্ট ম্যানেজার</span>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="panel">
+          <h2>কনটেন্ট এডিট</h2>
+          <p class="panel-sub">ক্লিক করে কার্ড আপডেট করুন, অর্ডার বদলান, বা নতুন আইটেম যোগ করুন।</p>
+
+          <div class="section-select">
+            <label for="sectionSelect">সেকশন</label>
+            <select id="sectionSelect">
+              <option value="categories">ক্যাটাগরি</option>
+              <option value="featured">গুরুত্বপূর্ণ পরিষেবা</option>
+              <option value="tools">দ্রুত টুলস</option>
+              <option value="links">দরকারি লিংক</option>
+            </select>
+          </div>
+
+          <form id="cardForm">
+            <div class="field-grid">
+              <div class="field">
+                <label for="titleInput">শিরোনাম</label>
+                <input id="titleInput" type="text" placeholder="যেমন: ভোটার কার্ড" required />
+              </div>
+
+              <div class="field">
+                <label for="badgeInput">বেজ</label>
+                <input id="badgeInput" type="text" placeholder="যেমন: Identity" />
+              </div>
+
+              <div class="field">
+                <label for="iconInput">আইকন</label>
+                <input id="iconInput" type="text" placeholder="যেমন: 🆔" />
+              </div>
+
+              <div class="field">
+                <label for="urlInput">লিংক</label>
+                <input id="urlInput" type="text" placeholder="https://example.com অথবা #" />
+              </div>
+
+              <div class="field full">
+                <label for="descriptionInput">বর্ণনা</label>
+                <textarea id="descriptionInput" placeholder="ক্যাডের বর্ণনা লিখুন"></textarea>
+              </div>
+            </div>
+
+            <div class="btn-row">
+              <button type="submit" class="primary" id="saveBtn">সেভ করুন</button>
+              <button type="button" class="secondary" id="newBtn">নতুন কার্ড</button>
+              <button type="button" class="ghost" id="resetBtn">রিসেট</button>
+            </div>
+
+            <div id="statusBox" class="status-box" aria-live="polite"></div>
+          </form>
+
+          <div id="listContainer" class="section-list" aria-live="polite"></div>
+        </section>
+
+        <aside class="panel preview-wrap">
+          <div class="preview-head">
+            <h3>লাইভ প্রিভিউ</h3>
+            <span class="preview-badge">Live</span>
+          </div>
+
+          <div class="preview-site">
+            <div id="previewGrid" class="preview-grid"></div>
+          </div>
+
+          <div class="sheet-actions">
+            <button type="button" class="primary" id="applyBtn">সাইটে আপডেট করুন</button>
+            <button type="button" class="secondary" id="openSiteBtn">পেজ খুলুন</button>
+          </div>
+        </aside>
+      </main>
+    </div>
+
+    <script>
+      const STORAGE_KEY = 'dailyuseproducts_admin_v1';
+      const sectionLabels = {
+        categories: 'ক্যাটাগরি',
+        featured: 'গুরুত্বপূর্ণ পরিষেবা',
+        tools: 'দ্রুত টুলস',
+        links: 'দরকারি লিংক'
+      };
+
+      const defaultState = {
+        categories: [
+          { id: crypto.randomUUID(), title: 'পরিচয়', badge: 'Identity', icon: '🆔', url: '#', description: 'ভোটার, পরিচয়পত্র, পরিচয় সংক্রান্ত সেবা দ্রুত খুঁজুন।' },
+          { id: crypto.randomUUID(), title: 'নথি', badge: 'Documents', icon: '📄', url: '#', description: 'ট্যাক্স, কাগজপত্র, অফিসিয়াল নথি ও ফাইলের দ্রুত প্রক্রিয়া।' },
+          { id: crypto.randomUUID(), title: 'ভ্রমণ', badge: 'Travel', icon: '✈️', url: '#', description: 'ভিসা, পাসপোর্ট, ভ্রমণের প্রয়োজনীয় তথ্য ও তালিকা।' },
+          { id: crypto.randomUUID(), title: 'ব্যাংকিং', badge: 'Banking', icon: '🏦', url: '#', description: 'হিসাব, লেনদেন, ব্যাংকিং ও আর্থিক পরিষেবা সহজে দেখুন।' }
+        ],
+        featured: [
+          { id: crypto.randomUUID(), title: 'ভোটার কার্ড', badge: 'Identity', icon: '🧾', url: '#', description: 'নির্ভুল ও সহজে ভেরিফিকেশন ও আবেদন প্রক্রিয়া।' },
+          { id: crypto.randomUUID(), title: 'পাসপোর্ট', badge: 'Documents', icon: '🛂', url: '#', description: 'ভ্রমণ ও পরিচয়ের জন্য পাসপোর্ট লিংক ও নির্দেশিকা।' },
+          { id: crypto.randomUUID(), title: 'ট্যাক্স ফাইল', badge: 'Documents', icon: '📑', url: '#', description: 'কর, রিটার্ন, ফাইল ও নথি সংক্রান্ত প্রয়োজনীয় তথ্য।' },
+          { id: crypto.randomUUID(), title: 'আর্থিক হিসাব', badge: 'Banking', icon: '🧮', url: '#', description: 'লেনদেন, হিসাব ও ব্যাংকিং সংক্রান্ত দ্রুত অ্যাক্সেস।' }
+        ],
+        tools: [
+          { id: crypto.randomUUID(), title: 'ইন্টারনেট বিল', badge: 'Utility', icon: '💳', url: '#', description: 'প্রয়োজনীয় বিল ও পরিষেবা খরচ পরিচালনার দ্রুত এক্সেস।' },
+          { id: crypto.randomUUID(), title: 'হেলথ কেয়ার', badge: 'Health', icon: '🩺', url: '#', description: 'স্বাস্থ্য ও চিকিৎসা সহায়তা, শিডিউল ও ডকুমেন্টেশন।' },
+          { id: crypto.randomUUID(), title: 'গভর্নমেন্ট পোর্টাল', badge: 'Official', icon: '🏛️', url: '#', description: 'সরকারি ও অফিসিয়াল পোর্টাল, নথি ও তথ্যের ঠিকানা।' },
+          { id: crypto.randomUUID(), title: 'শিক্ষা সেবা', badge: 'Education', icon: '🎓', url: '#', description: 'শিক্ষা, ভর্তি, সনদ ও সহায়তামূলক তথ্যের জন্য দ্রুত পথ।' }
+        ],
+        links: [
+          { id: crypto.randomUUID(), title: 'অফিসিয়াল পোর্টাল', badge: 'Portal', icon: '🔗', url: '#', description: 'সরকারী পোর্টাল ও গুরুত্বপূর্ণ লিংক।' },
+          { id: crypto.randomUUID(), title: 'সরকারি সাইট', badge: 'Government', icon: '🏛️', url: '#', description: 'সরকারি উদ্যোগ ও প্রতিষ্ঠানের তথ্য।' },
+          { id: crypto.randomUUID(), title: 'কন্টাক্ট সেন্টার', badge: 'Support', icon: '📞', url: '#', description: 'যোগাযোগ ও সহায়তার জন্য হটলাইন ও সেন্টার।' },
+          { id: crypto.randomUUID(), title: 'ট্যাক্স ও ফাইল', badge: 'Admin', icon: '🧾', url: '#', description: 'নথি, ট্যাক্স ও প্রশাসনিক তথ্যের জন্য সিঙ্গেল পয়েন্ট।' }
+        ]
+      };
+
+      const form = {
+        section: document.getElementById('sectionSelect'),
+        title: document.getElementById('titleInput'),
+        badge: document.getElementById('badgeInput'),
+        icon: document.getElementById('iconInput'),
+        url: document.getElementById('urlInput'),
+        description: document.getElementById('descriptionInput'),
+        save: document.getElementById('saveBtn'),
+        new: document.getElementById('newBtn'),
+        reset: document.getElementById('resetBtn'),
+        list: document.getElementById('listContainer'),
+        preview: document.getElementById('previewGrid'),
+        status: document.getElementById('statusBox'),
+        apply: document.getElementById('applyBtn'),
+        openSite: document.getElementById('openSiteBtn')
+      };
+
+      let state = loadState();
+      let currentEditId = null;
+
+      function normalizeUrl(value) {
+        if (!value) return '#';
+        const trimmed = value.trim();
+        if (!trimmed || trimmed === '#') return '#';
+        if (/^(https?:\/\/|mailto:|tel:|\/|#)/i.test(trimmed)) return trimmed;
+        return `https://${trimmed}`;
+      }
+
+      function showStatus(type, text) {
+        form.status.className = `status-box show ${type}`;
+        form.status.textContent = text;
+      }
+
+      function loadState() {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return structuredClone(defaultState);
+
+        try {
+          const parsed = JSON.parse(raw);
+          const merged = {};
+          Object.keys(defaultState).forEach((key) => {
+            merged[key] = Array.isArray(parsed[key]) && parsed[key].length ? parsed[key] : defaultState[key];
+          });
+          return merged;
+        } catch (error) {
+          return structuredClone(defaultState);
+        }
+      }
+
+      function saveState() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      }
+
+      function getCurrentSection() {
+        return form.section.value;
+      }
+
+      function resetForm() {
+        currentEditId = null;
+        form.title.value = '';
+        form.badge.value = '';
+        form.icon.value = '';
+        form.url.value = '';
+        form.description.value = '';
+        form.save.textContent = 'সেভ করুন';
+        showStatus('success', 'ফর্ম রিসেট হয়েছে।');
+      }
+
+      function renderList() {
+        const section = getCurrentSection();
+        const block = state[section] || [];
+
+        if (!block.length) {
+          form.list.innerHTML = '<div class="item"><div class="item-title">কোনো কার্ড নেই</div><div class="item-meta">নতুন কার্ড যোগ করুন।</div></div>';
+          return;
+        }
+
+        form.list.innerHTML = block.map((card, index) => `
+          <div class="item">
+            <div class="item-head">
+              <div class="item-title">${escapeHtml(card.title || 'Untitled')}</div>
+              <span class="item-badge">${escapeHtml(card.badge || 'Card')}</span>
+            </div>
+            <div class="item-meta">${escapeHtml(card.icon || '🧩')} • ${escapeHtml(card.url || '#')}</div>
+            <div class="item-actions">
+              <button type="button" class="mini-btn primary" data-action="edit" data-id="${card.id}">এডিট</button>
+              <button type="button" class="mini-btn" data-action="up" data-id="${card.id}">উপরে</button>
+              <button type="button" class="mini-btn" data-action="down" data-id="${card.id}">নিচে</button>
+              <button type="button" class="mini-btn danger" data-action="delete" data-id="${card.id}">ডিলিট</button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      function renderPreview() {
+        const section = getCurrentSection();
+        const block = state[section] || [];
+
+        if (!block.length) {
+          form.preview.innerHTML = '<div class="preview-card"><h4>কোনো কার্ড নেই</h4><p>এসেকশনে নতুন আইটেম যোগ করুন।</p></div>';
+          return;
+        }
+
+        form.preview.innerHTML = block.map((card) => {
+          const href = normalizeUrl(card.url || '#');
+          const target = href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:') ? ' target="_blank" rel="noopener noreferrer"' : '';
+          return `
+            <article class="preview-card">
+              <h4>${escapeHtml(card.icon || '🧩')} ${escapeHtml(card.title || 'Untitled')}</h4>
+              <p>${escapeHtml(card.description || 'No description added.')}</p>
+              <a class="preview-link" href="${href}"${target}>${escapeHtml(card.badge || 'View')}</a>
+            </article>
+          `;
+        }).join('');
+      }
+
+      function escapeHtml(text) {
+        return String(text)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      function addOrUpdateCard(event) {
+        event.preventDefault();
+
+        const title = form.title.value.trim();
+        const badge = form.badge.value.trim() || 'Card';
+        const icon = form.icon.value.trim() || '🧩';
+        const url = form.url.value.trim();
+        const description = form.description.value.trim();
+        const section = getCurrentSection();
+
+        if (!title) {
+          showStatus('error', 'শিরোনাম অবশ্যই লিখতে হবে।');
+          return;
+        }
+
+        if (currentEditId) {
+          const idx = state[section].findIndex((item) => item.id === currentEditId);
+          if (idx >= 0) {
+            state[section][idx] = { ...state[section][idx], title, badge, icon, url: normalizeUrl(url), description };
+            showStatus('success', 'কার্ড আপডেট হয়েছে।');
+          }
+        } else {
+          state[section].push({
+            id: crypto.randomUUID(),
+            title,
+            badge,
+            icon,
+            url: normalizeUrl(url),
+            description
+          });
+          showStatus('success', 'নতুন কার্ড যোগ হয়েছে।');
+        }
+
+        saveState();
+        resetForm();
+        renderList();
+        renderPreview();
+      }
+
+      function handleListActions(event) {
+        const button = event.target.closest('button');
+        if (!button) return;
+
+        const action = button.dataset.action;
+        const id = button.dataset.id;
+        const section = getCurrentSection();
+        const index = state[section].findIndex((item) => item.id === id);
+        if (index < 0) return;
+
+        if (action === 'edit') {
+          const item = state[section][index];
+          currentEditId = item.id;
+          form.title.value = item.title || '';
+          form.badge.value = item.badge || '';
+          form.icon.value = item.icon || '';
+          form.url.value = item.url === '#' ? '' : item.url || '';
+          form.description.value = item.description || '';
+          form.save.textContent = 'আপডেট করুন';
+          showStatus('success', 'এডিট মোড চালু হয়েছে।');
+        }
+
+        if (action === 'delete') {
+          state[section].splice(index, 1);
+          saveState();
+          if (currentEditId === id) resetForm();
+          renderList();
+          renderPreview();
+          showStatus('success', 'কার্ডটি ডিলিট করা হয়েছে।');
+        }
+
+        if (action === 'up') {
+          if (index === 0) return;
+          [state[section][index - 1], state[section][index]] = [state[section][index], state[section][index - 1]];
+          saveState();
+          renderList();
+          renderPreview();
+          showStatus('success', 'অর্ডার আপডেট হয়েছে।');
+        }
+
+        if (action === 'down') {
+          if (index === state[section].length - 1) return;
+          [state[section][index], state[section][index + 1]] = [state[section][index + 1], state[section][index]];
+          saveState();
+          renderList();
+          renderPreview();
+          showStatus('success', 'অর্ডার আপডেট হয়েছে।');
+        }
+      }
+
+      form.section.addEventListener('change', () => {
+        currentEditId = null;
+        form.save.textContent = 'সেভ করুন';
+        resetForm();
+        renderList();
+        renderPreview();
+      });
+
+      form.save.addEventListener('submit', addOrUpdateCard);
+      document.getElementById('cardForm').addEventListener('submit', addOrUpdateCard);
+      document.getElementById('newBtn').addEventListener('click', () => {
+        currentEditId = null;
+        form.save.textContent = 'সেভ করুন';
+        resetForm();
+      });
+      form.reset.addEventListener('click', () => {
+        state = structuredClone(defaultState);
+        saveState();
+        resetForm();
+        renderList();
+        renderPreview();
+        showStatus('success', 'ডিফল্ট কনটেন্ট ফিরে এসেছে।');
+      });
+      form.list.addEventListener('click', handleListActions);
+
+      form.apply.addEventListener('click', () => {
+        saveState();
+        showStatus('success', 'সাইট কনটেন্ট সেভ হয়েছে।');
+        window.open('index.html', '_blank', 'noopener,noreferrer');
+      });
+
+      form.openSite.addEventListener('click', () => {
+        window.open('index.html', '_blank', 'noopener,noreferrer');
+      });
+
+      renderList();
+      renderPreview();
+      resetForm();
+    </script>
+  </body>
+</html>
+
+"},{"content":"<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#060b14" />
+    <title>Daily Use Products Official</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg-1: #050b14;
+        --bg-2: #0b1322;
+        --bg-3: #111d33;
+        --panel: rgba(15, 23, 38, 0.82);
+        --line: rgba(135, 160, 210, 0.25);
+        --text: #edf3ff;
+        --muted: #afc0df;
+        --blue: #7ec0ff;
+        --blue-2: #b8dbff;
+        --green: #4de3a8;
+        --shadow: 0 30px 60px rgba(0,0,0,0.45);
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: "Noto Sans Bengali", "Segoe UI", sans-serif;
+        background: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 42%, var(--bg-3) 100%);
+        color: var(--text);
+      }
+
+      a { color: inherit; text-decoration: none; }
+      img { max-width: 100%; display: block; }
+      .wrap { width: min(1200px, calc(100% - 32px)); margin: 0 auto; }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(7, 12, 20, 0.8);
+        backdrop-filter: blur(18px);
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 82px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .brand img {
+        width: 56px;
+        height: 56px;
+        object-fit: cover;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .brand h1 {
+        margin: 0;
+        font-size: clamp(18px, 2vw, 26px);
+        line-height: 1.2;
+      }
+
+      .brand p {
+        margin: 4px 0 0;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .nav-cta, .primary-btn, .secondary-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 18px;
+        border-radius: 14px;
+        font-weight: 800;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .nav-cta, .primary-btn {
+        background: linear-gradient(135deg, #63c5ff 0%, #3577ff 35%, #5d8dff 100%);
+        box-shadow: 0 18px 28px rgba(27, 89, 211, 0.28);
+      }
+
+      .secondary-btn {
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(150,176,220,0.28);
+      }
+
+      .nav-cta:hover, .primary-btn:hover, .secondary-btn:hover {
+        transform: translateY(-3px);
+      }
+
+      .hero {
+        margin-top: 28px;
+        background: linear-gradient(135deg, rgba(16,22,35,0.98), rgba(13,20,34,0.96));
+        border: 1px solid rgba(129, 156, 210, 0.22);
+        border-radius: 32px;
+        padding: clamp(24px, 4vw, 42px);
+        box-shadow: var(--shadow);
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 0.8fr;
+        gap: 28px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(126, 192, 255, 0.25);
+        background: rgba(18, 33, 52, 0.9);
+        color: var(--blue-2);
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-weight: 800;
+      }
+
+      .hero h2 {
+        margin: 18px 0 14px;
+        font-size: clamp(32px, 5vw, 58px);
+        line-height: 1.06;
+        letter-spacing: -0.07em;
+        font-weight: 900;
+      }
+
+      .hero h2 .accent {
+        display: inline-block;
+        background: linear-gradient(135deg, #8fe0ff 0%, #8ea2ff 30%, #d7ffff 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .hero p {
+        margin: 0;
+        color: var(--muted);
+        font-size: clamp(16px, 2vw, 20px);
+        line-height: 1.7;
+      }
+
+      .hero-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .search {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 26px;
+        padding: 10px 12px 10px 16px;
+        border-radius: 20px;
+        background: rgba(13, 20, 31, 0.9);
+        border: 1px solid rgba(149, 176, 222, 0.22);
+      }
+
+      .search span {
+        font-size: 22px;
+      }
+
+      .search input {
+        width: 100%;
+        background: transparent;
+        outline: none;
+        border: 0;
+        color: var(--text);
+        font-size: 18px;
+      }
+
+      .search input::placeholder {
+        color: #8ca4d3;
+      }
+
+      .search small {
+        padding-left: 12px;
+        border-left: 1px solid rgba(140,163,202,0.34);
+        color: var(--blue-2);
+        font-weight: 800;
+      }
+
+      .trust-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .trust-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 12px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(137, 160, 216, 0.22);
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .hero-panel {
+        background: linear-gradient(180deg, rgba(16, 25, 38, 0.96), rgba(10, 16, 28, 0.96));
+        border: 1px solid rgba(167,184,220,0.12);
+        border-radius: 26px;
+        padding: 18px;
+      }
+
+      .mini-card {
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 18px;
+        padding: 16px 18px;
+        margin-bottom: 14px;
+      }
+
+      .mini-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12px;
+        color: #d8e1f7;
+        margin-bottom: 10px;
+      }
+
+      .mini-head .delta {
+        color: var(--green);
+        font-weight: 800;
+      }
+
+      .stat {
+        font-size: clamp(32px, 4vw, 42px);
+        font-weight: 900;
+        letter-spacing: -0.05em;
+      }
+
+      .mini-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 8px;
+      }
+
+      .mini-list li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(255,255,255,0.05);
+        border-radius: 12px;
+        padding: 10px 12px;
+      }
+
+      .section {
+        margin-top: 52px;
+      }
+
+      .head {
+        margin-bottom: 18px;
+      }
+
+      .head small {
+        display: inline-flex;
+        padding: 8px 13px;
+        border-radius: 999px;
+        border: 1px solid rgba(126,192,255,0.2);
+        background: rgba(17,26,39,0.76);
+        color: var(--blue-2);
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-weight: 800;
+      }
+
+      .head h2 {
+        margin: 12px 0 8px;
+        font-size: clamp(26px, 3vw, 40px);
+        letter-spacing: -0.05em;
+      }
+
+      .head p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        min-height: 220px;
+        padding: 18px;
+        border-radius: 24px;
+        background: rgba(17, 24, 34, 0.8);
+        border: 1px solid rgba(150,179,226,0.18);
+        box-shadow: 0 18px 30px rgba(0,0,0,0.2);
+        transition: transform 0.2s ease, border-color 0.2s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(126,192,255,0.35);
+      }
+
+      .card-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .ico {
+        width: 52px;
+        height: 52px;
+        display: grid;
+        place-items: center;
+        border-radius: 16px;
+        font-size: 24px;
+        background: linear-gradient(135deg, rgba(25,38,60,0.96), rgba(17,24,38,0.96));
+        border: 1px solid rgba(126, 192, 255, 0.15);
+      }
+
+      .chip {
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(126,192,255,0.08);
+        border: 1px solid rgba(126,192,255,0.2);
+        color: var(--blue-2);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .card h3 {
+        margin: 0;
+        font-size: 18px;
+        line-height: 1.4;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.7;
+        flex: 1;
+      }
+
+      .card-go {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: var(--blue);
+        font-weight: 800;
+        font-size: 13px;
+      }
+
+      .links {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 16px;
+        border-radius: 16px;
+        background: rgba(17,24,34,0.7);
+        border: 1px solid rgba(148,171,214,0.2);
+        transition: transform 0.2s ease, border-color 0.2s ease;
+      }
+
+      .link:hover,
+      .card:hover {
+        border-color: rgba(126,192,255,0.4);
+      }
+
+      .link i {
+        font-style: normal;
+        font-size: 22px;
+      }
+
+      .link strong {
+        display: block;
+        font-size: 15px;
+      }
+
+      .link b {
+        margin-left: auto;
+        color: var(--blue);
+      }
+
+      footer {
+        margin-top: 52px;
+        padding: 34px 0 28px;
+        background: linear-gradient(180deg, #090f1a 0%, #0c1524 100%);
+        border-top: 1px solid rgba(255,255,255,0.06);
+      }
+
+      .footrow {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 24px;
+      }
+
+      .footbrand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .footbrand img {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+      }
+
+      .footbrand h2 {
+        margin: 0;
+        font-size: 22px;
+      }
+
+      .footbrand p {
+        margin: 4px 0 0;
+        color: #cfe1ff;
+        font-size: 12px;
+      }
+
+      .social {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .social strong {
+        font-size: 15px;
+      }
+
+      .socials {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .socials a {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        border-radius: 12px;
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.12);
+        font-weight: 900;
+      }
+
+      .social small {
+        color: #d7def4;
+        font-size: 12px;
+      }
+
+      @media (max-width: 900px) {
+        .hero-grid { grid-template-columns: 1fr; }
+        .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+
+      @media (max-width: 560px) {
+        .wrap { width: calc(100% - 22px); }
+        .brand p { display: none; }
+        .nav-cta { display: none; }
+        .grid, .links { grid-template-columns: 1fr; }
+        .hero { border-radius: 22px; }
+        .footrow { flex-direction: column; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap nav">
+        <a class="brand" href="#">
+          <img src="logo.jpg" alt="Daily Use Products Official logo" />
+          <div>
+            <h1>Daily Use Products Official</h1>
+            <p>Your Premier Digital Services Hub</p>
+          </div>
+        </a>
+
+        <a class="nav-cta" href="#important">সার্ভিস ব্রাউজ করুন</a>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="hero">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">Executive Service Suite</div>
+            <h2>সব প্রয়োজনীয় সেবা, <span class="accent">একটি স্মার্ট এক্সিকিউটিভ ড্যাশবোর্ডে</span></h2>
+            <p>সরকারি, পরিচয়পত্র, স্বাস্থ্য, ব্যাংকিং, ভ্রমণ ও দৈনন্দিন প্রয়োজনীয় সেবার দ্রুত ও নিরাপদ এক্সেস।</p>
+
+            <div class="hero-cta">
+              <a class="primary-btn" href="#important">সার্ভিস ব্রাউজ করুন</a>
+              <a class="secondary-btn" href="#tools">দ্রুত টুলস</a>
+            </div>
+
+            <label class="search" aria-label="Search services">
+              <span>🔎</span>
+              <input type="search" placeholder="সার্চ করুন—রেশন, PAN, ভোটার, পাসপোর্ট..." />
+              <small>সব পরিষেবা</small>
+            </label>
+
+            <div class="trust-row" aria-label="Trust indicators">
+              <span class="trust-pill">✓ Executive access</span>
+              <span class="trust-pill">✓ Verified shortcuts</span>
+              <span class="trust-pill">✓ Premium search</span>
+            </div>
+          </div>
+
+          <aside class="hero-panel" aria-label="Service stats">
+            <div class="mini-card">
+              <div class="mini-head"><span>Live Access</span><span class="delta">+18.4%</span></div>
+              <div class="stat">12K+</div>
+            </div>
+
+            <div class="mini-card">
+              <div class="mini-head"><span>Top Categories</span><span class="delta">Updated</span></div>
+              <ul class="mini-list">
+                <li><span>Identity</span><strong>4</strong></li>
+                <li><span>Documents</span><strong>3</strong></li>
+                <li><span>Travel</span><strong>2</strong></li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="categories">
+        <div class="head">
+          <small>Categories</small>
+          <h2>ক্যাটাগরি / Categories</h2>
+          <p>সব ধরনের সেবা সহজে খুঁজুন।</p>
+        </div>
+
+        <div id="categoriesGrid" class="grid"></div>
+      </section>
+
+      <section class="section" id="important">
+        <div class="head">
+          <small>Featured</small>
+          <h2>গুরুত্বপূর্ণ পরিষেবা / Important Services</h2>
+          <p>সার্ভিস, নথি, প্রাতিষ্ঠানিক ও ব্যক্তিগত প্রয়োজনের দ্রুত এক্সেস।</p>
+        </div>
+
+        <div id="featuredGrid" class="grid"></div>
+      </section>
+
+      <section class="section" id="tools">
+        <div class="head">
+          <small>Tools</small>
+          <h2>দ্রুত টুলস / Quick Tools</h2>
+          <p>এক ক্লিকে প্রয়োজনীয় কাজ শেষ করুন।</p>
+        </div>
+
+        <div id="toolsGrid" class="grid"></div>
+      </section>
+
+      <section class="section" id="links">
+        <div class="head">
+          <small>Links</small>
+          <h2>দরকারি লিংক / Useful Links</h2>
+          <p>প্রতিষ্ঠান, অফিস ও প্রয়োজনীয় রিসোর্স।</p>
+        </div>
+
+        <div id="linksGrid" class="links"></div>
+      </section>
+    </main>
+
+    <footer id="social">
+      <div class="wrap footrow">
+        <div class="footbrand">
+          <img src="logo.jpg" alt="Daily Use Products Official logo" />
+          <div>
+            <h2>Daily Use Products Official</h2>
+            <p>Your Premier Digital Services Hub</p>
+          </div>
+        </div>
+
+        <div class="social">
+          <strong>Social Media / সোশ্যাল মিডিয়া</strong>
+          <div class="socials">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">◎</a>
+            <a href="#" aria-label="YouTube">▶</a>
+            <a href="#" aria-label="Telegram">✈</a>
+            <a href="#" aria-label="WhatsApp">W</a>
+          </div>
+          <small>Manage links directly through the admin panel.</small>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const STORAGE_KEY = 'dailyuseproducts_admin_v1';
+
+      const defaultData = {
+        categories: [
+          { title: 'পরিচয়', badge: 'Identity', icon: '🆔', url: '#', description: 'ভোটার, পরিচয়পত্র, পরিচয় সংক্রান্ত সেবা দ্রুত খুঁজুন।' },
+          { title: 'নথি', badge: 'Documents', icon: '📄', url: '#', description: 'ট্যাক্স, কাগজপত্র, অফিসিয়াল নথি ও ফাইলের দ্রুত প্রক্রিয়া।' },
+          { title: 'ভ্রমণ', badge: 'Travel', icon: '✈️', url: '#', description: 'ভিসা, পাসপোর্ট, ভ্রমণের প্রয়োজনীয় তথ্য ও তালিকা।' },
+          { title: 'ব্যাংকিং', badge: 'Banking', icon: '🏦', url: '#', description: 'হিসাব, লেনদেন, ব্যাংকিং ও আর্থিক পরিষেবা সহজে দেখুন।' }
+        ],
+        featured: [
+          { title: 'ভোটার কার্ড', badge: 'Identity', icon: '🧾', url: '#', description: 'নির্ভুল ও সহজে ভেরিফিকেশন ও আবেদন প্রক্রিয়া।' },
+          { title: 'পাসপোর্ট', badge: 'Documents', icon: '🛂', url: '#', description: 'ভ্রমণ ও পরিচয়ের জন্য পাসপোর্ট লিংক ও নির্দেশিকা।' },
+          { title: 'ট্যাক্স ফাইল', badge: 'Documents', icon: '📑', url: '#', description: 'কর, রিটার্ন, ফাইল ও নথি সংক্রান্ত প্রয়োজনীয় তথ্য।' },
+          { title: 'আর্থিক হিসাব', badge: 'Banking', icon: '🧮', url: '#', description: 'লেনদেন, হিসাব ও ব্যাংকিং সংক্রান্ত দ্রুত অ্যাক্সেস।' }
+        ],
+        tools: [
+          { title: 'ইন্টারনেট বিল', badge: 'Utility', icon: '💳', url: '#', description: 'প্রয়োজনীয় বিল ও পরিষেবা খরচ পরিচালনার দ্রুত এক্সেস।' },
+          { title: 'হেলথ কেয়ার', badge: 'Health', icon: '🩺', url: '#', description: 'স্বাস্থ্য ও চিকিৎসা সহায়তা, শিডিউল ও ডকুমেন্টেশন।' },
+          { title: 'গভর্নমেন্ট পোর্টাল', badge: 'Official', icon: '🏛️', url: '#', description: 'সরকারি ও অফিসিয়াল পোর্টাল, নথি ও তথ্যের ঠিকানা।' },
+          { title: 'শিক্ষা সেবা', badge: 'Education', icon: '🎓', url: '#', description: 'শিক্ষা, ভর্তি, সনদ ও সহায়তামূলক তথ্যের জন্য দ্রুত পথ।' }
+        ],
+        links: [
+          { title: 'অফিসিয়াল পোর্টাল', badge: 'Portal', icon: '🔗', url: '#', description: 'সরকারী পোর্টাল ও গুরুত্বপূর্ণ লিংক।' },
+          { title: 'সরকারি সাইট', badge: 'Government', icon: '🏛️', url: '#', description: 'সরকারি উদ্যোগ ও প্রতিষ্ঠানের তথ্য।' },
+          { title: 'কন্টাক্ট সেন্টার', badge: 'Support', icon: '📞', url: '#', description: 'যোগাযোগ ও সহায়তার জন্য হটলাইন ও সেন্টার।' },
+          { title: 'ট্যাক্স ও ফাইল', badge: 'Admin', icon: '🧾', url: '#', description: 'নথি, ট্যাক্স ও প্রশাসনিক তথ্যের জন্য সিঙ্গেল পয়েন্ট।' }
+        ]
+      };
+
+      function normalizeUrl(value) {
+        if (!value) return '#';
+        const trimmed = value.trim();
+        if (!trimmed || trimmed === '#') return '#';
+        if (/^(https?:\/\/|mailto:|tel:|\/|#)/i.test(trimmed)) return trimmed;
+        return `https://${trimmed}`;
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      function readData() {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return defaultData;
+        try {
+          const parsed = JSON.parse(raw);
+          const result = { ...defaultData };
+          Object.keys(defaultData).forEach((key) => {
+            if (Array.isArray(parsed[key]) && parsed[key].length) result[key] = parsed[key];
+          });
+          return result;
+        } catch {
+          return defaultData;
+        }
+      }
+
+      function cardMarkup(item) {
+        const href = normalizeUrl(item.url || '#');
+        const target = href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:') ? ' target="_blank" rel="noopener noreferrer"' : '';
+        const clickGuard = href === '#' ? ' onclick="return false;"' : '';
+        return `
+          <a class="card" href="${href}"${target}${clickGuard}>
+            <div class="card-top">
+              <div class="ico">${escapeHtml(item.icon || '🧩')}</div>
+              <span class="chip">${escapeHtml(item.badge || 'Card')}</span>
+            </div>
+            <h3>${escapeHtml(item.title || 'Untitled')}</h3>
+            <p>${escapeHtml(item.description || 'Description coming soon.')}</p>
+            <div class="card-go"><span>বিস্তারিত</span><span>→</span></div>
+          </a>
+        `;
+      }
+
+      function linkMarkup(item) {
+        const href = normalizeUrl(item.url || '#');
+        const target = href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:') ? ' target="_blank" rel="noopener noreferrer"' : '';
+        const clickGuard = href === '#' ? ' onclick="return false;"' : '';
+        return `
+          <a class="link" href="${href}"${target}${clickGuard}>
+            <i>${escapeHtml(item.icon || '🔗')}</i>
+            <span><strong>${escapeHtml(item.title || 'Link')}</strong></span>
+            <b>→</b>
+          </a>
+        `;
+      }
+
+      function renderSections() {
+        const data = readData();
+        document.getElementById('categoriesGrid').innerHTML = data.categories.map(cardMarkup).join('');
+        document.getElementById('featuredGrid').innerHTML = data.featured.map(cardMarkup).join('');
+        document.getElementById('toolsGrid').innerHTML = data.tools.map(cardMarkup).join('');
+        document.getElementById('linksGrid').innerHTML = data.links.map(linkMarkup).join('');
+      }
+
+      renderSections();
+    </script>
+  </body>
+</html>
+"}]} مطحنة to=functions.push_files  arity 1  we need valid JSON but maybe issue with huge content and quotes. Wait there is a random 
