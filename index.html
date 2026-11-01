@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="bn">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#060b14">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#060b14" />
     <title>Daily Use Products Official</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
     <style>
       :root {
         --bg-1: #050b14;
@@ -31,478 +31,107 @@
         background: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 42%, var(--bg-3) 100%);
         color: var(--text);
       }
-
       a { color: inherit; text-decoration: none; }
       img { max-width: 100%; display: block; }
       .wrap { width: min(1200px, calc(100% - 32px)); margin: 0 auto; }
-
       header {
-        position: sticky;
-        top: 0;
-        z-index: 20;
-        background: rgba(7, 12, 20, 0.8);
-        backdrop-filter: blur(18px);
+        position: sticky; top: 0; z-index: 20; background: rgba(7,12,20,0.8); backdrop-filter: blur(18px);
         border-bottom: 1px solid rgba(255,255,255,0.06);
       }
-
-      .nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        min-height: 82px;
-      }
-
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-
-      .brand img {
-        width: 56px;
-        height: 56px;
-        object-fit: cover;
-        border-radius: 18px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-      }
-
-      .brand h1 {
-        margin: 0;
-        font-size: clamp(18px, 2vw, 26px);
-        line-height: 1.2;
-      }
-
-      .brand p {
-        margin: 4px 0 0;
-        font-size: 12px;
-        color: var(--muted);
-      }
-
-      .nav-actions {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-
+      .nav { display: flex; align-items: center; justify-content: space-between; min-height: 82px; }
+      .brand { display: flex; align-items: center; gap: 12px; }
+      .brand img { width: 56px; height: 56px; object-fit: cover; border-radius: 18px; border: 1px solid rgba(255,255,255,0.12); }
+      .brand h1 { margin: 0; font-size: clamp(18px,2vw,26px); line-height:1.2; }
+      .brand p { margin: 4px 0 0; font-size: 12px; color: var(--muted); }
       .nav-cta, .primary-btn, .secondary-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 12px 18px;
-        border-radius: 14px;
-        font-weight: 800;
+        display: inline-flex; align-items: center; justify-content: center; padding: 12px 18px; border-radius: 14px; font-weight: 800;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
       }
-
       .nav-cta, .primary-btn {
         background: linear-gradient(135deg, #63c5ff 0%, #3577ff 35%, #5d8dff 100%);
-        box-shadow: 0 18px 28px rgba(27, 89, 211, 0.28);
+        box-shadow: 0 18px 28px rgba(27,89,211,0.28);
       }
-
       .secondary-btn {
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(150,176,220,0.28);
+        background: rgba(255,255,255,0.04); border: 1px solid rgba(150,176,220,0.28);
       }
-
-      .nav-cta:hover, .primary-btn:hover, .secondary-btn:hover {
-        transform: translateY(-3px);
-      }
-
+      .nav-cta:hover, .primary-btn:hover, .secondary-btn:hover { transform: translateY(-3px); }
       .hero {
-        margin-top: 28px;
-        background: linear-gradient(135deg, rgba(16,22,35,0.98), rgba(13,20,34,0.96));
-        border: 1px solid rgba(129, 156, 210, 0.22);
-        border-radius: 32px;
-        padding: clamp(24px, 4vw, 42px);
-        box-shadow: var(--shadow);
+        margin-top: 28px; background: linear-gradient(135deg, rgba(16,22,35,0.98), rgba(13,20,34,0.96));
+        border: 1px solid rgba(129,156,210,0.22); border-radius: 32px; padding: clamp(24px,4vw,42px); box-shadow: var(--shadow);
       }
-
-      .hero-grid {
-        display: grid;
-        grid-template-columns: 1.4fr 0.8fr;
-        gap: 28px;
-        align-items: center;
-      }
-
+      .hero-grid { display: grid; grid-template-columns: 1.4fr 0.8fr; gap: 28px; align-items: center; }
       .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        padding: 8px 14px;
-        border-radius: 999px;
-        border: 1px solid rgba(126, 192, 255, 0.25);
-        background: rgba(18, 33, 52, 0.9);
-        color: var(--blue-2);
-        font-size: 10px;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        font-weight: 800;
+        display: inline-flex; align-items: center; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(126,192,255,0.25);
+        background: rgba(18,33,52,0.9); color: var(--blue-2); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 800;
       }
-
-      .hero h2 {
-        margin: 18px 0 14px;
-        font-size: clamp(32px, 5vw, 58px);
-        line-height: 1.06;
-        letter-spacing: -0.07em;
-        font-weight: 900;
-      }
-
-      .hero h2 .accent {
-        display: inline-block;
-        background: linear-gradient(135deg, #8fe0ff 0%, #8ea2ff 30%, #d7ffff 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
-
-      .hero p {
-        margin: 0;
-        color: var(--muted);
-        font-size: clamp(16px, 2vw, 20px);
-        line-height: 1.7;
-      }
-
-      .hero-cta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 28px;
-      }
-
-      .search {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-top: 26px;
-        padding: 10px 12px 10px 16px;
-        border-radius: 20px;
-        background: rgba(13, 20, 31, 0.9);
-        border: 1px solid rgba(149, 176, 222, 0.22);
-      }
-
-      .search span {
-        font-size: 22px;
-      }
-
-      .search input {
-        width: 100%;
-        background: transparent;
-        outline: none;
-        border: 0;
-        color: var(--text);
-        font-size: 18px;
-      }
-
-      .search input::placeholder {
-        color: #8ca4d3;
-      }
-
-      .search small {
-        padding-left: 12px;
-        border-left: 1px solid rgba(140,163,202,0.34);
-        color: var(--blue-2);
-        font-weight: 800;
-      }
-
-      .trust-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 18px;
-      }
-
+      .hero h2 { margin: 18px 0 14px; font-size: clamp(32px, 5vw, 58px); line-height: 1.06; letter-spacing: -0.07em; font-weight: 900; }
+      .hero h2 .accent { display: inline-block; background: linear-gradient(135deg, #8fe0ff 0%, #8ea2ff 30%, #d7ffff 100%); -webkit-background-clip:text; background-clip:text; color: transparent; }
+      .hero p { margin: 0; color: var(--muted); font-size: clamp(16px,2vw,20px); line-height:1.7; }
+      .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+      .search { display: flex; align-items: center; gap: 12px; margin-top: 26px; padding: 10px 12px 10px 16px; border-radius: 20px; background: rgba(13,20,31,0.9); border: 1px solid rgba(149,176,222,0.22); }
+      .search span { font-size: 22px; }
+      .search input { width: 100%; background: transparent; outline: none; border: 0; color: var(--text); font-size: 18px; }
+      .search input::placeholder { color: #8ca4d3; }
+      .search small { padding-left: 12px; border-left: 1px solid rgba(140,163,202,0.34); color: var(--blue-2); font-weight: 800; }
+      .trust-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
       .trust-pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 9px 12px;
-        border-radius: 999px;
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(137, 160, 216, 0.22);
-        color: var(--muted);
-        font-size: 12px;
-        font-weight: 700;
+        display: inline-flex; align-items: center; gap: 8px; padding: 9px 12px; border-radius: 999px; background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(137,160,216,0.22); color: var(--muted); font-size: 12px; font-weight: 700;
       }
-
       .hero-panel {
-        background: linear-gradient(180deg, rgba(16, 25, 38, 0.96), rgba(10, 16, 28, 0.96));
-        border: 1px solid rgba(167,184,220,0.12);
-        border-radius: 26px;
-        padding: 18px;
+        background: linear-gradient(180deg, rgba(16,25,38,0.96), rgba(10,16,28,0.96));
+        border: 1px solid rgba(167,184,220,0.12); border-radius: 26px; padding: 18px;
       }
-
       .mini-card {
-        background: rgba(255,255,255,0.02);
-        border: 1px solid rgba(255,255,255,0.08);
-        border-radius: 18px;
-        padding: 16px 18px;
-        margin-bottom: 14px;
+        background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 16px 18px; margin-bottom: 14px;
       }
+      .mini-head { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #d8e1f7; margin-bottom:10px; }
+      .mini-head .delta { color: var(--green); font-weight:800; }
+      .stat { font-size: clamp(32px,4vw,42px); font-weight: 900; letter-spacing: -0.05em; }
+      .mini-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+      .mini-list li { display: flex; justify-content: space-between; align-items: center; gap: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius:12px; padding:10px 12px; }
+      .section { margin-top: 52px; }
+      .head { margin-bottom: 18px; }
+      .head small { display: inline-flex; padding: 8px 13px; border-radius: 999px; border: 1px solid rgba(126,192,255,0.2); background: rgba(17,26,39,0.76); color: var(--blue-2); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 800; }
+      .head h2 { margin: 12px 0 8px; font-size: clamp(26px,3vw,40px); letter-spacing: -0.05em; }
+      .head p { margin: 0; color: var(--muted); }
+      .grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 16px; }
+      .card { display: flex; flex-direction: column; gap: 12px; min-height: 220px; padding: 18px; border-radius: 24px; background: rgba(17,24,34,0.8); border: 1px solid rgba(150,179,226,0.18); box-shadow: 0 18px 30px rgba(0,0,0,0.2); transition: transform 0.2s ease, border-color 0.2s ease; }
+      .card:hover { transform: translateY(-4px); border-color: rgba(126,192,255,0.35); }
+      .card-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+      .ico { width: 52px; height: 52px; display: grid; place-items: center; border-radius: 16px; font-size:24px; background: linear-gradient(135deg, rgba(25,38,60,0.96), rgba(17,24,38,0.96)); border: 1px solid rgba(126,192,255,0.15); }
+      .chip { padding: 6px 10px; border-radius: 999px; background: rgba(126,192,255,0.08); border: 1px solid rgba(126,192,255,0.2); color: var(--blue-2); font-size:10px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; }
+      .card h3 { margin: 0; font-size: 18px; line-height:1.4; }
+      .card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.7; flex:1; }
+      .card-go { display: flex; align-items: center; justify-content: space-between; color: var(--blue); font-weight:800; font-size:13px; }
+      .links { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
+      .link { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 16px; background: rgba(17,24,34,0.7); border: 1px solid rgba(148,171,214,0.2); transition: transform 0.2s ease, border-color 0.2s ease; }
+      .link:hover, .card:hover { border-color: rgba(126,192,255,0.4); }
+      .link i { font-style: normal; font-size:22px; }
+      .link strong { display: block; font-size:15px; }
+      .link b { margin-left: auto; color: var(--blue); }
+      footer { margin-top: 52px; padding: 34px 0 28px; background: linear-gradient(180deg, #090f1a 0%, #0c1524 100%); border-top:1px solid rgba(255,255,255,0.06); }
+      .footrow { display:flex; justify-content:space-between; align-items:flex-start; gap:24px; }
+      .footbrand { display:flex; align-items:center; gap:12px; }
+      .footbrand img { width:52px; height:52px; border-radius:16px; }
+      .footbrand h2 { margin:0; font-size:22px; }
+      .footbrand p { margin:4px 0 0; color:#cfe1ff; font-size:12px; }
+      .social { display:flex; flex-direction:column; gap:10px; }
+      .social strong { font-size:15px; }
+      .socials { display:flex; gap:8px; flex-wrap:wrap; }
+      .socials a { width:42px; height:42px; display:grid; place-items:center; border-radius:12px; background: rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); font-weight:900; }
+      .social small { color:#d7def4; font-size:12px; }
 
-      .mini-head {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 12px;
-        color: #d8e1f7;
-        margin-bottom: 10px;
-      }
-
-      .mini-head .delta {
-        color: var(--green);
-        font-weight: 800;
-      }
-
-      .stat {
-        font-size: clamp(32px, 4vw, 42px);
-        font-weight: 900;
-        letter-spacing: -0.05em;
-      }
-
-      .mini-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: grid;
-        gap: 8px;
-      }
-
-      .mini-list li {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 16px;
-        background: rgba(255,255,255,0.02);
-        border: 1px solid rgba(255,255,255,0.05);
-        border-radius: 12px;
-        padding: 10px 12px;
-      }
-
-      .section {
-        margin-top: 52px;
-      }
-
-      .head {
-        margin-bottom: 18px;
-      }
-
-      .head small {
-        display: inline-flex;
-        padding: 8px 13px;
-        border-radius: 999px;
-        border: 1px solid rgba(126,192,255,0.2);
-        background: rgba(17,26,39,0.76);
-        color: var(--blue-2);
-        font-size: 10px;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        font-weight: 800;
-      }
-
-      .head h2 {
-        margin: 12px 0 8px;
-        font-size: clamp(26px, 3vw, 40px);
-        letter-spacing: -0.05em;
-      }
-
-      .head p {
-        margin: 0;
-        color: var(--muted);
-      }
-
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 16px;
-      }
-
-      .card {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        min-height: 220px;
-        padding: 18px;
-        border-radius: 24px;
-        background: rgba(17, 24, 34, 0.8);
-        border: 1px solid rgba(150,179,226,0.18);
-        box-shadow: 0 18px 30px rgba(0,0,0,0.2);
-        transition: transform 0.2s ease, border-color 0.2s ease;
-      }
-
-      .card:hover {
-        transform: translateY(-4px);
-        border-color: rgba(126,192,255,0.35);
-      }
-
-      .card-top {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-      }
-
-      .ico {
-        width: 52px;
-        height: 52px;
-        display: grid;
-        place-items: center;
-        border-radius: 16px;
-        font-size: 24px;
-        background: linear-gradient(135deg, rgba(25,38,60,0.96), rgba(17,24,38,0.96));
-        border: 1px solid rgba(126, 192, 255, 0.15);
-      }
-
-      .chip {
-        padding: 6px 10px;
-        border-radius: 999px;
-        background: rgba(126,192,255,0.08);
-        border: 1px solid rgba(126,192,255,0.2);
-        color: var(--blue-2);
-        font-size: 10px;
-        font-weight: 800;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-
-      .card h3 {
-        margin: 0;
-        font-size: 18px;
-        line-height: 1.4;
-      }
-
-      .card p {
-        margin: 0;
-        color: var(--muted);
-        font-size: 13px;
-        line-height: 1.7;
-        flex: 1;
-      }
-
-      .card-go {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        color: var(--blue);
-        font-weight: 800;
-        font-size: 13px;
-      }
-
-      .links {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 12px;
-      }
-
-      .link {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 14px 16px;
-        border-radius: 16px;
-        background: rgba(17,24,34,0.7);
-        border: 1px solid rgba(148,171,214,0.2);
-        transition: transform 0.2s ease, border-color 0.2s ease;
-      }
-
-      .link:hover,
-      .card:hover {
-        border-color: rgba(126,192,255,0.4);
-      }
-
-      .link i {
-        font-style: normal;
-        font-size: 22px;
-      }
-
-      .link strong {
-        display: block;
-        font-size: 15px;
-      }
-
-      .link b {
-        margin-left: auto;
-        color: var(--blue);
-      }
-
-      footer {
-        margin-top: 52px;
-        padding: 34px 0 28px;
-        background: linear-gradient(180deg, #090f1a 0%, #0c1524 100%);
-        border-top: 1px solid rgba(255,255,255,0.06);
-      }
-
-      .footrow {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 24px;
-      }
-
-      .footbrand {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-
-      .footbrand img {
-        width: 52px;
-        height: 52px;
-        border-radius: 16px;
-      }
-
-      .footbrand h2 {
-        margin: 0;
-        font-size: 22px;
-      }
-
-      .footbrand p {
-        margin: 4px 0 0;
-        color: #cfe1ff;
-        font-size: 12px;
-      }
-
-      .social {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .social strong {
-        font-size: 15px;
-      }
-
-      .socials {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-      }
-
-      .socials a {
-        width: 42px;
-        height: 42px;
-        display: grid;
-        place-items: center;
-        border-radius: 12px;
-        background: rgba(255,255,255,0.05);
-        border: 1px solid rgba(255,255,255,0.12);
-        font-weight: 900;
-      }
-
-      .social small {
-        color: #d7def4;
-        font-size: 12px;
-      }
-
-      @media (max-width: 900px) {
+      @media (max-width:900px) {
         .hero-grid { grid-template-columns: 1fr; }
-        .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-        .links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+        .links { grid-template-columns: repeat(2,minmax(0,1fr)); }
       }
 
-      @media (max-width: 560px) {
+      @media (max-width:560px) {
         .wrap { width: calc(100% - 22px); }
         .brand p { display: none; }
         .nav-cta { display: none; }
-        .nav-actions { gap: 8px; }
         .grid, .links { grid-template-columns: 1fr; }
         .hero { border-radius: 22px; }
         .footrow { flex-direction: column; }
@@ -513,17 +142,13 @@
     <header>
       <div class="wrap nav">
         <a class="brand" href="#">
-          <img src="logo.jpg" alt="Daily Use Products Official logo">
+          <img src="logo.jpg" alt="Daily Use Products Official logo" />
           <div>
             <h1>Daily Use Products Official</h1>
             <p>Your Premier Digital Services Hub</p>
           </div>
         </a>
-
-        <div class="nav-actions">
-          <a class="nav-cta" href="#important">সার্ভিস ব্রাউজ করুন</a>
-          <a class="secondary-btn" href="admin.html">অ্যাডমিন</a>
-        </div>
+        <a class="nav-cta" href="#important">সার্ভিস ব্রাউজ করুন</a>
       </div>
     </header>
 
@@ -532,8 +157,8 @@
         <div class="hero-grid">
           <div>
             <div class="eyebrow">Executive Service Suite</div>
-            <h2>সব প্রয়োজনীয় সেবা, <span class="accent">একটি স্মার্ট এক্সিকিউটিভ ড্যাশবোর্ডে</span></h2>
-            <p>সরকারি, পরিচয়পত্র, স্বাস্থ্য, ব্যাংকিং, ভ্রমণ ও দৈনন্দিন প্রয়োজনীয় সেবা এক জায়গায়। দ্রুত খুঁজুন, দ্রুত সম্পন্ন করুন।</p>
+            <h2>সব প্রয়োজনীয় সেবা, <span class="accent">একটি স্মার্ট এক্সিকিউটিভ ড্যাশবোর্ডে</span></h2>
+            <p>সরকারি, পরিচয়পত্র, স্বাস্থ্য, ব্যাংকিং, ভ্রমণ ও দৈনন্দিন প্রয়োজনীয় সেবার দ্রুত ও নিরাপদ এক্সেস।</p>
 
             <div class="hero-cta">
               <a class="primary-btn" href="#important">সার্ভিস ব্রাউজ করুন</a>
@@ -542,7 +167,7 @@
 
             <label class="search" aria-label="Search services">
               <span>🔎</span>
-              <input type="search" placeholder="সার্চ করুন—রেশন, PAN, ভোটার, পাসপোর্ট...">
+              <input type="search" placeholder="সার্চ করুন—রেশন, PAN, ভোটার, পাসপোর্ট..." />
               <small>সব পরিষেবা</small>
             </label>
 
@@ -577,7 +202,7 @@
           <h2>ক্যাটাগরি / Categories</h2>
           <p>সব ধরনের সেবা সহজে খুঁজুন।</p>
         </div>
-        <div class="grid" id="categoriesGrid"></div>
+        <div id="categoriesGrid" class="grid"></div>
       </section>
 
       <section class="section" id="important">
@@ -586,32 +211,32 @@
           <h2>গুরুত্বপূর্ণ পরিষেবা / Important Services</h2>
           <p>সার্ভিস, নথি, প্রাতিষ্ঠানিক ও ব্যক্তিগত প্রয়োজনের দ্রুত এক্সেস।</p>
         </div>
-        <div class="grid" id="importantGrid"></div>
+        <div id="featuredGrid" class="grid"></div>
       </section>
 
       <section class="section" id="tools">
         <div class="head">
           <small>Tools</small>
           <h2>দ্রুত টুলস / Quick Tools</h2>
-          <p>এক ক্লিকে প্রয়োজনীয় কাজ শেষ করুন।</p>
+          <p>এক ক্লিকে প্রয়োজনীয় কাজ শেষ করুন।</p>
         </div>
-        <div class="grid" id="toolsGrid"></div>
+        <div id="toolsGrid" class="grid"></div>
       </section>
 
       <section class="section" id="links">
         <div class="head">
           <small>Links</small>
           <h2>দরকারি লিংক / Useful Links</h2>
-          <p>প্রতিষ্ঠান, অফিস ও প্রয়োজনীয় রিসোর্স।</p>
+          <p>প্রতিষ্ঠান, অফিস ও প্রয়োজনীয় রিসোর্স।</p>
         </div>
-        <div class="links" id="linksGrid"></div>
+        <div id="linksGrid" class="links"></div>
       </section>
     </main>
 
     <footer id="social">
       <div class="wrap footrow">
         <div class="footbrand">
-          <img src="logo.jpg" alt="Daily Use Products Official logo">
+          <img src="logo.jpg" alt="Daily Use Products Official logo" />
           <div>
             <h2>Daily Use Products Official</h2>
             <p>Your Premier Digital Services Hub</p>
@@ -633,125 +258,105 @@
     </footer>
 
     <script>
-      (function () {
-        const STORAGE_KEY = 'daily-use-products-official-config-v1';
-        const defaultConfig = {
-          brandName: 'Daily Use Products Official',
-          subtitle: 'Your Premier Digital Services Hub',
-          heroEyebrow: 'Executive Service Suite',
-          heroTitle: 'সব প্রয়োজনীয় সেবা, <span class="accent">একটি স্মার্ট এক্সিকিউটিভ ড্যাশবোর্ডে</span>',
-          heroText: 'সরকারি, পরিচয়পত্র, স্বাস্থ্য, ব্যাংকিং, ভ্রমণ ও দৈনন্দিন প্রয়োজনীয় সেবা এক জায়গায়। দ্রুত খুঁজুন, দ্রুত সম্পন্ন করুন।',
-          cards: [
-            { id: 'identity-cat', title: 'পরিচয়', description: 'ভোটার, পাসপোর্ট ও আধার ইত্যাদি সেবা।', icon: '🆔', tag: 'Identity', url: '#important', section: 'categories' },
-            { id: 'documents-cat', title: 'নথি', description: 'ট্যাক্স, ফাইল ও অফিসিয়াল নথি।', icon: '📄', tag: 'Documents', url: '#important', section: 'categories' },
-            { id: 'travel-cat', title: 'ভ্রমণ', description: 'ভিসা, পাসপোর্ট ও আন্তর্জাতিক পরিষেবা।', icon: '✈️', tag: 'Travel', url: '#important', section: 'categories' },
-            { id: 'banking-cat', title: 'ব্যাংকিং', description: 'হিসাব, লেনদেন ও আর্থিক সেবা।', icon: '🏦', tag: 'Banking', url: '#important', section: 'categories' },
-            { id: 'voter-card', title: 'ভোটার কার্ড', description: 'নির্ভুল ও দ্রুত ভোটার পরিষেবা।', icon: '🧾', tag: 'Identity', url: '#', section: 'important' },
-            { id: 'passport-card', title: 'পাসপোর্ট', description: 'পরিচয় ও ভ্রমণ সংক্রান্ত আবেদন।', icon: '🛂', tag: 'Documents', url: '#', section: 'important' },
-            { id: 'tax-card', title: 'ট্যাক্স ফাইল', description: 'কর, রিটার্ন ও নথি আপডেট।', icon: '📑', tag: 'Documents', url: '#', section: 'important' },
-            { id: 'finance-card', title: 'আর্থিক হিসাব', description: 'মানি লেনদেন ও আর্থিক ব্যবস্থাপনা।', icon: '🧮', tag: 'Banking', url: '#', section: 'important' },
-            { id: 'utility-card', title: 'ইন্টারনেট বিল', description: 'ইন্টারনেট ও ইউটিলিটি বিলের দ্রুত পরিষেবা।', icon: '💳', tag: 'Utility', url: '#', section: 'tools' },
-            { id: 'health-card', title: 'হেলথ কেয়ার', description: 'স্বাস্থ্য, মেডিকেল ও সেবা সংক্রান্ত তথ্য।', icon: '🩺', tag: 'Health', url: '#', section: 'tools' },
-            { id: 'gov-card', title: 'গভর্নমেন্ট পোর্টাল', description: 'সরকারি সাইট ও অফিসিয়াল ড্যাশবোর্ড।', icon: '🏛️', tag: 'Official', url: '#', section: 'tools' },
-            { id: 'edu-card', title: 'শিক্ষা সেবা', description: 'শিক্ষা সংক্রান্ত তথ্য ও সুবিধা।', icon: '🎓', tag: 'Education', url: '#', section: 'tools' }
-          ],
-          links: [
-            { id: 'portal-link', title: 'অফিসিয়াল পোর্টাল', url: '#', icon: '🔗' },
-            { id: 'gov-link', title: 'সরকারি সাইট', url: '#', icon: '🏛️' },
-            { id: 'contact-link', title: 'কন্টাক্ট সেন্টার', url: '#', icon: '📞' },
-            { id: 'tax-link', title: 'ট্যাক্স ও ফাইল', url: '#', icon: '🧾' },
-            { id: 'travel-link', title: 'পাসপোর্ট ও ভ্রমণ', url: '#', icon: '🛂' },
-            { id: 'support-link', title: 'সহায়তা', url: '#', icon: '💬' }
-          ]
-        };
+      const STORAGE_KEY = 'dailyuseproducts_admin_v1';
+      const defaultData = {
+        categories: [
+          { title: 'পরিচয়', badge: 'Identity', icon: '🆔', url: '#', description: 'ভোটার, পরিচয়পত্র, পরিচয় সংক্রান্ত সেবা দ্রুত খুঁজুন।' },
+          { title: 'নথি', badge: 'Documents', icon: '📄', url: '#', description: 'ট্যাক্স, কাগজপত্র, অফিসিয়াল নথি ও ফাইলের দ্রুত প্রক্রিয়া।' },
+          { title: 'ভ্রমণ', badge: 'Travel', icon: '✈️', url: '#', description: 'ভিসা, পাসপোর্ট, ভ্রমণের প্রয়োজনীয় তথ্য ও তালিকা।' },
+          { title: 'ব্যাংকিং', badge: 'Banking', icon: '🏦', url: '#', description: 'হিসাব, লেনদেন, ব্যাংকিং ও আর্থিক পরিষেবা সহজে দেখুন।' }
+        ],
+        featured: [
+          { title: 'ভোটার কার্ড', badge: 'Identity', icon: '🧾', url: 'https://voters.eci.gov.in/', description: 'নির্ভুল ও সহজে ভেরিফিকেশন ও আবেদন প্রক্রিয়া।' },
+          { title: 'পাসপোর্ট', badge: 'Documents', icon: '🛂', url: '#', description: 'ভ্রমণ ও পরিচয়ের জন্য পাসপোর্ট লিংক ও নির্দেশিকা।' },
+          { title: 'ট্যাক্স ফাইল', badge: 'Documents', icon: '📑', url: '#', description: 'কর, রিটার্ন, ফাইল ও নথি সংক্রান্ত প্রয়োজনীয় তথ্য।' },
+          { title: 'আর্থিক হিসাব', badge: 'Banking', icon: '🧮', url: '#', description: 'লেনদেন, হিসাব ও ব্যাংকিং সংক্রান্ত দ্রুত অ্যাক্সেস।' }
+        ],
+        tools: [
+          { title: 'ইন্টারনেট বিল', badge: 'Utility', icon: '💳', url: '#', description: 'প্রয়োজনীয় বিল ও পরিষেবা খরচ পরিচালনার দ্রুত এক্সেস।' },
+          { title: 'হেলথ কেয়ার', badge: 'Health', icon: '🩺', url: '#', description: 'স্বাস্থ্য ও চিকিৎসা সহায়তা, শিডিউল ও ডকুমেন্টেশন।' },
+          { title: 'গভর্নমেন্ট পোর্টাল', badge: 'Official', icon: '🏛️', url: '#', description: 'সরকারি ও অফিসিয়াল পোর্টাল, নথি ও তথ্যের ঠিকানা।' },
+          { title: 'শিক্ষা সেবা', badge: 'Education', icon: '🎓', url: '#', description: 'শিক্ষা, ভর্তি, সনদ ও সহায়তামূলক তথ্যের জন্য দ্রুত পথ।' }
+        ],
+        links: [
+          { title: 'অফিসিয়াল পোর্টাল', badge: 'Portal', icon: '🔗', url: '#', description: 'সরকারী পোর্টাল ও গুরুত্বপূর্ণ লিংক।' },
+          { title: 'সরকারি সাইট', badge: 'Government', icon: '🏛️', url: '#', description: 'সরকারি উদ্যোগ ও প্রতিষ্ঠানের তথ্য।' },
+          { title: 'কন্টাক্ট সেন্টার', badge: 'Support', icon: '📞', url: '#', description: 'যোগাযোগ ও সহায়তার জন্য হটলাইন ও সেন্টার।' },
+          { title: 'ট্যাক্স ও ফাইল', badge: 'Admin', icon: '🧾', url: '#', description: 'নথি, ট্যাক্স ও প্রশাসনিক তথ্যের জন্য সিঙ্গেল পয়েন্ট।' }
+        ]
+      };
 
-        function clone(obj) {
-          return JSON.parse(JSON.stringify(obj));
-        }
+      function normalizeUrl(value) {
+        if (!value) return '#';
+        const trimmed = value.trim();
+        if (!trimmed || trimmed === '#') return '#';
+        if (/^(https?:\/\/|mailto:|tel:|\/|#)/i.test(trimmed)) return trimmed;
+        return `https://${trimmed}`;
+      }
 
-        function getConfig() {
-          try {
-            const raw = localStorage.getItem(STORAGE_KEY);
-            if (!raw) return clone(defaultConfig);
-            const parsed = JSON.parse(raw);
-            return {
-              brandName: parsed.brandName || defaultConfig.brandName,
-              subtitle: parsed.subtitle || defaultConfig.subtitle,
-              heroEyebrow: parsed.heroEyebrow || defaultConfig.heroEyebrow,
-              heroTitle: parsed.heroTitle || defaultConfig.heroTitle,
-              heroText: parsed.heroText || defaultConfig.heroText,
-              cards: Array.isArray(parsed.cards) && parsed.cards.length ? parsed.cards : clone(defaultConfig.cards),
-              links: Array.isArray(parsed.links) && parsed.links.length ? parsed.links : clone(defaultConfig.links)
-            };
-          } catch (error) {
-            return clone(defaultConfig);
-          }
-        }
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
 
-        function renderCards() {
-          const config = getConfig();
-          const sections = [
-            { key: 'categories', element: document.getElementById('categoriesGrid') },
-            { key: 'important', element: document.getElementById('importantGrid') },
-            { key: 'tools', element: document.getElementById('toolsGrid') }
-          ];
-
-          sections.forEach(({ key, element }) => {
-            if (!element) return;
-            const items = config.cards.filter((card) => card.section === key);
-            element.innerHTML = items.map((card) => `
-              <a class="card" href="${card.url || '#'}">
-                <div class="card-top">
-                  <div class="ico">${card.icon || '🔗'}</div>
-                  <span class="chip">${card.tag || 'Service'}</span>
-                </div>
-                <h3>${card.title || 'Untitled'}</h3>
-                <p>${card.description || 'No description available.'}</p>
-                <div class="card-go"><span>Open</span><b>→</b></div>
-              </a>
-            `).join('');
+      function readData() {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return defaultData;
+        try {
+          const parsed = JSON.parse(raw);
+          const result = { ...defaultData };
+          Object.keys(defaultData).forEach((key) => {
+            if (Array.isArray(parsed[key]) && parsed[key].length) result[key] = parsed[key];
           });
-
-          const linksBox = document.getElementById('linksGrid');
-          if (linksBox) {
-            linksBox.innerHTML = config.links.map((link) => `
-              <a class="link" href="${link.url || '#'}">
-                <i>${link.icon || '🔗'}</i>
-                <span><strong>${link.title || 'Link'}</strong></span>
-                <b>→</b>
-              </a>
-            `).join('');
-          }
+          return result;
+        } catch {
+          return defaultData;
         }
+      }
 
-        function renderBrand() {
-          const config = getConfig();
-          const brandTitle = document.querySelector('.brand h1');
-          const brandSubtitle = document.querySelector('.brand p');
-          const eyebrow = document.querySelector('.eyebrow');
-          const heroTitle = document.querySelector('.hero h2');
-          const heroText = document.querySelector('.hero p');
+      function cardMarkup(item) {
+        const href = normalizeUrl(item.url || '#');
+        const target = href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:') ? ' target="_blank" rel="noopener noreferrer"' : '';
+        const clickGuard = href === '#' ? ' onclick="return false;"' : '';
+        return `
+          <a class="card" href="${href}"${target}${clickGuard}>
+            <div class="card-top">
+              <div class="ico">${escapeHtml(item.icon || '🧩')}</div>
+              <span class="chip">${escapeHtml(item.badge || 'Card')}</span>
+            </div>
+            <h3>${escapeHtml(item.title || 'Untitled')}</h3>
+            <p>${escapeHtml(item.description || 'Description coming soon.')}</p>
+            <div class="card-go"><span>বিস্তারিত</span><span>→</span></div>
+          </a>
+        `;
+      }
 
-          if (brandTitle) brandTitle.textContent = config.brandName;
-          if (brandSubtitle) brandSubtitle.textContent = config.subtitle;
-          if (eyebrow) eyebrow.textContent = config.heroEyebrow;
-          if (heroTitle) heroTitle.innerHTML = config.heroTitle;
-          if (heroText) heroText.textContent = config.heroText;
+      function linkMarkup(item) {
+        const href = normalizeUrl(item.url || '#');
+        const target = href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:') ? ' target="_blank" rel="noopener noreferrer"' : '';
+        const clickGuard = href === '#' ? ' onclick="return false;"' : '';
+        return `
+          <a class="link" href="${href}"${target}${clickGuard}>
+            <i>${escapeHtml(item.icon || '🔗')}</i>
+            <span><strong>${escapeHtml(item.title || 'Link')}</strong></span>
+            <b>→</b>
+          </a>
+        `;
+      }
 
-          const footerBrand = document.querySelector('.footbrand h2');
-          const footerSubtitle = document.querySelector('.footbrand p');
-          if (footerBrand) footerBrand.textContent = config.brandName;
-          if (footerSubtitle) footerSubtitle.textContent = config.subtitle;
-        }
+      function renderSections() {
+        const data = readData();
+        document.getElementById('categoriesGrid').innerHTML = data.categories.map(cardMarkup).join('');
+        document.getElementById('featuredGrid').innerHTML = data.featured.map(cardMarkup).join('');
+        document.getElementById('toolsGrid').innerHTML = data.tools.map(cardMarkup).join('');
+        document.getElementById('linksGrid').innerHTML = data.links.map(linkMarkup).join('');
+      }
 
-        function renderPage() {
-          renderBrand();
-          renderCards();
-        }
-
-        renderPage();
-        window.__dailyUseConfig = getConfig();
-      })();
+      renderSections();
     </script>
   </body>
 </html>
