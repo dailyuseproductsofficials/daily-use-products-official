@@ -78,6 +78,12 @@
         color: var(--muted);
       }
 
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
       .nav-cta, .primary-btn, .secondary-btn {
         display: inline-flex;
         align-items: center;
@@ -496,6 +502,7 @@
         .wrap { width: calc(100% - 22px); }
         .brand p { display: none; }
         .nav-cta { display: none; }
+        .nav-actions { gap: 8px; }
         .grid, .links { grid-template-columns: 1fr; }
         .hero { border-radius: 22px; }
         .footrow { flex-direction: column; }
@@ -513,7 +520,10 @@
           </div>
         </a>
 
-        <a class="nav-cta" href="#important">সার্ভিস ব্রাউজ করুন</a>
+        <div class="nav-actions">
+          <a class="nav-cta" href="#important">সার্ভিস ব্রাউজ করুন</a>
+          <a class="secondary-btn" href="admin.html">অ্যাডমিন</a>
+        </div>
       </div>
     </header>
 
@@ -523,7 +533,7 @@
           <div>
             <div class="eyebrow">Executive Service Suite</div>
             <h2>সব প্রয়োজনীয় সেবা, <span class="accent">একটি স্মার্ট এক্সিকিউটিভ ড্যাশবোর্ডে</span></h2>
-            <p>সরকারি, পরিচয়পত্র, স্বাস্থ্য, ব্যাংকিং, ভ্রমণ ও দৈনন্দিন প্রয়োজনীয় সেবা একসাথে, দ্রুত ও নির্ভুলভাবে।</p>
+            <p>সরকারি, পরিচয়পত্র, স্বাস্থ্য, ব্যাংকিং, ভ্রমণ ও দৈনন্দিন প্রয়োজনীয় সেবা এক জায়গায়। দ্রুত খুঁজুন, দ্রুত সম্পন্ন করুন।</p>
 
             <div class="hero-cta">
               <a class="primary-btn" href="#important">সার্ভিস ব্রাউজ করুন</a>
@@ -567,13 +577,7 @@
           <h2>ক্যাটাগরি / Categories</h2>
           <p>সব ধরনের সেবা সহজে খুঁজুন।</p>
         </div>
-
-        <div class="grid">
-          <a class="card" href="#important"><div class="card-top"><div class="ico">🆔</div><span class="chip">Identity</span></div><h3>পরিচয়</h3><p>ভোটার, পাসপোর্ট, জাতীয় পরিচয় ও ব্যক্তিগত সেবা।</p><div class="card-go"><span>বিষয় দেখুন</span><span>→</span></div></a>
-          <a class="card" href="#important"><div class="card-top"><div class="ico">📄</div><span class="chip">Documents</span></div><h3>নথি</h3><p>ট্যাক্স, ফাইল, অফিসিয়াল ডকুমেন্ট ও যোগ্যতার সেবা।</p><div class="card-go"><span>বিষয় দেখুন</span><span>→</span></div></a>
-          <a class="card" href="#important"><div class="card-top"><div class="ico">✈️</div><span class="chip">Travel</span></div><h3>ভ্রমণ</h3><p>ভিসা, পাসপোর্ট, টিকেট ও আন্তর্জাতিক যাত্রার তথ্য।</p><div class="card-go"><span>বিষয় দেখুন</span><span>→</span></div></a>
-          <a class="card" href="#important"><div class="card-top"><div class="ico">🏦</div><span class="chip">Banking</span></div><h3>ব্যাংকিং</h3><p>হিসাব, লেনদেন, ফি ও আর্থিক পরিষেবা তথ্য।</p><div class="card-go"><span>বিষয় দেখুন</span><span>→</span></div></a>
-        </div>
+        <div class="grid" id="categoriesGrid"></div>
       </section>
 
       <section class="section" id="important">
@@ -582,13 +586,7 @@
           <h2>গুরুত্বপূর্ণ পরিষেবা / Important Services</h2>
           <p>সার্ভিস, নথি, প্রাতিষ্ঠানিক ও ব্যক্তিগত প্রয়োজনের দ্রুত এক্সেস।</p>
         </div>
-
-        <div class="grid">
-          <a class="card" href="#"><div class="card-top"><div class="ico">🧾</div><span class="chip">Identity</span></div><h3>ভোটার কার্ড</h3><p>নির্ভুল ও দ্রুত ভোটার তথ্য দেখুন ও আপডেট করুন।</p><div class="card-go"><span>Open service</span><span>→</span></div></a>
-          <a class="card" href="#"><div class="card-top"><div class="ico">🛂</div><span class="chip">Documents</span></div><h3>পাসপোর্ট</h3><p>পরিচয় ও ভ্রমণ সেবার জন্য দ্রুত আবেদন।</p><div class="card-go"><span>Open service</span><span>→</span></div></a>
-          <a class="card" href="#"><div class="card-top"><div class="ico">📑</div><span class="chip">Documents</span></div><h3>ট্যাক্স ফাইল</h3><p>কর, রিটার্ন ও নথি সংক্রান্ত সেবা।</p><div class="card-go"><span>Open service</span><span>→</span></div></a>
-          <a class="card" href="#"><div class="card-top"><div class="ico">🧮</div><span class="chip">Banking</span></div><h3>আর্থিক হিসাব</h3><p>মানি লেনদেন, ব্যালেন্স ও অর্থসংক্রান্ত তথ্য।</p><div class="card-go"><span>Open service</span><span>→</span></div></a>
-        </div>
+        <div class="grid" id="importantGrid"></div>
       </section>
 
       <section class="section" id="tools">
@@ -597,13 +595,7 @@
           <h2>দ্রুত টুলস / Quick Tools</h2>
           <p>এক ক্লিকে প্রয়োজনীয় কাজ শেষ করুন।</p>
         </div>
-
-        <div class="grid">
-          <a class="card" href="#"><div class="card-top"><div class="ico">💳</div><span class="chip">Utility</span></div><h3>ইন্টারনেট বিল</h3><p>ইন্টারনেট বিল, পেমেন্ট ও আপডেট সহজে দেখুন।</p><div class="card-go"><span>Open tool</span><span>→</span></div></a>
-          <a class="card" href="#"><div class="card-top"><div class="ico">🩺</div><span class="chip">Health</span></div><h3>হেলথ কেয়ার</h3><p>স্বাস্থ্য, মেডিকেল ও সেবার প্রয়োজনীয় তথ্য।</p><div class="card-go"><span>Open tool</span><span>→</span></div></a>
-          <a class="card" href="#"><div class="card-top"><div class="ico">🏛️</div><span class="chip">Official</span></div><h3>গভর্নমেন্ট পোর্টাল</h3><p>সরকারি অফিসিয়াল পোর্টাল ও তথ্য দ্রুত খুঁজুন।</p><div class="card-go"><span>Open tool</span><span>→</span></div></a>
-          <a class="card" href="#"><div class="card-top"><div class="ico">🎓</div><span class="chip">Education</span></div><h3>শিক্ষা সেবা</h3><p>শিক্ষা সংক্রান্ত তথ্য, আবেদন ও সহায়তা।</p><div class="card-go"><span>Open tool</span><span>→</span></div></a>
-        </div>
+        <div class="grid" id="toolsGrid"></div>
       </section>
 
       <section class="section" id="links">
@@ -612,15 +604,7 @@
           <h2>দরকারি লিংক / Useful Links</h2>
           <p>প্রতিষ্ঠান, অফিস ও প্রয়োজনীয় রিসোর্স।</p>
         </div>
-
-        <div class="links">
-          <a class="link" href="#"><i>🔗</i><span><strong>অফিসিয়াল পোর্টাল</strong></span><b>→</b></a>
-          <a class="link" href="#"><i>🏛️</i><span><strong>সরকারি সাইট</strong></span><b>→</b></a>
-          <a class="link" href="#"><i>📞</i><span><strong>কন্টাক্ট সেন্টার</strong></span><b>→</b></a>
-          <a class="link" href="#"><i>🧾</i><span><strong>ট্যাক্স ও ফাইল</strong></span><b>→</b></a>
-          <a class="link" href="#"><i>🛂</i><span><strong>পাসপোর্ট ও ভ্রমণ</strong></span><b>→</b></a>
-          <a class="link" href="#"><i>💬</i><span><strong>সহায়তা</strong></span><b>→</b></a>
-        </div>
+        <div class="links" id="linksGrid"></div>
       </section>
     </main>
 
@@ -647,5 +631,127 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      (function () {
+        const STORAGE_KEY = 'daily-use-products-official-config-v1';
+        const defaultConfig = {
+          brandName: 'Daily Use Products Official',
+          subtitle: 'Your Premier Digital Services Hub',
+          heroEyebrow: 'Executive Service Suite',
+          heroTitle: 'সব প্রয়োজনীয় সেবা, <span class="accent">একটি স্মার্ট এক্সিকিউটিভ ড্যাশবোর্ডে</span>',
+          heroText: 'সরকারি, পরিচয়পত্র, স্বাস্থ্য, ব্যাংকিং, ভ্রমণ ও দৈনন্দিন প্রয়োজনীয় সেবা এক জায়গায়। দ্রুত খুঁজুন, দ্রুত সম্পন্ন করুন।',
+          cards: [
+            { id: 'identity-cat', title: 'পরিচয়', description: 'ভোটার, পাসপোর্ট ও আধার ইত্যাদি সেবা।', icon: '🆔', tag: 'Identity', url: '#important', section: 'categories' },
+            { id: 'documents-cat', title: 'নথি', description: 'ট্যাক্স, ফাইল ও অফিসিয়াল নথি।', icon: '📄', tag: 'Documents', url: '#important', section: 'categories' },
+            { id: 'travel-cat', title: 'ভ্রমণ', description: 'ভিসা, পাসপোর্ট ও আন্তর্জাতিক পরিষেবা।', icon: '✈️', tag: 'Travel', url: '#important', section: 'categories' },
+            { id: 'banking-cat', title: 'ব্যাংকিং', description: 'হিসাব, লেনদেন ও আর্থিক সেবা।', icon: '🏦', tag: 'Banking', url: '#important', section: 'categories' },
+            { id: 'voter-card', title: 'ভোটার কার্ড', description: 'নির্ভুল ও দ্রুত ভোটার পরিষেবা।', icon: '🧾', tag: 'Identity', url: '#', section: 'important' },
+            { id: 'passport-card', title: 'পাসপোর্ট', description: 'পরিচয় ও ভ্রমণ সংক্রান্ত আবেদন।', icon: '🛂', tag: 'Documents', url: '#', section: 'important' },
+            { id: 'tax-card', title: 'ট্যাক্স ফাইল', description: 'কর, রিটার্ন ও নথি আপডেট।', icon: '📑', tag: 'Documents', url: '#', section: 'important' },
+            { id: 'finance-card', title: 'আর্থিক হিসাব', description: 'মানি লেনদেন ও আর্থিক ব্যবস্থাপনা।', icon: '🧮', tag: 'Banking', url: '#', section: 'important' },
+            { id: 'utility-card', title: 'ইন্টারনেট বিল', description: 'ইন্টারনেট ও ইউটিলিটি বিলের দ্রুত পরিষেবা।', icon: '💳', tag: 'Utility', url: '#', section: 'tools' },
+            { id: 'health-card', title: 'হেলথ কেয়ার', description: 'স্বাস্থ্য, মেডিকেল ও সেবা সংক্রান্ত তথ্য।', icon: '🩺', tag: 'Health', url: '#', section: 'tools' },
+            { id: 'gov-card', title: 'গভর্নমেন্ট পোর্টাল', description: 'সরকারি সাইট ও অফিসিয়াল ড্যাশবোর্ড।', icon: '🏛️', tag: 'Official', url: '#', section: 'tools' },
+            { id: 'edu-card', title: 'শিক্ষা সেবা', description: 'শিক্ষা সংক্রান্ত তথ্য ও সুবিধা।', icon: '🎓', tag: 'Education', url: '#', section: 'tools' }
+          ],
+          links: [
+            { id: 'portal-link', title: 'অফিসিয়াল পোর্টাল', url: '#', icon: '🔗' },
+            { id: 'gov-link', title: 'সরকারি সাইট', url: '#', icon: '🏛️' },
+            { id: 'contact-link', title: 'কন্টাক্ট সেন্টার', url: '#', icon: '📞' },
+            { id: 'tax-link', title: 'ট্যাক্স ও ফাইল', url: '#', icon: '🧾' },
+            { id: 'travel-link', title: 'পাসপোর্ট ও ভ্রমণ', url: '#', icon: '🛂' },
+            { id: 'support-link', title: 'সহায়তা', url: '#', icon: '💬' }
+          ]
+        };
+
+        function clone(obj) {
+          return JSON.parse(JSON.stringify(obj));
+        }
+
+        function getConfig() {
+          try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return clone(defaultConfig);
+            const parsed = JSON.parse(raw);
+            return {
+              brandName: parsed.brandName || defaultConfig.brandName,
+              subtitle: parsed.subtitle || defaultConfig.subtitle,
+              heroEyebrow: parsed.heroEyebrow || defaultConfig.heroEyebrow,
+              heroTitle: parsed.heroTitle || defaultConfig.heroTitle,
+              heroText: parsed.heroText || defaultConfig.heroText,
+              cards: Array.isArray(parsed.cards) && parsed.cards.length ? parsed.cards : clone(defaultConfig.cards),
+              links: Array.isArray(parsed.links) && parsed.links.length ? parsed.links : clone(defaultConfig.links)
+            };
+          } catch (error) {
+            return clone(defaultConfig);
+          }
+        }
+
+        function renderCards() {
+          const config = getConfig();
+          const sections = [
+            { key: 'categories', element: document.getElementById('categoriesGrid') },
+            { key: 'important', element: document.getElementById('importantGrid') },
+            { key: 'tools', element: document.getElementById('toolsGrid') }
+          ];
+
+          sections.forEach(({ key, element }) => {
+            if (!element) return;
+            const items = config.cards.filter((card) => card.section === key);
+            element.innerHTML = items.map((card) => `
+              <a class="card" href="${card.url || '#'}">
+                <div class="card-top">
+                  <div class="ico">${card.icon || '🔗'}</div>
+                  <span class="chip">${card.tag || 'Service'}</span>
+                </div>
+                <h3>${card.title || 'Untitled'}</h3>
+                <p>${card.description || 'No description available.'}</p>
+                <div class="card-go"><span>Open</span><b>→</b></div>
+              </a>
+            `).join('');
+          });
+
+          const linksBox = document.getElementById('linksGrid');
+          if (linksBox) {
+            linksBox.innerHTML = config.links.map((link) => `
+              <a class="link" href="${link.url || '#'}">
+                <i>${link.icon || '🔗'}</i>
+                <span><strong>${link.title || 'Link'}</strong></span>
+                <b>→</b>
+              </a>
+            `).join('');
+          }
+        }
+
+        function renderBrand() {
+          const config = getConfig();
+          const brandTitle = document.querySelector('.brand h1');
+          const brandSubtitle = document.querySelector('.brand p');
+          const eyebrow = document.querySelector('.eyebrow');
+          const heroTitle = document.querySelector('.hero h2');
+          const heroText = document.querySelector('.hero p');
+
+          if (brandTitle) brandTitle.textContent = config.brandName;
+          if (brandSubtitle) brandSubtitle.textContent = config.subtitle;
+          if (eyebrow) eyebrow.textContent = config.heroEyebrow;
+          if (heroTitle) heroTitle.innerHTML = config.heroTitle;
+          if (heroText) heroText.textContent = config.heroText;
+
+          const footerBrand = document.querySelector('.footbrand h2');
+          const footerSubtitle = document.querySelector('.footbrand p');
+          if (footerBrand) footerBrand.textContent = config.brandName;
+          if (footerSubtitle) footerSubtitle.textContent = config.subtitle;
+        }
+
+        function renderPage() {
+          renderBrand();
+          renderCards();
+        }
+
+        renderPage();
+        window.__dailyUseConfig = getConfig();
+      })();
+    </script>
   </body>
 </html>
