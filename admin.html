@@ -2,7 +2,7 @@
 <html lang="bn">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Admin Panel | Daily Use Products Official</title>
     <style>
       :root {
@@ -192,6 +192,20 @@
         gap: 10px;
         margin-top: 12px;
       }
+      .group-box {
+        border: 1px solid var(--line);
+        background: #fbfcff;
+        border-radius: 16px;
+        padding: 10px;
+      }
+      .group-head {
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 8px;
+      }
       .entry {
         display: grid;
         grid-template-columns: 1fr auto;
@@ -201,12 +215,17 @@
         border-radius: 14px;
         border: 1px solid var(--line);
         background: var(--panel-soft);
+        margin-bottom: 8px;
       }
+      .entry:last-child { margin-bottom: 0; }
       .entry-main {
         display: flex;
         align-items: center;
         gap: 10px;
         min-width: 0;
+        width: 100%;
+        flex: 1;
+        cursor: pointer;
       }
       .entry-main strong {
         display: block;
@@ -338,6 +357,7 @@
         padding: 10px;
       }
       .mini-card {
+        display: block;
         background: #f7fbff;
         border: 1px solid #e4edf8;
         border-radius: 12px;
@@ -466,7 +486,7 @@
 
           <div class="panel">
             <h2>🪪 কার্ড যোগ / সম্পাদনা</h2>
-            <p class="muted">কার্ডের ক্রম বদলাতে ↑/↓ বাটন ব্যবহার করুন।</p>
+            <p class="muted">কার্ডের ক্রম বদলাতে ↑/↓ বাটন ব্যবহার করুন। সব কার্ড ড্যাশবোর্ডে দৃশ���যমান থাকবে।</p>
             <form id="cardForm">
               <input id="cardId" type="hidden">
               <div class="grid">
@@ -488,6 +508,11 @@
                     <option value="categories">Categories</option>
                     <option value="important">Important Services</option>
                     <option value="tools">Quick Tools</option>
+                    <option value="documents">Documents</option>
+                    <option value="identity">Identity</option>
+                    <option value="travel">Travel</option>
+                    <option value="banking">Banking</option>
+                    <option value="health">Health</option>
                   </select>
                 </div>
                 <div class="field full">
@@ -555,20 +580,23 @@
         subtitle: 'Your Premier Digital Services Hub',
         heroEyebrow: 'Executive Service Suite',
         heroTitle: 'সব প্রয়োজনীয় সেবা, <span class="accent">একটি স্মার্ট এক্সিকিউটিভ ড্যাশবোর্ডে</span>',
-        heroText: 'সরকারি, পরিচয়পত্র, স্বাস্থ্য, ব্যাংকিং, ভ্রমণ ও দৈনন্দিন প্রয়োজনীয় সেবা এক জায়গায়। দ্রুত খুঁজুন, দ্রুত সম্পন্ন করুন।',
+        heroText: 'সরকারি, পরিচয়পত্র, স্বাস্থ্য, ব্যাংকিং, ভ্রম�� ও দৈনন্দিন প্রয়োজনীয় সেবা এক জায়গায়। দ্রুত খুঁজুন, দ্রুত সম্পন্ন করুন।',
         cards: [
-          { id: 'identity-cat', title: 'পরিচয়', description: 'ভোটার, পাসপোর্ট ও আধার ইত্যাদি সেবা।', icon: '🆔', tag: 'Identity', url: '#important', section: 'categories' },
-          { id: 'documents-cat', title: 'নথি', description: 'ট্যাক্স, ফাইল ও অফিসিয়াল নথি।', icon: '📄', tag: 'Documents', url: '#important', section: 'categories' },
-          { id: 'travel-cat', title: 'ভ্রমণ', description: 'ভিসা, পাসপোর্ট ও আন্তর্জাতিক পরিষেবা।', icon: '✈️', tag: 'Travel', url: '#important', section: 'categories' },
-          { id: 'banking-cat', title: 'ব্যাংকিং', description: 'হিসাব, লেনদেন ও আর্থিক সেবা।', icon: '🏦', tag: 'Banking', url: '#important', section: 'categories' },
-          { id: 'voter-card', title: 'ভোটার কার্ড', description: 'নির্ভুল ও দ্রুত ভোটার পরিষেবা।', icon: '🧾', tag: 'Identity', url: '#', section: 'important' },
-          { id: 'passport-card', title: 'পাসপোর্ট', description: 'পরিচয় ও ভ্রমণ সংক্রান্ত আবেদন।', icon: '🛂', tag: 'Documents', url: '#', section: 'important' },
-          { id: 'tax-card', title: 'ট্যাক্স ফাইল', description: 'কর, রিটার্ন ও নথি আপডেট।', icon: '📑', tag: 'Documents', url: '#', section: 'important' },
-          { id: 'finance-card', title: 'আর্থিক হিসাব', description: 'মানি লেনদেন ও আর্থিক ব্যবস্থাপনা।', icon: '🧮', tag: 'Banking', url: '#', section: 'important' },
-          { id: 'utility-card', title: 'ইন্টারনেট বিল', description: 'ইন্টারনেট ও ইউটিলিটি বিলের দ্রুত পরিষেবা।', icon: '💳', tag: 'Utility', url: '#', section: 'tools' },
-          { id: 'health-card', title: 'হেলথ কেয়ার', description: 'স্বাস্থ্য, মেডিকেল ও সেবা সংক্রান্ত তথ্য।', icon: '🩺', tag: 'Health', url: '#', section: 'tools' },
-          { id: 'gov-card', title: 'গভর্নমেন্ট পোর্টাল', description: 'সরকারি সাইট ও অফিসিয়াল ড্যাশবোর্ড।', icon: '🏛️', tag: 'Official', url: '#', section: 'tools' },
-          { id: 'edu-card', title: 'শিক্ষা সেবা', description: 'শিক্ষা সংক্রান্ত তথ্য ও সুবিধা।', icon: '🎓', tag: 'Education', url: '#', section: 'tools' }
+          { id: 'ration-card', title: 'রেশন কার্ড', description: 'রেশন কার্ড সংক্রান্ত সেবা।', icon: '🪪', tag: 'Government', url: '#', section: 'documents' },
+          { id: 'pan-card', title: 'PAN Card', description: 'PAn, ট্যাক্স ও পরিচয়পত্র।', icon: '💳', tag: 'Identity', url: '#', section: 'documents' },
+          { id: 'voter-card', title: 'ভোটার কার্ড', description: 'ভোটার সেবা ও সংশোধনী।', icon: '🗳️', tag: 'Identity', url: '#', section: 'identity' },
+          { id: 'aadhaar-card', title: 'আধার কার্ড', description: 'আধার আপডেট ও যাচাই।', icon: '🆔', tag: 'Identity', url: '#', section: 'identity' },
+          { id: 'passport-card', title: 'পাসপোর্ট', description: 'ভ্রমণ ও পরিচয় সংক্রান্ত আবেদন।', icon: '🛂', tag: 'Travel', url: '#', section: 'travel' },
+          { id: 'visa-card', title: 'ভিসা ও ভ্রমণ', description: 'ভিসা আবেদন ও ভ্রমণ তথ্য।', icon: '✈️', tag: 'Travel', url: '#', section: 'travel' },
+          { id: 'banking-card', title: 'ব্যাংকিং', description: 'ব্যাংক অ্যাকাউন্ট, লেনদেন ও সহায়তা।', icon: '🏦', tag: 'Banking', url: '#', section: 'banking' },
+          { id: 'insurance-card', title: 'বীমা', description: 'বীমা পরিকল্পনা ও আবেদন।', icon: '🛡️', tag: 'Insurance', url: '#', section: 'banking' },
+          { id: 'health-card', title: 'হেলথ কেয়ার', description: 'স্বাস্থ্য, মেডিকেল তথ্য ও সেবা।', icon: '🩺', tag: 'Health', url: '#', section: 'health' },
+          { id: 'hospital-card', title: 'হাসপাতাল সেবা', description: 'হাসপাতাল ও চিকিৎসা সংক্রান্ত তথ্য।', icon: '🏥', tag: 'Health', url: '#', section: 'health' },
+          { id: 'digilocker-card', title: 'DigiLocker', description: 'ডিজিটাল নথি ও ডকুমেন্ট স্টোরেজ।', icon: '📂', tag: 'Documents', url: '#', section: 'documents' },
+          { id: 'utility-card', title: 'ইউটিলিটি বিল', description: 'ইন্টারনেট, বিদ্যুৎ ও জল বিল।', icon: '💡', tag: 'Utility', url: '#', section: 'tools' },
+          { id: 'education-card', title: 'শিক্ষা সেবা', description: 'স্কুল, কলেজ ও শিক্ষা সুবিধা।', icon: '🎓', tag: 'Education', url: '#', section: 'tools' },
+          { id: 'gov-portal-card', title: 'সরকারি পোর্টাল', description: 'অফিসিয়াল সরকারি দরখাস্ত ও তথ্য।', icon: '🏛️', tag: 'Official', url: '#', section: 'tools' },
+          { id: 'business-card', title: 'ব্যবসা সেবা', description: 'ফরম, রিপোর্ট ও ব্যবসা কনফিগারেশন।', icon: '📊', tag: 'Business', url: '#', section: 'categories' }
         ],
         links: [
           { id: 'portal-link', title: 'অফিসিয়াল পোর্টাল', url: '#', icon: '🔗' },
@@ -586,6 +614,14 @@
 
       function clone(value) {
         return JSON.parse(JSON.stringify(value));
+      }
+
+      function normalizeLink(value) {
+        const raw = (value || '').trim();
+        if (!raw || raw === '#') return '#';
+        if (/^(https?:|mailto:|tel:)/i.test(raw)) return raw;
+        if (raw.startsWith('/')) return raw;
+        return raw.includes('://') ? raw : 'https://' + raw;
       }
 
       function loadConfig() {
@@ -610,15 +646,17 @@
       function saveConfig() {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
         const now = new Date();
-        document.getElementById('lastSavedText').textContent = now.toLocaleString('bn-BD', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: 'short', year: 'numeric' });
+        document.getElementById('lastSavedText').textContent = now.toLocaleString('bn-BD', {
+          hour: '2-digit',
+          minute: '2-digit',
+          day: '2-digit',
+          month: 'short',
+          year: 'numeric'
+        });
         document.getElementById('savePill').className = 'pill success';
         document.getElementById('savePill').textContent = 'Saved';
         document.getElementById('previewBadge').className = 'badge success';
         document.getElementById('previewBadge').textContent = 'Live';
-        document.getElementById('statusBox').textContent = 'সাইটের পরিবর্তন সফলভাবে সংরক্ষিত হয়েছে।';
-        document.getElementById('statusBox').style.color = '#1a9c64';
-        document.getElementById('statusBox').style.borderColor = '#cfeee0';
-        document.getElementById('statusBox').style.background = '#ebfff5';
       }
 
       function setStatus(message, type = 'info') {
@@ -656,7 +694,16 @@
         const box = document.getElementById('cardsList');
         box.innerHTML = '';
 
-        if (!config.cards.length) {
+        const grouped = {};
+        config.cards.forEach(card => {
+          const key = card.section || 'general';
+          if (!grouped[key]) grouped[key] = [];
+          grouped[key].push(card);
+        });
+
+        const sectionOrder = Object.keys(grouped);
+
+        if (!sectionOrder.length) {
           const empty = document.createElement('div');
           empty.className = 'muted';
           empty.textContent = 'কোনো কার্ড নেই।';
@@ -664,91 +711,114 @@
           return;
         }
 
-        config.cards.forEach((card, index) => {
-          const entry = document.createElement('div');
-          entry.className = 'entry';
+        sectionOrder.forEach(section => {
+          const group = document.createElement('div');
+          group.className = 'group-box';
 
-          const main = document.createElement('div');
-          main.className = 'entry-main';
+          const head = document.createElement('div');
+          head.className = 'group-head';
+          head.textContent = section;
+          group.appendChild(head);
 
-          const badge = document.createElement('span');
-          badge.className = 'badge success';
-          badge.textContent = card.section || 'general';
+          grouped[section].forEach((card, index) => {
+            const entry = document.createElement('div');
+            entry.className = 'entry';
 
-          const info = document.createElement('div');
-          const title = document.createElement('strong');
-          title.textContent = `${card.icon || '🔗'} ${card.title || 'Untitled'}`;
-          const sub = document.createElement('small');
-          sub.textContent = `${card.tag || 'Service'} • ${card.url || '—'}`;
-          info.appendChild(title);
-          info.appendChild(sub);
+            const main = document.createElement('a');
+            main.className = 'entry-main';
+            main.href = normalizeLink(card.url);
+            main.target = /^https?:/i.test(normalizeLink(card.url)) ? '_blank' : '_self';
+            main.rel = 'noopener noreferrer';
+            main.setAttribute('aria-label', `Open ${card.title}`);
+            if (!card.url || card.url === '#') {
+              main.addEventListener('click', function (event) {
+                event.preventDefault();
+              });
+            }
 
-          main.appendChild(badge);
-          main.appendChild(info);
+            const badge = document.createElement('span');
+            badge.className = 'badge success';
+            badge.textContent = card.section || 'general';
 
-          const actions = document.createElement('div');
-          actions.className = 'entry-actions';
+            const info = document.createElement('div');
+            const title = document.createElement('strong');
+            title.textContent = `${card.icon || '🔗'} ${card.title || 'Untitled'}`;
+            const sub = document.createElement('small');
+            sub.textContent = `${card.tag || 'Service'} • ${normalizeLink(card.url)}`;
+            info.appendChild(title);
+            info.appendChild(sub);
 
-          const upBtn = document.createElement('button');
-          upBtn.type = 'button';
-          upBtn.className = 'btn-secondary';
-          upBtn.textContent = '↑';
-          upBtn.disabled = index === 0;
-          upBtn.onclick = () => {
-            if (index === 0) return;
-            [config.cards[index - 1], config.cards[index]] = [config.cards[index], config.cards[index - 1]];
-            renderAll();
-            setStatus('কার্ডের ক্রম আপডেট হয়েছে।', 'info');
-          };
+            main.appendChild(badge);
+            main.appendChild(info);
 
-          const downBtn = document.createElement('button');
-          downBtn.type = 'button';
-          downBtn.className = 'btn-secondary';
-          downBtn.textContent = '↓';
-          downBtn.disabled = index === config.cards.length - 1;
-          downBtn.onclick = () => {
-            if (index >= config.cards.length - 1) return;
-            [config.cards[index], config.cards[index + 1]] = [config.cards[index + 1], config.cards[index]];
-            renderAll();
-            setStatus('কার্ডের ক্রম আপডেট হয়েছে।', 'info');
-          };
+            const actions = document.createElement('div');
+            actions.className = 'entry-actions';
 
-          const editBtn = document.createElement('button');
-          editBtn.type = 'button';
-          editBtn.className = 'btn-secondary';
-          editBtn.textContent = 'এডিট';
-          editBtn.onclick = () => {
-            editingCardId = card.id;
-            document.getElementById('cardId').value = card.id;
-            document.getElementById('cardTitle').value = card.title || '';
-            document.getElementById('cardTag').value = card.tag || '';
-            document.getElementById('cardIcon').value = card.icon || '';
-            document.getElementById('cardSection').value = card.section || 'categories';
-            document.getElementById('cardDescription').value = card.description || '';
-            document.getElementById('cardUrl').value = card.url || '';
-            document.getElementById('saveCardBtn').textContent = 'পরিবর্তন সংরক্ষণ';
-            document.getElementById('cancelCardBtn').hidden = false;
-            setStatus('কার্ড এডিট মোডে আছে।', 'info');
-          };
+            const upBtn = document.createElement('button');
+            upBtn.type = 'button';
+            upBtn.className = 'btn-secondary';
+            upBtn.textContent = '↑';
+            upBtn.onclick = () => {
+              const all = config.cards;
+              const currentIndex = all.findIndex(item => item.id === card.id);
+              if (currentIndex <= 0) return;
+              [all[currentIndex - 1], all[currentIndex]] = [all[currentIndex], all[currentIndex - 1]];
+              renderAll();
+              setStatus('কার্ডের ক্রম আপডেট হয়েছে।', 'info');
+            };
 
-          const delBtn = document.createElement('button');
-          delBtn.type = 'button';
-          delBtn.className = 'btn-danger';
-          delBtn.textContent = 'মুছুন';
-          delBtn.onclick = () => {
-            if (!confirm(`"${card.title}" কার্ডটি মুছবেন?`)) return;
-            config.cards = config.cards.filter(item => item.id !== card.id);
-            renderAll();
-            setStatus('কার্ডটি মুছে দেওয়া হয়েছে।', 'success');
-          };
+            const downBtn = document.createElement('button');
+            downBtn.type = 'button';
+            downBtn.className = 'btn-secondary';
+            downBtn.textContent = '↓';
+            downBtn.onclick = () => {
+              const all = config.cards;
+              const currentIndex = all.findIndex(item => item.id === card.id);
+              if (currentIndex === -1 || currentIndex >= all.length - 1) return;
+              [all[currentIndex], all[currentIndex + 1]] = [all[currentIndex + 1], all[currentIndex]];
+              renderAll();
+              setStatus('কার্ডের ক্রম আপডেট হয়েছে।', 'info');
+            };
 
-          actions.appendChild(upBtn);
-          actions.appendChild(downBtn);
-          actions.appendChild(editBtn);
-          actions.appendChild(delBtn);
-          entry.appendChild(main);
-          entry.appendChild(actions);
-          box.appendChild(entry);
+            const editBtn = document.createElement('button');
+            editBtn.type = 'button';
+            editBtn.className = 'btn-secondary';
+            editBtn.textContent = 'এডিট';
+            editBtn.onclick = () => {
+              editingCardId = card.id;
+              document.getElementById('cardId').value = card.id;
+              document.getElementById('cardTitle').value = card.title || '';
+              document.getElementById('cardTag').value = card.tag || '';
+              document.getElementById('cardIcon').value = card.icon || '';
+              document.getElementById('cardSection').value = card.section || 'categories';
+              document.getElementById('cardDescription').value = card.description || '';
+              document.getElementById('cardUrl').value = card.url || '';
+              document.getElementById('saveCardBtn').textContent = 'পরিবর্তন সংরক্ষণ';
+              document.getElementById('cancelCardBtn').hidden = false;
+              setStatus('কার্ড এডিট মোডে আছে।', 'info');
+            };
+
+            const delBtn = document.createElement('button');
+            delBtn.type = 'button';
+            delBtn.className = 'btn-danger';
+            delBtn.textContent = 'মুছুন';
+            delBtn.onclick = () => {
+              if (!confirm(`"${card.title}" কার্ডটি মুছবেন?`)) return;
+              config.cards = config.cards.filter(item => item.id !== card.id);
+              renderAll();
+              setStatus('কার্ডটি মুছে দেওয়া হয়েছে।', 'success');
+            };
+
+            actions.appendChild(upBtn);
+            actions.appendChild(downBtn);
+            actions.appendChild(editBtn);
+            actions.appendChild(delBtn);
+            entry.appendChild(main);
+            entry.appendChild(actions);
+            group.appendChild(entry);
+          });
+
+          box.appendChild(group);
         });
       }
 
@@ -768,8 +838,11 @@
           const entry = document.createElement('div');
           entry.className = 'entry';
 
-          const main = document.createElement('div');
+          const main = document.createElement('a');
           main.className = 'entry-main';
+          main.href = normalizeLink(link.url);
+          main.target = /^https?:/i.test(normalizeLink(link.url)) ? '_blank' : '_self';
+          main.rel = 'noopener noreferrer';
 
           const badge = document.createElement('span');
           badge.className = 'badge success';
@@ -779,7 +852,7 @@
           const title = document.createElement('strong');
           title.textContent = `${link.icon || '🔗'} ${link.title || 'Untitled'}`;
           const sub = document.createElement('small');
-          sub.textContent = link.url || '—';
+          sub.textContent = normalizeLink(link.url);
           info.appendChild(title);
           info.appendChild(sub);
 
@@ -824,12 +897,13 @@
 
       function renderPreview() {
         const preview = document.getElementById('sitePreview');
+
         const cardPreview = config.cards.slice(0, 4).map(card => `
-          <div class="mini-card">
+          <a href="${normalizeLink(card.url)}" target="${/^https?:/i.test(normalizeLink(card.url)) ? '_blank' : '_self'}" rel="noopener noreferrer" class="mini-card">
             <div class="icon">${card.icon || '🔗'}</div>
             <strong>${card.title || 'Untitled'}</strong>
             <small>${(card.description || card.tag || 'Service').slice(0, 22)}</small>
-          </div>
+          </a>
         `).join('');
 
         const linkPreview = config.links.slice(0, 4).map(link => `<span>${link.title || 'Link'}</span>`).join('');
